@@ -16,8 +16,8 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npx styleguidist server",
+    "build": "npx styleguidist build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -35,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-docgen-typescript": "^1.20.4",
+    "react-styleguidist": "^11.1.0"
   }
 }
