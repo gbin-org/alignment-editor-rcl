@@ -1,6 +1,6 @@
 # Text Segment
 
-Linkable: 
+Linkable (i.e. "content" words): 
 
 ```ts
 <TextSegment 
@@ -11,6 +11,19 @@ Linkable:
   isLinkable 
 />
 ```
+
+Non-Linkable (i.e. "function" words): 
+
+```ts
+<TextSegment 
+  segment={{text: 'ἀκοῦσαι', color: 0, group: 0 }} 
+  refName="source-1" source={[1]} 
+  alignmentData={{'01001001': {}}} 
+  linksAlt={[]} 
+  isLinkable={false}
+/>
+```
+
 
 Linked: 
 
