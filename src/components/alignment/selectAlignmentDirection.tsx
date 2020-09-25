@@ -10,8 +10,8 @@ import { VerseIdParser } from './verseIdParser';
 //import { updateUserProfileBooleanAction } from './actions';
 
 export const SelectAlignmentDirectionComp = (profile: ProfileRTLAlignstate): ReactElement => {
-  const dispatch = useDispatch();
-  const {
+ const dispatch = useDispatch();
+ const {
     isNTrtlAlignSource,
     isOTrtlAlignSource,
     isNTltrAlignSource,

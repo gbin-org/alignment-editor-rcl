@@ -1,0 +1,59 @@
+.text-segment {
+  display: inline;
+  position: relative;
+  border-radius: 5px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  padding: 0.25rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  z-index: 500;
+}
+
+.text-segment.not-linkable {
+  background-color: white !important;
+  cursor: default;
+  margin-left: 0.2rem;
+  margin-right: 0.2rem;
+}
+
+.text-segment.not-linkable:hover {
+  border: 2px solid transparent;
+}
+
+.text-segment:hover {
+  border: 2px solid #000000;
+  border-style: solid;
+}
+
+.text-segment.default {
+  background-color: #c8c8c8;
+}
+
+.text-segment.blue {
+  background-color: PowderBlue;
+}
+
+.text-segment.green {
+  background-color: LightSeaGreen;
+}
+
+.text-segment.orange {
+  background-color: orange;
+}
+
+.text-segment.default.not-linked {
+  background-color: #f0f0f0;
+}
+
+.text-segment.selected {
+  background-color: black !important;
+  color: white;
+}
+
+.text-segment.disabled {
+  cursor: not-allowed;
+}
+
+.text-segment.disabled:hover {
+}

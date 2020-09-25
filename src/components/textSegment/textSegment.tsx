@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { OverlayTrigger, Popover, Dropdown, Tooltip } from "react-bootstrap";
 import { FormattedMessage } from "react-intl";
 
+import './textSegmentStyle.scss';
+
 import {
   TextSegmentProps,
   TextSegmentState,
@@ -20,8 +22,8 @@ import {
   //dismissAlignment,
   //toggleManuscriptAction,
 //} from "./actions/alignment";
-import { AppState } from "./reducers";
-import { TranslationLink } from "./structs";
+//import { AppState } from "./reducers";
+import { TranslationLink } from "./structs/projectTranslations";
 
 const segmentColors: Record<number, string> = {
   0: "default",
@@ -63,6 +65,8 @@ const alignmentDataAndLinksPresent = (
 const isLinked = (props: TextSegmentProps): boolean => {
   const { refName, verseCode, alignmentData, linksAlt } = props;
   const [segmentType, position] = refName.split("-");
+  console.log("position ", position);
+  console.log(segmentType);
   if (alignmentDataAndLinksPresent(alignmentData, verseCode)) {
     return false;
   }
@@ -107,6 +111,7 @@ const selectionHandler = (props: TextSegmentProps): void => {
     isLinkable,
   } = props;
   const selected = isSelected(props);
+  console.log(selected);
   const [segmentType, position] = refName.split("-");
   const newState = !selected;
   if (!linkSelected && !isLinked(props) && isLinkable) {
@@ -292,7 +297,7 @@ const enrichedDataBottom = (props: TextSegmentProps): ReactElement | null => {
   return null;
 };
 
-export const render = (props: TextSegmentProps): ReactElement => {
+export const TextSegment = (props: TextSegmentProps): ReactElement => {
   const { refName, segment, theRef, linkSelected, isLinkable } = props;
   const color = segmentColors[segment.color || 0];
   const selected = isSelected(props);
@@ -302,7 +307,7 @@ export const render = (props: TextSegmentProps): ReactElement => {
   const statusClass = isLinked(props) ? "linked" : "not-linked";
   const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
   return (
-    <div className="d-inline-block">
+    <div style={{display: 'inline-block'}} className="d-inline-block">
       {enrichedDataTop(props)}
       <span
         ref={theRef}
@@ -376,4 +381,4 @@ export const render = (props: TextSegmentProps): ReactElement => {
 
 //const TextSegment = connect(mapStateToProps, mapDispatchToProps)(TextSegmentComp);
 
-export default render;
+export default TextSegment;
