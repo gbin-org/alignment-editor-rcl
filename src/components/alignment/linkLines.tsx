@@ -114,35 +114,35 @@ export class LinkLinesComp extends React.Component<AlignmentProps, AlignmentStat
   }
 }
 
-export const mapStateToProps = (state: AppState): any => {
-  return {
-    linkSelected: state.alignment.linkSelected,
-    alignmentData: state.alignment.alignmentData,
-    source: state.alignment.source,
-    target: state.alignment.target,
-    reverseAlignmentDisplay: state.alignment.reverseAlignmentDisplay,
-    reRenderLinks: state.alignment.reRenderLinks,
-  };
-};
+//export const mapStateToProps = (state: AppState): any => {
+  //return {
+    //linkSelected: state.alignment.linkSelected,
+    //alignmentData: state.alignment.alignmentData,
+    //source: state.alignment.source,
+    //target: state.alignment.target,
+    //reverseAlignmentDisplay: state.alignment.reverseAlignmentDisplay,
+    //reRenderLinks: state.alignment.reRenderLinks,
+  //};
+//};
 
-export const mapDispatchToProps = (dispatch: Dispatch): any => ({
-  selectSourceTextSegmentFunc: (position: number): void => {
-    dispatch(selectSourceTextSegmentAction(position));
-  },
-  selectTargetTextSegmentFunc: (position: number): void => {
-    dispatch(selectTargetTextSegmentAction(position));
-  },
-  deSelectSourceTextSegmentFunc: (position: number): void => {
-    dispatch(deSelectSourceTextSegmentAction(position));
-  },
-  deSelectTargetTextSegmentFunc: (position: number): void => {
-    dispatch(deSelectTargetTextSegmentAction(position));
-  },
-  selectLinkFunc: (): void => {
-    dispatch(selectLinkAction());
-  },
-});
+//export const mapDispatchToProps = (dispatch: Dispatch): any => ({
+  //selectSourceTextSegmentFunc: (position: number): void => {
+    //dispatch(selectSourceTextSegmentAction(position));
+  //},
+  //selectTargetTextSegmentFunc: (position: number): void => {
+    //dispatch(selectTargetTextSegmentAction(position));
+  //},
+  //deSelectSourceTextSegmentFunc: (position: number): void => {
+    //dispatch(deSelectSourceTextSegmentAction(position));
+  //},
+  //deSelectTargetTextSegmentFunc: (position: number): void => {
+    //dispatch(deSelectTargetTextSegmentAction(position));
+  //},
+  //selectLinkFunc: (): void => {
+    //dispatch(selectLinkAction());
+  //},
+//});
 
-const LinkLines = connect(mapStateToProps, mapDispatchToProps)(LinkLinesComp);
+//const LinkLines = connect(mapStateToProps, mapDispatchToProps)(LinkLinesComp);
 
-export default LinkLines;
+export default LinkLinesComp;

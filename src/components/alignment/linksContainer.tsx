@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import { AlignmentProps, AlignmentState, DefaultAlignmentProps } from './types/alignment';
 import LinkLines from './linkLines';
-import TextSegment from './textSegment';
+import TextSegment from '../textSegment';
 import { AppState } from './reducers';
 import { reverseAlignmentDisplayAction, reRenderLinksAction } from './actions/alignment';
 import findGlossForPosition from './findGlossForPosition';
@@ -278,33 +278,33 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
   }
 }
 
-export const mapStateToProps = (state: AppState): any => {
-  return {
-    source: state.alignment.source,
-    target: state.alignment.target,
-    reverseAlignmentDisplay: state.alignment.reverseAlignmentDisplay,
-    glosses: state.gloss.glosses,
-    isRTL: state.project.isRTL,
-    isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
-    isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
-    isNTltrAlignSource: state.profile.isNTltrAlignSource,
-    isOTltrAlignSource: state.profile.isOTltrAlignSource,
-    isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
-    isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
-    isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
-    isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
-  };
-};
+//export const mapStateToProps = (state: AppState): any => {
+  //return {
+    //source: state.alignment.source,
+    //target: state.alignment.target,
+    //reverseAlignmentDisplay: state.alignment.reverseAlignmentDisplay,
+    //glosses: state.gloss.glosses,
+    //isRTL: state.project.isRTL,
+    //isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
+    //isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
+    //isNTltrAlignSource: state.profile.isNTltrAlignSource,
+    //isOTltrAlignSource: state.profile.isOTltrAlignSource,
+    //isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
+    //isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
+    //isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
+    //isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
+  //};
+//};
 
-export const mapDispatchToProps = (dispatch: Dispatch): any => ({
-  reverseAlignmentDisplayFunc: (): void => {
-    dispatch(reverseAlignmentDisplayAction());
-  },
+//export const mapDispatchToProps = (dispatch: Dispatch): any => ({
+  //reverseAlignmentDisplayFunc: (): void => {
+    //dispatch(reverseAlignmentDisplayAction());
+  //},
 
-  reRenderLinksFunc: (): void => {
-    dispatch(reRenderLinksAction());
-  },
-});
-const LinksContainer = connect(mapStateToProps, mapDispatchToProps)(LinksContainerComp);
+  //reRenderLinksFunc: (): void => {
+    //dispatch(reRenderLinksAction());
+  //},
+//});
+//const LinksContainer = connect(mapStateToProps, mapDispatchToProps)(LinksContainerComp);
 
-export default LinksContainer;
+export default LinksContainerComp;

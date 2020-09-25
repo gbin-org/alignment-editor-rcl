@@ -574,96 +574,96 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
   }
 }
 
-export const mapStateToProps = (state: AppState): any => {
-  return {
-    alignmentData: state.alignment.alignmentData,
-    isVisible: state.verseEditor.triggerAlignmentFlag,
-    verseCode: state.alignment.verseCode,
-    source: state.alignment.source,
-    target: state.alignment.target,
-    linkSelected: state.alignment.linkSelected,
-    isReadOnly: state.project.isReadOnly,
-    isRTL: state.project.isRTL,
-    isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
-    isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
-    isNTltrAlignSource: state.profile.isNTltrAlignSource,
-    isOTltrAlignSource: state.profile.isOTltrAlignSource,
-    isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
-    isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
-    isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
-    isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
-  };
-};
+//export const mapStateToProps = (state: AppState): any => {
+  //return {
+    //alignmentData: state.alignment.alignmentData,
+    //isVisible: state.verseEditor.triggerAlignmentFlag,
+    //verseCode: state.alignment.verseCode,
+    //source: state.alignment.source,
+    //target: state.alignment.target,
+    //linkSelected: state.alignment.linkSelected,
+    //isReadOnly: state.project.isReadOnly,
+    //isRTL: state.project.isRTL,
+    //isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
+    //isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
+    //isNTltrAlignSource: state.profile.isNTltrAlignSource,
+    //isOTltrAlignSource: state.profile.isOTltrAlignSource,
+    //isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
+    //isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
+    //isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
+    //isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
+  //};
+//};
 
-export const mapDispatchToProps = (dispatch: Dispatch): any => ({
-  fetchDataFunc: (projectId: string, verseId: string): void => {
-    dispatch(fetchAlignmentDataAction(projectId, verseId));
-  },
+//export const mapDispatchToProps = (dispatch: Dispatch): any => ({
+  //fetchDataFunc: (projectId: string, verseId: string): void => {
+    //dispatch(fetchAlignmentDataAction(projectId, verseId));
+  //},
 
-  addLinkFunc: (
-    verseCode: string,
-    sources: SelectedTextSegment[],
-    targets: SelectedTextSegment[],
-  ): void => {
-    const convertedSources = sources.map((source) => {
-      return Number(source.position);
-    });
-    const convertedTargets = targets.map((target) => {
-      return Number(target.position);
-    });
-    dispatch(addLinkAction(verseCode, convertedSources, convertedTargets));
-  },
+  //addLinkFunc: (
+    //verseCode: string,
+    //sources: SelectedTextSegment[],
+    //targets: SelectedTextSegment[],
+  //): void => {
+    //const convertedSources = sources.map((source) => {
+      //return Number(source.position);
+    //});
+    //const convertedTargets = targets.map((target) => {
+      //return Number(target.position);
+    //});
+    //dispatch(addLinkAction(verseCode, convertedSources, convertedTargets));
+  //},
 
-  clearLinkSelectionsFunc: (): void => {
-    dispatch(clearLinkSelectionsAction());
-  },
+  //clearLinkSelectionsFunc: (): void => {
+    //dispatch(clearLinkSelectionsAction());
+  //},
 
-  selectSourceTextSegmentFunc: (position: number): void => {
-    dispatch(selectSourceTextSegmentAction(position));
-  },
+  //selectSourceTextSegmentFunc: (position: number): void => {
+    //dispatch(selectSourceTextSegmentAction(position));
+  //},
 
-  selectTargetTextSegmentFunc: (position: number): void => {
-    dispatch(selectTargetTextSegmentAction(position));
-  },
+  //selectTargetTextSegmentFunc: (position: number): void => {
+    //dispatch(selectTargetTextSegmentAction(position));
+  //},
 
-  removeSelectedLinkFunc: (
-    verseCode: string,
-    sourceAlt: SelectedTextSegment[],
-    targetAlt: SelectedTextSegment[],
-  ): void => {
-    dispatch(removeSelectedLinkAction(verseCode, sourceAlt, targetAlt));
-  },
+  //removeSelectedLinkFunc: (
+    //verseCode: string,
+    //sourceAlt: SelectedTextSegment[],
+    //targetAlt: SelectedTextSegment[],
+  //): void => {
+    //dispatch(removeSelectedLinkAction(verseCode, sourceAlt, targetAlt));
+  //},
 
-  closeAlignmentFunc: (): void => {
-    dispatch(clearLinkSelectionsAction());
-  },
+  //closeAlignmentFunc: (): void => {
+    //dispatch(clearLinkSelectionsAction());
+  //},
 
-  verifyAlignmentFunc: (projectId: string, verseId: string, links: TranslationLink): void => {
+  //verifyAlignmentFunc: (projectId: string, verseId: string, links: TranslationLink): void => {
     //dispatch(verifyAlignmentAction(projectId, verseId, links));
-    dispatch(clearLinkSelectionsAction());
-  },
+    //dispatch(clearLinkSelectionsAction());
+  //},
 
-  reverseAlignmentDisplayFunc: (): void => {
-    dispatch(reverseAlignmentDisplayAction());
-  },
+  //reverseAlignmentDisplayFunc: (): void => {
+    //dispatch(reverseAlignmentDisplayAction());
+  //},
 
-  uncheckCompleteBoxFunc: (verseCode: string): void => {
+  //uncheckCompleteBoxFunc: (verseCode: string): void => {
     //dispatch(uncheckCompleteBoxAction(verseCode));
-  },
+  //},
 
-  openEditorFunc: (verseCode: string): void => {
+  //openEditorFunc: (verseCode: string): void => {
     //dispatch(openEditorAction(verseCode));
-  },
+  //},
 
-  fetchSuggestionFunc: (projectId: string, textId: string, versification: string): void => {
+  //fetchSuggestionFunc: (projectId: string, textId: string, versification: string): void => {
     //dispatch(fetchSuggestionAction(projectId, textId, versification));
-  },
+  //},
 
-  updateVerseStatusFunc: (projectId: string, textId: string, complete: boolean): void => {
+  //updateVerseStatusFunc: (projectId: string, textId: string, complete: boolean): void => {
     //dispatch(updateVerseStatusAction(projectId, textId, complete));
-  },
-});
+  //},
+//});
 
-const Alignment = connect(mapStateToProps, mapDispatchToProps)(AlignmentComp);
+//const Alignment = connect(mapStateToProps, mapDispatchToProps)(AlignmentComp);
 
-export default Alignment;
+export default AlignmentComp;
