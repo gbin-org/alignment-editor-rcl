@@ -24,7 +24,8 @@
     "start": "npx styleguidist server",
     "build": "npx styleguidist build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "loc": "cloc . --exclude-dir node_modules --md > loc.md"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,6 +45,7 @@
   "devDependencies": {
     "@types/lodash": "^4.14.161",
     "@types/react-redux": "^7.1.9",
+    "cloc": "^2.7.0",
     "node-sass": "^4.14.1",
     "react-docgen-typescript": "^1.20.4",
     "react-styleguidist": "^11.1.0"
