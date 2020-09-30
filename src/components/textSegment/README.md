@@ -4,23 +4,16 @@ Linkable (i.e. "content" words):
 
 ```ts
 <TextSegment 
-  segment={{text: 'ἀκοῦσαι', color: 0, group: 0 }} 
-  refName="source-1" source={[1]} 
-  alignmentData={{'01001001': {}}} 
-  linksAlt={[]} 
-  isLinkable 
+  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', position: 1 }} 
 />
 ```
 
-Non-Linkable (i.e. "function" words): 
+Non-Linkable / Disabled (i.e. "function" words): 
 
 ```ts
 <TextSegment 
-  segment={{text: 'ἀκοῦσαι', color: 0, group: 0 }} 
-  refName="source-1" source={[1]} 
-  alignmentData={{'01001001': {}}} 
-  linksAlt={[]} 
-  isLinkable={false}
+  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', position: 1}} 
+  isDisabled
 />
 ```
 
@@ -29,13 +22,8 @@ Linked:
 
 ```ts
 <TextSegment 
-  segment={{text: 'ἀκοῦσαι', color: 0, group: 0 }} 
-  refName="source-1"  
-  source={[]} 
-  target={[]} 
-  alignmentData={{'01001001': {}}} 
-  linksAlt={[{sources: [1], targets: [1]}]} 
-  isLinkable 
+  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', position: 1 }} 
+  isLinked
 />
 ```
 
@@ -43,33 +31,20 @@ Selected:
 
 ```ts
 <TextSegment 
-  segment={{text: 'ἀκοῦσαι', color: 0, group: 0 }} 
-  refName="source-1" source={[{position: 1}]} 
-  alignmentData={{'01001001': {}}} 
-  linksAlt={[]} 
-  isLinkable 
+  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', postition: 1 }}
+  isSelected
 />
 ```
 Linked and Grouped: 
 
 ```ts
 <TextSegment 
-  segment={{text: 'ταχὺς', color: 1, group: 1 }} 
-  refName="source-1"  
-  source={[]} 
-  target={[]} 
-  alignmentData={{'01001001': {}}} 
-  linksAlt={[{sources: [1], targets: [1]}]} 
-  isLinkable 
+  segmentData={{text: 'ταχὺς', color: 1, group: 1, type: 'source', position: 1 }} 
+  isLinked
 />
 
 <TextSegment 
-  segment={{text: 'ἀκοῦσαι', color: 1, group: 1 }} 
-  refName="source-1"  
-  source={[]} 
-  target={[]} 
-  alignmentData={{'01001001': {}}} 
-  linksAlt={[{sources: [1], targets: [1]}]} 
-  isLinkable 
+  segmentData={{text: 'ἀκοῦσαι', color: 1, group: 1, type: 'source', position: 2 }} 
+  isLinked
 />
 ```

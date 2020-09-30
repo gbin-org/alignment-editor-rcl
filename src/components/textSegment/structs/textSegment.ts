@@ -1,4 +1,6 @@
 export interface TextSegment {
+  type: 'source'|'target';
+  position: number;
   text: string;
   group: number;
   color: number;
@@ -6,8 +8,4 @@ export interface TextSegment {
   strongsX?: string;
   english?: string;
   lemma?: string;
-}
-
-export interface SelectedTextSegment {
-  position: number;
 }

@@ -10,14 +10,14 @@
   z-index: 500;
 }
 
-.text-segment.not-linkable {
+.text-segment.disabled {
   background-color: white !important;
-  cursor: default;
+  cursor: not-allowed;
   margin-left: 0.2rem;
   margin-right: 0.2rem;
 }
 
-.text-segment.not-linkable:hover {
+.text-segment.disabled:hover {
   border: 2px solid transparent;
 }
 
@@ -49,11 +49,4 @@
 .text-segment.selected {
   background-color: black !important;
   color: white;
-}
-
-.text-segment.disabled {
-  cursor: not-allowed;
-}
-
-.text-segment.disabled:hover {
 }
