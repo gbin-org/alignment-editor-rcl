@@ -104,6 +104,7 @@ export const SelectAlignmentDirectionComp = (profile: ProfileRTLAlignstate): Rea
 
   return (
     <Dropdown
+      id="woah"
       key="switch-direction"
       className="switch-direction"
       onClick={(): void => {
@@ -117,7 +118,7 @@ export const SelectAlignmentDirectionComp = (profile: ProfileRTLAlignstate): Rea
         //);
       }}
     >
-      <Dropdown.Toggle id="interlinear-dropdown-custom-components" as={CustomDropdownToggle}>
+      <Dropdown.Toggle id="interlinear-dropdown-custom-components" as="CustomDropdownToggle">
         <OverlayTrigger
           key="switch-direction"
           trigger={['hover', 'focus']}

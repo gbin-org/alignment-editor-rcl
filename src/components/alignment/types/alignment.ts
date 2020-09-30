@@ -1,21 +1,21 @@
-import { SelectedTextSegment, Gloss } from '../structs';
-import noop from '../noop';
+import { SelectedTextSegment, Gloss } from "../structs";
+import noop from "../noop";
 
-export const FETCH_ALIGNMENT_DATA = 'FETCH_DATA_DATA';
-export const FETCH_ALIGNMENT_DATA_REQUEST = 'FETCH_ALIGNMENT_DATA_REQUEST';
-export const FETCH_ALIGNMENT_DATA_SUCCESS = 'FETCH_ALIGNMENT_DATA_SUCCESS';
-export const FETCH_ALIGNMENT_DATA_FAILURE = 'FETCH_ALIGNMENT_DATA_FAILURE';
-export const UPDATE_ALIGNMENT_DATA = 'UPDATE_ALIGNMENT_DATA';
-export const SELECT_SOURCE_TEXT_SEGMENT = 'SELECT_SOURCE_TEXT_SEGMENT';
-export const SELECT_TARGET_TEXT_SEGMENT = 'SELECT_TARGET_TEXT_SEGMENT';
-export const DESELECT_SOURCE_TEXT_SEGMENT = 'DESELECT_SOURCE_TEXT_SEGMENT';
-export const DESELECT_TARGET_TEXT_SEGMENT = 'DESELECT_TARGET_TEXT_SEGMENT';
-export const ADD_LINK = 'ADD_LINK ';
-export const CLEAR_LINK_SELECTION = 'CLEAR_LINK_SELECTION';
-export const SELECT_LINK = 'SELECT_LINK';
-export const REMOVE_LINK = 'REMOVE_LINK';
-export const REVERSE_ALIGNMENT_DISPLAY = 'REVERSE_ALIGNMENT_DISPLAY';
-export const RE_RENDER_LINKS = 'RE_RENDER_LINKS';
+export const FETCH_ALIGNMENT_DATA = "FETCH_DATA_DATA";
+export const FETCH_ALIGNMENT_DATA_REQUEST = "FETCH_ALIGNMENT_DATA_REQUEST";
+export const FETCH_ALIGNMENT_DATA_SUCCESS = "FETCH_ALIGNMENT_DATA_SUCCESS";
+export const FETCH_ALIGNMENT_DATA_FAILURE = "FETCH_ALIGNMENT_DATA_FAILURE";
+export const UPDATE_ALIGNMENT_DATA = "UPDATE_ALIGNMENT_DATA";
+export const SELECT_SOURCE_TEXT_SEGMENT = "SELECT_SOURCE_TEXT_SEGMENT";
+export const SELECT_TARGET_TEXT_SEGMENT = "SELECT_TARGET_TEXT_SEGMENT";
+export const DESELECT_SOURCE_TEXT_SEGMENT = "DESELECT_SOURCE_TEXT_SEGMENT";
+export const DESELECT_TARGET_TEXT_SEGMENT = "DESELECT_TARGET_TEXT_SEGMENT";
+export const ADD_LINK = "ADD_LINK ";
+export const CLEAR_LINK_SELECTION = "CLEAR_LINK_SELECTION";
+export const SELECT_LINK = "SELECT_LINK";
+export const REMOVE_LINK = "REMOVE_LINK";
+export const REVERSE_ALIGNMENT_DISPLAY = "REVERSE_ALIGNMENT_DISPLAY";
+export const RE_RENDER_LINKS = "RE_RENDER_LINKS";
 
 export interface ProfileRTLAlignstate {
   isRTL?: boolean;
@@ -208,7 +208,7 @@ export const DefaultAlignmentProps: AlignmentProps = {
   verifyAlignmentFunc: noop,
   updateLinkRefsFunc: noop,
   fetchDataFunc: noop,
-  verseCode: '',
+  verseCode: "",
   alignmentData: {},
   links: {},
   sourceText: [],

@@ -1,4 +1,4 @@
-import { Gloss } from '../shared/structs';
+import { Gloss } from './structs';
 
 const EMPTY_GLOSS_CHAR = '-';
 

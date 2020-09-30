@@ -260,10 +260,12 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
           refName={refName}
           theRef={ref}
           key={`text-segment-${refName}`}
-          segment={segment}
-          isLinkable={isLinkable}
-          linksAlt={linksAlt}
-          linkedTargetWords={linkedTargetWords}
+          segmentData={segment}
+          isSelected={false}
+          isDisabled={false}
+          isLinked={false}
+          selectTextSegmentFunc={(type: 'source'|'target', position: number) => {}}
+          deSelectTextSegmentFunc={(type: 'source'|'target', position: number) => {}}
         />
       );
     });

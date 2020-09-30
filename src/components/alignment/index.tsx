@@ -444,6 +444,7 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
           className="alignment-modal"
           show={isVisible && isHackedForAlignment(verseCode)}
           dialogClassName="modal-full"
+          onHide={() => {}}
         >
           <Modal.Header closeButton={false}>
             <div className="header-container">
