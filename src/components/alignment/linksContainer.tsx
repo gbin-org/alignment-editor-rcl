@@ -257,7 +257,6 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
 
       return (
         <TextSegment
-          refName={refName}
           theRef={ref}
           key={`text-segment-${refName}`}
           segmentData={segment}
