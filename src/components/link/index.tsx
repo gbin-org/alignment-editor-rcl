@@ -55,10 +55,10 @@ export const Link = (props: LinkProps): ReactElement => {
 
 
     const x1 = (sourceRect.x + (sourceRect.width * 0.5)) - 312;
-    const y1 = sourceRef.offsetTop - 250;
+    const y1 = sourceRef.offsetTop - 230;
 
     const x2 = (targetRect.x + (targetRect.width * 0.5)) - 312;
-    const y2 = targetRef.offsetTop - 270;
+    const y2 = targetRef.offsetTop - 255;
 
 
     //const xSource = sourceRect.right;

@@ -56,9 +56,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   console.log(sourceRefs);
   return (
     <div>
-      <p />
-      <p />
-      <p />
       <TextPortion
         type="source"
         textSegments={sourceSegments}
@@ -104,9 +101,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
       />
-      <p />
-      <p />
-      <p />
     </div>
   );
 };
