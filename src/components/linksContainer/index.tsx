@@ -83,9 +83,9 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
 
         <Link
           sourcePosition={1}
-          targetPosition={2}
+          targetPosition={3}
           sourceRef={sourceRefs[1]}
-          targetRef={targetRefs[2]}
+          targetRef={targetRefs[3]}
         />
 
         <Link
