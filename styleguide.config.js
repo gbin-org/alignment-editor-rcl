@@ -1,4 +1,4 @@
 module.exports = {
-  components: "src/components/text**/*.tsx",
+  components: "src/components/link**/*.tsx",
   propsParser: require("react-docgen-typescript").parse
 };

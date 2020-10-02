@@ -1,10 +1,11 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, RefObject } from "react";
 import { TextSegment } from "../structs/textSegment";
 import TextSegmentComponent from "../textSegment";
 
 interface TextPortionProps {
   type: "source" | "target";
   textSegments: TextSegment[];
+  refGatherer: (position:  number, ref: HTMLDivElement | null) => void;
   selectTextSegmentFunc: (type: "source" | "target", position: number) => void;
   deSelectTextSegmentFunc: (
     type: "source" | "target",
@@ -15,6 +16,7 @@ interface TextPortionProps {
 export const TextPortion = (props: TextPortionProps): ReactElement => {
   const {
     type,
+    refGatherer,
     textSegments,
     selectTextSegmentFunc,
     deSelectTextSegmentFunc,
@@ -22,11 +24,10 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   return (
     <div className={`${type}-container`}>
       {textSegments.map(
-        (textSegment): ReactElement => {
-          const ref = React.createRef<HTMLSpanElement>();
+        (textSegment, index): ReactElement => {
           return (
             <TextSegmentComponent
-              theRef={ref}
+              refGatherer={refGatherer.bind(null, textSegment.position)}
               segmentData={textSegment}
               isDisabled={textSegment.catIsContent === false ?? false}
               isSelected={false}
