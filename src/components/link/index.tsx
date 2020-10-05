@@ -32,7 +32,8 @@ export const Link = (props: LinkProps): ReactElement => {
   const name = `source${sourcePosition}-target${targetPosition}`;
   console.log(sourceRef, targetRef);
   const forceUpdate = useForceUpdate();
-  if (sourceRef && targetRef) { //console.log('compute source', sourceRef.clientLeft, sourceRef.clientTop);
+  if (sourceRef && targetRef) {
+    //console.log('compute source', sourceRef.clientLeft, sourceRef.clientTop);
     //console.log('compute target', targetRef.offsetLeft, targetRef.offsetTop);
     //console.log('woah', sourceRef.getBoundingClientRect());
 
@@ -40,8 +41,8 @@ export const Link = (props: LinkProps): ReactElement => {
     const targetRect = targetRef.getBoundingClientRect();
 
     //if (targetPosition === 2) {
-      //console.log("Target 2 rect:");
-      //console.log(targetRef.getBoundingClientRect());
+    //console.log("Target 2 rect:");
+    //console.log(targetRef.getBoundingClientRect());
     //}
 
     console.log("window", window.pageXOffset, window.pageYOffset);
@@ -51,39 +52,22 @@ export const Link = (props: LinkProps): ReactElement => {
       document.documentElement.scrollTop
     );
 
-    //const x1 = sourceRect.left + (sourceRect.width * 0.5) - 312;
-    //const y1 = sourceRect.top + (sourceRect.height) - 300;
-
-    //const x2 = targetRect.left + (targetRect.width * 1) - 312;
-    //const y2 = targetRect.top + (targetRect.height) - 150;
-
     const parent = document.getElementById("links-container");
 
-    const x1 =
-      sourceRef.offsetLeft+
-      sourceRect.width * 0.5 +
-      window.pageXOffset -
-      (parent?.offsetLeft || 0);
+    const basePositionX = window.pageXOffset - document.documentElement.scrollLeft - (parent?.offsetLeft ?? 0);
+    const basePositionY = window.pageYOffset - document.documentElement.scrollTop - (parent?.offsetTop ?? 0);
 
-    const y1 =
-      sourceRef.offsetTop + window.pageYOffset - (parent?.offsetTop ?? 0);
+    const x1 = basePositionX + sourceRef.offsetLeft + sourceRect.width * 0.5;
+    const y1 = basePositionY + sourceRef.offsetTop;
 
-    const x2 =
-      targetRect.left +
-      targetRect.width * 0.5 +
-      window.pageXOffset -
-      (parent?.offsetLeft ?? 0);
+    const x2 = basePositionX + targetRef.offsetLeft + targetRect.width * 0.5;
+    const y2 = basePositionY + targetRef.offsetTop - targetRect.height * 1.3;
 
-    const y2 =
-      targetRef.offsetTop + window.pageYOffset - (parent?.offsetTop ?? 0);
-
-    //const xSource = sourceRect.right;
-    //const ySource = sourceRect.bottom;
-    //const xTarget = targetRect.left;
-    //const yTarget = targetRect.top;
     return (
-      <svg style={{ overflow: "visible", position: 'absolute', margin: 'none' }}>
-        <line 
+      <svg
+        style={{ overflow: "visible", position: "absolute", margin: "none" }}
+      >
+        <line
           className={`link ${name} ${color} ${disabled}`}
           key={name}
           x1={x1}
