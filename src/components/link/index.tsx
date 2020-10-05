@@ -17,6 +17,11 @@ interface LinkProps {
   //) => void;
 }
 
+function useForceUpdate() {
+  const [value, setValue] = useState(0); // integer state
+  return () => setValue((value) => ++value); // update the state to force render
+}
+
 export const Link = (props: LinkProps): ReactElement => {
   const { sourcePosition, targetPosition, sourceRef, targetRef } = props;
   //const color = this.getColor(sourceRef);
@@ -26,19 +31,18 @@ export const Link = (props: LinkProps): ReactElement => {
   const disabled = "";
   const name = `source${sourcePosition}-target${targetPosition}`;
   console.log(sourceRef, targetRef);
-  if (sourceRef && targetRef) {
-    //console.log('compute source', sourceRef.clientLeft, sourceRef.clientTop);
+  const forceUpdate = useForceUpdate();
+  if (sourceRef && targetRef) { //console.log('compute source', sourceRef.clientLeft, sourceRef.clientTop);
     //console.log('compute target', targetRef.offsetLeft, targetRef.offsetTop);
     //console.log('woah', sourceRef.getBoundingClientRect());
 
     const sourceRect = sourceRef.getBoundingClientRect();
     const targetRect = targetRef.getBoundingClientRect();
 
-    if (targetPosition === 2) {
-      console.log('Target 2 rect:');
-      console.log(targetRef.getBoundingClientRect());
-
-    }
+    //if (targetPosition === 2) {
+      //console.log("Target 2 rect:");
+      //console.log(targetRef.getBoundingClientRect());
+    //}
 
     console.log("window", window.pageXOffset, window.pageYOffset);
     console.log(
@@ -53,20 +57,33 @@ export const Link = (props: LinkProps): ReactElement => {
     //const x2 = targetRect.left + (targetRect.width * 1) - 312;
     //const y2 = targetRect.top + (targetRect.height) - 150;
 
+    const parent = document.getElementById("links-container");
 
-    const x1 = (sourceRect.x + (sourceRect.width * 0.5)) - 312;
-    const y1 = sourceRef.offsetTop - 230;
+    const x1 =
+      sourceRef.offsetLeft+
+      sourceRect.width * 0.5 +
+      window.pageXOffset -
+      (parent?.offsetLeft || 0);
 
-    const x2 = (targetRect.x + (targetRect.width * 0.5)) - 312;
-    const y2 = targetRef.offsetTop - 255;
+    const y1 =
+      sourceRef.offsetTop + window.pageYOffset - (parent?.offsetTop ?? 0);
 
+    const x2 =
+      targetRect.left +
+      targetRect.width * 0.5 +
+      window.pageXOffset -
+      (parent?.offsetLeft ?? 0);
+
+    const y2 =
+      targetRef.offsetTop + window.pageYOffset - (parent?.offsetTop ?? 0);
 
     //const xSource = sourceRect.right;
     //const ySource = sourceRect.bottom;
     //const xTarget = targetRect.left;
     //const yTarget = targetRect.top;
     return (
-        <line
+      <svg style={{ overflow: "visible", position: 'absolute', margin: 'none' }}>
+        <line 
           className={`link ${name} ${color} ${disabled}`}
           key={name}
           x1={x1}
@@ -75,8 +92,9 @@ export const Link = (props: LinkProps): ReactElement => {
           y2={y2}
           strokeWidth="5"
           stroke={color}
-          onClick={(): void => {}}
+          onClick={forceUpdate}
         />
+      </svg>
     );
   }
 

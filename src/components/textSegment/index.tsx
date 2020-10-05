@@ -214,15 +214,15 @@ const selectionHandler = (props: TextSegmentProps): void => {
 //};
 
 export const TextSegment = (props: TextSegmentProps): ReactElement => {
-  const { segmentData, theRef, isSelected, isLinked, isDisabled, refGatherer } = props;
+  const { segmentData, isSelected, isLinked, isDisabled, refGatherer } = props;
   const color = segmentColors[segmentData.color || 0];
   const selectedClass = isSelected ? "selected" : "";
   const disabledClass = isDisabled ? "disabled" : "";
   const isLinkedClass = isLinked ? "linked" : "not-linked";
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
   return (
-    <div 
-      style={{ display: "inline-block" }} 
+    <div
+      style={{ display: "inline-block" }}
       ref={refGatherer}
       className={`${segmentData.type}${segmentData.position}`}>
       {/*enrichedDataTop(props)*/}

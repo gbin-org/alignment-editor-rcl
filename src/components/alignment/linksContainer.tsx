@@ -1,19 +1,29 @@
-import React, { ReactElement } from 'react';
-import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
+import React, { ReactElement } from "react";
+import { Dispatch } from "redux";
+import { connect } from "react-redux";
 
-import _ from 'lodash';
-import { AlignmentProps, AlignmentState, DefaultAlignmentProps } from './types/alignment';
-import LinkLines from './linkLines';
-import TextSegment from '../textSegment';
-import { AppState } from './reducers';
-import { reverseAlignmentDisplayAction, reRenderLinksAction } from './actions/alignment';
-import findGlossForPosition from './findGlossForPosition';
-import { VerseIdParser } from './verseIdParser';
-import { computeVerseLinkedWords } from './functions';
+import _ from "lodash";
+import {
+  AlignmentProps,
+  AlignmentState,
+  DefaultAlignmentProps,
+} from "./types/alignment";
+import LinkLines from "./linkLines";
+import TextSegment from "../textSegment";
+import { AppState } from "./reducers";
+import {
+  reverseAlignmentDisplayAction,
+  reRenderLinksAction,
+} from "./actions/alignment";
+import findGlossForPosition from "./findGlossForPosition";
+import { VerseIdParser } from "./verseIdParser";
+import { computeVerseLinkedWords } from "./functions";
 
 /* eslint react/prefer-stateless-function: "off" */
-export class LinksContainerComp extends React.Component<AlignmentProps, AlignmentState> {
+export class LinksContainerComp extends React.Component<
+  AlignmentProps,
+  AlignmentState
+> {
   private refDict: Map<string, any>;
 
   public static defaultProps: AlignmentProps = DefaultAlignmentProps;
@@ -24,7 +34,7 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
   }
 
   public componentDidMount(): void {
-    window.addEventListener('resize', this.reRender.bind(this));
+    window.addEventListener("resize", this.reRender.bind(this));
   }
 
   componentDidUpdate(): void {
@@ -32,7 +42,7 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
   }
 
   public componentWillUnmount(): void {
-    window.removeEventListener('resize', this.reRender.bind(this));
+    window.removeEventListener("resize", this.reRender.bind(this));
   }
 
   private reRender(): void {
@@ -52,10 +62,18 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
     return link.sources.length > 1 || link.targets.length > 1;
   }
 
-  private groupSegments(sourceSegments: any[], targetSegments: any[], links: any[]): any {
+  private groupSegments(
+    sourceSegments: any[],
+    targetSegments: any[],
+    links: any[]
+  ): any {
     const groupedSourceSegments = sourceSegments.map((segment) => {
       const { glosses, verseCode } = this.props;
-      const gloss = findGlossForPosition(glosses, verseCode, segment.positionId);
+      const gloss = findGlossForPosition(
+        glosses,
+        verseCode,
+        segment.positionId
+      );
       return {
         text: segment.segment,
         group: 0,
@@ -94,14 +112,18 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
     groupedSourceSegments: any,
     groupedTargetSegments: any,
     isSource: boolean,
-    linksAlt: any,
+    linksAlt: any
   ): ReactElement[] {
     const { reverseAlignmentDisplay } = this.props;
-    let returnedSegments = isSource ? groupedSourceSegments : groupedTargetSegments;
-    let returnedType = isSource ? 'source' : 'target';
+    let returnedSegments = isSource
+      ? groupedSourceSegments
+      : groupedTargetSegments;
+    let returnedType = isSource ? "source" : "target";
     if (reverseAlignmentDisplay) {
-      returnedSegments = !isSource ? groupedSourceSegments : groupedTargetSegments;
-      returnedType = !isSource ? 'source' : 'target';
+      returnedSegments = !isSource
+        ? groupedSourceSegments
+        : groupedTargetSegments;
+      returnedType = !isSource ? "source" : "target";
     }
     return this.textMapper(returnedSegments, returnedType, linksAlt);
   }
@@ -132,7 +154,7 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
 
     // are we in OT or NT?
     const verseIdParser = new VerseIdParser();
-    const testament = verseIdParser.isNT(verseCode) ? 'nt' : 'ot';
+    const testament = verseIdParser.isNT(verseCode) ? "nt" : "ot";
 
     let reverseTextSource = false;
     let reverseTextTarget = false;
@@ -140,7 +162,7 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
     if (isRTL) {
       reverseTextSource = true;
       reverseTextTarget = true;
-      if (testament === 'ot') {
+      if (testament === "ot") {
         if (isOTrtlAlignSource) {
           reverseTextSource = false;
         }
@@ -157,7 +179,7 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
       }
     } else {
       // eslint-disable-next-line no-lonely-if
-      if (testament === 'ot') {
+      if (testament === "ot") {
         if (isOTltrAlignSource) {
           reverseTextSource = true;
         }
@@ -206,13 +228,15 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
     const { groupedSourceSegments, groupedTargetSegments } = this.groupSegments(
       sourceTextAlt,
       targetTextAlt,
-      linksAlt,
+      linksAlt
     );
     const linked = linksAlt && linksAlt.length;
-    const linkedClass = linked ? 'linked' : 'unlinked';
-    const reversedClass = reverseAlignmentDisplay ? 'reverse' : '';
+    const linkedClass = linked ? "linked" : "unlinked";
+    const reversedClass = reverseAlignmentDisplay ? "reverse" : "";
     if (linked) {
-      stack.push(<LinkLines key="link-lines" links={linksAlt} refDict={this.refDict} />);
+      stack.push(
+        <LinkLines key="link-lines" links={linksAlt} refDict={this.refDict} />
+      );
     }
 
     stack.push(
@@ -220,28 +244,45 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
         key="target-text-container"
         className={`target-container ${linkedClass} ${reversedClass}`}
       >
-        {this.displaySegments(groupedSourceSegments, groupedTargetSegments, false, linksAlt)}
-      </div>,
+        {this.displaySegments(
+          groupedSourceSegments,
+          groupedTargetSegments,
+          false,
+          linksAlt
+        )}
+      </div>
     );
 
     if (!linked) {
       stack.push(
         <div key="no-links-container" className="no-links-exist">
           <span className="text-segment default">No Links Exist</span>
-        </div>,
+        </div>
       );
     }
 
     stack.push(
-      <div key="source-text-container" className={`source-container ${reversedClass}`}>
-        {this.displaySegments(groupedSourceSegments, groupedTargetSegments, true, linksAlt)}
-      </div>,
+      <div
+        key="source-text-container"
+        className={`source-container ${reversedClass}`}
+      >
+        {this.displaySegments(
+          groupedSourceSegments,
+          groupedTargetSegments,
+          true,
+          linksAlt
+        )}
+      </div>
     );
 
     return stack;
   }
 
-  public textMapper(segments: any[], type: string, linksAlt: any): ReactElement[] {
+  public textMapper(
+    segments: any[],
+    type: string,
+    linksAlt: any
+  ): ReactElement[] {
     const { links, targetText } = this.props;
     let linkedWords: Record<number, string> = {};
     if (links && targetText) {
@@ -251,21 +292,21 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
     return segments.map((segment: any, index: number) => {
       const refName = `${type}-${index}`;
       const ref = React.createRef<HTMLSpanElement>();
-      const isLinkable = type === 'target' || segment.catIsContent;
+      const isLinkable = type === "target" || segment.catIsContent;
       this.refDict.set(refName, ref);
       const linkedTargetWords = linkedWords[index];
 
       return (
-        <TextSegment
-          theRef={ref}
-          key={`text-segment-${refName}`}
-          segmentData={segment}
-          isSelected={false}
-          isDisabled={false}
-          isLinked={false}
-          selectTextSegmentFunc={(type: 'source'|'target', position: number) => {}}
-          deSelectTextSegmentFunc={(type: 'source'|'target', position: number) => {}}
-        />
+        //<TextSegment
+        //key={`text-segment-${refName}`}
+        //segmentData={segment}
+        //isSelected={false}
+        //isDisabled={false}
+        //isLinked={false}
+        //selectTextSegmentFunc={(type: 'source'|'target', position: number) => {}}
+        //deSelectTextSegmentFunc={(type: 'source'|'target', position: number) => {}}
+        ///>
+        <></>
       );
     });
   }
@@ -280,31 +321,31 @@ export class LinksContainerComp extends React.Component<AlignmentProps, Alignmen
 }
 
 //export const mapStateToProps = (state: AppState): any => {
-  //return {
-    //source: state.alignment.source,
-    //target: state.alignment.target,
-    //reverseAlignmentDisplay: state.alignment.reverseAlignmentDisplay,
-    //glosses: state.gloss.glosses,
-    //isRTL: state.project.isRTL,
-    //isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
-    //isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
-    //isNTltrAlignSource: state.profile.isNTltrAlignSource,
-    //isOTltrAlignSource: state.profile.isOTltrAlignSource,
-    //isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
-    //isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
-    //isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
-    //isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
-  //};
+//return {
+//source: state.alignment.source,
+//target: state.alignment.target,
+//reverseAlignmentDisplay: state.alignment.reverseAlignmentDisplay,
+//glosses: state.gloss.glosses,
+//isRTL: state.project.isRTL,
+//isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
+//isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
+//isNTltrAlignSource: state.profile.isNTltrAlignSource,
+//isOTltrAlignSource: state.profile.isOTltrAlignSource,
+//isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
+//isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
+//isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
+//isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
+//};
 //};
 
 //export const mapDispatchToProps = (dispatch: Dispatch): any => ({
-  //reverseAlignmentDisplayFunc: (): void => {
-    //dispatch(reverseAlignmentDisplayAction());
-  //},
+//reverseAlignmentDisplayFunc: (): void => {
+//dispatch(reverseAlignmentDisplayAction());
+//},
 
-  //reRenderLinksFunc: (): void => {
-    //dispatch(reRenderLinksAction());
-  //},
+//reRenderLinksFunc: (): void => {
+//dispatch(reRenderLinksAction());
+//},
 //});
 //const LinksContainer = connect(mapStateToProps, mapDispatchToProps)(LinksContainerComp);
 

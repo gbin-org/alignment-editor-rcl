@@ -55,7 +55,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
 
   console.log(sourceRefs);
   return (
-    <div>
+    <div id="links-container">
       <TextPortion
         type="source"
         textSegments={sourceSegments}
@@ -63,7 +63,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
       />
-      <svg style={{ margin: 'none'}}>
+      <div style={{ position: "relative" }}>
         <Link
           sourcePosition={1}
           targetPosition={1}
@@ -80,6 +80,13 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
 
         <Link
           sourcePosition={1}
+          targetPosition={2}
+          sourceRef={sourceRefs[1]}
+          targetRef={targetRefs[2]}
+        />
+
+        <Link
+          sourcePosition={1}
           targetPosition={3}
           sourceRef={sourceRefs[1]}
           targetRef={targetRefs[3]}
@@ -87,13 +94,13 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
 
         <Link
           sourcePosition={4}
-          targetPosition={3}
+          targetPosition={1}
           sourceRef={sourceRefs[4]}
-          targetRef={targetRefs[3]}
+          targetRef={targetRefs[1]}
         />
+      </div>
+      <div style={{ margin: "10rem" }} />
 
-
-      </svg>
       <TextPortion
         type="target"
         textSegments={targetSegments}
