@@ -4,7 +4,14 @@ import { TextSegment } from "../structs/textSegment";
 import TextPortion from "../textPortion";
 import Link from "../link";
 
+interface Link {
+  sources: number[];
+  targets: number[];
+  type: "manual" | "machine";
+}
+
 interface LinksContainerProps {
+  links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
   selectTextSegmentFunc: (type: "source" | "target", position: number) => void;
@@ -16,6 +23,7 @@ interface LinksContainerProps {
 
 export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   const {
+    links,
     sourceSegments,
     targetSegments,
     selectTextSegmentFunc,
@@ -53,9 +61,9 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     }
   };
 
-  console.log(sourceRefs);
   return (
-    <div id="links-container">
+    <div id="alignment-canvas" style={{ overflow: 'scroll'}}>
+      <div style={{ margin: "0.5rem" }} />
       <TextPortion
         type="source"
         textSegments={sourceSegments}
@@ -63,43 +71,21 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
       />
-      <div style={{ position: "relative" }}>
-        <Link
-          sourcePosition={1}
-          targetPosition={1}
-          sourceRef={sourceRefs[1]}
-          targetRef={targetRefs[1]}
-        />
 
-        <Link
-          sourcePosition={2}
-          targetPosition={2}
-          sourceRef={sourceRefs[2]}
-          targetRef={targetRefs[2]}
-        />
-
-        <Link
-          sourcePosition={1}
-          targetPosition={2}
-          sourceRef={sourceRefs[1]}
-          targetRef={targetRefs[2]}
-        />
-
-        <Link
-          sourcePosition={1}
-          targetPosition={3}
-          sourceRef={sourceRefs[1]}
-          targetRef={targetRefs[3]}
-        />
-
-        <Link
-          sourcePosition={4}
-          targetPosition={1}
-          sourceRef={sourceRefs[4]}
-          targetRef={targetRefs[1]}
-        />
+      <div id="links-container" style={{ position: "relative" }}>
+        {links.map((link: Link) => {
+          return (
+            <Link
+              sourcePosition={link.sources[0]}
+              targetPosition={link.targets[0]}
+              sourceRef={sourceRefs[link.sources[0]]}
+              targetRef={targetRefs[link.targets[0]]}
+            />
+          );
+        })}
       </div>
-      <div style={{ margin: "10rem" }} />
+
+      <div style={{ margin: "14rem" }} />
 
       <TextPortion
         type="target"
@@ -108,6 +94,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
       />
+      <div style={{ margin: "0.5rem" }} />
     </div>
   );
 };

@@ -22,7 +22,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     deSelectTextSegmentFunc,
   } = props;
   return (
-    <div className={`${type}-container`}>
+    <div className={`${type}-container`} style={{whiteSpace: 'nowrap'}}>
       {textSegments.map(
         (textSegment, index): ReactElement => {
           return (
