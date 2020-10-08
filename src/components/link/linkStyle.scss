@@ -1,11 +1,15 @@
 .link {
   pointer-events: painted;
-  cursor: pointer; 
+  cursor: pointer;
 }
 .link:hover {
   stroke: red;
   stroke-width: 10;
+}
 
+.link.focused {
+  stroke: red;
+  stroke-width: 10;
 }
 
 .link-canvas {

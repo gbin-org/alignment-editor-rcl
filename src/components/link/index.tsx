@@ -2,13 +2,22 @@ import React, { ReactElement, useState } from "react";
 
 import "./linkStyle.scss";
 
-interface LinkProps {
+export interface LinkProps {
   sourcePosition: number;
   targetPosition: number;
   parentRef: HTMLDivElement;
   sourceRef: HTMLDivElement;
   targetRef: HTMLDivElement;
-  linkFocused: (isFocused: boolean) => void;
+  hoverHook: (isHovered: boolean) => void;
+  isFocused: boolean;
+}
+
+export type LinkType = "manual" | "machine";
+
+export interface Link {
+  sources: number[];
+  targets: number[];
+  type: LinkType;
 }
 
 function useForceUpdate() {
@@ -18,21 +27,22 @@ function useForceUpdate() {
 
 function calculate() {}
 
-
-export const Link = (props: LinkProps): ReactElement => {
+export const LinkComponent = (props: LinkProps): ReactElement => {
   const {
     sourcePosition,
     targetPosition,
     parentRef,
     sourceRef,
     targetRef,
-    linkFocused,
+    hoverHook,
+    isFocused,
   } = props;
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
   const color = "#c8c8c8";
   const disabled = "";
+  const focused = isFocused ? "focused" : "";
   const name = `source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
@@ -64,7 +74,7 @@ export const Link = (props: LinkProps): ReactElement => {
       >
         <line
           id={name}
-          className={`link ${name} ${color} ${disabled}`}
+          className={`link ${name} ${color} ${disabled} ${focused}`}
           key={name}
           strokeLinecap="round"
           strokeWidth="4"
@@ -75,8 +85,12 @@ export const Link = (props: LinkProps): ReactElement => {
           stroke={color}
           fill={color}
           onClick={forceUpdate}
-          onMouseOver={() => {linkFocused(true)}}
-          onMouseLeave={() => {linkFocused(false)}}
+          onMouseOver={() => {
+            hoverHook(true);
+          }}
+          onMouseLeave={() => {
+            hoverHook(false);
+          }}
         />
       </svg>
     );
@@ -85,4 +99,4 @@ export const Link = (props: LinkProps): ReactElement => {
   return <></>;
 };
 
-export default Link;
+export default LinkComponent;

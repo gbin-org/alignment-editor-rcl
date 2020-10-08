@@ -1,4 +1,3 @@
-import { RefObject } from "react";
 import { TextSegment } from "../../structs/textSegment";
 
 export interface TextSegmentProps {
@@ -13,6 +12,7 @@ export interface TextSegmentProps {
   isSelected: boolean;
   isLinked: boolean;
   isFocused: boolean;
+  hoverHook: (isHovered: boolean) => void;
 }
 
 export default TextSegmentProps;

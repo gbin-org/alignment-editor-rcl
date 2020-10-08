@@ -21,7 +21,7 @@
   border: 2px solid transparent;
 }
 
-.text-segment:hover {
+.text-segment:not(.focused):hover {
   border: 2px solid #000000;
   border-style: solid;
 }

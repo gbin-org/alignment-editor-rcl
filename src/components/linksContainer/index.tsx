@@ -1,5 +1,6 @@
 import React, { ReactElement, RefObject, useState } from "react";
 
+import { findLinkForTextSegment } from "../../core/findLink";
 import { TextSegment } from "../structs/textSegment";
 import TextPortion from "../textPortion";
 import Link from "../link";
@@ -11,7 +12,6 @@ interface Link {
   targets: number[];
   type: LinkType;
 }
-
 
 interface LinksContainerProps {
   links: Link[];
@@ -70,7 +70,9 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     }
   };
 
-  const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(new Map<Link, boolean>());
+  const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(
+    new Map<Link, boolean>()
+  );
 
   const setLinkFocused = (link: Link, focused: boolean): void => {
     if (link) {
@@ -81,6 +83,17 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         newState.set(link, focused);
         setFocusedLinks(newState);
       }
+    }
+  };
+
+  const setSegmentFocused = (
+    links: Link[],
+    textSegment: TextSegment,
+    isHovered: boolean
+  ): void => {
+    const link = findLinkForTextSegment(links, textSegment);
+    if (link) {
+      setLinkFocused(link, isHovered);
     }
   };
 
@@ -100,6 +113,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
         focusedLinks={focusedLinks}
         links={links}
+        segmentHovered={setSegmentFocused.bind(null, links)}
       />
 
       <div id="links-container" style={{ position: "relative" }}>
@@ -113,7 +127,8 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
                 parentRef={parentRef}
                 sourceRef={sourceRefs[link.sources[0]]}
                 targetRef={targetRefs[link.targets[0]]}
-                linkFocused={setLinkFocused.bind(null, link)}
+                hoverHook={setLinkFocused.bind(null, link)}
+                isFocused={focusedLinks.get(link) ?? false}
               />
             );
           })}
@@ -129,6 +144,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
         focusedLinks={focusedLinks}
         links={links}
+        segmentHovered={setSegmentFocused.bind(null, links)}
       />
 
       <div style={{ margin: "0.5rem" }} />

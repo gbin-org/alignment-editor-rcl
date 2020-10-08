@@ -213,8 +213,28 @@ const selectionHandler = (props: TextSegmentProps): void => {
 //return null;
 //};
 
-export const TextSegment = (props: TextSegmentProps): ReactElement => {
-  const { segmentData, isSelected, isLinked, isDisabled, isFocused, refGatherer } = props;
+export interface TextSegment {
+  type: 'source'|'target';
+  position: number;
+  text: string;
+  group: number;
+  color: number;
+  catIsContent?: boolean;
+  strongsX?: string;
+  english?: string;
+  lemma?: string;
+}
+
+export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
+  const {
+    segmentData,
+    isSelected,
+    isLinked,
+    isDisabled,
+    isFocused,
+    refGatherer,
+    hoverHook,
+  } = props;
   const color = segmentColors[segmentData.color || 0];
   const selectedClass = isSelected ? "selected" : "";
   const disabledClass = isDisabled ? "disabled" : "";
@@ -225,7 +245,8 @@ export const TextSegment = (props: TextSegmentProps): ReactElement => {
     <div
       style={{ display: "inline-block" }}
       ref={refGatherer}
-      className={`${segmentData.type}${segmentData.position}`}>
+      className={`${segmentData.type}${segmentData.position}`}
+    >
       {/*enrichedDataTop(props)*/}
       <span
         role="button"
@@ -237,6 +258,12 @@ export const TextSegment = (props: TextSegmentProps): ReactElement => {
         onKeyPress={(): void => {
           selectionHandler(props);
         }}
+        onMouseOver={() => {
+          hoverHook(true);
+        }}
+        onMouseLeave={() => {
+          hoverHook(false);
+        }}
       >
         {segmentData.text}
       </span>
@@ -245,4 +272,4 @@ export const TextSegment = (props: TextSegmentProps): ReactElement => {
   );
 };
 
-export default TextSegment;
+export default TextSegmentComponent;
