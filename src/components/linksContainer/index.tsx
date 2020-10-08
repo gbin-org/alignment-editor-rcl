@@ -4,11 +4,14 @@ import { TextSegment } from "../structs/textSegment";
 import TextPortion from "../textPortion";
 import Link from "../link";
 
+type LinkType = "manual" | "machine";
+
 interface Link {
   sources: number[];
   targets: number[];
-  type: "manual" | "machine";
+  type: LinkType;
 }
+
 
 interface LinksContainerProps {
   links: Link[];
@@ -67,6 +70,20 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     }
   };
 
+  const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(new Map<Link, boolean>());
+
+  const setLinkFocused = (link: Link, focused: boolean): void => {
+    if (link) {
+      const previousState = focusedLinks.get(link);
+
+      if (focused !== previousState) {
+        const newState = new Map<Link, boolean>(focusedLinks);
+        newState.set(link, focused);
+        setFocusedLinks(newState);
+      }
+    }
+  };
+
   return (
     <div
       id="alignment-canvas"
@@ -74,12 +91,15 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       style={{ overflow: "scroll" }}
     >
       <div style={{ margin: "0.5rem" }} />
+
       <TextPortion
         type="source"
         textSegments={sourceSegments}
         refGatherer={setRef.bind(null, "source")}
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+        focusedLinks={focusedLinks}
+        links={links}
       />
 
       <div id="links-container" style={{ position: "relative" }}>
@@ -93,6 +113,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
                 parentRef={parentRef}
                 sourceRef={sourceRefs[link.sources[0]]}
                 targetRef={targetRefs[link.targets[0]]}
+                linkFocused={setLinkFocused.bind(null, link)}
               />
             );
           })}
@@ -106,7 +127,10 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         refGatherer={setRef.bind(null, "target")}
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+        focusedLinks={focusedLinks}
+        links={links}
       />
+
       <div style={{ margin: "0.5rem" }} />
     </div>
   );

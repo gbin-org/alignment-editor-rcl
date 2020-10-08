@@ -8,6 +8,7 @@ interface LinkProps {
   parentRef: HTMLDivElement;
   sourceRef: HTMLDivElement;
   targetRef: HTMLDivElement;
+  linkFocused: (isFocused: boolean) => void;
 }
 
 function useForceUpdate() {
@@ -17,6 +18,7 @@ function useForceUpdate() {
 
 function calculate() {}
 
+
 export const Link = (props: LinkProps): ReactElement => {
   const {
     sourcePosition,
@@ -24,6 +26,7 @@ export const Link = (props: LinkProps): ReactElement => {
     parentRef,
     sourceRef,
     targetRef,
+    linkFocused,
   } = props;
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
@@ -72,6 +75,8 @@ export const Link = (props: LinkProps): ReactElement => {
           stroke={color}
           fill={color}
           onClick={forceUpdate}
+          onMouseOver={() => {linkFocused(true)}}
+          onMouseLeave={() => {linkFocused(false)}}
         />
       </svg>
     );

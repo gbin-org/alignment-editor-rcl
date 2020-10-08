@@ -26,6 +26,11 @@
   border-style: solid;
 }
 
+.text-segment.focused {
+  border: 2px solid red; 
+  border-style: solid;
+}
+
 .text-segment.default {
   background-color: #c8c8c8;
 }

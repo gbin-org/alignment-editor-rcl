@@ -214,12 +214,13 @@ const selectionHandler = (props: TextSegmentProps): void => {
 //};
 
 export const TextSegment = (props: TextSegmentProps): ReactElement => {
-  const { segmentData, isSelected, isLinked, isDisabled, refGatherer } = props;
+  const { segmentData, isSelected, isLinked, isDisabled, isFocused, refGatherer } = props;
   const color = segmentColors[segmentData.color || 0];
   const selectedClass = isSelected ? "selected" : "";
   const disabledClass = isDisabled ? "disabled" : "";
   const isLinkedClass = isLinked ? "linked" : "not-linked";
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
+  const isFocusedClass = isFocused ? "focused" : "";
   return (
     <div
       style={{ display: "inline-block" }}
@@ -228,7 +229,7 @@ export const TextSegment = (props: TextSegmentProps): ReactElement => {
       {/*enrichedDataTop(props)*/}
       <span
         role="button"
-        className={`text-segment ${color} ${selectedClass} ${disabledClass} ${isLinkedClass}`}
+        className={`text-segment ${color} ${selectedClass} ${disabledClass} ${isLinkedClass} ${isFocusedClass}`}
         tabIndex={0}
         onClick={(): void => {
           selectionHandler(props);

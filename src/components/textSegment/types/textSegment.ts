@@ -12,6 +12,7 @@ export interface TextSegmentProps {
   isDisabled: boolean;
   isSelected: boolean;
   isLinked: boolean;
+  isFocused: boolean;
 }
 
 export default TextSegmentProps;
