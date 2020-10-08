@@ -27,6 +27,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
         (textSegment, index): ReactElement => {
           return (
             <TextSegmentComponent
+              key={`${type}-${textSegment.position}`}
               refGatherer={refGatherer.bind(null, textSegment.position)}
               segmentData={textSegment}
               isDisabled={textSegment.catIsContent === false ?? false}

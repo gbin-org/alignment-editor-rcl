@@ -87,6 +87,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
           links.map((link: Link) => {
             return (
               <Link
+                key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
                 sourcePosition={link.sources[0]}
                 targetPosition={link.targets[0]}
                 parentRef={parentRef}
