@@ -46,7 +46,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       if (!sourceRefs[position]) {
         const newRefs = { ...sourceRefs };
         newRefs[position] = ref;
-        console.log("update source state");
         setSourceRefs(newRefs);
       }
     }
@@ -55,14 +54,25 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       if (!targetRefs[position]) {
         const newRefs = { ...targetRefs };
         newRefs[position] = ref;
-        console.log("update target state");
         setTargetRefs(newRefs);
       }
     }
   };
 
+  const [parentRef, setParentRef] = useState<HTMLDivElement>();
+
+  const gatherParentRef = (ref: HTMLDivElement): void => {
+    if (!parentRef && ref) {
+      setParentRef(ref);
+    }
+  };
+
   return (
-    <div id="alignment-canvas" style={{ overflow: 'scroll'}}>
+    <div
+      id="alignment-canvas"
+      ref={gatherParentRef}
+      style={{ overflow: "scroll" }}
+    >
       <div style={{ margin: "0.5rem" }} />
       <TextPortion
         type="source"
@@ -73,16 +83,18 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       />
 
       <div id="links-container" style={{ position: "relative" }}>
-        {links.map((link: Link) => {
-          return (
-            <Link
-              sourcePosition={link.sources[0]}
-              targetPosition={link.targets[0]}
-              sourceRef={sourceRefs[link.sources[0]]}
-              targetRef={targetRefs[link.targets[0]]}
-            />
-          );
-        })}
+        {parentRef &&
+          links.map((link: Link) => {
+            return (
+              <Link
+                sourcePosition={link.sources[0]}
+                targetPosition={link.targets[0]}
+                parentRef={parentRef}
+                sourceRef={sourceRefs[link.sources[0]]}
+                targetRef={targetRefs[link.targets[0]]}
+              />
+            );
+          })}
       </div>
 
       <div style={{ margin: "14rem" }} />
