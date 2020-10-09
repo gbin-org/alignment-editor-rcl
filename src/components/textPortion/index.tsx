@@ -1,18 +1,8 @@
-import React, { ReactElement, RefObject } from "react";
+import React, { ReactElement } from "react";
 
-import { findLinkForTextSegment } from "../../core/findLink";
-import { TextSegment } from "../structs/textSegment";
-import TextSegmentComponent from "../textSegment";
-
-type TextSegmentType = "source" | "target";
-
-type LinkType = "manual" | "machine";
-
-interface Link {
-  sources: number[];
-  targets: number[];
-  type: LinkType;
-}
+import { findLinkForTextSegment } from "core/findLink";
+import { TextSegment, TextSegmentType, Link } from "core/structs";
+import TextSegmentComponent from "components/textSegment";
 
 interface TextPortionProps {
   type: TextSegmentType;

@@ -1,5 +1,4 @@
-import { Link } from "../components/link";
-import { TextSegment } from "../components/textSegment"
+import { TextSegment, Link } from "core/structs";
 
 export const findLinkForTextSegment = (
   links: Link[],

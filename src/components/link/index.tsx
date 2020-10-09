@@ -12,20 +12,10 @@ export interface LinkProps {
   isFocused: boolean;
 }
 
-export type LinkType = "manual" | "machine";
-
-export interface Link {
-  sources: number[];
-  targets: number[];
-  type: LinkType;
-}
-
 function useForceUpdate() {
   const [value, setValue] = useState(0); // integer state
   return () => setValue((value) => ++value); // update the state to force render
 }
-
-function calculate() {}
 
 export const LinkComponent = (props: LinkProps): ReactElement => {
   const {

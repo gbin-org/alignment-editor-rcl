@@ -1,8 +1,20 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement } from "react";
 
-import "./textSegmentStyle.scss";
+import { TextSegment, TextSegmentType } from "core/structs";
 
-import { TextSegmentProps } from "./types/textSegment";
+import "components/textSegment/textSegmentStyle.scss";
+
+export interface TextSegmentProps {
+  segmentData: TextSegment;
+  refGatherer: (ref: HTMLDivElement | null) => void;
+  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
+  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
+  isDisabled: boolean;
+  isSelected: boolean;
+  isLinked: boolean;
+  isFocused: boolean;
+  hoverHook: (isHovered: boolean) => void;
+}
 
 const segmentColors: Record<number, string> = {
   0: "default",
@@ -212,18 +224,6 @@ const selectionHandler = (props: TextSegmentProps): void => {
 //}
 //return null;
 //};
-
-export interface TextSegment {
-  type: 'source'|'target';
-  position: number;
-  text: string;
-  group: number;
-  color: number;
-  catIsContent?: boolean;
-  strongsX?: string;
-  english?: string;
-  lemma?: string;
-}
 
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {

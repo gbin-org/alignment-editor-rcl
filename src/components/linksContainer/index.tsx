@@ -1,27 +1,17 @@
-import React, { ReactElement, RefObject, useState } from "react";
+import React, { ReactElement, useState } from "react";
 
-import { findLinkForTextSegment } from "../../core/findLink";
-import { TextSegment } from "../structs/textSegment";
-import TextPortion from "../textPortion";
-import Link from "../link";
+import TextPortionComponent from "components/textPortion";
+import LinkComponent from "components/link";
 
-type LinkType = "manual" | "machine";
-
-interface Link {
-  sources: number[];
-  targets: number[];
-  type: LinkType;
-}
+import { findLinkForTextSegment } from "core/findLink";
+import { Link, TextSegment, TextSegmentType } from "core/structs";
 
 interface LinksContainerProps {
   links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
-  selectTextSegmentFunc: (type: "source" | "target", position: number) => void;
-  deSelectTextSegmentFunc: (
-    type: "source" | "target",
-    position: number
-  ) => void;
+  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
+  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
 }
 
 export const LinksContainer = (props: LinksContainerProps): ReactElement => {
@@ -105,7 +95,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     >
       <div style={{ margin: "0.5rem" }} />
 
-      <TextPortion
+      <TextPortionComponent
         type="source"
         textSegments={sourceSegments}
         refGatherer={setRef.bind(null, "source")}
@@ -120,7 +110,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         {parentRef &&
           links.map((link: Link) => {
             return (
-              <Link
+              <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
                 sourcePosition={link.sources[0]}
                 targetPosition={link.targets[0]}
@@ -136,7 +126,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
 
       <div style={{ margin: "14rem" }} />
 
-      <TextPortion
+      <TextPortionComponent
         type="target"
         textSegments={targetSegments}
         refGatherer={setRef.bind(null, "target")}
