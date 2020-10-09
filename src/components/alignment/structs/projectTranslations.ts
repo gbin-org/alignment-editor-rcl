@@ -24,7 +24,9 @@ export enum DbNames {
   Greek = 'greek',
 }
 
-export type MemoryCollection = DbNames.LinkMemoryCollection | DbNames.ChunkMemoryCollection;
+export type MemoryCollection =
+  | DbNames.LinkMemoryCollection
+  | DbNames.ChunkMemoryCollection;
 
 export interface TranslationLink {
   sources: number[];
@@ -184,7 +186,7 @@ export class ManuscriptVerse {
     text: string,
     textSegments: string[],
     manuscriptData: ManuscriptData[],
-    chunkData: ChunkData[],
+    chunkData: ChunkData[]
   ) {
     this.textId = textId;
     this.text = text;
@@ -252,11 +254,11 @@ export class TranslationMemoryItem implements TranslationMemory {
     targetLocations: number[] = [],
     sourceManuscripts: string[] = [],
     english: string[] = [],
-    sourceLemmas: string[] = [],
+    sourceLemmas: string[] = []
   ) {
     if (sourceSegments.length && targetSegments.length) {
       const cleansedTargetSegments = targetSegments.map((segment) =>
-        TranslationMemoryItem.cleanseSegment(segment),
+        TranslationMemoryItem.cleanseSegment(segment)
       );
 
       const sourceText = sourceSegments.join(' ');
@@ -274,14 +276,15 @@ export class TranslationMemoryItem implements TranslationMemory {
       this.targetSegments = cleansedTargetSegments;
       this.targetSegmentsCount = cleansedTargetSegments.length;
 
-      this.totalSegmentsCount = this.sourceSegmentsCount + this.targetSegmentsCount;
+      this.totalSegmentsCount =
+        this.sourceSegmentsCount + this.targetSegmentsCount;
 
       this.count = 1;
     }
 
     if (this.key && sourceLocations.length && targetLocations.length) {
       this.locationKey = `${TranslationMemoryItem.locationsToKey(
-        sourceLocations,
+        sourceLocations
       )}|${TranslationMemoryItem.locationsToKey(targetLocations)}`;
     }
   }

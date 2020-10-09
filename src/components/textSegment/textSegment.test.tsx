@@ -13,7 +13,11 @@ import thunk from 'redux-thunk';
 import { IntlProvider } from 'react-intl';
 import languageObject from '../../translations/messages';
 
-import { TextSegmentComp, mapDispatchToProps, mapStateToProps } from './textSegment';
+import {
+  TextSegmentComp,
+  mapDispatchToProps,
+  mapStateToProps,
+} from './textSegment';
 import { TextSegmentState } from '../../types/textSegment';
 import initialState from '../../reducers/initState.data';
 
@@ -36,7 +40,7 @@ describe('TextSegment Component', (): void => {
               linkSelected
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const selectedSegments = wrapper.find('span.text-segment.selected');
       expect(selectedSegments.length).toEqual(1);
@@ -54,7 +58,7 @@ describe('TextSegment Component', (): void => {
               refName="source-1"
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const selectedSegments = wrapper.find('span.text-segment.selected');
       expect(selectedSegments.length).toEqual(0);
@@ -72,7 +76,7 @@ describe('TextSegment Component', (): void => {
               segment={{ color: 1, text: 'logos', group: 1 }}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const blueSegment = wrapper.find('span.text-segment.blue');
       expect(blueSegment.exists()).toBeTruthy();
@@ -83,7 +87,9 @@ describe('TextSegment Component', (): void => {
           <IntlProvider locale="en" messages={languageObject.en}>
             <TextSegmentComp
               verseCode="01001001"
-              alignmentData={{ '01001001': { links: [{ sources: [0], targets: [0] }] } }}
+              alignmentData={{
+                '01001001': { links: [{ sources: [0], targets: [0] }] },
+              }}
               source={[{ position: 0 }]}
               target={[{ position: 0 }]}
               refName="source-0"
@@ -91,7 +97,7 @@ describe('TextSegment Component', (): void => {
               linkSelected
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       const disabledSegment = wrapper.find('span.text-segment.disabled');
@@ -104,7 +110,9 @@ describe('TextSegment Component', (): void => {
           <IntlProvider locale="en" messages={languageObject.en}>
             <TextSegmentComp
               verseCode="01001001"
-              alignmentData={{ '01001001': { links: [{ sources: [0], targets: [0] }] } }}
+              alignmentData={{
+                '01001001': { links: [{ sources: [0], targets: [0] }] },
+              }}
               source={[{ position: 0 }]}
               target={[{ position: 0 }]}
               refName="target-0"
@@ -112,7 +120,7 @@ describe('TextSegment Component', (): void => {
               linkSelected
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const disabledSegment = wrapper.find('span.text-segment.disabled');
       expect(disabledSegment.exists()).toBeTruthy();
@@ -128,10 +136,15 @@ describe('TextSegment Component', (): void => {
               target={[]}
               refName="source-1"
               isLinkable
-              segment={{ text: 'word', english: 'word-gloss', group: 0, color: 0 }}
+              segment={{
+                text: 'word',
+                english: 'word-gloss',
+                group: 0,
+                color: 0,
+              }}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const segmentGloss = wrapper.find('.enriched-data');
       expect(segmentGloss.text()).toEqual('word-gloss');
@@ -154,7 +167,7 @@ describe('TextSegment Component', (): void => {
               isLinkable
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const segment = wrapper.find('span.text-segment.source-1');
       segment.simulate('click');
@@ -175,7 +188,7 @@ describe('TextSegment Component', (): void => {
               isLinkable
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const segment = wrapper.find('span.text-segment.target-1');
       segment.simulate('click');
@@ -196,7 +209,7 @@ describe('TextSegment Component', (): void => {
               isLinkable
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const segment = wrapper.find('span.text-segment.source-0');
       segment.simulate('click');
@@ -217,7 +230,7 @@ describe('TextSegment Component', (): void => {
               isLinkable
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const segment = wrapper.find('span.text-segment.target-0');
       segment.simulate('click');
@@ -239,7 +252,7 @@ describe('TextSegment Component', (): void => {
               isLinkable={false}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const segment = wrapper.find('span.text-segment.source-0');
       segment.simulate('click');

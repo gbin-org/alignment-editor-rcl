@@ -2,7 +2,13 @@
 
 ```ts
 <TextSegment
-  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', position: 1 }}
+  segmentData={{
+    text: 'ἀκοῦσαι',
+    color: 0,
+    group: 0,
+    type: 'source',
+    position: 1,
+  }}
   selectTextSegmentFunc={(type, position) => {}}
   deSelectTextSegmentFunc={(type, position) => {}}
 />
@@ -12,19 +18,30 @@
 
 ```ts
 <TextSegment
-  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', position: 1}}
+  segmentData={{
+    text: 'ἀκοῦσαι',
+    color: 0,
+    group: 0,
+    type: 'source',
+    position: 1,
+  }}
   isDisabled
   selectTextSegmentFunc={(type, position) => {}}
   deSelectTextSegmentFunc={(type, position) => {}}
 />
 ```
 
-
 #### Linked
 
 ```ts
 <TextSegment
-  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', position: 1 }}
+  segmentData={{
+    text: 'ἀκοῦσαι',
+    color: 0,
+    group: 0,
+    type: 'source',
+    position: 1,
+  }}
   isLinked
   selectTextSegmentFunc={(type, position) => {}}
   deSelectTextSegmentFunc={(type, position) => {}}
@@ -35,12 +52,19 @@
 
 ```ts
 <TextSegment
-  segmentData={{text: 'ἀκοῦσαι', color: 0, group: 0, type: 'source', postition: 1 }}
+  segmentData={{
+    text: 'ἀκοῦσαι',
+    color: 0,
+    group: 0,
+    type: 'source',
+    postition: 1,
+  }}
   isSelected
   selectTextSegmentFunc={(type, position) => {}}
   deSelectTextSegmentFunc={(type, position) => {}}
 />
 ```
+
 #### Linked and Grouped
 
 ```ts

@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
-import { findLinkForTextSegment } from "core/findLink";
-import { TextSegment, TextSegmentType, Link } from "core/structs";
-import TextSegmentComponent from "components/textSegment";
+import { findLinkForTextSegment } from 'core/findLink';
+import { TextSegment, TextSegmentType, Link } from 'core/structs';
+import TextSegmentComponent from 'components/textSegment';
 
 interface TextPortionProps {
   type: TextSegmentType;
@@ -39,7 +39,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     segmentHovered,
   } = props;
   return (
-    <div className={`${type}-container`} style={{ whiteSpace: "nowrap" }}>
+    <div className={`${type}-container`} style={{ whiteSpace: 'nowrap' }}>
       {textSegments.map(
         (textSegment, index): ReactElement => {
           return (
@@ -50,11 +50,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
               isDisabled={textSegment.catIsContent === false ?? false}
               isSelected={false}
               isLinked={false}
-              isFocused={isFocused(
-                links,
-                focusedLinks,
-                textSegment
-              )}
+              isFocused={isFocused(links, focusedLinks, textSegment)}
               hoverHook={segmentHovered.bind(null, textSegment)}
               selectTextSegmentFunc={selectTextSegmentFunc}
               deSelectTextSegmentFunc={deSelectTextSegmentFunc}

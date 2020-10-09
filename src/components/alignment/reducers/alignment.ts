@@ -30,25 +30,34 @@ export const INIT_STAT: types.AlignmentState = {
 
 export default (
   state = INIT_STAT,
-  action: types.AlignmentActionTypes,
+  action: types.AlignmentActionTypes
 ): types.AlignmentState => {
   switch (action.type) {
     case types.FETCH_ALIGNMENT_DATA_REQUEST:
       return {
         ...state,
         loading: true,
-        alignmentData: { ...state.alignmentData, [action.verseCode]: 'loading' },
+        alignmentData: {
+          ...state.alignmentData,
+          [action.verseCode]: 'loading',
+        },
       };
     case types.FETCH_ALIGNMENT_DATA_SUCCESS:
       return {
         ...state,
         loading: false,
-        alignmentData: { ...state.alignmentData, [action.verseCode]: action.data },
+        alignmentData: {
+          ...state.alignmentData,
+          [action.verseCode]: action.data,
+        },
       };
     case types.UPDATE_ALIGNMENT_DATA:
       return {
         ...state,
-        alignmentData: { ...state.alignmentData, [action.verseCode]: action.alignmentData },
+        alignmentData: {
+          ...state.alignmentData,
+          [action.verseCode]: action.alignmentData,
+        },
       };
 
     case types.SELECT_SOURCE_TEXT_SEGMENT:
@@ -116,26 +125,28 @@ export default (
           [action.verseCode]: {
             ...state.alignmentData[action.verseCode],
             linksVerified: false,
-            links: state.alignmentData[action.verseCode].links.filter((link: any) => {
-              return !(
-                _.isEqual(
-                  _.sortBy(link.sources),
-                  _.sortBy(
-                    action.sourceAlt.map((source) => {
-                      return source.position;
-                    }),
-                  ),
-                ) &&
-                _.isEqual(
-                  _.sortBy(link.targets),
-                  _.sortBy(
-                    action.targetAlt.map((target) => {
-                      return target.position;
-                    }),
-                  ),
-                )
-              );
-            }),
+            links: state.alignmentData[action.verseCode].links.filter(
+              (link: any) => {
+                return !(
+                  _.isEqual(
+                    _.sortBy(link.sources),
+                    _.sortBy(
+                      action.sourceAlt.map((source) => {
+                        return source.position;
+                      })
+                    )
+                  ) &&
+                  _.isEqual(
+                    _.sortBy(link.targets),
+                    _.sortBy(
+                      action.targetAlt.map((target) => {
+                        return target.position;
+                      })
+                    )
+                  )
+                );
+              }
+            ),
           },
         },
       };

@@ -1,4 +1,8 @@
-import { Manuscript, VerseIdParser, getVerseNumberByBookAndChapter } from './verseIdParser';
+import {
+  Manuscript,
+  VerseIdParser,
+  getVerseNumberByBookAndChapter,
+} from './verseIdParser';
 
 describe('VerseIDParser', (): void => {
   const parser = new VerseIdParser();

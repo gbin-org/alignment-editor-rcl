@@ -43,7 +43,9 @@ describe('Alignment reducer', (): void => {
       data: testManuscriptSuggestions,
     });
     expect(receives.loading).toBe(false);
-    expect(receives.alignmentData.testVerseId).toStrictEqual(testManuscriptSuggestions);
+    expect(receives.alignmentData.testVerseId).toStrictEqual(
+      testManuscriptSuggestions
+    );
   });
 
   it('should return state for UPDATE_ALIGNMENT_DATA)', (): void => {
@@ -86,7 +88,7 @@ describe('Alignment reducer', (): void => {
         verseCode: '1',
         sources: [0],
         targets: [0],
-      },
+      }
     );
     expect(receives.alignmentData['1'].links[0].sources).toEqual([0]);
     expect(receives.alignmentData['1'].links[0].targets).toEqual([0]);
@@ -127,7 +129,7 @@ describe('Alignment reducer', (): void => {
       },
       {
         type: types.REVERSE_ALIGNMENT_DISPLAY,
-      },
+      }
     );
     expect(receives.reverseAlignmentDisplay).toBe(true);
   });
@@ -160,7 +162,7 @@ describe('Alignment reducer', (): void => {
       },
       {
         type: types.REVERSE_ALIGNMENT_DISPLAY,
-      },
+      }
     );
     expect(receives.reverseAlignmentDisplay).toBe(false);
   });
@@ -199,7 +201,11 @@ describe('Alignment reducer', (): void => {
       expect(receives.target.length).toBe(0);
     });
     it('can clear all segment suggestions', (): void => {
-      const testState = { ...INIT_STAT, source: [{ position: 2 }], target: [{ position: 1 }] };
+      const testState = {
+        ...INIT_STAT,
+        source: [{ position: 2 }],
+        target: [{ position: 1 }],
+      };
       const receives = reducer(testState, {
         type: types.CLEAR_LINK_SELECTION,
       });

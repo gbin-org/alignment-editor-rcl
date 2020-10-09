@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement } from 'react';
 
-import { TextSegment, TextSegmentType } from "core/structs";
+import { TextSegment, TextSegmentType } from 'core/structs';
 
-import "components/textSegment/textSegmentStyle.scss";
+import 'components/textSegment/textSegmentStyle.scss';
 
 export interface TextSegmentProps {
   segmentData: TextSegment;
@@ -17,10 +17,10 @@ export interface TextSegmentProps {
 }
 
 const segmentColors: Record<number, string> = {
-  0: "default",
-  1: "blue",
-  2: "green",
-  3: "orange",
+  0: 'default',
+  1: 'blue',
+  2: 'green',
+  3: 'orange',
 };
 
 //const popoverPlacement = (props: TextSegmentProps): "top" | "bottom" => {

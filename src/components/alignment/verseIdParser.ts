@@ -438,7 +438,29 @@ export const bibleVerse: BibleVerses = {
     16,
     33,
   ],
-  Judges: [36, 23, 31, 24, 31, 40, 25, 35, 57, 18, 40, 15, 25, 20, 20, 31, 13, 31, 30, 48, 25],
+  Judges: [
+    36,
+    23,
+    31,
+    24,
+    31,
+    40,
+    25,
+    35,
+    57,
+    18,
+    40,
+    15,
+    25,
+    20,
+    20,
+    31,
+    13,
+    31,
+    30,
+    48,
+    25,
+  ],
   Ruth: [22, 23, 18, 22],
   Samuel1: [
     28,
@@ -499,7 +521,30 @@ export const bibleVerse: BibleVerses = {
     39,
     25,
   ],
-  Kings1: [53, 46, 28, 34, 18, 38, 51, 66, 28, 29, 43, 33, 34, 31, 34, 34, 24, 46, 21, 43, 29, 53],
+  Kings1: [
+    53,
+    46,
+    28,
+    34,
+    18,
+    38,
+    51,
+    66,
+    28,
+    29,
+    43,
+    33,
+    34,
+    31,
+    34,
+    34,
+    24,
+    46,
+    21,
+    43,
+    29,
+    53,
+  ],
   Kings2: [
     18,
     25,
@@ -1073,7 +1118,29 @@ export const bibleVerse: BibleVerses = {
     56,
     53,
   ],
-  John: [51, 25, 36, 54, 47, 71, 53, 59, 41, 42, 57, 50, 38, 31, 27, 33, 26, 40, 42, 31, 25],
+  John: [
+    51,
+    25,
+    36,
+    54,
+    47,
+    71,
+    53,
+    59,
+    41,
+    42,
+    57,
+    50,
+    38,
+    31,
+    27,
+    33,
+    26,
+    40,
+    42,
+    31,
+    25,
+  ],
   Acts: [
     26,
     47,
@@ -1105,7 +1172,24 @@ export const bibleVerse: BibleVerses = {
     31,
   ],
   Romans: [32, 29, 31, 25, 21, 23, 25, 39, 33, 21, 36, 21, 14, 23, 33, 27],
-  Corinthians1: [31, 16, 23, 21, 13, 20, 40, 13, 27, 33, 34, 31, 13, 40, 58, 24],
+  Corinthians1: [
+    31,
+    16,
+    23,
+    21,
+    13,
+    20,
+    40,
+    13,
+    27,
+    33,
+    34,
+    31,
+    13,
+    40,
+    58,
+    24,
+  ],
   Corinthians2: [24, 17, 18, 18, 21, 18, 16, 24, 15, 18, 33, 21, 14],
   Galatians: [24, 21, 29, 31, 26, 18],
   Ephesians: [23, 22, 21, 32, 33, 24],
@@ -1151,7 +1235,10 @@ export const bibleVerse: BibleVerses = {
   ],
 };
 
-export const getVerseNumberByBookAndChapter = (bookId: string, chapter: number): number => {
+export const getVerseNumberByBookAndChapter = (
+  bookId: string,
+  chapter: number
+): number => {
   const bookVerses: number[] = bibleVerse[bookId];
   const chapterIndex = chapter > 0 ? chapter - 1 : 0;
   return bookVerses[chapterIndex];
@@ -1589,11 +1676,20 @@ export class VerseIdParser {
   }
 
   public isNT(gbiId: string): boolean {
-    return Number(gbiId.substring(0, 2)) >= 40 && Number(gbiId.substring(0, 2)) <= 66;
+    return (
+      Number(gbiId.substring(0, 2)) >= 40 && Number(gbiId.substring(0, 2)) <= 66
+    );
   }
 
-  public createGbiId(bookId: string, chapterId: string, verseId: string): string {
-    return `${bookId.padStart(2, '0')}${chapterId.padStart(3, '0')}${verseId.padStart(3, '0')}`;
+  public createGbiId(
+    bookId: string,
+    chapterId: string,
+    verseId: string
+  ): string {
+    return `${bookId.padStart(2, '0')}${chapterId.padStart(
+      3,
+      '0'
+    )}${verseId.padStart(3, '0')}`;
   }
 
   public parseGbiId(gbiId: string | undefined): any {

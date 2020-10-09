@@ -22,7 +22,11 @@ describe('test frontend.ts', (): void => {
       const locationKeys = ['2|0+1'];
       const resultExpected =
         '<b>God</b> <b>saw</b> that the light was good , so God separated the light from the darkness .';
-      const resultReceived = functions.highlightLinkedWords(word, text, locationKeys);
+      const resultReceived = functions.highlightLinkedWords(
+        word,
+        text,
+        locationKeys
+      );
       expect(resultReceived).toEqual(resultExpected);
     });
 
@@ -31,7 +35,11 @@ describe('test frontend.ts', (): void => {
       const text = `God saw that the light was good, so God separated the light from the darkness.`;
       const locationKeys = ['2|'];
       try {
-        const resultReceived = functions.highlightLinkedWords(word, text, locationKeys);
+        const resultReceived = functions.highlightLinkedWords(
+          word,
+          text,
+          locationKeys
+        );
         expect(resultReceived).toEqual(text);
       } catch (error) {
         // console.log(error?.message);

@@ -1,23 +1,23 @@
-import React, { ReactElement } from "react";
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
+import React, { ReactElement } from 'react';
+import { Dispatch } from 'redux';
+import { connect } from 'react-redux';
 
-import _ from "lodash";
+import _ from 'lodash';
 import {
   AlignmentProps,
   AlignmentState,
   DefaultAlignmentProps,
-} from "./types/alignment";
-import LinkLines from "./linkLines";
-import TextSegment from "../textSegment";
-import { AppState } from "./reducers";
+} from './types/alignment';
+import LinkLines from './linkLines';
+import TextSegment from '../textSegment';
+import { AppState } from './reducers';
 import {
   reverseAlignmentDisplayAction,
   reRenderLinksAction,
-} from "./actions/alignment";
-import findGlossForPosition from "./findGlossForPosition";
-import { VerseIdParser } from "./verseIdParser";
-import { computeVerseLinkedWords } from "./functions";
+} from './actions/alignment';
+import findGlossForPosition from './findGlossForPosition';
+import { VerseIdParser } from './verseIdParser';
+import { computeVerseLinkedWords } from './functions';
 
 /* eslint react/prefer-stateless-function: "off" */
 export class LinksContainerComp extends React.Component<
@@ -34,7 +34,7 @@ export class LinksContainerComp extends React.Component<
   }
 
   public componentDidMount(): void {
-    window.addEventListener("resize", this.reRender.bind(this));
+    window.addEventListener('resize', this.reRender.bind(this));
   }
 
   componentDidUpdate(): void {
@@ -42,7 +42,7 @@ export class LinksContainerComp extends React.Component<
   }
 
   public componentWillUnmount(): void {
-    window.removeEventListener("resize", this.reRender.bind(this));
+    window.removeEventListener('resize', this.reRender.bind(this));
   }
 
   private reRender(): void {
@@ -118,12 +118,12 @@ export class LinksContainerComp extends React.Component<
     let returnedSegments = isSource
       ? groupedSourceSegments
       : groupedTargetSegments;
-    let returnedType = isSource ? "source" : "target";
+    let returnedType = isSource ? 'source' : 'target';
     if (reverseAlignmentDisplay) {
       returnedSegments = !isSource
         ? groupedSourceSegments
         : groupedTargetSegments;
-      returnedType = !isSource ? "source" : "target";
+      returnedType = !isSource ? 'source' : 'target';
     }
     return this.textMapper(returnedSegments, returnedType, linksAlt);
   }
@@ -154,7 +154,7 @@ export class LinksContainerComp extends React.Component<
 
     // are we in OT or NT?
     const verseIdParser = new VerseIdParser();
-    const testament = verseIdParser.isNT(verseCode) ? "nt" : "ot";
+    const testament = verseIdParser.isNT(verseCode) ? 'nt' : 'ot';
 
     let reverseTextSource = false;
     let reverseTextTarget = false;
@@ -162,7 +162,7 @@ export class LinksContainerComp extends React.Component<
     if (isRTL) {
       reverseTextSource = true;
       reverseTextTarget = true;
-      if (testament === "ot") {
+      if (testament === 'ot') {
         if (isOTrtlAlignSource) {
           reverseTextSource = false;
         }
@@ -179,7 +179,7 @@ export class LinksContainerComp extends React.Component<
       }
     } else {
       // eslint-disable-next-line no-lonely-if
-      if (testament === "ot") {
+      if (testament === 'ot') {
         if (isOTltrAlignSource) {
           reverseTextSource = true;
         }
@@ -231,8 +231,8 @@ export class LinksContainerComp extends React.Component<
       linksAlt
     );
     const linked = linksAlt && linksAlt.length;
-    const linkedClass = linked ? "linked" : "unlinked";
-    const reversedClass = reverseAlignmentDisplay ? "reverse" : "";
+    const linkedClass = linked ? 'linked' : 'unlinked';
+    const reversedClass = reverseAlignmentDisplay ? 'reverse' : '';
     if (linked) {
       stack.push(
         <LinkLines key="link-lines" links={linksAlt} refDict={this.refDict} />
@@ -292,7 +292,7 @@ export class LinksContainerComp extends React.Component<
     return segments.map((segment: any, index: number) => {
       const refName = `${type}-${index}`;
       const ref = React.createRef<HTMLSpanElement>();
-      const isLinkable = type === "target" || segment.catIsContent;
+      const isLinkable = type === 'target' || segment.catIsContent;
       this.refDict.set(refName, ref);
       const linkedTargetWords = linkedWords[index];
 

@@ -2,7 +2,13 @@
 // A list of verse IDs that are forced into the UI
 // for hacky versification reasons.
 
-const hackedButNotHiddenIds = ['16007068', '44019041', '44024007', '45016024', '47013014'];
+const hackedButNotHiddenIds = [
+  '16007068',
+  '44019041',
+  '44024007',
+  '45016024',
+  '47013014',
+];
 
 const hackedVerseIds = [
   '16007068',
@@ -72,5 +78,7 @@ export const isHackedForAlignment = (verseId: string): boolean => {
 };
 
 export const isHackedForDisplay = (verseId: string): boolean => {
-  return !hackedVerseIds.includes(verseId) || hackedButNotHiddenIds.includes(verseId);
+  return (
+    !hackedVerseIds.includes(verseId) || hackedButNotHiddenIds.includes(verseId)
+  );
 };

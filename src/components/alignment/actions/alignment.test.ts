@@ -88,7 +88,9 @@ describe('Alignment actions', (): void => {
   });
 
   it('should create an action of FETCH_ALIGNMENT_DATA_REQUEST', (): void => {
-    store.dispatch(actions.fetchAlignmentDataRequestAction('projectId', 'verseId'));
+    store.dispatch(
+      actions.fetchAlignmentDataRequestAction('projectId', 'verseId')
+    );
     const receives = store.getActions();
     expect(receives.pop().type).toEqual(types.FETCH_ALIGNMENT_DATA_REQUEST);
   });
@@ -100,7 +102,9 @@ describe('Alignment actions', (): void => {
   });
 
   it('should create an action of FETCH_ALIGNMENT_DATA_SUCCESS', (): void => {
-    store.dispatch(actions.fetchAlignmentDataSuccessAction('projectId', 'verseId', {}));
+    store.dispatch(
+      actions.fetchAlignmentDataSuccessAction('projectId', 'verseId', {})
+    );
     const receives = store.getActions();
     expect(receives.pop().type).toEqual(types.FETCH_ALIGNMENT_DATA_SUCCESS);
   });
@@ -131,13 +135,17 @@ describe('Alignment actions', (): void => {
   describe('Fetch alignment data', (): void => {
     it('Failure occurs if user is not signed in', async (): Promise<void> => {
       userConditions.push('returnNull');
-      await store.dispatch(actions.fetchAlignmentDataAction('projectId', 'verseId'));
+      await store.dispatch(
+        actions.fetchAlignmentDataAction('projectId', 'verseId')
+      );
 
       const receives = store.getActions();
 
       let lastAction = receives.pop();
       expect(lastAction.type).toBe(types.FETCH_ALIGNMENT_DATA_FAILURE);
-      expect(lastAction.error.toLowerCase().startsWith('you must be signed')).toBe(true);
+      expect(
+        lastAction.error.toLowerCase().startsWith('you must be signed')
+      ).toBe(true);
 
       lastAction = receives.pop();
       expect(lastAction.type).toBe(types.FETCH_ALIGNMENT_DATA_REQUEST);
@@ -145,7 +153,9 @@ describe('Alignment actions', (): void => {
 
     it('Success occurs if user is signed-in  ', async (): Promise<any> => {
       failAlignmentData = false;
-      await store.dispatch(actions.fetchAlignmentDataAction('projectId', 'verseId'));
+      await store.dispatch(
+        actions.fetchAlignmentDataAction('projectId', 'verseId')
+      );
 
       const receives = store.getActions();
 
@@ -156,9 +166,13 @@ describe('Alignment actions', (): void => {
       expect(lastAction.type).toBe(types.FETCH_ALIGNMENT_DATA_REQUEST);
     });
 
-    it('Failure occurs when user is signed-in (due to database) ', async (): Promise<any> => {
+    it('Failure occurs when user is signed-in (due to database) ', async (): Promise<
+      any
+    > => {
       failAlignmentData = true;
-      await store.dispatch(actions.fetchAlignmentDataAction('projectId', 'verseId'));
+      await store.dispatch(
+        actions.fetchAlignmentDataAction('projectId', 'verseId')
+      );
 
       const receives = store.getActions();
 

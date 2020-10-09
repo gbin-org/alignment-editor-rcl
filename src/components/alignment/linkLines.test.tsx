@@ -23,12 +23,16 @@ describe('Link Lines Component', (): void => {
     it('can show a line', (): void => {
       const links = [{ sources: [0], targets: [1] }];
       const refDict = new Map();
-      refDict.set('source-0', { current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
-      refDict.set('target-1', { current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] } });
+      refDict.set('source-0', {
+        current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+      });
+      refDict.set('target-1', {
+        current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] },
+      });
       const wrapper = mount(
         <Provider store={store}>
           <LinkLinesComp links={links} refDict={refDict} />
-        </Provider>,
+        </Provider>
       );
       const line = wrapper.find('.link-line');
       expect(line.exists()).toBeTruthy();
@@ -37,12 +41,16 @@ describe('Link Lines Component', (): void => {
     it('can show a grouped line, multi source', (): void => {
       const links = [{ sources: [0, 2, 4], targets: [1] }];
       const refDict = new Map();
-      refDict.set('source-0', { current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
-      refDict.set('target-1', { current: { offsetLeft: 2, offsetTop: 2, classList: ['default'] } });
+      refDict.set('source-0', {
+        current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+      });
+      refDict.set('target-1', {
+        current: { offsetLeft: 2, offsetTop: 2, classList: ['default'] },
+      });
       const wrapper = mount(
         <Provider store={store}>
           <LinkLinesComp links={links} refDict={refDict} />
-        </Provider>,
+        </Provider>
       );
       const line = wrapper.find('.link-line');
       expect(line.exists()).toBeTruthy();
@@ -51,12 +59,16 @@ describe('Link Lines Component', (): void => {
     it('can show a grouped line, multi target', (): void => {
       const links = [{ sources: [0], targets: [1, 4, 8] }];
       const refDict = new Map();
-      refDict.set('source-0', { current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
-      refDict.set('target-1', { current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] } });
+      refDict.set('source-0', {
+        current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+      });
+      refDict.set('target-1', {
+        current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] },
+      });
       const wrapper = mount(
         <Provider store={store}>
           <LinkLinesComp links={links} refDict={refDict} />
-        </Provider>,
+        </Provider>
       );
       const line = wrapper.find('.link-line');
       expect(line.exists()).toBeTruthy();
@@ -65,12 +77,16 @@ describe('Link Lines Component', (): void => {
     it('can show a grouped line, both sides', (): void => {
       const links = [{ sources: [0, 3], targets: [1, 4, 8] }];
       const refDict = new Map();
-      refDict.set('source-0', { current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
-      refDict.set('target-1', { current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] } });
+      refDict.set('source-0', {
+        current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+      });
+      refDict.set('target-1', {
+        current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] },
+      });
       const wrapper = mount(
         <Provider store={store}>
           <LinkLinesComp links={links} refDict={refDict} />
-        </Provider>,
+        </Provider>
       );
       const line = wrapper.find('.link-line');
       expect(line.exists()).toBeTruthy();
@@ -80,15 +96,23 @@ describe('Link Lines Component', (): void => {
       const links = [{ sources: [0, 3], targets: [1, 4] }];
       const refDict = new Map();
       refDict.set('source-0', {
-        current: { offsetLeft: 0, offsetTop: 0, classList: ['default', 'selected'] },
+        current: {
+          offsetLeft: 0,
+          offsetTop: 0,
+          classList: ['default', 'selected'],
+        },
       });
       refDict.set('target-1', {
-        current: { offsetLeft: 1, offsetTop: 1, classList: ['default', 'selected'] },
+        current: {
+          offsetLeft: 1,
+          offsetTop: 1,
+          classList: ['default', 'selected'],
+        },
       });
       const wrapper = mount(
         <Provider store={store}>
           <LinkLinesComp links={links} refDict={refDict} />
-        </Provider>,
+        </Provider>
       );
       const line = wrapper.find('.link-line.black');
       expect(line.exists()).toBeTruthy();
@@ -99,12 +123,18 @@ describe('Link Lines Component', (): void => {
       const MockMap: Map<string, any> = Mockito.mock(Map);
       Mockito.when(MockMap.get('source-0'))
         .thenReturn({})
-        .thenReturn({ current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
+        .thenReturn({
+          current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+        });
       Mockito.when(MockMap.get('target-1'))
         .thenReturn({})
-        .thenReturn({ current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] } });
+        .thenReturn({
+          current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] },
+        });
       const mockedMapInstance: Map<string, any> = Mockito.instance(MockMap);
-      const wrapper = mount(<LinkLinesComp links={links} refDict={mockedMapInstance} />);
+      const wrapper = mount(
+        <LinkLinesComp links={links} refDict={mockedMapInstance} />
+      );
       const line = wrapper.find('.link-line');
 
       // It has changed to re-render by its parent. Otherwise, the alignment view
@@ -117,16 +147,20 @@ describe('Link Lines Component', (): void => {
       const MockMap: Map<string, any> = Mockito.mock(Map);
       Mockito.when(MockMap.get('source-0'))
         .thenReturn({ current: null })
-        .thenReturn({ current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
+        .thenReturn({
+          current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+        });
       Mockito.when(MockMap.get('target-1'))
         .thenReturn({ current: null })
-        .thenReturn({ current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] } });
+        .thenReturn({
+          current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] },
+        });
       const mockedMapInstance: Map<string, any> = Mockito.instance(MockMap);
 
       const wrapper = mount(
         <Provider store={store}>
           <LinkLinesComp links={links} refDict={mockedMapInstance} />
-        </Provider>,
+        </Provider>
       );
       const line = wrapper.find('.link-line');
 
@@ -140,12 +174,20 @@ describe('Link Lines Component', (): void => {
       const selectLinkMock = jest.fn();
       const links = [{ sources: [0], targets: [1] }];
       const refDict = new Map();
-      refDict.set('source-0', { current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] } });
-      refDict.set('target-1', { current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] } });
+      refDict.set('source-0', {
+        current: { offsetLeft: 0, offsetTop: 0, classList: ['default'] },
+      });
+      refDict.set('target-1', {
+        current: { offsetLeft: 1, offsetTop: 1, classList: ['default'] },
+      });
       const wrapper = mount(
         <Provider store={store}>
-          <LinkLinesComp links={links} refDict={refDict} selectLinkFunc={selectLinkMock} />
-        </Provider>,
+          <LinkLinesComp
+            links={links}
+            refDict={refDict}
+            selectLinkFunc={selectLinkMock}
+          />
+        </Provider>
       );
       const line = wrapper.find('.link-line');
       line.simulate('click');

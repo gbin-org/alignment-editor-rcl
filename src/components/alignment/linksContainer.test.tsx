@@ -23,8 +23,12 @@ describe('Link Container Component', (): void => {
     const links = [{ sources: [0], targets: [1] }];
     const wrapper = mount(
       <Provider store={store}>
-        <LinksContainerComp links={links} sourceText={sourceText} targetText={targetText} />
-      </Provider>,
+        <LinksContainerComp
+          links={links}
+          sourceText={sourceText}
+          targetText={targetText}
+        />
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -36,8 +40,12 @@ describe('Link Container Component', (): void => {
     const links = [{ sources: [0], targets: [1, 2] }];
     const wrapper = mount(
       <Provider store={store}>
-        <LinksContainerComp links={links} sourceText={sourceText} targetText={targetText} />
-      </Provider>,
+        <LinksContainerComp
+          links={links}
+          sourceText={sourceText}
+          targetText={targetText}
+        />
+      </Provider>
     );
     const segments = wrapper.find('.text-segment.blue');
     expect(segments.exists()).toBeTruthy();
@@ -58,7 +66,7 @@ describe('Link Container Component', (): void => {
           verseCode="01001001"
           isRTL
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -80,7 +88,7 @@ describe('Link Container Component', (): void => {
           isOTrtlAlignSource
           isOTrtlAlignTarget
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -100,7 +108,7 @@ describe('Link Container Component', (): void => {
           verseCode="66001001"
           isRTL
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -122,7 +130,7 @@ describe('Link Container Component', (): void => {
           isNTrtlAlignSource
           isNTrtlAlignTarget
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -143,7 +151,7 @@ describe('Link Container Component', (): void => {
           verseCode="01001001"
           isRTL={false}
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -165,7 +173,7 @@ describe('Link Container Component', (): void => {
           isOTltrAlignSource
           isOTltrAlignTarget
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -185,7 +193,7 @@ describe('Link Container Component', (): void => {
           verseCode="66001001"
           isRTL
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -207,7 +215,7 @@ describe('Link Container Component', (): void => {
           isNTltrAlignSource
           isNTltrAlignTarget
         />
-      </Provider>,
+      </Provider>
     );
     const segments = wrapper.find('.text-segment');
     expect(segments.exists()).toBeTruthy();
@@ -253,8 +261,12 @@ describe('Link Container Component', (): void => {
     ];
     const wrapper = mount(
       <Provider store={store}>
-        <LinksContainerComp links={links} sourceText={sourceText} targetText={targetText} />
-      </Provider>,
+        <LinksContainerComp
+          links={links}
+          sourceText={sourceText}
+          targetText={targetText}
+        />
+      </Provider>
     );
     const defaultSegments = wrapper.find('.text-segment.default');
     expect(defaultSegments.exists()).toBeFalsy();
@@ -281,7 +293,9 @@ describe('Link Container Component', (): void => {
       const result = mapStateToProps(initialState);
       expect(Object.keys(result).includes('source')).toBeTruthy();
       expect(Object.keys(result).includes('target')).toBeTruthy();
-      expect(Object.keys(result).includes('reverseAlignmentDisplay')).toBeTruthy();
+      expect(
+        Object.keys(result).includes('reverseAlignmentDisplay')
+      ).toBeTruthy();
       expect(Object.keys(result).includes('glosses')).toBeTruthy();
     });
   });

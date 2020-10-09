@@ -32,7 +32,7 @@ describe('Alignment Component', (): void => {
             alignmentData={{ '01001001': { links: [] } }}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const modal = wrapper.find('div.modal-dialog');
     expect(modal.exists()).toBeTruthy();
@@ -48,9 +48,13 @@ describe('Alignment Component', (): void => {
     const wrapper = mount(
       <Provider store={store}>
         <IntlProvider locale="en" messages={languageObject.en}>
-          <AlignmentComp isVisible verseCode="01001001" alignmentData={{ '01001001': 'loading' }} />
+          <AlignmentComp
+            isVisible
+            verseCode="01001001"
+            alignmentData={{ '01001001': 'loading' }}
+          />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const modal = wrapper.find('div.modal-dialog');
     expect(modal.exists()).toBeTruthy();
@@ -69,7 +73,7 @@ describe('Alignment Component', (): void => {
           />
           ,
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const modal = wrapper.find('div.modal-dialog');
     expect(modal.exists()).toBeTruthy();
@@ -88,7 +92,7 @@ describe('Alignment Component', (): void => {
           />
           ,
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const modal = wrapper.find('div.modal-dialog');
     expect(modal.exists()).toBeTruthy();
@@ -100,15 +104,19 @@ describe('Alignment Component', (): void => {
     const wrapper = mount(
       <Provider store={store}>
         <IntlProvider locale="en" messages={languageObject.en}>
-          <AlignmentComp isVisible verseCode="01001001" alignmentData={{ '01001001': {} }} />
+          <AlignmentComp
+            isVisible
+            verseCode="01001001"
+            alignmentData={{ '01001001': {} }}
+          />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const modal = wrapper.find('div.alignment-modal');
     expect(modal.exists()).toBeTruthy();
     const modalContent = wrapper.find('div.alignment-modal-content');
     expect(modalContent.text()).toBe(
-      'Something went wrong. If the problem persists, please contact the YouTranslate.Bible team.',
+      'Something went wrong. If the problem persists, please contact the YouTranslate.Bible team.'
     );
   });
 
@@ -129,7 +137,7 @@ describe('Alignment Component', (): void => {
             }}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const modal = wrapper.find('div.modal-dialog');
     expect(modal.exists()).toBeTruthy();
@@ -150,7 +158,7 @@ describe('Alignment Component', (): void => {
             verifyAlignmentFunc={verifyMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const verify = wrapper.find('#verify-alignment');
     verify.simulate('click');
@@ -169,7 +177,7 @@ describe('Alignment Component', (): void => {
             verifyAlignmentFunc={verifyMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const verify = wrapper.find('#verify-alignment');
     verify.simulate('keydown', { key: ' ' });
@@ -196,7 +204,7 @@ describe('Alignment Component', (): void => {
             updateVerseStatusFunc={updateVerseStatusMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const close = wrapper.find('#close-alignment');
     close.simulate('click');
@@ -223,7 +231,7 @@ describe('Alignment Component', (): void => {
             updateVerseStatusFunc={updateVerseStatusMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const close = wrapper.find('#close-alignment');
     close.simulate('keydown', { key: ' ' });
@@ -242,7 +250,7 @@ describe('Alignment Component', (): void => {
             reverseAlignmentDisplayFunc={reverseMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const reverse = wrapper.find('i.reverse');
     reverse.simulate('click');
@@ -261,7 +269,7 @@ describe('Alignment Component', (): void => {
             reverseAlignmentDisplayFunc={reverseMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const reverse = wrapper.find('i.reverse');
     reverse.simulate('keydown', { key: ' ' });
@@ -280,7 +288,7 @@ describe('Alignment Component', (): void => {
             clearLinkSelectionsFunc={clearMock}
           />
         </IntlProvider>
-      </Provider>,
+      </Provider>
     );
     const clear = wrapper.find('i.clear');
     clear.simulate('click');
@@ -309,7 +317,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalled();
@@ -337,7 +345,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalledTimes(0);
@@ -364,7 +372,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: 'a' });
       expect(addLinkMock).toHaveBeenCalledTimes(0);
@@ -391,7 +399,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalledTimes(0);
@@ -418,7 +426,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const addButton = wrapper.find('.add');
       addButton.simulate('click');
@@ -447,7 +455,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const addButton = wrapper.find('.add');
       addButton.simulate('click');
@@ -475,7 +483,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const addButton = wrapper.find('.add');
       addButton.simulate('click');
@@ -503,7 +511,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const addButton = wrapper.find('.add');
       addButton.simulate('click');
@@ -533,7 +541,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('click');
@@ -562,7 +570,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('click');
@@ -592,7 +600,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('click');
@@ -620,7 +628,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('keydown', { key: ' ' });
@@ -649,7 +657,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(removeLinkMock).toHaveBeenCalledTimes(1);
@@ -678,7 +686,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(removeLinkMock).toHaveBeenCalledTimes(0);
@@ -720,7 +728,11 @@ describe('Alignment Component', (): void => {
 
     it('dispatches for addLinkFunc', (): void => {
       const dispatch = jest.fn();
-      mapDispatchToProps(dispatch).addLinkFunc('', [{ position: '1' }], [{ position: '1' }]);
+      mapDispatchToProps(dispatch).addLinkFunc(
+        '',
+        [{ position: '1' }],
+        [{ position: '1' }]
+      );
       expect(dispatch.mock.calls[0][0]).toBeTruthy();
     });
 
@@ -780,7 +792,7 @@ describe('Alignment Component', (): void => {
               isRTL
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -807,7 +819,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       wrapper.simulate('keydown', { key: ' ' });
@@ -827,7 +839,7 @@ describe('Alignment Component', (): void => {
               isOTrtlAlignTarget
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -857,7 +869,7 @@ describe('Alignment Component', (): void => {
               isOTrtlAlignTarget
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalled();
@@ -888,7 +900,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('click');
@@ -906,7 +918,7 @@ describe('Alignment Component', (): void => {
               isRTL
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -936,7 +948,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalled();
@@ -967,7 +979,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('click');
@@ -987,7 +999,7 @@ describe('Alignment Component', (): void => {
               isNTrtlAlignTarget
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -1017,7 +1029,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalled();
@@ -1048,7 +1060,7 @@ describe('Alignment Component', (): void => {
               removeSelectedLinkFunc={removeLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const removeButton = wrapper.find('.remove');
       removeButton.simulate('click');
@@ -1066,7 +1078,7 @@ describe('Alignment Component', (): void => {
               alignmentData={{ '01001001': { links: [] } }}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -1093,7 +1105,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalled();
@@ -1111,7 +1123,7 @@ describe('Alignment Component', (): void => {
               isOTltrAlignTarget
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -1127,7 +1139,7 @@ describe('Alignment Component', (): void => {
               alignmentData={{ '66001001': { links: [] } }}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();
@@ -1154,7 +1166,7 @@ describe('Alignment Component', (): void => {
               addLinkFunc={addLinkMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       wrapper.simulate('keydown', { key: ' ' });
       expect(addLinkMock).toHaveBeenCalled();
@@ -1172,7 +1184,7 @@ describe('Alignment Component', (): void => {
               isNTltrAlignTarget
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
       const modal = wrapper.find('div.modal-dialog');
       expect(modal.exists()).toBeTruthy();

@@ -1,10 +1,10 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from 'react';
 
-import TextPortionComponent from "components/textPortion";
-import LinkComponent from "components/link";
+import TextPortionComponent from 'components/textPortion';
+import LinkComponent from 'components/link';
 
-import { findLinkForTextSegment } from "core/findLink";
-import { Link, TextSegment, TextSegmentType } from "core/structs";
+import { findLinkForTextSegment } from 'core/findLink';
+import { Link, TextSegment, TextSegmentType } from 'core/structs';
 
 interface LinksContainerProps {
   links: Link[];
@@ -31,11 +31,11 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   );
 
   const setRef = (
-    type: "source" | "target",
+    type: 'source' | 'target',
     position: number,
     ref: HTMLDivElement | null
   ): void => {
-    if (type === "source" && ref) {
+    if (type === 'source' && ref) {
       if (!sourceRefs[position]) {
         const newRefs = { ...sourceRefs };
         newRefs[position] = ref;
@@ -43,7 +43,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       }
     }
 
-    if (type === "target" && ref) {
+    if (type === 'target' && ref) {
       if (!targetRefs[position]) {
         const newRefs = { ...targetRefs };
         newRefs[position] = ref;
@@ -91,14 +91,14 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     <div
       id="alignment-canvas"
       ref={gatherParentRef}
-      style={{ overflow: "scroll" }}
+      style={{ overflow: 'scroll' }}
     >
-      <div style={{ margin: "0.5rem" }} />
+      <div style={{ margin: '0.5rem' }} />
 
       <TextPortionComponent
         type="source"
         textSegments={sourceSegments}
-        refGatherer={setRef.bind(null, "source")}
+        refGatherer={setRef.bind(null, 'source')}
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
         focusedLinks={focusedLinks}
@@ -106,7 +106,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         segmentHovered={setSegmentFocused.bind(null, links)}
       />
 
-      <div id="links-container" style={{ position: "relative" }}>
+      <div id="links-container" style={{ position: 'relative' }}>
         {parentRef &&
           links.map((link: Link) => {
             return (
@@ -124,12 +124,12 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
           })}
       </div>
 
-      <div style={{ margin: "14rem" }} />
+      <div style={{ margin: '14rem' }} />
 
       <TextPortionComponent
         type="target"
         textSegments={targetSegments}
-        refGatherer={setRef.bind(null, "target")}
+        refGatherer={setRef.bind(null, 'target')}
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
         focusedLinks={focusedLinks}
@@ -137,7 +137,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         segmentHovered={setSegmentFocused.bind(null, links)}
       />
 
-      <div style={{ margin: "0.5rem" }} />
+      <div style={{ margin: '0.5rem' }} />
     </div>
   );
 };

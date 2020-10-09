@@ -9,9 +9,11 @@ import { ProfileRTLAlignstate } from './types';
 import { VerseIdParser } from './verseIdParser';
 //import { updateUserProfileBooleanAction } from './actions';
 
-export const SelectAlignmentDirectionComp = (profile: ProfileRTLAlignstate): ReactElement => {
- const dispatch = useDispatch();
- const {
+export const SelectAlignmentDirectionComp = (
+  profile: ProfileRTLAlignstate
+): ReactElement => {
+  const dispatch = useDispatch();
+  const {
     isNTrtlAlignSource,
     isOTrtlAlignSource,
     isNTltrAlignSource,
@@ -108,17 +110,22 @@ export const SelectAlignmentDirectionComp = (profile: ProfileRTLAlignstate): Rea
       key="switch-direction"
       className="switch-direction"
       onClick={(): void => {
-        console.log("We should be updating the profile to switch text direction, but it is disabled.")
+        console.log(
+          'We should be updating the profile to switch text direction, but it is disabled.'
+        );
         //dispatch(
-          //updateUserProfileBooleanAction(
-            //uid,
-            //`is${testament.toUpperCase()}${rtlClass}Align${corpus}`,
-            //dirValue,
-          //),
+        //updateUserProfileBooleanAction(
+        //uid,
+        //`is${testament.toUpperCase()}${rtlClass}Align${corpus}`,
+        //dirValue,
+        //),
         //);
       }}
     >
-      <Dropdown.Toggle id="interlinear-dropdown-custom-components" as="CustomDropdownToggle">
+      <Dropdown.Toggle
+        id="interlinear-dropdown-custom-components"
+        as="CustomDropdownToggle"
+      >
         <OverlayTrigger
           key="switch-direction"
           trigger={['hover', 'focus']}
@@ -155,4 +162,7 @@ export const mapStateToProps = (state: AppState): any => {
 
 export const mapDispatchToProps = (): any => ({});
 
-export default connect(mapStateToProps, mapDispatchToProps)(SelectAlignmentDirectionComp);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SelectAlignmentDirectionComp);

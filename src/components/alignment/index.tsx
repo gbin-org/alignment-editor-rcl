@@ -21,7 +21,11 @@ import {
   selectSourceTextSegmentAction,
   selectTargetTextSegmentAction,
 } from './actions/alignment';
-import { AlignmentProps, AlignmentState, DefaultAlignmentProps } from './types/alignment';
+import {
+  AlignmentProps,
+  AlignmentState,
+  DefaultAlignmentProps,
+} from './types/alignment';
 import { AppState } from './reducers';
 //import getCurrentProjectId from '../../lib/getCurrentProjectId';
 import LinksContainer from './linksContainer';
@@ -30,7 +34,10 @@ import { VerseIdParser } from './verseIdParser';
 import { isHackedForAlignment } from './hackedVerseIds';
 import SelectAlignmentDirection from './selectAlignmentDirection';
 
-export class AlignmentComp extends React.Component<AlignmentProps, AlignmentState> {
+export class AlignmentComp extends React.Component<
+  AlignmentProps,
+  AlignmentState
+> {
   private verseIdParser: VerseIdParser = new VerseIdParser();
 
   public static defaultProps: AlignmentProps = DefaultAlignmentProps;
@@ -87,7 +94,9 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
 
       const sourceArray = new Array<SelectedTextSegment>();
       source.forEach((item: SelectedTextSegment) => {
-        const segment: SelectedTextSegment = { position: sourceTextLen - item.position - 1 };
+        const segment: SelectedTextSegment = {
+          position: sourceTextLen - item.position - 1,
+        };
         sourceArray.push(segment);
       });
       sourceTextAlt = sourceArray;
@@ -149,7 +158,9 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
 
       const targetArray = new Array<SelectedTextSegment>();
       target.forEach((item: SelectedTextSegment) => {
-        const segment: SelectedTextSegment = { position: targetTextLen - item.position - 1 };
+        const segment: SelectedTextSegment = {
+          position: targetTextLen - item.position - 1,
+        };
         targetArray.push(segment);
       });
       targetTextAlt = targetArray;
@@ -367,7 +378,10 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
       !(verseAlignmentData.sourceText && verseAlignmentData.text)
     ) {
       return (
-        <div key="alignment-data-spinner-container" className="alignment-spinner">
+        <div
+          key="alignment-data-spinner-container"
+          className="alignment-spinner"
+        >
           <Spinner key="alignment-data-loading-spinner" />
         </div>
       );
@@ -394,7 +408,9 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
   public reference(): ReactElement {
     const { verseCode } = this.props;
     if (verseCode) {
-      const { book, ref } = this.verseIdParser.getReadableReferenceForGbiId(verseCode);
+      const { book, ref } = this.verseIdParser.getReadableReferenceForGbiId(
+        verseCode
+      );
       const reference = ` ${ref}`;
       return (
         <>
@@ -429,8 +445,8 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
     const verseAlignmentData = alignmentData[verseCode];
     let localLinksVerified = false;
     //if (!verseAlignmentData) {
-      //fetchDataFunc(getCurrentProjectId(), verseCode);
-      //return <Spinner />;
+    //fetchDataFunc(getCurrentProjectId(), verseCode);
+    //return <Spinner />;
     //}
 
     const { linksVerified } = verseAlignmentData;
@@ -457,7 +473,10 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
             </div>
           </Modal.Header>
           <Modal.Body>
-            <div key="alignment-modal-content" className="alignment-modal-content">
+            <div
+              key="alignment-modal-content"
+              className="alignment-modal-content"
+            >
               <div className="left-modal-panel">
                 <div className="inside-modal-top">
                   <SelectAlignmentDirection
@@ -552,14 +571,14 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
                     verifyAlignmentFunc(
                       '1',
                       verseCode,
-                      alignmentData[verseCode].links,
+                      alignmentData[verseCode].links
                     );
                   }}
                   onKeyDown={(): void => {
                     verifyAlignmentFunc(
                       '1',
                       verseCode,
-                      alignmentData[verseCode].links,
+                      alignmentData[verseCode].links
                     );
                   }}
                   disabled={localLinksVerified}
@@ -576,93 +595,93 @@ export class AlignmentComp extends React.Component<AlignmentProps, AlignmentStat
 }
 
 //export const mapStateToProps = (state: AppState): any => {
-  //return {
-    //alignmentData: state.alignment.alignmentData,
-    //isVisible: state.verseEditor.triggerAlignmentFlag,
-    //verseCode: state.alignment.verseCode,
-    //source: state.alignment.source,
-    //target: state.alignment.target,
-    //linkSelected: state.alignment.linkSelected,
-    //isReadOnly: state.project.isReadOnly,
-    //isRTL: state.project.isRTL,
-    //isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
-    //isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
-    //isNTltrAlignSource: state.profile.isNTltrAlignSource,
-    //isOTltrAlignSource: state.profile.isOTltrAlignSource,
-    //isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
-    //isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
-    //isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
-    //isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
-  //};
+//return {
+//alignmentData: state.alignment.alignmentData,
+//isVisible: state.verseEditor.triggerAlignmentFlag,
+//verseCode: state.alignment.verseCode,
+//source: state.alignment.source,
+//target: state.alignment.target,
+//linkSelected: state.alignment.linkSelected,
+//isReadOnly: state.project.isReadOnly,
+//isRTL: state.project.isRTL,
+//isNTrtlAlignSource: state.profile.isNTrtlAlignSource,
+//isOTrtlAlignSource: state.profile.isOTrtlAlignSource,
+//isNTltrAlignSource: state.profile.isNTltrAlignSource,
+//isOTltrAlignSource: state.profile.isOTltrAlignSource,
+//isNTrtlAlignTarget: state.profile.isNTrtlAlignTarget,
+//isOTrtlAlignTarget: state.profile.isOTrtlAlignTarget,
+//isNTltrAlignTarget: state.profile.isNTltrAlignTarget,
+//isOTltrAlignTarget: state.profile.isOTltrAlignTarget,
+//};
 //};
 
 //export const mapDispatchToProps = (dispatch: Dispatch): any => ({
-  //fetchDataFunc: (projectId: string, verseId: string): void => {
-    //dispatch(fetchAlignmentDataAction(projectId, verseId));
-  //},
+//fetchDataFunc: (projectId: string, verseId: string): void => {
+//dispatch(fetchAlignmentDataAction(projectId, verseId));
+//},
 
-  //addLinkFunc: (
-    //verseCode: string,
-    //sources: SelectedTextSegment[],
-    //targets: SelectedTextSegment[],
-  //): void => {
-    //const convertedSources = sources.map((source) => {
-      //return Number(source.position);
-    //});
-    //const convertedTargets = targets.map((target) => {
-      //return Number(target.position);
-    //});
-    //dispatch(addLinkAction(verseCode, convertedSources, convertedTargets));
-  //},
+//addLinkFunc: (
+//verseCode: string,
+//sources: SelectedTextSegment[],
+//targets: SelectedTextSegment[],
+//): void => {
+//const convertedSources = sources.map((source) => {
+//return Number(source.position);
+//});
+//const convertedTargets = targets.map((target) => {
+//return Number(target.position);
+//});
+//dispatch(addLinkAction(verseCode, convertedSources, convertedTargets));
+//},
 
-  //clearLinkSelectionsFunc: (): void => {
-    //dispatch(clearLinkSelectionsAction());
-  //},
+//clearLinkSelectionsFunc: (): void => {
+//dispatch(clearLinkSelectionsAction());
+//},
 
-  //selectSourceTextSegmentFunc: (position: number): void => {
-    //dispatch(selectSourceTextSegmentAction(position));
-  //},
+//selectSourceTextSegmentFunc: (position: number): void => {
+//dispatch(selectSourceTextSegmentAction(position));
+//},
 
-  //selectTargetTextSegmentFunc: (position: number): void => {
-    //dispatch(selectTargetTextSegmentAction(position));
-  //},
+//selectTargetTextSegmentFunc: (position: number): void => {
+//dispatch(selectTargetTextSegmentAction(position));
+//},
 
-  //removeSelectedLinkFunc: (
-    //verseCode: string,
-    //sourceAlt: SelectedTextSegment[],
-    //targetAlt: SelectedTextSegment[],
-  //): void => {
-    //dispatch(removeSelectedLinkAction(verseCode, sourceAlt, targetAlt));
-  //},
+//removeSelectedLinkFunc: (
+//verseCode: string,
+//sourceAlt: SelectedTextSegment[],
+//targetAlt: SelectedTextSegment[],
+//): void => {
+//dispatch(removeSelectedLinkAction(verseCode, sourceAlt, targetAlt));
+//},
 
-  //closeAlignmentFunc: (): void => {
-    //dispatch(clearLinkSelectionsAction());
-  //},
+//closeAlignmentFunc: (): void => {
+//dispatch(clearLinkSelectionsAction());
+//},
 
-  //verifyAlignmentFunc: (projectId: string, verseId: string, links: TranslationLink): void => {
-    //dispatch(verifyAlignmentAction(projectId, verseId, links));
-    //dispatch(clearLinkSelectionsAction());
-  //},
+//verifyAlignmentFunc: (projectId: string, verseId: string, links: TranslationLink): void => {
+//dispatch(verifyAlignmentAction(projectId, verseId, links));
+//dispatch(clearLinkSelectionsAction());
+//},
 
-  //reverseAlignmentDisplayFunc: (): void => {
-    //dispatch(reverseAlignmentDisplayAction());
-  //},
+//reverseAlignmentDisplayFunc: (): void => {
+//dispatch(reverseAlignmentDisplayAction());
+//},
 
-  //uncheckCompleteBoxFunc: (verseCode: string): void => {
-    //dispatch(uncheckCompleteBoxAction(verseCode));
-  //},
+//uncheckCompleteBoxFunc: (verseCode: string): void => {
+//dispatch(uncheckCompleteBoxAction(verseCode));
+//},
 
-  //openEditorFunc: (verseCode: string): void => {
-    //dispatch(openEditorAction(verseCode));
-  //},
+//openEditorFunc: (verseCode: string): void => {
+//dispatch(openEditorAction(verseCode));
+//},
 
-  //fetchSuggestionFunc: (projectId: string, textId: string, versification: string): void => {
-    //dispatch(fetchSuggestionAction(projectId, textId, versification));
-  //},
+//fetchSuggestionFunc: (projectId: string, textId: string, versification: string): void => {
+//dispatch(fetchSuggestionAction(projectId, textId, versification));
+//},
 
-  //updateVerseStatusFunc: (projectId: string, textId: string, complete: boolean): void => {
-    //dispatch(updateVerseStatusAction(projectId, textId, complete));
-  //},
+//updateVerseStatusFunc: (projectId: string, textId: string, complete: boolean): void => {
+//dispatch(updateVerseStatusAction(projectId, textId, complete));
+//},
 //});
 
 //const Alignment = connect(mapStateToProps, mapDispatchToProps)(AlignmentComp);

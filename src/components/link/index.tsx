@@ -1,6 +1,6 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from 'react';
 
-import "./linkStyle.scss";
+import './linkStyle.scss';
 
 export interface LinkProps {
   sourcePosition: number;
@@ -30,9 +30,9 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
-  const color = "#c8c8c8";
-  const disabled = "";
-  const focused = isFocused ? "focused" : "";
+  const color = '#c8c8c8';
+  const disabled = '';
+  const focused = isFocused ? 'focused' : '';
   const name = `source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
@@ -60,7 +60,7 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     return (
       <svg
         className="link-canvas"
-        style={{ overflow: "visible", position: "absolute", margin: "none" }}
+        style={{ overflow: 'visible', position: 'absolute', margin: 'none' }}
       >
         <line
           id={name}

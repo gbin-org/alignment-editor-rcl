@@ -45,7 +45,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -73,7 +73,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -101,7 +101,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -129,7 +129,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -157,7 +157,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -185,7 +185,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -213,7 +213,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -241,7 +241,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -269,7 +269,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -297,7 +297,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -325,7 +325,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -353,7 +353,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -383,7 +383,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -411,7 +411,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -439,7 +439,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -467,7 +467,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -495,7 +495,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -523,7 +523,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -551,7 +551,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -579,7 +579,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -607,7 +607,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -635,7 +635,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();
@@ -663,7 +663,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-left').exists()).toBeTruthy();
@@ -691,7 +691,7 @@ describe('SelectAlignmentDirection Component', (): void => {
               clearLinkSelectionsFunc={clearMock}
             />
           </IntlProvider>
-        </Provider>,
+        </Provider>
       );
 
       expect(wrapper.find('i.fas.fa-align-right').exists()).toBeTruthy();

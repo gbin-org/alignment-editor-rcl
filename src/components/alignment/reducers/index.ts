@@ -1,8 +1,6 @@
 import { combineReducers, Reducer, AnyAction } from 'redux';
 
-import {
-  AlignmentState,
-} from '../types';
+import { AlignmentState } from '../types';
 
 import alignment from './alignment';
 
@@ -15,7 +13,7 @@ const appReducer = combineReducers({
 
 const rootAppReducer: Reducer<any, AnyAction> = (
   state: WholeAppState | undefined,
-  action: any,
+  action: any
 ): any => {
   return appReducer(state, action);
 };
