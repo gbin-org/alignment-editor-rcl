@@ -49,7 +49,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
               segmentData={textSegment}
               isDisabled={textSegment.catIsContent === false ?? false}
               isSelected={false}
-              isLinked={false}
+              isLinked={Boolean(findLinkForTextSegment(links, textSegment))}
               isFocused={isFocused(links, focusedLinks, textSegment)}
               hoverHook={segmentHovered.bind(null, textSegment)}
               selectTextSegmentFunc={selectTextSegmentFunc}

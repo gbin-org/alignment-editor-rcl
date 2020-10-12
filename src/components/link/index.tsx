@@ -30,7 +30,7 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
-  const color = '#c8c8c8';
+  //const color = '#c8c8c8';
   const disabled = '';
   const focused = isFocused ? 'focused' : '';
   const name = `source${sourcePosition}-target${targetPosition}`;
@@ -64,7 +64,7 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
       >
         <line
           id={name}
-          className={`link ${name} ${color} ${disabled} ${focused}`}
+          className={`link ${name} ${disabled} ${focused}`}
           key={name}
           strokeLinecap="round"
           strokeWidth="4"
@@ -72,8 +72,6 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
           y1={y1}
           x2={x2}
           y2={y2}
-          stroke={color}
-          fill={color}
           onClick={forceUpdate}
           onMouseOver={() => {
             hoverHook(true);

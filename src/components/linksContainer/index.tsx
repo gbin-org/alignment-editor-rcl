@@ -6,6 +6,8 @@ import LinkComponent from 'components/link';
 import { findLinkForTextSegment } from 'core/findLink';
 import { Link, TextSegment, TextSegmentType } from 'core/structs';
 
+import 'core/styles/index.scss';
+
 interface LinksContainerProps {
   links: Link[];
   sourceSegments: TextSegment[];

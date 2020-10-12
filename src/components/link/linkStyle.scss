@@ -1,14 +1,13 @@
+@import 'core/styles/colors.scss';
+
 .link {
   pointer-events: painted;
   cursor: pointer;
-}
-.link:hover {
-  stroke: red;
-  stroke-width: 10;
+  stroke: $linked;
 }
 
 .link.focused {
-  stroke: red;
+  stroke: $focus;
   stroke-width: 10;
 }
 
