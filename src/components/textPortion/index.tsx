@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 
 import { findLinkForTextSegment } from 'core/findLink';
+import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType, Link } from 'core/structs';
 import TextSegmentComponent from 'components/textSegment';
 
@@ -38,10 +39,13 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     focusedLinks,
     segmentHovered,
   } = props;
+
   return (
     <div className={`${type}-container`} style={{ whiteSpace: 'nowrap' }}>
       {textSegments.map(
         (textSegment, index): ReactElement => {
+          const relatedLink = findLinkForTextSegment(links, textSegment);
+          const linkIndex = relatedLink ? links.indexOf(relatedLink) : index;
           return (
             <TextSegmentComponent
               key={`${type}-${textSegment.position}`}
@@ -49,7 +53,8 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
               segmentData={textSegment}
               isDisabled={textSegment.catIsContent === false ?? false}
               isSelected={false}
-              isLinked={Boolean(findLinkForTextSegment(links, textSegment))}
+              isLinked={Boolean(relatedLink)}
+              group={determineGroup(links, linkIndex)}
               isFocused={isFocused(links, focusedLinks, textSegment)}
               hoverHook={segmentHovered.bind(null, textSegment)}
               selectTextSegmentFunc={selectTextSegmentFunc}

@@ -1,7 +1,7 @@
 export type TextSegmentType = 'source' | 'target';
 
 export interface TextSegment {
-  type: 'source' | 'target';
+  type: TextSegmentType;
   position: number;
   text: string;
   group: number;

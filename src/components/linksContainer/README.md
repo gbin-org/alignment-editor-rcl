@@ -202,3 +202,46 @@
   ]}
 />
 ```
+
+#### Many to Many
+
+```ts
+<LinksContainer
+  sourceSegments={[
+    { text: 'ταχὺς', type: 'source', position: 0 },
+    { text: 'εἰς', type: 'source', position: 1 },
+    { text: 'τὸ', type: 'source', position: 2 },
+    { text: 'ἀκοῦσαι', type: 'source', position: 3 },
+    { text: 'ταχὺς', type: 'source', position: 4 },
+    { text: 'εἰς', type: 'source', position: 5 },
+    { text: 'τὸ', type: 'source', position: 6 },
+    { text: 'ἀκοῦσαι', type: 'source', position: 7 },
+    { text: 'ἀκοῦσαι', type: 'source', position: 8 },
+    { text: 'ἀκοῦσαι', type: 'source', position: 9 },
+    { text: 'ἀκοῦσαι', type: 'source', position: 10 },
+  ]}
+  targetSegments={[
+    { text: 'quick', type: 'target', position: 0 },
+    { text: 'to', type: 'target', position: 1 },
+    { text: 'listen', type: 'target', position: 2 },
+    { text: 'slow', type: 'target', position: 3 },
+    { text: 'to', type: 'target', position: 4 },
+    { text: 'anger', type: 'target', position: 5 },
+    { text: 'and', type: 'target', position: 6 },
+    { text: 'in', type: 'target', position: 7 },
+    { text: 'all', type: 'target', position: 8 },
+    { text: 'things', type: 'target', position: 9 },
+    { text: 'love', type: 'target', position: 10 },
+  ]}
+  selectTextSegmentFunc={(type, position) => {}}
+  deSelectTextSegmentFunc={(type, position) => {}}
+  links={[
+    { sources: [0, 1], targets: [0, 1], type: 'manual' },
+    { sources: [3], targets: [2], type: 'manual' },
+    { sources: [4], targets: [4, 5], type: 'manual' },
+    { sources: [6, 7], targets: [6], type: 'manual' },
+    { sources: [8, 9], targets: [7, 8, 9], type: 'manual' },
+    { sources: [10], targets: [10], type: 'manual' },
+  ]}
+/>
+```

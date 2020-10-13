@@ -13,15 +13,16 @@ export interface TextSegmentProps {
   isSelected: boolean;
   isLinked: boolean;
   isFocused: boolean;
+  group: number;
   hoverHook: (isHovered: boolean) => void;
 }
 
-const segmentColors: Record<number, string> = {
-  0: 'default',
-  1: 'blue',
-  2: 'green',
-  3: 'orange',
-};
+//const segmentColors: Record<number, string> = {
+//0: 'default',
+//1: 'blue',
+//2: 'green',
+//3: 'orange',
+//};
 
 //const popoverPlacement = (props: TextSegmentProps): "top" | "bottom" => {
 //const { reverseDisplay } = props;
@@ -143,8 +144,7 @@ const selectionHandler = (props: TextSegmentProps): void => {
 //<Dropdown.Item
 //onClick={(): void => {
 //searchConcordance(props, lemma);
-//}}
-//>
+//}} >
 //<FormattedMessage id="dict.searchLemma">
 //{(message: string): ReactElement => (
 //<OverlayTrigger
@@ -232,15 +232,16 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     isLinked,
     isDisabled,
     isFocused,
+    group,
     refGatherer,
     hoverHook,
   } = props;
-  const color = segmentColors[segmentData.color || 0];
+  //const color = segmentColors[segmentData.color || 0];
   const selectedClass = isSelected ? "selected" : "";
   const disabledClass = isDisabled ? "disabled" : "";
-  const isLinkedClass = isLinked ? "linked" : "not-linked";
+  const linkedClass = isLinked ? "linked" : "not-linked";
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
-  const isFocusedClass = isFocused ? "focused" : "";
+  const focusedClass = isFocused ? "focused" : "";
   return (
     <div
       style={{ display: "inline-block" }}
@@ -250,7 +251,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
       {/*enrichedDataTop(props)*/}
       <span
         role="button"
-        className={`text-segment ${color} ${selectedClass} ${disabledClass} ${isLinkedClass} ${isFocusedClass}`}
+        className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${group}`}
         tabIndex={0}
         onClick={(): void => {
           selectionHandler(props);
