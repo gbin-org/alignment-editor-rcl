@@ -6,12 +6,17 @@ import LinkComponent from 'components/link';
 import { findLinkForTextSegment } from 'core/findLink';
 import { Link, TextSegment, TextSegmentType } from 'core/structs';
 
+type Portion = 'source' | 'target';
+type Direction = 'ltr' | 'rtl';
+
 interface LinksContainerProps {
   links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
   selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
+  sourceDirection: Direction;
+  targetDirection: Direction;
 }
 
 export const LinksContainer = (props: LinksContainerProps): ReactElement => {
@@ -76,6 +81,13 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     }
   };
 
+  const sillyRerenderTrick = (): void => {
+    setTimeout((): void => {
+      const newState = new Map<Link, boolean>(focusedLinks);
+      setFocusedLinks(newState);
+    }, 1);
+  };
+
   const setSegmentFocused = (
     links: Link[],
     textSegment: TextSegment,
@@ -85,6 +97,18 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     if (link) {
       setLinkFocused(link, isHovered);
     }
+  };
+
+  const [sourceDirection, setSourceDirection] = useState<Direction>('ltr');
+  const [targetDirection, setTargetDirection] = useState<Direction>('ltr');
+
+  const toggleDirection = (portion: Portion, oldState: Direction): void => {
+    const setter =
+      portion === 'source' ? setSourceDirection : setTargetDirection;
+    const newDirection = oldState === 'ltr' ? 'rtl' : 'ltr';
+    setter(newDirection);
+    // WOE is me, for I am undone.
+    sillyRerenderTrick();
   };
 
   return (
@@ -104,6 +128,8 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         focusedLinks={focusedLinks}
         links={links}
         segmentHovered={setSegmentFocused.bind(null, links)}
+        direction={sourceDirection}
+        toggleDirection={toggleDirection.bind(null, 'source')}
       />
 
       <div id="links-container" style={{ position: 'relative' }}>
@@ -135,6 +161,8 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         focusedLinks={focusedLinks}
         links={links}
         segmentHovered={setSegmentFocused.bind(null, links)}
+        direction={targetDirection}
+        toggleDirection={toggleDirection.bind(null, 'target')}
       />
 
       <div style={{ margin: '0.5rem' }} />

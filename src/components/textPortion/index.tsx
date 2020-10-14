@@ -5,6 +5,8 @@ import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType, Link } from 'core/structs';
 import TextSegmentComponent from 'components/textSegment';
 
+type Direction = 'ltr' | 'rtl';
+
 interface TextPortionProps {
   type: TextSegmentType;
   textSegments: TextSegment[];
@@ -14,6 +16,8 @@ interface TextPortionProps {
   links: Link[];
   focusedLinks: Map<Link, boolean>;
   segmentHovered: (textSegment: TextSegment, isHovered: boolean) => void;
+  direction: Direction;
+  toggleDirection: (oldState: Direction) => void;
 }
 
 const isFocused = (
@@ -38,10 +42,22 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     links,
     focusedLinks,
     segmentHovered,
+    toggleDirection,
+    direction,
   } = props;
 
   return (
-    <div className={`${type}-container`} style={{ whiteSpace: 'nowrap' }}>
+    <div
+      className={`${type}-container`}
+      style={{ whiteSpace: 'nowrap', direction: direction }}
+    >
+      <button
+        onClick={(): void => {
+          toggleDirection(direction);
+        }}
+      >
+        Change Direction
+      </button>
       {textSegments.map(
         (textSegment, index): ReactElement => {
           const relatedLink = findLinkForTextSegment(links, textSegment);
