@@ -52,7 +52,7 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     const targetRect = targetRef.getBoundingClientRect();
 
     const x1 = basePositionX + sourceRef.offsetLeft + sourceRect.width * 0.5;
-    const y1 = basePositionY + sourceRef.offsetTop - sourceRect.height * 0.1;
+    const y1 = basePositionY + sourceRef.offsetTop - sourceRect.height * 0.2;
 
     const x2 = basePositionX + targetRef.offsetLeft + targetRect.width * 0.5;
     const y2 = basePositionY + targetRef.offsetTop - targetRect.height * 1.8;

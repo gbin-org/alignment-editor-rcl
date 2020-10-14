@@ -1,4 +1,6 @@
 import React, { ReactElement } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
@@ -47,38 +49,53 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   } = props;
 
   return (
-    <div
-      className={`${type}-container`}
-      style={{ whiteSpace: 'nowrap', direction: direction }}
-    >
-      <button
+    <div style={{ display: 'flex', alignContent: 'center' }}>
+      <FontAwesomeIcon
+        icon={faExchangeAlt}
+        style={{
+          cursor: 'pointer',
+          background: 'black',
+          color: 'white',
+          borderRadius: '5px',
+          fontSize: '1rem',
+          marginTop: '-0.2rem',
+          padding: '0.3rem',
+        }}
         onClick={(): void => {
           toggleDirection(direction);
         }}
+      />
+
+      <div
+        className={`${type}-container`}
+        style={{
+          display: 'inline-block',
+          whiteSpace: 'nowrap',
+          direction: direction,
+        }}
       >
-        Change Direction
-      </button>
-      {textSegments.map(
-        (textSegment, index): ReactElement => {
-          const relatedLink = findLinkForTextSegment(links, textSegment);
-          const linkIndex = relatedLink ? links.indexOf(relatedLink) : index;
-          return (
-            <TextSegmentComponent
-              key={`${type}-${textSegment.position}`}
-              refGatherer={refGatherer.bind(null, textSegment.position)}
-              segmentData={textSegment}
-              isDisabled={textSegment.catIsContent === false ?? false}
-              isSelected={false}
-              isLinked={Boolean(relatedLink)}
-              group={determineGroup(links, linkIndex)}
-              isFocused={isFocused(links, focusedLinks, textSegment)}
-              hoverHook={segmentHovered.bind(null, textSegment)}
-              selectTextSegmentFunc={selectTextSegmentFunc}
-              deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-            />
-          );
-        }
-      )}
+        {textSegments.map(
+          (textSegment, index): ReactElement => {
+            const relatedLink = findLinkForTextSegment(links, textSegment);
+            const linkIndex = relatedLink ? links.indexOf(relatedLink) : index;
+            return (
+              <TextSegmentComponent
+                key={`${type}-${textSegment.position}`}
+                refGatherer={refGatherer.bind(null, textSegment.position)}
+                segmentData={textSegment}
+                isDisabled={textSegment.catIsContent === false ?? false}
+                isSelected={false}
+                isLinked={Boolean(relatedLink)}
+                group={determineGroup(links, linkIndex)}
+                isFocused={isFocused(links, focusedLinks, textSegment)}
+                hoverHook={segmentHovered.bind(null, textSegment)}
+                selectTextSegmentFunc={selectTextSegmentFunc}
+                deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+              />
+            );
+          }
+        )}
+      </div>
     </div>
   );
 };
