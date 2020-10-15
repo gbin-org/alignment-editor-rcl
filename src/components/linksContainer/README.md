@@ -134,7 +134,7 @@
     { text: "king's", type: 'target', position: 1 },
     { text: 'scribes', type: 'target', position: 2 },
     { text: 'were', type: 'target', position: 3 },
-    { text: 'summonded', type: 'target', position: 4 },
+    { text: 'summoned', type: 'target', position: 4 },
     { text: 'at', type: 'target', position: 5 },
     { text: 'the', type: 'target', position: 6 },
     { text: 'time', type: 'target', position: 7 },
