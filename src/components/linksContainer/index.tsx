@@ -28,6 +28,9 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     deSelectTextSegmentFunc,
   } = props;
 
+  const sourceRefContainer: Record<number, HTMLDivElement> = {};
+  const targetRefContainer: Record<number, HTMLDivElement> = {};
+
   const [sourceRefs, setSourceRefs] = useState<Record<number, HTMLDivElement>>(
     {}
   );
@@ -42,17 +45,19 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   ): void => {
     if (type === 'source' && ref) {
       if (!sourceRefs[position]) {
-        const newRefs = { ...sourceRefs };
-        newRefs[position] = ref;
-        setSourceRefs(newRefs);
+        sourceRefContainer[position] = ref;
+        if (Object.keys(sourceRefContainer).length === sourceSegments.length) {
+          setSourceRefs(sourceRefContainer);
+        }
       }
     }
 
     if (type === 'target' && ref) {
       if (!targetRefs[position]) {
-        const newRefs = { ...targetRefs };
-        newRefs[position] = ref;
-        setTargetRefs(newRefs);
+        targetRefContainer[position] = ref;
+        if (Object.keys(targetRefContainer).length === targetSegments.length) {
+          setTargetRefs(targetRefContainer);
+        }
       }
     }
   };
