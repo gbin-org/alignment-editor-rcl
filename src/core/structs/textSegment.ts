@@ -4,8 +4,7 @@ export interface TextSegment {
   type: TextSegmentType;
   position: number;
   text: string;
-  group: number;
-  color: number;
+  group?: number;
   catIsContent?: boolean;
   strongsX?: string;
   english?: string;
