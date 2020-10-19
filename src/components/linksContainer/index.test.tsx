@@ -1,6 +1,7 @@
 import React from 'react';
 
 import shallowRender from 'testHelpers/shallowRender';
+import mountRender from 'testHelpers/mountRender';
 import LinksContainer from 'components/linksContainer';
 
 describe('LinksContainer', (): void => {
@@ -42,5 +43,21 @@ describe('LinksContainer', (): void => {
 
     const alignmentCanvas = wrapper.find('div#alignment-canvas');
     expect(alignmentCanvas).toBeTruthy();
+  });
+  it('renders a single link', (): void => {
+    const wrapper = mountRender(
+      <LinksContainer
+        sourceSegments={[{ text: 'ταχὺς', type: 'source', position: 0 }]}
+        targetSegments={[{ text: 'quick', type: 'target', position: 0 }]}
+        selectTextSegmentFunc={(type, position) => {}}
+        deSelectTextSegmentFunc={(type, position) => {}}
+        links={[{ sources: [0], targets: [0], type: 'manual' }]}
+        sourceDirection={'ltr'}
+        targetDirection={'ltr'}
+      />
+    );
+
+    const linksFound = wrapper.find('.link');
+    expect(linksFound.length).toEqual(1);
   });
 });
