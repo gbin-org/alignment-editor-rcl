@@ -268,9 +268,8 @@
     { sources: [0, 1], targets: [0, 1], type: 'manual' },
     { sources: [3], targets: [2], type: 'manual' },
     { sources: [4], targets: [4, 5], type: 'manual' },
-    { sources: [6, 7], targets: [6], type: 'manual' },
-    { sources: [8, 9], targets: [7, 8, 9], type: 'manual' },
-    { sources: [10], targets: [10], type: 'manual' },
+    { sources: [7, 9], targets: [7, 10], type: 'manual' },
+    { sources: [8, 10], targets: [6, 8, 9], type: 'manual' },
   ]}
 />
 ```
