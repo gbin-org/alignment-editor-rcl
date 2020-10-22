@@ -23,35 +23,38 @@ interface LinksContainerProps {
 const singleLinkAlignment = (
   props: LinksContainerProps,
   focusedLinks: Map<Link, boolean>
-): ReactElement[] => {
+): ReactElement[] | ReactElement => {
   const linksArray = Array.from(focusedLinks ?? []);
-  return linksArray.map(
-    ([link, bool]): ReactElement => {
-      if (bool) {
-        return (
-          <LinksContainerComponent
-            displayStyle="partial"
-            sourceDirection={'ltr'}
-            sourceSegments={props.sourceSegments.filter(
-              (sourceSegment: TextSegment): boolean => {
-                return link.sources.includes(sourceSegment.position);
-              }
-            )}
-            targetDirection={'rtl'}
-            targetSegments={props.targetSegments.filter(
-              (targetSegment: TextSegment): boolean => {
-                return link.targets.includes(targetSegment.position);
-              }
-            )}
-            selectTextSegmentFunc={props.selectTextSegmentFunc}
-            deSelectTextSegmentFunc={props.deSelectTextSegmentFunc}
-            links={[link]}
-          />
-        );
+  if (linksArray.length) {
+    return linksArray.map(
+      ([link, bool]): ReactElement => {
+        if (bool) {
+          return (
+            <LinksContainerComponent
+              displayStyle="partial"
+              sourceDirection={'ltr'}
+              sourceSegments={props.sourceSegments.filter(
+                (sourceSegment: TextSegment): boolean => {
+                  return link.sources.includes(sourceSegment.position);
+                }
+              )}
+              targetDirection={'rtl'}
+              targetSegments={props.targetSegments.filter(
+                (targetSegment: TextSegment): boolean => {
+                  return link.targets.includes(targetSegment.position);
+                }
+              )}
+              selectTextSegmentFunc={props.selectTextSegmentFunc}
+              deSelectTextSegmentFunc={props.deSelectTextSegmentFunc}
+              links={[link]}
+            />
+          );
+        }
+        return <></>;
       }
-      return <></>;
-    }
-  );
+    );
+  }
+  return <p>{'Hover over source or target segments to view links.'}</p>;
 };
 
 export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
