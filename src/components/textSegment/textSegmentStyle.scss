@@ -20,17 +20,15 @@
 }
 
 .text-segment.disabled:hover {
-  border: 2px solid transparent;
+  box-shadow: 0 0 0 3pt transparent;
 }
 
 .text-segment:hover {
-  border: 2px solid $focus;
-  border-style: solid;
+  box-shadow: 0 0 1pt 3pt $focus;
 }
 
 .text-segment.focused {
-  border: 2px solid $focus;
-  border-style: solid;
+  box-shadow: 0 0 1pt 3pt $focus;
 }
 
 .text-segment.linked {

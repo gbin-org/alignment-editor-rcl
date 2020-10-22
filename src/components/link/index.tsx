@@ -39,10 +39,12 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
   if (parentRef && sourceRef && targetRef) {
     const beginningOffsetX = parentRef.offsetLeft ?? 0;
     const beginningOffsetY = parentRef.offsetTop ?? 0;
+
     const basePositionX =
       window.pageXOffset -
       document.documentElement.scrollLeft -
       beginningOffsetX;
+
     const basePositionY =
       window.pageYOffset -
       document.documentElement.scrollTop -
@@ -52,7 +54,7 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     const targetRect = targetRef.getBoundingClientRect();
 
     const x1 = basePositionX + sourceRef.offsetLeft + sourceRect.width * 0.5;
-    const y1 = basePositionY + sourceRef.offsetTop - sourceRect.height * 0.3;
+    const y1 = basePositionY + sourceRef.offsetTop - sourceRect.height * 0.45;
 
     const x2 = basePositionX + targetRef.offsetLeft + targetRect.width * 0.5;
     const y2 = basePositionY + targetRef.offsetTop - targetRect.height * 1.8;

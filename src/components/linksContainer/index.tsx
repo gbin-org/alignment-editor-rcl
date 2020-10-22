@@ -122,7 +122,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       ref={gatherParentRef}
       style={{ overflow: 'scroll' }}
     >
-      <div style={{ margin: '0.5rem' }} />
+      <div style={{ margin: '0.6rem' }} />
 
       <TextPortionComponent
         type="source"
