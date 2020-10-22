@@ -15,7 +15,11 @@ export interface TextSegmentProps {
   isFocused: boolean;
   group: number;
   hoverHook: (isHovered: boolean) => void;
+  displayStyle: 'line' | 'paragraph';
 }
+
+const lineDisplayStyle = { display: 'inline-block' };
+const paragraphDisplayStyle = { display: 'inline-block', marginTop: '1rem' };
 
 //const segmentColors: Record<number, string> = {
 //0: 'default',
@@ -235,6 +239,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     group,
     refGatherer,
     hoverHook,
+    displayStyle
   } = props;
   //const color = segmentColors[segmentData.color || 0];
   const selectedClass = isSelected ? "selected" : "";
@@ -242,16 +247,18 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const linkedClass = isLinked ? "linked" : "not-linked";
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
   const focusedClass = isFocused ? "focused" : "";
+  const containerStyle = displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
+  const renderedGroup = displayStyle === 'line' ? group : 0;
   return (
     <div
-      style={{ display: "inline-block" }}
+      style={containerStyle}
       ref={refGatherer}
       className={`${segmentData.type}${segmentData.position}`}
     >
       {/*enrichedDataTop(props)*/}
       <span
         role="button"
-        className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${group}`}
+        className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
         onClick={(): void => {
           selectionHandler(props);

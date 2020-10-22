@@ -5,6 +5,7 @@
 
 ```ts
 <LinksContainer
+  displayStyle="full"
   sourceSegments={[
     { text: 'ταχὺς', type: 'source', position: 0 },
     {
@@ -44,6 +45,7 @@
 
 ```ts
 <LinksContainer
+  displayStyle="full"
   sourceSegments={[
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 0 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 1 },
@@ -236,6 +238,7 @@
 
 ```ts
 <LinksContainer
+  displayStyle="full"
   sourceSegments={[
     { text: 'ταχὺς', type: 'source', position: 0 },
     { text: 'εἰς', type: 'source', position: 1 },

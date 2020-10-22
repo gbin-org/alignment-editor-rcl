@@ -1,6 +1,7 @@
 import React, { ReactElement, useState } from 'react';
 
 import TextPortionComponent from 'components/textPortion';
+import LinksContainerComponent from 'components/linksContainer';
 import LinkComponent from 'components/link';
 
 import { findLinkForTextSegment } from 'core/findLink';
@@ -17,13 +18,43 @@ interface LinksContainerProps {
   deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   sourceDirection: Direction;
   targetDirection: Direction;
-  displayStyle: 'full' | 'partial';
 }
 
-const fullDisplayStyle = { margin: '14rem' };
-const partialDisplayStyle = { margin: '9rem' };
+const singleLinkAlignment = (
+  props: LinksContainerProps,
+  focusedLinks: Map<Link, boolean>
+): ReactElement[] => {
+  const linksArray = Array.from(focusedLinks ?? []);
+  return linksArray.map(
+    ([link, bool]): ReactElement => {
+      if (bool) {
+        return (
+          <LinksContainerComponent
+            displayStyle="partial"
+            sourceDirection={'ltr'}
+            sourceSegments={props.sourceSegments.filter(
+              (sourceSegment: TextSegment): boolean => {
+                return link.sources.includes(sourceSegment.position);
+              }
+            )}
+            targetDirection={'rtl'}
+            targetSegments={props.targetSegments.filter(
+              (targetSegment: TextSegment): boolean => {
+                return link.targets.includes(targetSegment.position);
+              }
+            )}
+            selectTextSegmentFunc={props.selectTextSegmentFunc}
+            deSelectTextSegmentFunc={props.deSelectTextSegmentFunc}
+            links={[link]}
+          />
+        );
+      }
+      return <></>;
+    }
+  );
+};
 
-export const LinksContainer = (props: LinksContainerProps): ReactElement => {
+export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
   const {
     links,
     sourceSegments,
@@ -120,69 +151,47 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     sillyRerenderTrick();
   };
 
-  const configuredStyle =
-    props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
   return (
-    <div
-      id="alignment-canvas"
-      ref={gatherParentRef}
-      style={{ overflow: 'scroll' }}
-    >
-      <div style={{ margin: '0.6rem' }} />
-
-      <TextPortionComponent
-        type="source"
-        displayStyle="line"
-        textDirectionToggle={true}
-        textSegments={sourceSegments}
-        refGatherer={setRef.bind(null, 'source')}
-        selectTextSegmentFunc={selectTextSegmentFunc}
-        deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-        focusedLinks={focusedLinks}
-        links={links}
-        segmentHovered={setSegmentFocused.bind(null, links)}
-        direction={sourceDirection}
-        toggleDirection={toggleDirection.bind(null, 'source')}
-      />
-
-      <div id="links-container" style={{ position: 'relative' }}>
-        {parentRef &&
-          links.map((link: Link) => {
-            return (
-              <LinkComponent
-                key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
-                sourcePosition={link.sources[0]}
-                targetPosition={link.targets[0]}
-                parentRef={parentRef}
-                sourceRef={sourceRefs[link.sources[0]]}
-                targetRef={targetRefs[link.targets[0]]}
-                hoverHook={setLinkFocused.bind(null, link)}
-                isFocused={focusedLinks.get(link) ?? false}
-              />
-            );
-          })}
+    <div style={{ display: 'grid', gridTemplateColumns: '33% 33% 33%' }}>
+      <div className="source-container">
+        <TextPortionComponent
+          textDirectionToggle={false}
+          displayStyle="paragraph"
+          type="source"
+          textSegments={sourceSegments}
+          refGatherer={setRef.bind(null, 'source')}
+          selectTextSegmentFunc={selectTextSegmentFunc}
+          deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+          focusedLinks={focusedLinks}
+          links={links}
+          segmentHovered={setSegmentFocused.bind(null, links)}
+          direction={sourceDirection}
+          toggleDirection={toggleDirection.bind(null, 'source')}
+        />
       </div>
 
-      <div style={configuredStyle} />
+      <div className="target-container">
+        <TextPortionComponent
+          displayStyle="paragraph"
+          textDirectionToggle={false}
+          type="target"
+          textSegments={targetSegments}
+          refGatherer={setRef.bind(null, 'target')}
+          selectTextSegmentFunc={selectTextSegmentFunc}
+          deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+          focusedLinks={focusedLinks}
+          links={links}
+          segmentHovered={setSegmentFocused.bind(null, links)}
+          direction={targetDirection}
+          toggleDirection={toggleDirection.bind(null, 'target')}
+        />
+      </div>
 
-      <TextPortionComponent
-        displayStyle="line"
-        type="target"
-        textDirectionToggle={true}
-        textSegments={targetSegments}
-        refGatherer={setRef.bind(null, 'target')}
-        selectTextSegmentFunc={selectTextSegmentFunc}
-        deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-        focusedLinks={focusedLinks}
-        links={links}
-        segmentHovered={setSegmentFocused.bind(null, links)}
-        direction={targetDirection}
-        toggleDirection={toggleDirection.bind(null, 'target')}
-      />
-
-      <div style={{ margin: '0.5rem' }} />
+      <div className="alignment-thing" style={{ height: '8rem' }}>
+        {singleLinkAlignment(props, focusedLinks)}
+      </div>
     </div>
   );
 };
 
-export default LinksContainer;
+export default LinksContainer2;

@@ -20,7 +20,17 @@ interface TextPortionProps {
   segmentHovered: (textSegment: TextSegment, isHovered: boolean) => void;
   direction: Direction;
   toggleDirection: (oldState: Direction) => void;
+  textDirectionToggle: boolean;
+  displayStyle: 'line' | 'paragraph';
 }
+
+const lineDisplayStyle = {
+  display: 'inline-block',
+  whiteSpace: 'nowrap',
+};
+const paragraphDisplayStyle = {
+  display: 'inline-block',
+};
 
 const isFocused = (
   links: Link[],
@@ -34,22 +44,9 @@ const isFocused = (
   return false;
 };
 
-export const TextPortion = (props: TextPortionProps): ReactElement => {
-  const {
-    type,
-    refGatherer,
-    textSegments,
-    selectTextSegmentFunc,
-    deSelectTextSegmentFunc,
-    links,
-    focusedLinks,
-    segmentHovered,
-    toggleDirection,
-    direction,
-  } = props;
-
-  return (
-    <div style={{ display: 'flex', alignContent: 'center' }}>
+const textDirectionToggle = (props: TextPortionProps): ReactElement => {
+  if (props.textDirectionToggle) {
+    return (
       <FontAwesomeIcon
         icon={faExchangeAlt}
         style={{
@@ -62,17 +59,37 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
           padding: '0.3rem',
         }}
         onClick={(): void => {
-          toggleDirection(direction);
+          props.toggleDirection(props.direction);
         }}
       />
+    );
+  }
+  return <></>;
+};
+export const TextPortion = (props: TextPortionProps): ReactElement => {
+  const {
+    type,
+    refGatherer,
+    textSegments,
+    selectTextSegmentFunc,
+    deSelectTextSegmentFunc,
+    links,
+    focusedLinks,
+    segmentHovered,
+    direction,
+    displayStyle,
+  } = props;
+
+  const configuredStyle =
+    displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
+
+  return (
+    <div style={{ display: 'flex', alignContent: 'center' }}>
+      {textDirectionToggle(props)}
 
       <div
         className={`${type}-container`}
-        style={{
-          display: 'inline-block',
-          whiteSpace: 'nowrap',
-          direction: direction,
-        }}
+        style={{ ...configuredStyle, direction }}
       >
         {textSegments.map(
           (textSegment, index): ReactElement => {
@@ -91,6 +108,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 hoverHook={segmentHovered.bind(null, textSegment)}
                 selectTextSegmentFunc={selectTextSegmentFunc}
                 deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+                displayStyle={displayStyle}
               />
             );
           }
