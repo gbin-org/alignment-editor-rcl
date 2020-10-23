@@ -155,42 +155,61 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '33% 33% 33%' }}>
-      <div className="source-container">
-        <TextPortionComponent
-          textDirectionToggle={false}
-          displayStyle="paragraph"
-          type="source"
-          textSegments={sourceSegments}
-          refGatherer={setRef.bind(null, 'source')}
-          selectTextSegmentFunc={selectTextSegmentFunc}
-          deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-          focusedLinks={focusedLinks}
-          links={links}
-          segmentHovered={setSegmentFocused.bind(null, links)}
-          direction={sourceDirection}
-          toggleDirection={toggleDirection.bind(null, 'source')}
-        />
+    <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
+      <div>
+        <div
+          className="source-container"
+          style={{ overflowY: 'scroll', maxHeight: '15rem', margin: '0.5rem' }}
+        >
+          <TextPortionComponent
+            textDirectionToggle={false}
+            displayStyle="paragraph"
+            type="source"
+            textSegments={sourceSegments}
+            refGatherer={setRef.bind(null, 'source')}
+            selectTextSegmentFunc={selectTextSegmentFunc}
+            deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+            focusedLinks={focusedLinks}
+            links={links}
+            segmentHovered={setSegmentFocused.bind(null, links)}
+            direction={sourceDirection}
+            toggleDirection={toggleDirection.bind(null, 'source')}
+          />
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <div
+          className="target-container"
+          style={{ overflowY: 'scroll', maxHeight: '15rem', margin: '0.5rem' }}
+        >
+          <TextPortionComponent
+            displayStyle="paragraph"
+            textDirectionToggle={false}
+            type="target"
+            textSegments={targetSegments}
+            refGatherer={setRef.bind(null, 'target')}
+            selectTextSegmentFunc={selectTextSegmentFunc}
+            deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+            focusedLinks={focusedLinks}
+            links={links}
+            segmentHovered={setSegmentFocused.bind(null, links)}
+            direction={targetDirection}
+            toggleDirection={toggleDirection.bind(null, 'target')}
+          />
+        </div>
       </div>
 
-      <div className="target-container">
-        <TextPortionComponent
-          displayStyle="paragraph"
-          textDirectionToggle={false}
-          type="target"
-          textSegments={targetSegments}
-          refGatherer={setRef.bind(null, 'target')}
-          selectTextSegmentFunc={selectTextSegmentFunc}
-          deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-          focusedLinks={focusedLinks}
-          links={links}
-          segmentHovered={setSegmentFocused.bind(null, links)}
-          direction={targetDirection}
-          toggleDirection={toggleDirection.bind(null, 'target')}
-        />
-      </div>
-
-      <div className="alignment-thing" style={{ height: '8rem' }}>
+      <div
+        className="alignment-thing"
+        style={{
+          display: 'grid',
+          justifyContent: 'center',
+          alignContent: 'center',
+        }}
+      >
         {singleLinkAlignment(props, focusedLinks)}
       </div>
     </div>

@@ -21,7 +21,7 @@ interface LinksContainerProps {
 }
 
 const fullDisplayStyle = { margin: '14rem' };
-const partialDisplayStyle = { margin: '9rem' };
+const partialDisplayStyle = { margin: '10rem' };
 
 export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   const {
@@ -122,6 +122,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
 
   const configuredStyle =
     props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
+  const textDirectionToggle = props.displayStyle === 'full' ? true : false;
   return (
     <div
       id="alignment-canvas"
@@ -133,7 +134,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       <TextPortionComponent
         type="source"
         displayStyle="line"
-        textDirectionToggle={true}
+        textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
         refGatherer={setRef.bind(null, 'source')}
         selectTextSegmentFunc={selectTextSegmentFunc}
@@ -168,7 +169,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       <TextPortionComponent
         displayStyle="line"
         type="target"
-        textDirectionToggle={true}
+        textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
         refGatherer={setRef.bind(null, 'target')}
         selectTextSegmentFunc={selectTextSegmentFunc}
