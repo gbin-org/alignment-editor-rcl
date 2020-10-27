@@ -22,6 +22,8 @@ interface TextPortionProps {
   toggleDirection: (oldState: Direction) => void;
   textDirectionToggle: boolean;
   displayStyle: 'line' | 'paragraph';
+  toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
+  segmentSelections: Record<number, boolean>;
 }
 
 const lineDisplayStyle = {
@@ -71,13 +73,13 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     type,
     refGatherer,
     textSegments,
-    selectTextSegmentFunc,
-    deSelectTextSegmentFunc,
     links,
     focusedLinks,
     segmentHovered,
     direction,
     displayStyle,
+    toggleTextSelectionFunc,
+    segmentSelections,
   } = props;
 
   const configuredStyle =
@@ -101,13 +103,15 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 refGatherer={refGatherer.bind(null, textSegment.position)}
                 segmentData={textSegment}
                 isDisabled={textSegment.catIsContent === false ?? false}
-                isSelected={false}
+                isSelected={
+                  segmentSelections &&
+                  (segmentSelections[textSegment.position] ?? false)
+                }
                 isLinked={Boolean(relatedLink)}
                 group={determineGroup(links, linkIndex)}
                 isFocused={isFocused(links, focusedLinks, textSegment)}
                 hoverHook={segmentHovered.bind(null, textSegment)}
-                selectTextSegmentFunc={selectTextSegmentFunc}
-                deSelectTextSegmentFunc={deSelectTextSegmentFunc}
+                toggleTextSelectionFunc={toggleTextSelectionFunc}
                 displayStyle={displayStyle}
               />
             );

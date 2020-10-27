@@ -51,6 +51,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       if (!sourceRefs[position]) {
         sourceRefContainer[position] = ref;
         if (Object.keys(sourceRefContainer).length === sourceSegments.length) {
+          console.log('set source refs', sourceRefContainer);
           setSourceRefs(sourceRefContainer);
         }
       }
@@ -120,9 +121,35 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     sillyRerenderTrick();
   };
 
+  const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
+    Record<number, boolean>
+  >({});
+  const [selectedTargetTextSegments, setSelectedTargetTextSegments] = useState<
+    Record<number, boolean>
+  >({});
+
+  const toggleTextSelection = (type: Portion, position: number): void => {
+    if (type === 'source') {
+      const newState = {
+        ...selectedSourceTextSegments,
+        [position]: !selectedSourceTextSegments[position],
+      };
+      setSelectedSourceTextSegments(newState);
+    }
+
+    if (type === 'target') {
+      const newState = {
+        ...selectedTargetTextSegments,
+        [position]: !selectedTargetTextSegments[position],
+      };
+      setSelectedTargetTextSegments(newState);
+    }
+  };
+
   const configuredStyle =
     props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
   const textDirectionToggle = props.displayStyle === 'full' ? true : false;
+  console.log(parentRef, links);
   return (
     <div
       id="alignment-canvas"
@@ -144,11 +171,14 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         segmentHovered={setSegmentFocused.bind(null, links)}
         direction={sourceDirection}
         toggleDirection={toggleDirection.bind(null, 'source')}
+        toggleTextSelectionFunc={toggleTextSelection}
+        segmentSelections={selectedSourceTextSegments}
       />
 
       <div id="links-container" style={{ position: 'relative' }}>
         {parentRef &&
           links.map((link: Link) => {
+            console.log('map a link', link);
             return (
               <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
@@ -179,6 +209,8 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         segmentHovered={setSegmentFocused.bind(null, links)}
         direction={targetDirection}
         toggleDirection={toggleDirection.bind(null, 'target')}
+        toggleTextSelectionFunc={toggleTextSelection}
+        segmentSelections={selectedTargetTextSegments}
       />
 
       <div style={{ margin: '0.5rem' }} />

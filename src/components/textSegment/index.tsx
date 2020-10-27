@@ -7,8 +7,9 @@ import 'components/textSegment/textSegmentStyle.scss';
 export interface TextSegmentProps {
   segmentData: TextSegment;
   refGatherer: (ref: HTMLDivElement | null) => void;
-  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
+  toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
+  //selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
+  //deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   isDisabled: boolean;
   isSelected: boolean;
   isLinked: boolean;
@@ -47,20 +48,20 @@ const paragraphDisplayStyle = { display: 'inline-block', marginTop: '1rem' };
 //}
 //};
 
-const selectionHandler = (props: TextSegmentProps): void => {
-  const {
-    selectTextSegmentFunc,
-    deSelectTextSegmentFunc,
-    isSelected,
-    segmentData,
-  } = props;
-  const { type, position } = segmentData;
-  if (isSelected) {
-    deSelectTextSegmentFunc(type, position);
-  } else {
-    selectTextSegmentFunc(type, position);
-  }
-};
+//const selectionHandler = (props: TextSegmentProps): void => {
+//const {
+//selectTextSegmentFunc,
+//deSelectTextSegmentFunc,
+//isSelected,
+//segmentData,
+//} = props;
+//const { type, position } = segmentData;
+//if (isSelected) {
+//deSelectTextSegmentFunc(type, position);
+//} else {
+//selectTextSegmentFunc(type, position);
+//}
+//};
 
 //const enrichedData = (props: TextSegmentProps): ReactElement | null => {
 //const { refName, segment } = props;
@@ -239,7 +240,8 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     group,
     refGatherer,
     hoverHook,
-    displayStyle
+    displayStyle,
+    toggleTextSelectionFunc,
   } = props;
   //const color = segmentColors[segmentData.color || 0];
   const selectedClass = isSelected ? "selected" : "";
@@ -261,10 +263,10 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
         onClick={(): void => {
-          selectionHandler(props);
+            toggleTextSelectionFunc(segmentData.type, segmentData.position);
         }}
         onKeyPress={(): void => {
-          selectionHandler(props);
+           toggleTextSelectionFunc(segmentData.type, segmentData.position);
         }}
         onMouseOver={() => {
           hoverHook(true);

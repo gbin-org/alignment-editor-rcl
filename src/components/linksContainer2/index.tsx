@@ -22,8 +22,43 @@ interface LinksContainerProps {
 
 const singleLinkAlignment = (
   props: LinksContainerProps,
-  focusedLinks: Map<Link, boolean>
+  focusedLinks: Map<Link, boolean>,
+  selectedSourceTextSegments: Record<number, boolean>,
+  selectedTargetTextSegments: Record<number, boolean>
 ): ReactElement[] | ReactElement => {
+  const selectedSources = props.sourceSegments.filter(
+    (sourceSegment: TextSegment) => {
+      return selectedSourceTextSegments[sourceSegment.position];
+    }
+  );
+
+  const selectedTargets = props.targetSegments.filter(
+    (targetSegment: TextSegment) => {
+      return selectedTargetTextSegments[targetSegment.position];
+    }
+  );
+
+  if (selectedSources.length || selectedTargets.length) {
+    return (
+      <LinksContainerComponent
+        displayStyle="partial"
+        sourceDirection={'ltr'}
+        sourceSegments={selectedSources}
+        targetDirection={'rtl'}
+        targetSegments={selectedTargets}
+        selectTextSegmentFunc={props.selectTextSegmentFunc}
+        deSelectTextSegmentFunc={props.deSelectTextSegmentFunc}
+        links={[
+          {
+            sources: [selectedSources[0]?.position],
+            targets: [selectedTargets[0]?.position],
+            type: 'manual',
+          },
+        ]}
+      />
+    );
+  }
+
   const linksArray = Array.from(focusedLinks ?? []);
   if (linksArray.length) {
     return linksArray.map(
@@ -154,9 +189,35 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
     sillyRerenderTrick();
   };
 
+  const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
+    Record<number, boolean>
+  >({});
+  const [selectedTargetTextSegments, setSelectedTargetTextSegments] = useState<
+    Record<number, boolean>
+  >({});
+
+  const toggleTextSelection = (type: Portion, position: number): void => {
+    if (type === 'source') {
+      const newState = {
+        ...selectedSourceTextSegments,
+        [position]: !selectedSourceTextSegments[position],
+      };
+      setSelectedSourceTextSegments(newState);
+    }
+
+    if (type === 'target') {
+      const newState = {
+        ...selectedTargetTextSegments,
+        [position]: !selectedTargetTextSegments[position],
+      };
+      setSelectedTargetTextSegments(newState);
+    }
+  };
+
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
       <div>
+        <div>SOURCE</div>
         <div
           className="source-container"
           style={{ overflowY: 'scroll', maxHeight: '15rem', margin: '0.5rem' }}
@@ -174,6 +235,8 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
             segmentHovered={setSegmentFocused.bind(null, links)}
             direction={sourceDirection}
             toggleDirection={toggleDirection.bind(null, 'source')}
+            toggleTextSelectionFunc={toggleTextSelection}
+            segmentSelections={selectedSourceTextSegments}
           />
         </div>
 
@@ -181,6 +244,7 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
         <hr />
         <br />
 
+        <div>TARGET</div>
         <div
           className="target-container"
           style={{ overflowY: 'scroll', maxHeight: '15rem', margin: '0.5rem' }}
@@ -198,6 +262,8 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
             segmentHovered={setSegmentFocused.bind(null, links)}
             direction={targetDirection}
             toggleDirection={toggleDirection.bind(null, 'target')}
+            toggleTextSelectionFunc={toggleTextSelection}
+            segmentSelections={selectedTargetTextSegments}
           />
         </div>
       </div>
@@ -210,7 +276,12 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
           alignContent: 'center',
         }}
       >
-        {singleLinkAlignment(props, focusedLinks)}
+        {singleLinkAlignment(
+          props,
+          focusedLinks,
+          selectedSourceTextSegments,
+          selectedTargetTextSegments
+        )}
       </div>
     </div>
   );
