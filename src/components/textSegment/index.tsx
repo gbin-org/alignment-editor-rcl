@@ -1,6 +1,9 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 
+import { AlignmentContext } from 'contexts/alignment';
 import { TextSegment, TextSegmentType } from 'core/structs';
+//import { findLinkForTextSegment } from 'core/findLink';
+import { Link } from 'core/structs/link';
 
 import 'components/textSegment/textSegmentStyle.scss';
 
@@ -13,9 +16,7 @@ export interface TextSegmentProps {
   isDisabled: boolean;
   isSelected: boolean;
   isLinked: boolean;
-  isFocused: boolean;
   group: number;
-  hoverHook: (isHovered: boolean) => void;
   displayStyle: 'line' | 'paragraph';
 }
 
@@ -230,26 +231,40 @@ const paragraphDisplayStyle = { display: 'inline-block', marginTop: '1rem' };
 //return null;
 //};
 
+const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link|undefined => {
+return links.find((link: Link): boolean =>{ 
+
+        if (textSegment.type === 'source') { return link.sources.includes(textSegment.position)} 
+        if (textSegment.type === 'target') { return link.targets.includes(textSegment.position)} return false});
+
+};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     segmentData,
     isSelected,
     isLinked,
     isDisabled,
-    isFocused,
     group,
     refGatherer,
-    hoverHook,
     displayStyle,
     toggleTextSelectionFunc,
   } = props;
   //const color = segmentColors[segmentData.color || 0];
-  const selectedClass = isSelected ? "selected" : "";
-  const disabledClass = isDisabled ? "disabled" : "";
-  const linkedClass = isLinked ? "linked" : "not-linked";
+
+  const { state, dispatch } = useContext(AlignmentContext);
+
+  const relatedLink = findRelatedLink(segmentData, state.links);
+  console.log('relatedLink', relatedLink);
+
+  const selectedClass = isSelected ? 'selected' : '';
+  const disabledClass = isDisabled ? 'disabled' : '';
+  const linkedClass = isLinked ? 'linked' : 'not-linked';
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
-  const focusedClass = isFocused ? "focused" : "";
-  const containerStyle = displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
+  const focusedClass =
+    relatedLink && state.focusedLinks.get(relatedLink) ? 'focused' : '';
+  const containerStyle =
+    displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
   return (
     <div
@@ -263,16 +278,22 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
         onClick={(): void => {
-            toggleTextSelectionFunc(segmentData.type, segmentData.position);
+          toggleTextSelectionFunc(segmentData.type, segmentData.position);
         }}
         onKeyPress={(): void => {
-           toggleTextSelectionFunc(segmentData.type, segmentData.position);
+          toggleTextSelectionFunc(segmentData.type, segmentData.position);
         }}
         onMouseOver={() => {
-          hoverHook(true);
+          if (relatedLink) {
+            console.log('dispatch focus');
+            dispatch({ type: 'focusLink', payload: { link: relatedLink } });
+          }
         }}
         onMouseLeave={() => {
-          hoverHook(false);
+          if (relatedLink) {
+            console.log('dispatch unFocus');
+            dispatch({ type: 'unFocusLink', payload: { link: relatedLink } });
+          }
         }}
       >
         {segmentData.text}

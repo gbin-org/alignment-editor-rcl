@@ -1,6 +1,8 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+
+import { AlignmentContext } from 'contexts/alignment';
 
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
@@ -16,8 +18,6 @@ interface TextPortionProps {
   selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   links: Link[];
-  focusedLinks: Map<Link, boolean>;
-  segmentHovered: (textSegment: TextSegment, isHovered: boolean) => void;
   direction: Direction;
   toggleDirection: (oldState: Direction) => void;
   textDirectionToggle: boolean;
@@ -74,13 +74,13 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     refGatherer,
     textSegments,
     links,
-    focusedLinks,
-    segmentHovered,
     direction,
     displayStyle,
     toggleTextSelectionFunc,
     segmentSelections,
   } = props;
+
+  const { state, dispatch } = useContext(AlignmentContext);
 
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
@@ -109,8 +109,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 }
                 isLinked={Boolean(relatedLink)}
                 group={determineGroup(links, linkIndex)}
-                isFocused={isFocused(links, focusedLinks, textSegment)}
-                hoverHook={segmentHovered.bind(null, textSegment)}
                 toggleTextSelectionFunc={toggleTextSelectionFunc}
                 displayStyle={displayStyle}
               />

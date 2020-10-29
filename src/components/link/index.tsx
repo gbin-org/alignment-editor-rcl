@@ -1,15 +1,17 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useContext } from 'react';
 
 import './linkStyle.scss';
 
+import { AlignmentContext } from 'contexts/alignment';
+import { Link } from 'core/structs';
+
 export interface LinkProps {
+  link: Link;
   sourcePosition: number;
   targetPosition: number;
   parentRef: HTMLDivElement;
   sourceRef: HTMLDivElement;
   targetRef: HTMLDivElement;
-  hoverHook: (isHovered: boolean) => void;
-  isFocused: boolean;
 }
 
 function useForceUpdate() {
@@ -24,15 +26,15 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     parentRef,
     sourceRef,
     targetRef,
-    hoverHook,
-    isFocused,
+    link,
   } = props;
+  const { state, dispatch } = useContext(AlignmentContext);
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
   //const color = '#c8c8c8';
   const disabled = '';
-  const focused = isFocused ? 'focused' : '';
+  const focused = state.focusedLinks.get(link) ? 'focused' : '';
   const name = `source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
@@ -80,10 +82,10 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
           y2={y2}
           onClick={forceUpdate}
           onMouseOver={() => {
-            hoverHook(true);
+            dispatch({ type: 'focusLink', payload: { link } });
           }}
           onMouseLeave={() => {
-            hoverHook(false);
+            dispatch({ type: 'unFocusLink', payload: { link } });
           }}
         />
       </svg>

@@ -230,9 +230,7 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
             refGatherer={setRef.bind(null, 'source')}
             selectTextSegmentFunc={selectTextSegmentFunc}
             deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-            focusedLinks={focusedLinks}
             links={links}
-            segmentHovered={setSegmentFocused.bind(null, links)}
             direction={sourceDirection}
             toggleDirection={toggleDirection.bind(null, 'source')}
             toggleTextSelectionFunc={toggleTextSelection}
@@ -257,9 +255,7 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
             refGatherer={setRef.bind(null, 'target')}
             selectTextSegmentFunc={selectTextSegmentFunc}
             deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-            focusedLinks={focusedLinks}
             links={links}
-            segmentHovered={setSegmentFocused.bind(null, links)}
             direction={targetDirection}
             toggleDirection={toggleDirection.bind(null, 'target')}
             toggleTextSelectionFunc={toggleTextSelection}

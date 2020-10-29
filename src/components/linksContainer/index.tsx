@@ -1,9 +1,10 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useContext, useEffect } from 'react';
+
+import { AlignmentContext } from 'contexts/alignment';
 
 import TextPortionComponent from 'components/textPortion';
 import LinkComponent from 'components/link';
 
-import { findLinkForTextSegment } from 'core/findLink';
 import { Link, TextSegment, TextSegmentType } from 'core/structs';
 
 type Portion = 'source' | 'target';
@@ -31,6 +32,12 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     selectTextSegmentFunc,
     deSelectTextSegmentFunc,
   } = props;
+
+  const { state, dispatch } = useContext(AlignmentContext);
+
+  useEffect(() => {
+    dispatch({ type: 'setLinks', payload: { links } });
+  }, [links, dispatch]);
 
   const sourceRefContainer: Record<number, HTMLDivElement> = {};
   const targetRefContainer: Record<number, HTMLDivElement> = {};
@@ -75,39 +82,42 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     }
   };
 
-  const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(
-    new Map<Link, boolean>()
-  );
+  //const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(
+  //new Map<Link, boolean>()
+  //);
 
-  const setLinkFocused = (link: Link, focused: boolean): void => {
-    if (link) {
-      const previousState = focusedLinks.get(link);
+  //const setLinkFocused = (link: Link, focused: boolean): void => {
+  //if (link) {
+  //const previousState = focusedLinks.get(link);
 
-      if (focused !== previousState) {
-        const newState = new Map<Link, boolean>(focusedLinks);
-        newState.set(link, focused);
-        setFocusedLinks(newState);
-      }
-    }
-  };
+  //if (focused !== previousState) {
+  //const newState = new Map<Link, boolean>(focusedLinks);
+  //newState.set(link, focused);
+  //setFocusedLinks(newState);
+  //}
+  //}
+  //};
 
-  const sillyRerenderTrick = (): void => {
-    setTimeout((): void => {
-      const newState = new Map<Link, boolean>(focusedLinks);
-      setFocusedLinks(newState);
-    }, 1);
-  };
+  //const sillyRerenderTrick = (): void => {
+  //setTimeout((): void => {
+  //const newState = new Map<Link, boolean>(focusedLinks);
+  //setFocusedLinks(newState);
+  //}, 1);
+  //};
 
-  const setSegmentFocused = (
-    links: Link[],
-    textSegment: TextSegment,
-    isHovered: boolean
-  ): void => {
-    const link = findLinkForTextSegment(links, textSegment);
-    if (link) {
-      setLinkFocused(link, isHovered);
-    }
-  };
+  //const setSegmentFocused = (
+  //links: Link[],
+  //textSegment: TextSegment,
+  //isHovered: boolean
+  //): void => {
+  //const link = findLinkForTextSegment(links, textSegment);
+  //if (link) {
+  //if (isHovered) {
+  //dispatch({ type: 'focusLink', payload: { link } });
+  //}
+  //dispatch({ type: 'unFocusLink', payload: { link } });
+  //}
+  //}k;
 
   const [sourceDirection, setSourceDirection] = useState<Direction>('ltr');
   const [targetDirection, setTargetDirection] = useState<Direction>('ltr');
@@ -118,7 +128,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     const newDirection = oldState === 'ltr' ? 'rtl' : 'ltr';
     setter(newDirection);
     // WOE is me, for I am undone.
-    sillyRerenderTrick();
+    //sillyRerenderTrick();
   };
 
   const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
@@ -166,9 +176,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         refGatherer={setRef.bind(null, 'source')}
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-        focusedLinks={focusedLinks}
         links={links}
-        segmentHovered={setSegmentFocused.bind(null, links)}
         direction={sourceDirection}
         toggleDirection={toggleDirection.bind(null, 'source')}
         toggleTextSelectionFunc={toggleTextSelection}
@@ -182,13 +190,12 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
             return (
               <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
+                link={link}
                 sourcePosition={link.sources[0]}
                 targetPosition={link.targets[0]}
                 parentRef={parentRef}
                 sourceRef={sourceRefs[link.sources[0]]}
                 targetRef={targetRefs[link.targets[0]]}
-                hoverHook={setLinkFocused.bind(null, link)}
-                isFocused={focusedLinks.get(link) ?? false}
               />
             );
           })}
@@ -204,9 +211,7 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         refGatherer={setRef.bind(null, 'target')}
         selectTextSegmentFunc={selectTextSegmentFunc}
         deSelectTextSegmentFunc={deSelectTextSegmentFunc}
-        focusedLinks={focusedLinks}
         links={links}
-        segmentHovered={setSegmentFocused.bind(null, links)}
         direction={targetDirection}
         toggleDirection={toggleDirection.bind(null, 'target')}
         toggleTextSelectionFunc={toggleTextSelection}
