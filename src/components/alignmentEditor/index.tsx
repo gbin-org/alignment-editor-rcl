@@ -49,12 +49,11 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
-    console.log('USE EFFECT paragraph');
     dispatch({ type: 'setLinks', payload: { links } });
   }, []);
 
   return (
-    <div>
+    <div className="alignment-editor-root">
       <button
         onClick={() => {
           const newView = state.view === 'paragraph' ? 'line' : 'paragraph';

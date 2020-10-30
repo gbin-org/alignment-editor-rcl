@@ -89,48 +89,6 @@ const singleLinkAlignment = (
 export const ParagraphView = (props: LinksContainerProps): ReactElement => {
   const { links, sourceSegments, targetSegments } = props;
 
-  const sourceRefContainer: Record<number, HTMLDivElement> = {};
-  const targetRefContainer: Record<number, HTMLDivElement> = {};
-
-  const [sourceRefs, setSourceRefs] = useState<Record<number, HTMLDivElement>>(
-    {}
-  );
-  const [targetRefs, setTargetRefs] = useState<Record<number, HTMLDivElement>>(
-    {}
-  );
-
-  const setRef = (
-    type: 'source' | 'target',
-    position: number,
-    ref: HTMLDivElement | null
-  ): void => {
-    if (type === 'source' && ref) {
-      if (!sourceRefs[position]) {
-        sourceRefContainer[position] = ref;
-        if (Object.keys(sourceRefContainer).length === sourceSegments.length) {
-          setSourceRefs(sourceRefContainer);
-        }
-      }
-    }
-
-    if (type === 'target' && ref) {
-      if (!targetRefs[position]) {
-        targetRefContainer[position] = ref;
-        if (Object.keys(targetRefContainer).length === targetSegments.length) {
-          setTargetRefs(targetRefContainer);
-        }
-      }
-    }
-  };
-
-  const [parentRef, setParentRef] = useState<HTMLDivElement>();
-
-  const gatherParentRef = (ref: HTMLDivElement): void => {
-    if (!parentRef && ref) {
-      setParentRef(ref);
-    }
-  };
-
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
@@ -195,7 +153,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             displayStyle="paragraph"
             type="source"
             textSegments={sourceSegments}
-            refGatherer={setRef.bind(null, 'source')}
             links={links}
             direction={sourceDirection}
             toggleDirection={toggleDirection.bind(null, 'source')}
@@ -218,7 +175,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             textDirectionToggle={false}
             type="target"
             textSegments={targetSegments}
-            refGatherer={setRef.bind(null, 'target')}
             links={links}
             direction={targetDirection}
             toggleDirection={toggleDirection.bind(null, 'target')}

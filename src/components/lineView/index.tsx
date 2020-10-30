@@ -1,4 +1,6 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useContext } from 'react';
+
+import { AlignmentContext } from 'contexts/alignment';
 
 import TextPortionComponent from 'components/textPortion';
 import LinkComponent from 'components/link';
@@ -23,47 +25,7 @@ const partialDisplayStyle = { margin: '10rem' };
 export const LineView = (props: LineViewProps): ReactElement => {
   const { links, sourceSegments, targetSegments } = props;
 
-  const sourceRefContainer: Record<number, HTMLDivElement> = {};
-  const targetRefContainer: Record<number, HTMLDivElement> = {};
-
-  const [sourceRefs, setSourceRefs] = useState<Record<number, HTMLDivElement>>(
-    {}
-  );
-  const [targetRefs, setTargetRefs] = useState<Record<number, HTMLDivElement>>(
-    {}
-  );
-
-  const setRef = (
-    type: 'source' | 'target',
-    position: number,
-    ref: HTMLDivElement | null
-  ): void => {
-    if (type === 'source' && ref) {
-      if (!sourceRefs[position]) {
-        sourceRefContainer[position] = ref;
-        if (Object.keys(sourceRefContainer).length === sourceSegments.length) {
-          setSourceRefs(sourceRefContainer);
-        }
-      }
-    }
-
-    if (type === 'target' && ref) {
-      if (!targetRefs[position]) {
-        targetRefContainer[position] = ref;
-        if (Object.keys(targetRefContainer).length === targetSegments.length) {
-          setTargetRefs(targetRefContainer);
-        }
-      }
-    }
-  };
-
-  const [parentRef, setParentRef] = useState<HTMLDivElement>();
-
-  const gatherParentRef = (ref: HTMLDivElement): void => {
-    if (!parentRef && ref) {
-      setParentRef(ref);
-    }
-  };
+  const { state, dispatch } = useContext(AlignmentContext);
 
   //const sillyRerenderTrick = (): void => {
   //setTimeout((): void => {
@@ -115,7 +77,11 @@ export const LineView = (props: LineViewProps): ReactElement => {
   return (
     <div
       id="alignment-canvas"
-      ref={gatherParentRef}
+      ref={(ref: HTMLDivElement) => {
+        if (ref !== state.parentRef) {
+          dispatch({ type: 'addParentRef', payload: { ref: ref } });
+        }
+      }}
       style={{ overflow: 'scroll' }}
     >
       <div style={{ margin: '0.6rem' }} />
@@ -125,7 +91,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         displayStyle="line"
         textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
-        refGatherer={setRef.bind(null, 'source')}
         links={links}
         direction={sourceDirection}
         toggleDirection={toggleDirection.bind(null, 'source')}
@@ -134,7 +99,7 @@ export const LineView = (props: LineViewProps): ReactElement => {
       />
 
       <div id="links-container" style={{ position: 'relative' }}>
-        {parentRef &&
+        {state.parentRef &&
           links.map((link: Link) => {
             return (
               <LinkComponent
@@ -142,9 +107,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
                 link={link}
                 sourcePosition={link.sources[0]}
                 targetPosition={link.targets[0]}
-                parentRef={parentRef}
-                sourceRef={sourceRefs[link.sources[0]]}
-                targetRef={targetRefs[link.targets[0]]}
               />
             );
           })}
@@ -157,7 +119,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         type="target"
         textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
-        refGatherer={setRef.bind(null, 'target')}
         links={links}
         direction={targetDirection}
         toggleDirection={toggleDirection.bind(null, 'target')}

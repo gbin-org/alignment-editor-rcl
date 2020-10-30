@@ -9,7 +9,6 @@ import 'components/textSegment/textSegmentStyle.scss';
 
 export interface TextSegmentProps {
   segmentData: TextSegment;
-  refGatherer: (ref: HTMLDivElement | null) => void;
   toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
   //selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   //deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
@@ -246,7 +245,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     isLinked,
     isDisabled,
     group,
-    refGatherer,
     displayStyle,
     toggleTextSelectionFunc,
   } = props;
@@ -265,10 +263,30 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
+  console.log(displayStyle);
   return (
     <div
       style={containerStyle}
-      ref={refGatherer}
+      ref={(ref: HTMLDivElement) => {
+        if (ref && displayStyle === 'line') {
+          if (segmentData.type === 'source') {
+            if (state.sourceRefs[segmentData.position] !== ref) {
+              dispatch({
+                type: 'addSourceRef',
+                payload: { position: segmentData.position, ref: ref },
+              });
+            }
+          }
+          if (state.targetRefs[segmentData.position] !== ref) {
+            if (segmentData.type === 'target') {
+              dispatch({
+                type: 'addTargetRef',
+                payload: { position: segmentData.position, ref: ref },
+              });
+            }
+          }
+        }
+      }}
       className={`${segmentData.type}${segmentData.position}`}
     >
       {/*enrichedDataTop(props)*/}

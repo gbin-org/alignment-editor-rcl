@@ -1,8 +1,6 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { AlignmentContext } from 'contexts/alignment';
 
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
@@ -14,7 +12,6 @@ type Direction = 'ltr' | 'rtl';
 interface TextPortionProps {
   type: TextSegmentType;
   textSegments: TextSegment[];
-  refGatherer: (position: number, ref: HTMLDivElement | null) => void;
   links: Link[];
   direction: Direction;
   toggleDirection: (oldState: Direction) => void;
@@ -30,18 +27,6 @@ const lineDisplayStyle = {
 };
 const paragraphDisplayStyle = {
   display: 'inline-block',
-};
-
-const isFocused = (
-  links: Link[],
-  focusedLinks: Map<Link, boolean>,
-  textSegment: TextSegment
-): boolean => {
-  const link = findLinkForTextSegment(links, textSegment);
-  if (link && focusedLinks) {
-    return focusedLinks.get(link) ?? false;
-  }
-  return false;
 };
 
 const textDirectionToggle = (props: TextPortionProps): ReactElement => {
@@ -69,7 +54,6 @@ const textDirectionToggle = (props: TextPortionProps): ReactElement => {
 export const TextPortion = (props: TextPortionProps): ReactElement => {
   const {
     type,
-    refGatherer,
     textSegments,
     links,
     direction,
@@ -77,8 +61,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     toggleTextSelectionFunc,
     segmentSelections,
   } = props;
-
-  const { state, dispatch } = useContext(AlignmentContext);
 
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
@@ -98,7 +80,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
             return (
               <TextSegmentComponent
                 key={`${type}-${textSegment.position}`}
-                refGatherer={refGatherer.bind(null, textSegment.position)}
                 segmentData={textSegment}
                 isDisabled={textSegment.catIsContent === false ?? false}
                 isSelected={
