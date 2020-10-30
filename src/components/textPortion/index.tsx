@@ -15,8 +15,6 @@ interface TextPortionProps {
   type: TextSegmentType;
   textSegments: TextSegment[];
   refGatherer: (position: number, ref: HTMLDivElement | null) => void;
-  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   links: Link[];
   direction: Direction;
   toggleDirection: (oldState: Direction) => void;

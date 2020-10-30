@@ -1,11 +1,11 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useContext, useEffect } from 'react';
+
+import { AlignmentContext } from 'contexts/alignment';
 
 import TextPortionComponent from 'components/textPortion';
-import LinksContainerComponent from 'components/linksContainer';
-import LinkComponent from 'components/link';
+import LineView from 'components/lineView';
 
-import { findLinkForTextSegment } from 'core/findLink';
-import { Link, TextSegment, TextSegmentType } from 'core/structs';
+import { Link, TextSegment } from 'core/structs';
 
 type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
@@ -14,8 +14,6 @@ interface LinksContainerProps {
   links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
-  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   sourceDirection: Direction;
   targetDirection: Direction;
 }
@@ -40,14 +38,12 @@ const singleLinkAlignment = (
 
   if (selectedSources.length || selectedTargets.length) {
     return (
-      <LinksContainerComponent
+      <LineView
         displayStyle="partial"
         sourceDirection={'ltr'}
         sourceSegments={selectedSources}
         targetDirection={'rtl'}
         targetSegments={selectedTargets}
-        selectTextSegmentFunc={props.selectTextSegmentFunc}
-        deSelectTextSegmentFunc={props.deSelectTextSegmentFunc}
         links={[
           {
             sources: [selectedSources[0]?.position],
@@ -65,7 +61,7 @@ const singleLinkAlignment = (
       ([link, bool]): ReactElement => {
         if (bool) {
           return (
-            <LinksContainerComponent
+            <LineView
               displayStyle="partial"
               sourceDirection={'ltr'}
               sourceSegments={props.sourceSegments.filter(
@@ -79,8 +75,6 @@ const singleLinkAlignment = (
                   return link.targets.includes(targetSegment.position);
                 }
               )}
-              selectTextSegmentFunc={props.selectTextSegmentFunc}
-              deSelectTextSegmentFunc={props.deSelectTextSegmentFunc}
               links={[link]}
             />
           );
@@ -92,14 +86,8 @@ const singleLinkAlignment = (
   return <p>{'Hover over source or target segments to view links.'}</p>;
 };
 
-export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
-  const {
-    links,
-    sourceSegments,
-    targetSegments,
-    selectTextSegmentFunc,
-    deSelectTextSegmentFunc,
-  } = props;
+export const ParagraphView = (props: LinksContainerProps): ReactElement => {
+  const { links, sourceSegments, targetSegments } = props;
 
   const sourceRefContainer: Record<number, HTMLDivElement> = {};
   const targetRefContainer: Record<number, HTMLDivElement> = {};
@@ -143,39 +131,19 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
     }
   };
 
-  const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(
-    new Map<Link, boolean>()
-  );
+  const { state, dispatch } = useContext(AlignmentContext);
 
-  const setLinkFocused = (link: Link, focused: boolean): void => {
-    if (link) {
-      const previousState = focusedLinks.get(link);
+  useEffect(() => {
+    console.log('USE EFFECT paragraph');
+    dispatch({ type: 'setLinks', payload: { links } });
+  }, []);
 
-      if (focused !== previousState) {
-        const newState = new Map<Link, boolean>(focusedLinks);
-        newState.set(link, focused);
-        setFocusedLinks(newState);
-      }
-    }
-  };
-
-  const sillyRerenderTrick = (): void => {
-    setTimeout((): void => {
-      const newState = new Map<Link, boolean>(focusedLinks);
-      setFocusedLinks(newState);
-    }, 1);
-  };
-
-  const setSegmentFocused = (
-    links: Link[],
-    textSegment: TextSegment,
-    isHovered: boolean
-  ): void => {
-    const link = findLinkForTextSegment(links, textSegment);
-    if (link) {
-      setLinkFocused(link, isHovered);
-    }
-  };
+  //const sillyRerenderTrick = (): void => {
+  //setTimeout((): void => {
+  //const newState = new Map<Link, boolean>(focusedLinks);
+  //setFocusedLinks(newState);
+  //}, 1);
+  //};
 
   const [sourceDirection, setSourceDirection] = useState<Direction>('ltr');
   const [targetDirection, setTargetDirection] = useState<Direction>('ltr');
@@ -186,7 +154,7 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
     const newDirection = oldState === 'ltr' ? 'rtl' : 'ltr';
     setter(newDirection);
     // WOE is me, for I am undone.
-    sillyRerenderTrick();
+    //sillyRerenderTrick();
   };
 
   const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
@@ -228,8 +196,6 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
             type="source"
             textSegments={sourceSegments}
             refGatherer={setRef.bind(null, 'source')}
-            selectTextSegmentFunc={selectTextSegmentFunc}
-            deSelectTextSegmentFunc={deSelectTextSegmentFunc}
             links={links}
             direction={sourceDirection}
             toggleDirection={toggleDirection.bind(null, 'source')}
@@ -253,8 +219,6 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
             type="target"
             textSegments={targetSegments}
             refGatherer={setRef.bind(null, 'target')}
-            selectTextSegmentFunc={selectTextSegmentFunc}
-            deSelectTextSegmentFunc={deSelectTextSegmentFunc}
             links={links}
             direction={targetDirection}
             toggleDirection={toggleDirection.bind(null, 'target')}
@@ -274,7 +238,7 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
       >
         {singleLinkAlignment(
           props,
-          focusedLinks,
+          state.focusedLinks,
           selectedSourceTextSegments,
           selectedTargetTextSegments
         )}
@@ -283,4 +247,4 @@ export const LinksContainer2 = (props: LinksContainerProps): ReactElement => {
   );
 };
 
-export default LinksContainer2;
+export default ParagraphView;

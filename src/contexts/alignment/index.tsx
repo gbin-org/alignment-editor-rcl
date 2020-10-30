@@ -8,6 +8,8 @@ import {
 
 type Props = { children: ReactNode };
 
+export * from 'contexts/alignment/reducer';
+
 export const AlignmentContext = React.createContext<{
   state: AlignmentState;
   dispatch: React.Dispatch<AlignmentActionTypes>;

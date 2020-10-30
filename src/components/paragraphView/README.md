@@ -1,9 +1,7 @@
-#### An experimental alternative interface
-
-Just something I'm thinking about.
+#### Paragraph View: Short Example
 
 ```ts
-<LinksContainer2
+<ParagraphView
   sourceSegments={[
     { text: 'ὅτι', type: 'source', position: 0 },
     { text: 'εἴ', type: 'source', position: 1 },
@@ -56,8 +54,6 @@ Just something I'm thinking about.
     { text: 'a', type: 'target', position: 26 },
     { text: 'mirror', type: 'target', position: 27 },
   ]}
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
   links={[
     { sources: [3], targets: [5], type: 'manual' },
     { sources: [4], targets: [8], type: 'manual' },
@@ -66,12 +62,12 @@ Just something I'm thinking about.
 />
 ```
 
-#### An experimental alternative interface
+#### ParagraphView: long example
 
 A longer example
 
 ```ts
-<LinksContainer2
+<ParagraphView
   sourceSegments={[
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 0 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 1 },
@@ -242,8 +238,6 @@ A longer example
     { text: 'and', type: 'target', position: 81 },
     { text: 'language', type: 'target', position: 82 },
   ]}
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
   links={[
     { sources: [0], targets: [82], type: 'manual' },
     { sources: [1], targets: [3], type: 'manual' },

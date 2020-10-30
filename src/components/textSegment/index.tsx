@@ -255,7 +255,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
   const relatedLink = findRelatedLink(segmentData, state.links);
-  console.log('relatedLink', relatedLink);
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
@@ -285,13 +284,11 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         }}
         onMouseOver={() => {
           if (relatedLink) {
-            console.log('dispatch focus');
             dispatch({ type: 'focusLink', payload: { link: relatedLink } });
           }
         }}
         onMouseLeave={() => {
           if (relatedLink) {
-            console.log('dispatch unFocus');
             dispatch({ type: 'unFocusLink', payload: { link: relatedLink } });
           }
         }}

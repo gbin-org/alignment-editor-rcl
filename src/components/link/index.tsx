@@ -38,9 +38,6 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
   const name = `source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
-  console.log('parent', 'source', 'target');
-  console.log(parentRef, sourceRef, targetRef);
-
   if (parentRef && sourceRef && targetRef) {
     const beginningOffsetX = parentRef.offsetLeft ?? 0;
     const beginningOffsetY = parentRef.offsetTop ?? 0;
@@ -64,7 +61,6 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     const x2 = basePositionX + targetRef.offsetLeft + targetRect.width * 0.5;
     const y2 = basePositionY + targetRef.offsetTop - targetRect.height * 1.8;
 
-    console.log(x1, y1, x2, y2);
     return (
       <svg
         className="link-canvas"

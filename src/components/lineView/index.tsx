@@ -1,21 +1,17 @@
-import React, { ReactElement, useState, useContext, useEffect } from 'react';
-
-import { AlignmentContext } from 'contexts/alignment';
+import React, { ReactElement, useState } from 'react';
 
 import TextPortionComponent from 'components/textPortion';
 import LinkComponent from 'components/link';
 
-import { Link, TextSegment, TextSegmentType } from 'core/structs';
+import { Link, TextSegment } from 'core/structs';
 
 type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
-interface LinksContainerProps {
+interface LineViewProps {
   links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
-  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   sourceDirection: Direction;
   targetDirection: Direction;
   displayStyle: 'full' | 'partial';
@@ -24,20 +20,8 @@ interface LinksContainerProps {
 const fullDisplayStyle = { margin: '14rem' };
 const partialDisplayStyle = { margin: '10rem' };
 
-export const LinksContainer = (props: LinksContainerProps): ReactElement => {
-  const {
-    links,
-    sourceSegments,
-    targetSegments,
-    selectTextSegmentFunc,
-    deSelectTextSegmentFunc,
-  } = props;
-
-  const { state, dispatch } = useContext(AlignmentContext);
-
-  useEffect(() => {
-    dispatch({ type: 'setLinks', payload: { links } });
-  }, [links, dispatch]);
+export const LineView = (props: LineViewProps): ReactElement => {
+  const { links, sourceSegments, targetSegments } = props;
 
   const sourceRefContainer: Record<number, HTMLDivElement> = {};
   const targetRefContainer: Record<number, HTMLDivElement> = {};
@@ -58,7 +42,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       if (!sourceRefs[position]) {
         sourceRefContainer[position] = ref;
         if (Object.keys(sourceRefContainer).length === sourceSegments.length) {
-          console.log('set source refs', sourceRefContainer);
           setSourceRefs(sourceRefContainer);
         }
       }
@@ -82,42 +65,12 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
     }
   };
 
-  //const [focusedLinks, setFocusedLinks] = useState<Map<Link, boolean>>(
-  //new Map<Link, boolean>()
-  //);
-
-  //const setLinkFocused = (link: Link, focused: boolean): void => {
-  //if (link) {
-  //const previousState = focusedLinks.get(link);
-
-  //if (focused !== previousState) {
-  //const newState = new Map<Link, boolean>(focusedLinks);
-  //newState.set(link, focused);
-  //setFocusedLinks(newState);
-  //}
-  //}
-  //};
-
   //const sillyRerenderTrick = (): void => {
   //setTimeout((): void => {
   //const newState = new Map<Link, boolean>(focusedLinks);
   //setFocusedLinks(newState);
   //}, 1);
   //};
-
-  //const setSegmentFocused = (
-  //links: Link[],
-  //textSegment: TextSegment,
-  //isHovered: boolean
-  //): void => {
-  //const link = findLinkForTextSegment(links, textSegment);
-  //if (link) {
-  //if (isHovered) {
-  //dispatch({ type: 'focusLink', payload: { link } });
-  //}
-  //dispatch({ type: 'unFocusLink', payload: { link } });
-  //}
-  //}k;
 
   const [sourceDirection, setSourceDirection] = useState<Direction>('ltr');
   const [targetDirection, setTargetDirection] = useState<Direction>('ltr');
@@ -159,7 +112,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   const configuredStyle =
     props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
   const textDirectionToggle = props.displayStyle === 'full' ? true : false;
-  console.log(parentRef, links);
   return (
     <div
       id="alignment-canvas"
@@ -174,8 +126,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
         refGatherer={setRef.bind(null, 'source')}
-        selectTextSegmentFunc={selectTextSegmentFunc}
-        deSelectTextSegmentFunc={deSelectTextSegmentFunc}
         links={links}
         direction={sourceDirection}
         toggleDirection={toggleDirection.bind(null, 'source')}
@@ -186,7 +136,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
       <div id="links-container" style={{ position: 'relative' }}>
         {parentRef &&
           links.map((link: Link) => {
-            console.log('map a link', link);
             return (
               <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
@@ -209,8 +158,6 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
         textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
         refGatherer={setRef.bind(null, 'target')}
-        selectTextSegmentFunc={selectTextSegmentFunc}
-        deSelectTextSegmentFunc={deSelectTextSegmentFunc}
         links={links}
         direction={targetDirection}
         toggleDirection={toggleDirection.bind(null, 'target')}
@@ -223,4 +170,4 @@ export const LinksContainer = (props: LinksContainerProps): ReactElement => {
   );
 };
 
-export default LinksContainer;
+export default LineView;
