@@ -92,8 +92,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
         links={links}
-        direction={sourceDirection}
-        toggleDirection={toggleDirection.bind(null, 'source')}
         toggleTextSelectionFunc={toggleTextSelection}
         segmentSelections={selectedSourceTextSegments}
       />
@@ -120,8 +118,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
         links={links}
-        direction={targetDirection}
-        toggleDirection={toggleDirection.bind(null, 'target')}
         toggleTextSelectionFunc={toggleTextSelection}
         segmentSelections={selectedTargetTextSegments}
       />

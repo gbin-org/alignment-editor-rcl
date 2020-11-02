@@ -1,7 +1,12 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { AlignmentContext } from 'contexts/alignment';
+import {
+  AlignmentActionTypes,
+  AlignmentState,
+} from 'contexts/alignment/reducer';
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType, Link } from 'core/structs';
@@ -11,11 +16,9 @@ type Direction = 'ltr' | 'rtl';
 
 interface TextPortionProps {
   type: TextSegmentType;
+  textDirectionToggle: boolean;
   textSegments: TextSegment[];
   links: Link[];
-  direction: Direction;
-  toggleDirection: (oldState: Direction) => void;
-  textDirectionToggle: boolean;
   displayStyle: 'line' | 'paragraph';
   toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
   segmentSelections: Record<number, boolean>;
@@ -29,7 +32,11 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
 };
 
-const textDirectionToggle = (props: TextPortionProps): ReactElement => {
+const textDirectionToggle = (
+  props: TextPortionProps,
+  dispatch: React.Dispatch<AlignmentActionTypes>,
+  state: AlignmentState
+): ReactElement => {
   if (props.textDirectionToggle) {
     return (
       <FontAwesomeIcon
@@ -44,7 +51,22 @@ const textDirectionToggle = (props: TextPortionProps): ReactElement => {
           padding: '0.3rem',
         }}
         onClick={(): void => {
-          props.toggleDirection(props.direction);
+          if (props.type === 'source') {
+            const newDirection =
+              state.sourceTextDirection === 'ltr' ? 'rtl' : 'ltr';
+            dispatch({
+              type: 'changeSourceTextDirection',
+              payload: { textDirection: newDirection },
+            });
+          }
+          if (props.type === 'target') {
+            const newDirection =
+              state.targetTextDirection === 'ltr' ? 'rtl' : 'ltr';
+            dispatch({
+              type: 'changeTargetTextDirection',
+              payload: { textDirection: newDirection },
+            });
+          }
         }}
       />
     );
@@ -56,18 +78,24 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     type,
     textSegments,
     links,
-    direction,
     displayStyle,
     toggleTextSelectionFunc,
     segmentSelections,
   } = props;
+
+  const { state, dispatch } = useContext(AlignmentContext);
+
+  const direction =
+    props.type === 'source'
+      ? state.sourceTextDirection
+      : state.targetTextDirection;
 
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
 
   return (
     <div style={{ display: 'flex', alignContent: 'center' }}>
-      {textDirectionToggle(props)}
+      {textDirectionToggle(props, dispatch, state)}
 
       <div
         className={`${type}-container`}

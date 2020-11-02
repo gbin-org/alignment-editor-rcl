@@ -92,28 +92,8 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
-    console.log('USE EFFECT paragraph');
     dispatch({ type: 'setLinks', payload: { links } });
   }, []);
-
-  //const sillyRerenderTrick = (): void => {
-  //setTimeout((): void => {
-  //const newState = new Map<Link, boolean>(focusedLinks);
-  //setFocusedLinks(newState);
-  //}, 1);
-  //};
-
-  const [sourceDirection, setSourceDirection] = useState<Direction>('ltr');
-  const [targetDirection, setTargetDirection] = useState<Direction>('ltr');
-
-  const toggleDirection = (portion: Portion, oldState: Direction): void => {
-    const setter =
-      portion === 'source' ? setSourceDirection : setTargetDirection;
-    const newDirection = oldState === 'ltr' ? 'rtl' : 'ltr';
-    setter(newDirection);
-    // WOE is me, for I am undone.
-    //sillyRerenderTrick();
-  };
 
   const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
     Record<number, boolean>
@@ -154,8 +134,7 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             type="source"
             textSegments={sourceSegments}
             links={links}
-            direction={sourceDirection}
-            toggleDirection={toggleDirection.bind(null, 'source')}
+            //toggleDirection={toggleDirection.bind(null, 'source')}
             toggleTextSelectionFunc={toggleTextSelection}
             segmentSelections={selectedSourceTextSegments}
           />
@@ -176,8 +155,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             type="target"
             textSegments={targetSegments}
             links={links}
-            direction={targetDirection}
-            toggleDirection={toggleDirection.bind(null, 'target')}
             toggleTextSelectionFunc={toggleTextSelection}
             segmentSelections={selectedTargetTextSegments}
           />

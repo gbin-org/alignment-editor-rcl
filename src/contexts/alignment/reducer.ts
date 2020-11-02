@@ -42,6 +42,16 @@ interface AddParentRefAction extends Action {
   payload: { ref: HTMLDivElement };
 }
 
+interface ChangeSourceTextDirection extends Action {
+  type: 'changeSourceTextDirection';
+  payload: { textDirection: 'ltr' | 'rtl' };
+}
+
+interface ChangeTargetTextDirection extends Action {
+  type: 'changeTargetTextDirection';
+  payload: { textDirection: 'ltr' | 'rtl' };
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -49,7 +59,9 @@ export type AlignmentActionTypes =
   | SwitchViewAction
   | AddSourceRefAction
   | AddTargetRefAction
-  | AddParentRefAction;
+  | AddParentRefAction
+  | ChangeSourceTextDirection
+  | ChangeTargetTextDirection;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -58,6 +70,8 @@ export type AlignmentState = {
   sourceRefs: Record<number, HTMLDivElement>;
   targetRefs: Record<number, HTMLDivElement>;
   parentRef: HTMLDivElement | null;
+  sourceTextDirection: 'ltr' | 'rtl';
+  targetTextDirection: 'ltr' | 'rtl';
 };
 
 export const initialState: AlignmentState = {
@@ -67,6 +81,8 @@ export const initialState: AlignmentState = {
   sourceRefs: {},
   targetRefs: {},
   parentRef: null,
+  sourceTextDirection: 'ltr',
+  targetTextDirection: 'ltr',
 };
 
 export const reducer = (
@@ -105,6 +121,11 @@ export const reducer = (
       };
     case 'addParentRef':
       return { ...state, parentRef: action.payload.ref };
+    case 'changeSourceTextDirection':
+      return { ...state, sourceTextDirection: action.payload.textDirection };
+    case 'changeTargetTextDirection':
+      return { ...state, targetTextDirection: action.payload.textDirection };
+
     default:
       return state;
   }
