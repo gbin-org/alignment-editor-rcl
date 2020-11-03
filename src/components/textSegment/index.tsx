@@ -1,21 +1,19 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 
+import { AlignmentActionTypes } from 'contexts/alignment/reducer';
+
+import { AlignmentContext } from 'contexts/alignment';
 import { TextSegment, TextSegmentType } from 'core/structs';
+import { Link } from 'core/structs/link';
 
 import 'components/textSegment/textSegmentStyle.scss';
 
 export interface TextSegmentProps {
   segmentData: TextSegment;
-  refGatherer: (ref: HTMLDivElement | null) => void;
-  toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
-  //selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  //deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   isDisabled: boolean;
   isSelected: boolean;
   isLinked: boolean;
-  isFocused: boolean;
   group: number;
-  hoverHook: (isHovered: boolean) => void;
   displayStyle: 'line' | 'paragraph';
 }
 
@@ -230,31 +228,80 @@ const paragraphDisplayStyle = { display: 'inline-block', marginTop: '1rem' };
 //return null;
 //};
 
+const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link|undefined => {
+return links.find((link: Link): boolean =>{ 
+
+        if (textSegment.type === 'source') { return link.sources.includes(textSegment.position)} 
+        if (textSegment.type === 'target') { return link.targets.includes(textSegment.position)} return false});
+
+};
+
+const handleClick = (
+  type: TextSegmentType,
+  position: number,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  if (type === 'source') {
+    dispatch({
+      type: `toggleSelectedSourceTextSegment`,
+      payload: { position },
+    });
+  }
+  if (type === 'target') {
+    dispatch({
+      type: `toggleSelectedTargetTextSegment`,
+      payload: { position },
+    });
+  }
+};
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     segmentData,
     isSelected,
     isLinked,
     isDisabled,
-    isFocused,
     group,
-    refGatherer,
-    hoverHook,
     displayStyle,
-    toggleTextSelectionFunc,
   } = props;
   //const color = segmentColors[segmentData.color || 0];
-  const selectedClass = isSelected ? "selected" : "";
-  const disabledClass = isDisabled ? "disabled" : "";
-  const linkedClass = isLinked ? "linked" : "not-linked";
+
+  const { state, dispatch } = useContext(AlignmentContext);
+
+  const relatedLink = findRelatedLink(segmentData, state.links);
+
+  const selectedClass = isSelected ? 'selected' : '';
+  const disabledClass = isDisabled ? 'disabled' : '';
+  const linkedClass = isLinked ? 'linked' : 'not-linked';
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
-  const focusedClass = isFocused ? "focused" : "";
-  const containerStyle = displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
+  const focusedClass =
+    relatedLink && state.focusedLinks.get(relatedLink) ? 'focused' : '';
+  const containerStyle =
+    displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
+
   return (
     <div
       style={containerStyle}
-      ref={refGatherer}
+      ref={(ref: HTMLDivElement) => {
+        if (ref && displayStyle === 'line') {
+          if (segmentData.type === 'source') {
+            if (state.sourceRefs[segmentData.position] !== ref) {
+              dispatch({
+                type: 'addSourceRef',
+                payload: { position: segmentData.position, ref: ref },
+              });
+            }
+          }
+          if (state.targetRefs[segmentData.position] !== ref) {
+            if (segmentData.type === 'target') {
+              dispatch({
+                type: 'addTargetRef',
+                payload: { position: segmentData.position, ref: ref },
+              });
+            }
+          }
+        }
+      }}
       className={`${segmentData.type}${segmentData.position}`}
     >
       {/*enrichedDataTop(props)*/}
@@ -262,17 +309,21 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         role="button"
         className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
-        onClick={(): void => {
-            toggleTextSelectionFunc(segmentData.type, segmentData.position);
+        onClick={() => {
+          handleClick(segmentData.type, segmentData.position, dispatch);
         }}
-        onKeyPress={(): void => {
-           toggleTextSelectionFunc(segmentData.type, segmentData.position);
+        onKeyPress={() => {
+          handleClick(segmentData.type, segmentData.position, dispatch);
         }}
         onMouseOver={() => {
-          hoverHook(true);
+          if (relatedLink) {
+            dispatch({ type: 'focusLink', payload: { link: relatedLink } });
+          }
         }}
         onMouseLeave={() => {
-          hoverHook(false);
+          if (relatedLink) {
+            dispatch({ type: 'unFocusLink', payload: { link: relatedLink } });
+          }
         }}
       >
         {segmentData.text}

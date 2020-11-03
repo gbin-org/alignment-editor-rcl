@@ -1,7 +1,12 @@
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
+import { AlignmentContext } from 'contexts/alignment';
+import {
+  AlignmentActionTypes,
+  AlignmentState,
+} from 'contexts/alignment/reducer';
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType, Link } from 'core/structs';
@@ -11,19 +16,10 @@ type Direction = 'ltr' | 'rtl';
 
 interface TextPortionProps {
   type: TextSegmentType;
-  textSegments: TextSegment[];
-  refGatherer: (position: number, ref: HTMLDivElement | null) => void;
-  selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  links: Link[];
-  focusedLinks: Map<Link, boolean>;
-  segmentHovered: (textSegment: TextSegment, isHovered: boolean) => void;
-  direction: Direction;
-  toggleDirection: (oldState: Direction) => void;
   textDirectionToggle: boolean;
+  textSegments: TextSegment[];
+  links: Link[];
   displayStyle: 'line' | 'paragraph';
-  toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
-  segmentSelections: Record<number, boolean>;
 }
 
 const lineDisplayStyle = {
@@ -34,19 +30,11 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
 };
 
-const isFocused = (
-  links: Link[],
-  focusedLinks: Map<Link, boolean>,
-  textSegment: TextSegment
-): boolean => {
-  const link = findLinkForTextSegment(links, textSegment);
-  if (link && focusedLinks) {
-    return focusedLinks.get(link) ?? false;
-  }
-  return false;
-};
-
-const textDirectionToggle = (props: TextPortionProps): ReactElement => {
+const textDirectionToggle = (
+  props: TextPortionProps,
+  dispatch: React.Dispatch<AlignmentActionTypes>,
+  state: AlignmentState
+): ReactElement => {
   if (props.textDirectionToggle) {
     return (
       <FontAwesomeIcon
@@ -61,7 +49,24 @@ const textDirectionToggle = (props: TextPortionProps): ReactElement => {
           padding: '0.3rem',
         }}
         onClick={(): void => {
-          props.toggleDirection(props.direction);
+          if (props.type === 'source') {
+            const newDirection =
+              state.sourceTextDirection === 'ltr' ? 'rtl' : 'ltr';
+            dispatch({
+              type: 'changeSourceTextDirection',
+              payload: { textDirection: newDirection },
+            });
+            dispatch({ type: 'redrawUI', payload: {} });
+          }
+          if (props.type === 'target') {
+            const newDirection =
+              state.targetTextDirection === 'ltr' ? 'rtl' : 'ltr';
+            dispatch({
+              type: 'changeTargetTextDirection',
+              payload: { textDirection: newDirection },
+            });
+            dispatch({ type: 'redrawUI', payload: {} });
+          }
         }}
       />
     );
@@ -69,25 +74,26 @@ const textDirectionToggle = (props: TextPortionProps): ReactElement => {
   return <></>;
 };
 export const TextPortion = (props: TextPortionProps): ReactElement => {
-  const {
-    type,
-    refGatherer,
-    textSegments,
-    links,
-    focusedLinks,
-    segmentHovered,
-    direction,
-    displayStyle,
-    toggleTextSelectionFunc,
-    segmentSelections,
-  } = props;
+  const { type, textSegments, links, displayStyle } = props;
+
+  const { state, dispatch } = useContext(AlignmentContext);
+
+  const direction =
+    props.type === 'source'
+      ? state.sourceTextDirection
+      : state.targetTextDirection;
 
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
 
+  const segmentSelections =
+    props.type === 'source'
+      ? state.selectedSourceTextSegments
+      : state.selectedTargetTextSegments;
+
   return (
     <div style={{ display: 'flex', alignContent: 'center' }}>
-      {textDirectionToggle(props)}
+      {textDirectionToggle(props, dispatch, state)}
 
       <div
         className={`${type}-container`}
@@ -100,18 +106,11 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
             return (
               <TextSegmentComponent
                 key={`${type}-${textSegment.position}`}
-                refGatherer={refGatherer.bind(null, textSegment.position)}
                 segmentData={textSegment}
                 isDisabled={textSegment.catIsContent === false ?? false}
-                isSelected={
-                  segmentSelections &&
-                  (segmentSelections[textSegment.position] ?? false)
-                }
+                isSelected={segmentSelections[textSegment.position] ?? false}
                 isLinked={Boolean(relatedLink)}
                 group={determineGroup(links, linkIndex)}
-                isFocused={isFocused(links, focusedLinks, textSegment)}
-                hoverHook={segmentHovered.bind(null, textSegment)}
-                toggleTextSelectionFunc={toggleTextSelectionFunc}
                 displayStyle={displayStyle}
               />
             );

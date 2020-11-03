@@ -1,15 +1,14 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useContext } from 'react';
 
 import './linkStyle.scss';
 
+import { AlignmentContext } from 'contexts/alignment';
+import { Link } from 'core/structs';
+
 export interface LinkProps {
+  link: Link;
   sourcePosition: number;
   targetPosition: number;
-  parentRef: HTMLDivElement;
-  sourceRef: HTMLDivElement;
-  targetRef: HTMLDivElement;
-  hoverHook: (isHovered: boolean) => void;
-  isFocused: boolean;
 }
 
 function useForceUpdate() {
@@ -18,30 +17,27 @@ function useForceUpdate() {
 }
 
 export const LinkComponent = (props: LinkProps): ReactElement => {
-  const {
-    sourcePosition,
-    targetPosition,
-    parentRef,
-    sourceRef,
-    targetRef,
-    hoverHook,
-    isFocused,
-  } = props;
+  const { sourcePosition, targetPosition, link } = props;
+  const { state, dispatch } = useContext(AlignmentContext);
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
   //const color = '#c8c8c8';
   const disabled = '';
-  const focused = isFocused ? 'focused' : '';
+  const focused = state.focusedLinks.get(link) ? 'focused' : '';
   const name = `source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
-  console.log('parent', 'source', 'target');
-  console.log(parentRef, sourceRef, targetRef);
+  const sourceRef = state.sourceRefs[sourcePosition];
+  const targetRef = state.targetRefs[targetPosition];
+  const parentRef = state.parentRef;
 
   if (parentRef && sourceRef && targetRef) {
-    const beginningOffsetX = parentRef.offsetLeft ?? 0;
-    const beginningOffsetY = parentRef.offsetTop ?? 0;
+    const parentOffsetX = parentRef.offsetLeft ?? 0;
+    const parentOffsetY = parentRef.offsetTop ?? 0;
+
+    const beginningOffsetX = parentOffsetX;
+    const beginningOffsetY = parentOffsetY;
 
     const basePositionX =
       window.pageXOffset -
@@ -62,7 +58,6 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     const x2 = basePositionX + targetRef.offsetLeft + targetRect.width * 0.5;
     const y2 = basePositionY + targetRef.offsetTop - targetRect.height * 1.8;
 
-    console.log(x1, y1, x2, y2);
     return (
       <svg
         className="link-canvas"
@@ -80,10 +75,10 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
           y2={y2}
           onClick={forceUpdate}
           onMouseOver={() => {
-            hoverHook(true);
+            dispatch({ type: 'focusLink', payload: { link } });
           }}
           onMouseLeave={() => {
-            hoverHook(false);
+            dispatch({ type: 'unFocusLink', payload: { link } });
           }}
         />
       </svg>
