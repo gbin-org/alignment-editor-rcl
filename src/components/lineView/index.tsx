@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext } from 'react';
+import React, { ReactElement, useEffect, useContext } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
 
@@ -30,11 +30,20 @@ export const LineView = (props: LineViewProps): ReactElement => {
   const configuredStyle =
     props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
   const textDirectionToggle = props.displayStyle === 'full' ? true : false;
+
+  useEffect(() => {
+    dispatch({ type: 'redrawUI', payload: {} });
+  }, []);
+
   return (
     <div
       id="alignment-canvas"
       ref={(ref: HTMLDivElement) => {
-        if (ref !== state.parentRef) {
+        if (
+          ref &&
+          (state.parentRef === null ||
+            ref.valueOf() !== state.parentRef.valueOf())
+        ) {
           dispatch({ type: 'addParentRef', payload: { ref: ref } });
         }
       }}

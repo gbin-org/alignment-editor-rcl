@@ -58,8 +58,6 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
     const x2 = basePositionX + targetRef.offsetLeft + targetRect.width * 0.5;
     const y2 = basePositionY + targetRef.offsetTop - targetRect.height * 1.8;
 
-    console.log(x1, y1, x2, y2);
-
     return (
       <svg
         className="link-canvas"
@@ -80,7 +78,6 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
             dispatch({ type: 'focusLink', payload: { link } });
           }}
           onMouseLeave={() => {
-            console.log('onMouseLeave');
             dispatch({ type: 'unFocusLink', payload: { link } });
           }}
         />

@@ -56,6 +56,7 @@ const textDirectionToggle = (
               type: 'changeSourceTextDirection',
               payload: { textDirection: newDirection },
             });
+            dispatch({ type: 'redrawUI', payload: {} });
           }
           if (props.type === 'target') {
             const newDirection =
@@ -64,6 +65,7 @@ const textDirectionToggle = (
               type: 'changeTargetTextDirection',
               payload: { textDirection: newDirection },
             });
+            dispatch({ type: 'redrawUI', payload: {} });
           }
         }}
       />

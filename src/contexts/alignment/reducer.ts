@@ -62,6 +62,11 @@ interface ToggleSelectedTargetTextSegment extends Action {
   payload: { position: number };
 }
 
+interface RedrawUI extends Action {
+  type: 'redrawUI';
+  payload: {};
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -73,7 +78,8 @@ export type AlignmentActionTypes =
   | ChangeSourceTextDirection
   | ChangeTargetTextDirection
   | ToggleSelectedSourceTextSegment
-  | ToggleSelectedTargetTextSegment;
+  | ToggleSelectedTargetTextSegment
+  | RedrawUI;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -161,6 +167,8 @@ export const reducer = (
           ],
         },
       };
+    case 'redrawUI':
+      return { ...state, parentRef: null };
 
     default:
       return state;
