@@ -20,8 +20,6 @@ interface TextPortionProps {
   textSegments: TextSegment[];
   links: Link[];
   displayStyle: 'line' | 'paragraph';
-  toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
-  segmentSelections: Record<number, boolean>;
 }
 
 const lineDisplayStyle = {
@@ -74,14 +72,7 @@ const textDirectionToggle = (
   return <></>;
 };
 export const TextPortion = (props: TextPortionProps): ReactElement => {
-  const {
-    type,
-    textSegments,
-    links,
-    displayStyle,
-    toggleTextSelectionFunc,
-    segmentSelections,
-  } = props;
+  const { type, textSegments, links, displayStyle } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
@@ -92,6 +83,11 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
 
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
+
+  const segmentSelections =
+    props.type === 'source'
+      ? state.selectedSourceTextSegments
+      : state.selectedTargetTextSegments;
 
   return (
     <div style={{ display: 'flex', alignContent: 'center' }}>
@@ -110,13 +106,9 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 key={`${type}-${textSegment.position}`}
                 segmentData={textSegment}
                 isDisabled={textSegment.catIsContent === false ?? false}
-                isSelected={
-                  segmentSelections &&
-                  (segmentSelections[textSegment.position] ?? false)
-                }
+                isSelected={segmentSelections[textSegment.position] ?? false}
                 isLinked={Boolean(relatedLink)}
                 group={determineGroup(links, linkIndex)}
-                toggleTextSelectionFunc={toggleTextSelectionFunc}
                 displayStyle={displayStyle}
               />
             );

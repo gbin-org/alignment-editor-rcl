@@ -52,6 +52,16 @@ interface ChangeTargetTextDirection extends Action {
   payload: { textDirection: 'ltr' | 'rtl' };
 }
 
+interface ToggleSelectedSourceTextSegment extends Action {
+  type: 'toggleSelectedSourceTextSegment';
+  payload: { position: number };
+}
+
+interface ToggleSelectedTargetTextSegment extends Action {
+  type: 'toggleSelectedTargetTextSegment';
+  payload: { position: number };
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -61,7 +71,9 @@ export type AlignmentActionTypes =
   | AddTargetRefAction
   | AddParentRefAction
   | ChangeSourceTextDirection
-  | ChangeTargetTextDirection;
+  | ChangeTargetTextDirection
+  | ToggleSelectedSourceTextSegment
+  | ToggleSelectedTargetTextSegment;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -72,6 +84,8 @@ export type AlignmentState = {
   parentRef: HTMLDivElement | null;
   sourceTextDirection: 'ltr' | 'rtl';
   targetTextDirection: 'ltr' | 'rtl';
+  selectedSourceTextSegments: Record<number, boolean>;
+  selectedTargetTextSegments: Record<number, boolean>;
 };
 
 export const initialState: AlignmentState = {
@@ -83,6 +97,8 @@ export const initialState: AlignmentState = {
   parentRef: null,
   sourceTextDirection: 'ltr',
   targetTextDirection: 'ltr',
+  selectedSourceTextSegments: {},
+  selectedTargetTextSegments: {},
 };
 
 export const reducer = (
@@ -125,6 +141,26 @@ export const reducer = (
       return { ...state, sourceTextDirection: action.payload.textDirection };
     case 'changeTargetTextDirection':
       return { ...state, targetTextDirection: action.payload.textDirection };
+    case 'toggleSelectedSourceTextSegment':
+      return {
+        ...state,
+        selectedSourceTextSegments: {
+          ...state.selectedSourceTextSegments,
+          [action.payload.position]: !state.selectedSourceTextSegments[
+            action.payload.position
+          ],
+        },
+      };
+    case 'toggleSelectedTargetTextSegment':
+      return {
+        ...state,
+        selectedTargetTextSegments: {
+          ...state.selectedTargetTextSegments,
+          [action.payload.position]: !state.selectedTargetTextSegments[
+            action.payload.position
+          ],
+        },
+      };
 
     default:
       return state;

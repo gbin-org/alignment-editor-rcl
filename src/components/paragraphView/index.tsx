@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useContext, useEffect } from 'react';
+import React, { ReactElement, useContext, useEffect } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
 
@@ -95,31 +95,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
     dispatch({ type: 'setLinks', payload: { links } });
   }, []);
 
-  const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
-    Record<number, boolean>
-  >({});
-  const [selectedTargetTextSegments, setSelectedTargetTextSegments] = useState<
-    Record<number, boolean>
-  >({});
-
-  const toggleTextSelection = (type: Portion, position: number): void => {
-    if (type === 'source') {
-      const newState = {
-        ...selectedSourceTextSegments,
-        [position]: !selectedSourceTextSegments[position],
-      };
-      setSelectedSourceTextSegments(newState);
-    }
-
-    if (type === 'target') {
-      const newState = {
-        ...selectedTargetTextSegments,
-        [position]: !selectedTargetTextSegments[position],
-      };
-      setSelectedTargetTextSegments(newState);
-    }
-  };
-
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
       <div>
@@ -134,9 +109,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             type="source"
             textSegments={sourceSegments}
             links={links}
-            //toggleDirection={toggleDirection.bind(null, 'source')}
-            toggleTextSelectionFunc={toggleTextSelection}
-            segmentSelections={selectedSourceTextSegments}
           />
         </div>
 
@@ -155,8 +127,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             type="target"
             textSegments={targetSegments}
             links={links}
-            toggleTextSelectionFunc={toggleTextSelection}
-            segmentSelections={selectedTargetTextSegments}
           />
         </div>
       </div>
@@ -172,8 +142,8 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
         {singleLinkAlignment(
           props,
           state.focusedLinks,
-          selectedSourceTextSegments,
-          selectedTargetTextSegments
+          state.selectedSourceTextSegments,
+          state.selectedTargetTextSegments
         )}
       </div>
     </div>

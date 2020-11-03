@@ -1,17 +1,15 @@
 import React, { ReactElement, useContext } from 'react';
 
+import { AlignmentActionTypes } from 'contexts/alignment/reducer';
+
 import { AlignmentContext } from 'contexts/alignment';
 import { TextSegment, TextSegmentType } from 'core/structs';
-//import { findLinkForTextSegment } from 'core/findLink';
 import { Link } from 'core/structs/link';
 
 import 'components/textSegment/textSegmentStyle.scss';
 
 export interface TextSegmentProps {
   segmentData: TextSegment;
-  toggleTextSelectionFunc: (type: TextSegmentType, position: number) => void;
-  //selectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
-  //deSelectTextSegmentFunc: (type: TextSegmentType, position: number) => void;
   isDisabled: boolean;
   isSelected: boolean;
   isLinked: boolean;
@@ -238,6 +236,24 @@ return links.find((link: Link): boolean =>{
 
 };
 
+const handleClick = (
+  type: TextSegmentType,
+  position: number,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  if (type === 'source') {
+    dispatch({
+      type: `toggleSelectedSourceTextSegment`,
+      payload: { position },
+    });
+  }
+  if (type === 'target') {
+    dispatch({
+      type: `toggleSelectedTargetTextSegment`,
+      payload: { position },
+    });
+  }
+};
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     segmentData,
@@ -246,7 +262,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     isDisabled,
     group,
     displayStyle,
-    toggleTextSelectionFunc,
   } = props;
   //const color = segmentColors[segmentData.color || 0];
 
@@ -263,7 +278,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
-  console.log(displayStyle);
+
   return (
     <div
       style={containerStyle}
@@ -294,11 +309,11 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         role="button"
         className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
-        onClick={(): void => {
-          toggleTextSelectionFunc(segmentData.type, segmentData.position);
+        onClick={() => {
+          handleClick(segmentData.type, segmentData.position, dispatch);
         }}
-        onKeyPress={(): void => {
-          toggleTextSelectionFunc(segmentData.type, segmentData.position);
+        onKeyPress={() => {
+          handleClick(segmentData.type, segmentData.position, dispatch);
         }}
         onMouseOver={() => {
           if (relatedLink) {

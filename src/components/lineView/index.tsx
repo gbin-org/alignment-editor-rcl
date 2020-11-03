@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, useContext } from 'react';
+import React, { ReactElement, useContext } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
 
@@ -27,50 +27,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  //const sillyRerenderTrick = (): void => {
-  //setTimeout((): void => {
-  //const newState = new Map<Link, boolean>(focusedLinks);
-  //setFocusedLinks(newState);
-  //}, 1);
-  //};
-
-  const [sourceDirection, setSourceDirection] = useState<Direction>('ltr');
-  const [targetDirection, setTargetDirection] = useState<Direction>('ltr');
-
-  const toggleDirection = (portion: Portion, oldState: Direction): void => {
-    const setter =
-      portion === 'source' ? setSourceDirection : setTargetDirection;
-    const newDirection = oldState === 'ltr' ? 'rtl' : 'ltr';
-    setter(newDirection);
-    // WOE is me, for I am undone.
-    //sillyRerenderTrick();
-  };
-
-  const [selectedSourceTextSegments, setSelectedSourceTextSegments] = useState<
-    Record<number, boolean>
-  >({});
-  const [selectedTargetTextSegments, setSelectedTargetTextSegments] = useState<
-    Record<number, boolean>
-  >({});
-
-  const toggleTextSelection = (type: Portion, position: number): void => {
-    if (type === 'source') {
-      const newState = {
-        ...selectedSourceTextSegments,
-        [position]: !selectedSourceTextSegments[position],
-      };
-      setSelectedSourceTextSegments(newState);
-    }
-
-    if (type === 'target') {
-      const newState = {
-        ...selectedTargetTextSegments,
-        [position]: !selectedTargetTextSegments[position],
-      };
-      setSelectedTargetTextSegments(newState);
-    }
-  };
-
   const configuredStyle =
     props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
   const textDirectionToggle = props.displayStyle === 'full' ? true : false;
@@ -92,8 +48,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
         links={links}
-        toggleTextSelectionFunc={toggleTextSelection}
-        segmentSelections={selectedSourceTextSegments}
       />
 
       <div id="links-container" style={{ position: 'relative' }}>
@@ -118,8 +72,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
         links={links}
-        toggleTextSelectionFunc={toggleTextSelection}
-        segmentSelections={selectedTargetTextSegments}
       />
 
       <div style={{ margin: '0.5rem' }} />
