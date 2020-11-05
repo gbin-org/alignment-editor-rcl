@@ -1,4 +1,4 @@
-import React, { ReactElement, useContext, useEffect } from 'react';
+import React, { ReactElement, useContext } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
 
@@ -11,7 +11,6 @@ type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
 interface LinksContainerProps {
-  links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
@@ -44,13 +43,6 @@ const singleLinkAlignment = (
         sourceSegments={selectedSources}
         targetDirection={'rtl'}
         targetSegments={selectedTargets}
-        links={[
-          {
-            sources: [selectedSources[0]?.position],
-            targets: [selectedTargets[0]?.position],
-            type: 'manual',
-          },
-        ]}
       />
     );
   }
@@ -75,7 +67,6 @@ const singleLinkAlignment = (
                   return link.targets.includes(targetSegment.position);
                 }
               )}
-              links={[link]}
             />
           );
         }
@@ -87,13 +78,9 @@ const singleLinkAlignment = (
 };
 
 export const ParagraphView = (props: LinksContainerProps): ReactElement => {
-  const { links, sourceSegments, targetSegments } = props;
+  const { sourceSegments, targetSegments } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
-
-  useEffect(() => {
-    dispatch({ type: 'setLinks', payload: { links } });
-  }, []);
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
@@ -108,7 +95,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             displayStyle="paragraph"
             type="source"
             textSegments={sourceSegments}
-            links={links}
           />
         </div>
 
@@ -126,7 +112,6 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
             textDirectionToggle={false}
             type="target"
             textSegments={targetSegments}
-            links={links}
           />
         </div>
       </div>

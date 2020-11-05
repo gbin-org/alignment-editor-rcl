@@ -1,4 +1,6 @@
 import React, { ReactElement, useContext, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
@@ -20,7 +22,6 @@ const selectedView = (
   if (state.view === 'paragraph') {
     return (
       <ParagraphView
-        links={props.links}
         sourceSegments={props.sourceSegments}
         targetSegments={props.targetSegments}
         sourceDirection="ltr"
@@ -31,7 +32,6 @@ const selectedView = (
   if (state.view === 'line') {
     return (
       <LineView
-        links={props.links}
         sourceSegments={props.sourceSegments}
         targetSegments={props.targetSegments}
         sourceDirection="ltr"
@@ -54,15 +54,62 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
 
   return (
     <div className="alignment-editor-root">
-      <button
-        onClick={() => {
-          const newView = state.view === 'paragraph' ? 'line' : 'paragraph';
-          dispatch({ type: 'switchView', payload: { view: newView } });
+      {selectedView(props, state)}
+
+      <div
+        className="control-panel"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
-        Toggle View Type
-      </button>
-      {selectedView(props, state)}
+        <button
+          style={{ cursor: 'pointer', margin: '0.5rem' }}
+          onClick={() => {
+            const newView = state.view === 'paragraph' ? 'line' : 'paragraph';
+            dispatch({ type: 'switchView', payload: { view: newView } });
+          }}
+        >
+          Toggle View Type
+        </button>
+        <FontAwesomeIcon
+          icon={faLink}
+          style={{ cursor: 'pointer', fontSize: '1.5rem', margin: '0.5rem' }}
+          onClick={(): void => {
+            const selectedSourceSegments = Object.keys(
+              state.selectedSourceTextSegments
+            )
+              .filter((key) => {
+                return state.selectedSourceTextSegments[Number(key)];
+              })
+              .map((key) => Number(key));
+
+            const selectedTargetSegments = Object.keys(
+              state.selectedTargetTextSegments
+            )
+              .filter((key) => {
+                return state.selectedTargetTextSegments[Number(key)];
+              })
+              .map((key) => Number(key));
+
+            if (
+              selectedSourceSegments.length &&
+              selectedTargetSegments.length
+            ) {
+              dispatch({
+                type: 'addLink',
+                payload: {
+                  sources: selectedSourceSegments,
+                  targets: selectedTargetSegments,
+                },
+              });
+              dispatch({ type: 'redrawUI', payload: {} });
+            }
+          }}
+        />
+      </div>
     </div>
   );
 };

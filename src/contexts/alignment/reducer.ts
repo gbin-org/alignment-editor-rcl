@@ -67,6 +67,11 @@ interface RedrawUI extends Action {
   payload: {};
 }
 
+interface AddLink extends Action {
+  type: 'addLink';
+  payload: { sources: number[]; targets: number[] };
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -79,7 +84,8 @@ export type AlignmentActionTypes =
   | ChangeTargetTextDirection
   | ToggleSelectedSourceTextSegment
   | ToggleSelectedTargetTextSegment
-  | RedrawUI;
+  | RedrawUI
+  | AddLink;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -169,6 +175,17 @@ export const reducer = (
       };
     case 'redrawUI':
       return { ...state, parentRef: null };
+    case 'addLink':
+      return {
+        ...state,
+        links: state.links.concat({
+          sources: action.payload.sources,
+          targets: action.payload.targets,
+          type: 'manual',
+        }),
+        selectedSourceTextSegments: {},
+        selectedTargetTextSegments: {},
+      };
 
     default:
       return state;

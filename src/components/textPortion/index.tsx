@@ -18,7 +18,6 @@ interface TextPortionProps {
   type: TextSegmentType;
   textDirectionToggle: boolean;
   textSegments: TextSegment[];
-  links: Link[];
   displayStyle: 'line' | 'paragraph';
 }
 
@@ -74,7 +73,7 @@ const textDirectionToggle = (
   return <></>;
 };
 export const TextPortion = (props: TextPortionProps): ReactElement => {
-  const { type, textSegments, links, displayStyle } = props;
+  const { type, textSegments, displayStyle } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
@@ -101,8 +100,13 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
       >
         {textSegments.map(
           (textSegment, index): ReactElement => {
-            const relatedLink = findLinkForTextSegment(links, textSegment);
-            const linkIndex = relatedLink ? links.indexOf(relatedLink) : index;
+            const relatedLink = findLinkForTextSegment(
+              state.links,
+              textSegment
+            );
+            const linkIndex = relatedLink
+              ? state.links.indexOf(relatedLink)
+              : index;
             return (
               <TextSegmentComponent
                 key={`${type}-${textSegment.position}`}
@@ -110,7 +114,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 isDisabled={textSegment.catIsContent === false ?? false}
                 isSelected={segmentSelections[textSegment.position] ?? false}
                 isLinked={Boolean(relatedLink)}
-                group={determineGroup(links, linkIndex)}
+                group={determineGroup(state.links, linkIndex)}
                 displayStyle={displayStyle}
               />
             );

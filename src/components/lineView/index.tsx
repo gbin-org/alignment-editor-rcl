@@ -11,7 +11,6 @@ type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
 interface LineViewProps {
-  links: Link[];
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
@@ -23,7 +22,7 @@ const fullDisplayStyle = { margin: '14rem' };
 const partialDisplayStyle = { margin: '10rem' };
 
 export const LineView = (props: LineViewProps): ReactElement => {
-  const { links, sourceSegments, targetSegments } = props;
+  const { sourceSegments, targetSegments } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
@@ -56,12 +55,11 @@ export const LineView = (props: LineViewProps): ReactElement => {
         displayStyle="line"
         textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
-        links={links}
       />
 
       <div id="links-container" style={{ position: 'relative' }}>
         {state.parentRef &&
-          links.map((link: Link) => {
+          state.links.map((link: Link) => {
             return (
               <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
@@ -80,7 +78,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
         type="target"
         textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
-        links={links}
       />
 
       <div style={{ margin: '0.5rem' }} />
