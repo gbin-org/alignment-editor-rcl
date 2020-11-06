@@ -9,11 +9,28 @@ import LineView from 'components/lineView';
 
 import { Link, TextSegment } from 'core/structs';
 
+import 'components/alignmentEditor/alignmentEditorStyle.scss';
+
 interface AlignmentEditorProps {
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
   links: Link[];
 }
+
+const linkableSegmentsSelected = (
+  selectedSourceSegments: Record<number, boolean>,
+  selectedTargetSegments: Record<number, boolean>
+): boolean => {
+  const selectedSources = Object.keys(selectedSourceSegments).find((key) => {
+    return selectedSourceSegments[Number(key)];
+  });
+
+  const selectedTargets = Object.keys(selectedTargetSegments).find((key) => {
+    return selectedTargetSegments[Number(key)];
+  });
+
+  return Boolean(selectedSources) && Boolean(selectedTargets);
+};
 
 const selectedView = (
   props: AlignmentEditorProps,
@@ -52,6 +69,12 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
     dispatch({ type: 'setLinks', payload: { links } });
   }, []);
 
+  const disabledClass = linkableSegmentsSelected(
+    state.selectedSourceTextSegments,
+    state.selectedTargetTextSegments
+  )
+    ? 'active'
+    : 'disabled';
   return (
     <div className="alignment-editor-root">
       {selectedView(props, state)}
@@ -75,8 +98,8 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
           Toggle View Type
         </button>
         <FontAwesomeIcon
+          className={`control-panel-button ${disabledClass}`}
           icon={faLink}
-          style={{ cursor: 'pointer', fontSize: '1.5rem', margin: '0.5rem' }}
           onClick={(): void => {
             const selectedSourceSegments = Object.keys(
               state.selectedSourceTextSegments
