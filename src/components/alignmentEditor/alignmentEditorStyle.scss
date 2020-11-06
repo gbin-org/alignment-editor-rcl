@@ -1,16 +1,1 @@
 @import 'core/styles/colors';
-
-.control-panel-button {
-  font-size: 1.5rem;
-  margin: 0.5rem;
-}
-
-.control-panel-button.active {
-  cursor: pointer;
-  color: $active-button;
-}
-
-.control-panel-button.disabled {
-  cursor: not-allowed;
-  color: $disabled-button;
-}
