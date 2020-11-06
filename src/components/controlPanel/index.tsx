@@ -1,6 +1,11 @@
 import React, { ReactElement, useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
+import {
+  faLink,
+  faUnlink,
+  faGripLines,
+  faParagraph,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { AlignmentContext } from 'contexts/alignment';
 
@@ -34,56 +39,106 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
     : 'disabled';
 
   return (
-    <div
-      className="control-panel"
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <button
-        style={{ cursor: 'pointer', margin: '0.5rem' }}
-        onClick={() => {
-          const newView = state.view === 'paragraph' ? 'line' : 'paragraph';
-          dispatch({ type: 'switchView', payload: { view: newView } });
+    <div>
+      <br />
+      <hr />
+      <div
+        className="control-panel"
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         }}
       >
-        Toggle View Type
-      </button>
-      <FontAwesomeIcon
-        className={`control-panel-button ${disabledClass}`}
-        icon={faLink}
-        onClick={(): void => {
-          const selectedSourceSegments = Object.keys(
-            state.selectedSourceTextSegments
-          )
-            .filter((key) => {
-              return state.selectedSourceTextSegments[Number(key)];
-            })
-            .map((key) => Number(key));
+        <div
+          className="view-controls"
+          style={{ justifySelf: 'flex-start', alignSelf: 'flex-start' }}
+        >
+          <FontAwesomeIcon
+            icon={faParagraph}
+            className={`control-panel-button view ${
+              state.view === 'paragraph' ? 'selected' : 'active'
+            }`}
+            style={{}}
+            onClick={() => {
+              dispatch({ type: 'switchView', payload: { view: 'paragraph' } });
+            }}
+          />
 
-          const selectedTargetSegments = Object.keys(
-            state.selectedTargetTextSegments
-          )
-            .filter((key) => {
-              return state.selectedTargetTextSegments[Number(key)];
-            })
-            .map((key) => Number(key));
+          <FontAwesomeIcon
+            icon={faGripLines}
+            className={`control-panel-button view ${
+              state.view === 'line' ? 'selected' : 'active'
+            }`}
+            style={{}}
+            onClick={() => {
+              dispatch({ type: 'switchView', payload: { view: 'line' } });
+            }}
+          />
+        </div>
 
-          if (selectedSourceSegments.length && selectedTargetSegments.length) {
-            dispatch({
-              type: 'addLink',
-              payload: {
-                sources: selectedSourceSegments,
-                targets: selectedTargetSegments,
-              },
-            });
-            dispatch({ type: 'redrawUI', payload: {} });
-          }
-        }}
-      />
+        <div
+          className="link-controls"
+          style={{ alignSelf: 'center', justifySelf: 'center' }}
+        >
+          <FontAwesomeIcon
+            className={`control-panel-button ${disabledClass}`}
+            icon={faLink}
+            onClick={(): void => {
+              const selectedSourceSegments = Object.keys(
+                state.selectedSourceTextSegments
+              )
+                .filter((key) => {
+                  return state.selectedSourceTextSegments[Number(key)];
+                })
+                .map((key) => Number(key));
+
+              const selectedTargetSegments = Object.keys(
+                state.selectedTargetTextSegments
+              )
+                .filter((key) => {
+                  return state.selectedTargetTextSegments[Number(key)];
+                })
+                .map((key) => Number(key));
+
+              if (
+                selectedSourceSegments.length &&
+                selectedTargetSegments.length
+              ) {
+                dispatch({
+                  type: 'addLink',
+                  payload: {
+                    sources: selectedSourceSegments,
+                    targets: selectedTargetSegments,
+                  },
+                });
+              }
+            }}
+          />
+
+          <FontAwesomeIcon
+            className={`control-panel-button disabled`}
+            icon={faUnlink}
+            onClick={(): void => {
+              console.log('unlink');
+            }}
+          />
+        </div>
+
+        <div className="other-controls">
+          <FontAwesomeIcon
+            className="control-panel-button"
+            icon={faLink}
+            style={{ color: 'white', background: 'white' }}
+          />
+          <FontAwesomeIcon
+            className="control-panel-button"
+            icon={faLink}
+            style={{ color: 'white', background: 'white' }}
+          />
+        </div>
+      </div>
     </div>
   );
 };

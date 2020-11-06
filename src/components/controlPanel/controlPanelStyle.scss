@@ -14,3 +14,20 @@
   cursor: not-allowed;
   color: $disabled-button;
 }
+
+.control-panel-button.view {
+  padding: 0.3rem;
+  border-radius: 5px;
+}
+
+.control-panel-button.view.selected {
+  cursor: pointer;
+  color: white;
+  background: $active-button;
+}
+
+.control-panel-button.view.disabled {
+  cursor: not-allowed;
+  background: white;
+  color: $active-button;
+}
