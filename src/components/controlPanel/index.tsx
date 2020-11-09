@@ -5,9 +5,16 @@ import {
   faUnlink,
   faGripLines,
   faParagraph,
+  faArrowsAltH,
+  faBullseye,
+  faScroll,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { AlignmentContext } from 'contexts/alignment';
+import {
+  AlignmentContext,
+  AlignmentState,
+  AlignmentActionTypes,
+} from 'contexts/alignment';
 
 import 'components/controlPanel/controlPanelStyle.scss';
 
@@ -26,6 +33,30 @@ const linkableSegmentsSelected = (
   });
 
   return Boolean(selectedSources) && Boolean(selectedTargets);
+};
+
+const toggleTextDirection = (
+  textType: 'source' | 'target',
+  state: AlignmentState,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  if (textType === 'source') {
+    const newDirection = state.sourceTextDirection === 'ltr' ? 'rtl' : 'ltr';
+    dispatch({
+      type: 'changeSourceTextDirection',
+      payload: { textDirection: newDirection },
+    });
+  }
+
+  if (textType === 'target') {
+    const newDirection = state.targetTextDirection === 'ltr' ? 'rtl' : 'ltr';
+    dispatch({
+      type: 'changeTargetTextDirection',
+      payload: { textDirection: newDirection },
+    });
+  }
+
+  dispatch({ type: 'redrawUI', payload: {} });
 };
 
 export const ControlPanel = (props: ControlPanelProps): ReactElement => {
@@ -138,17 +169,55 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
           />
         </div>
 
-        <div className="other-controls">
-          <FontAwesomeIcon
-            className="control-panel-button"
-            icon={faLink}
-            style={{ color: 'white', background: 'white' }}
-          />
-          <FontAwesomeIcon
-            className="control-panel-button"
-            icon={faLink}
-            style={{ color: 'white', background: 'white' }}
-          />
+        <div
+          className="other-controls"
+          style={{ display: 'flex', flexDirection: 'row' }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              alignContent: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              toggleTextDirection('source', state, dispatch);
+            }}
+          >
+            <FontAwesomeIcon
+              className="control-panel-button active"
+              icon={faScroll}
+            />
+            <FontAwesomeIcon
+              className="control-panel-button active"
+              icon={faArrowsAltH}
+              style={{ fontSize: '1rem', marginTop: '-0.5rem' }}
+            />
+          </div>
+
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              alignContent: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              toggleTextDirection('target', state, dispatch);
+            }}
+          >
+            <FontAwesomeIcon
+              className="control-panel-button active"
+              icon={faBullseye}
+            />
+            <FontAwesomeIcon
+              className="control-panel-button active"
+              icon={faArrowsAltH}
+              style={{ fontSize: '1rem', marginTop: '-0.5rem' }}
+            />
+          </div>
         </div>
       </div>
     </div>

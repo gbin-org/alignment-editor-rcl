@@ -92,7 +92,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
 
   return (
     <div style={{ display: 'flex', alignContent: 'center' }}>
-      {textDirectionToggle(props, dispatch, state)}
+      {/*textDirectionToggle(props, dispatch, state)*/}
 
       <div
         className={`${type}-container`}
