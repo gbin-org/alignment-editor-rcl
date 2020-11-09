@@ -307,6 +307,18 @@ const handleClick = (
     handleSegmentSelection(type, position, dispatch);
   }
 };
+
+const isLocked = (
+  inProgressLink: Link | null,
+  relatedLink: Link | undefined
+): boolean => {
+  return (
+    Boolean(inProgressLink) &&
+    Boolean(relatedLink) &&
+    inProgressLink !== relatedLink
+  );
+};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     segmentData,
@@ -325,6 +337,9 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
   const linkedClass = isLinked ? 'linked' : 'not-linked';
+  const locked = isLocked(state.inProgressLink, relatedLink);
+  const lockedClass = locked ? 'locked' : 'unlocked';
+
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
   const focusedClass =
     relatedLink && state.focusedLinks.get(relatedLink) ? 'focused' : '';
@@ -360,25 +375,29 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
       {/*enrichedDataTop(props)*/}
       <span
         role="button"
-        className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
+        className={`text-segment ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
         onClick={() => {
-          handleClick(
-            segmentData.type,
-            segmentData.position,
-            relatedLink,
-            state.inProgressLink,
-            dispatch
-          );
+          if (!locked) {
+            handleClick(
+              segmentData.type,
+              segmentData.position,
+              relatedLink,
+              state.inProgressLink,
+              dispatch
+            );
+          }
         }}
         onKeyPress={() => {
-          handleClick(
-            segmentData.type,
-            segmentData.position,
-            relatedLink,
-            state.inProgressLink,
-            dispatch
-          );
+          if (!locked) {
+            handleClick(
+              segmentData.type,
+              segmentData.position,
+              relatedLink,
+              state.inProgressLink,
+              dispatch
+            );
+          }
         }}
         onMouseOver={() => {
           if (relatedLink) {
