@@ -62,6 +62,16 @@ interface ToggleSelectedTargetTextSegment extends Action {
   payload: { position: number };
 }
 
+interface selectSourceTextSegment extends Action {
+  type: 'selectSourceTextSegment';
+  payload: { position: number };
+}
+
+interface selectTargetTextSegment extends Action {
+  type: 'selectTargetTextSegment';
+  payload: { position: number };
+}
+
 interface RedrawUI extends Action {
   type: 'redrawUI';
   payload: {};
@@ -99,6 +109,8 @@ export type AlignmentActionTypes =
   | ChangeTargetTextDirection
   | ToggleSelectedSourceTextSegment
   | ToggleSelectedTargetTextSegment
+  | selectSourceTextSegment
+  | selectTargetTextSegment
   | RedrawUI
   | AddLink
   | RemoveLink
@@ -193,16 +205,66 @@ export const reducer = (
           ],
         },
       };
+
+    case 'selectSourceTextSegment':
+      return {
+        ...state,
+        selectedSourceTextSegments: {
+          ...state.selectedSourceTextSegments,
+          [action.payload.position]: true,
+        },
+      };
+    case 'selectTargetTextSegment':
+      return {
+        ...state,
+        selectedTargetTextSegments: {
+          ...state.selectedTargetTextSegments,
+          [action.payload.position]: true,
+        },
+      };
+
     case 'redrawUI':
       return { ...state, parentRef: null };
     case 'addLink':
       return {
         ...state,
-        links: state.links.concat({
-          sources: action.payload.sources,
-          targets: action.payload.targets,
-          type: 'manual',
-        }),
+        links: state.links.reduce<Link[]>(
+          (acc: Link[], curr: Link, index: number, array: Link[]) => {
+            const relatedSources = action.payload.sources.find((source) => {
+              return curr.sources.includes(source);
+            });
+            const relatedTargets = action.payload.targets.find((target) => {
+              return curr.targets.includes(target);
+            });
+
+            if (relatedSources || relatedTargets) {
+              return acc.concat([
+                {
+                  sources: curr.sources.concat(action.payload.sources),
+                  targets: curr.targets.concat(action.payload.targets),
+                  type: 'manual',
+                },
+              ]);
+            }
+
+            if (
+              index === array.length - 1 &&
+              !relatedSources &&
+              !relatedTargets
+            ) {
+              return acc.concat([
+                {
+                  sources: action.payload.sources,
+                  targets: action.payload.targets,
+                  type: 'manual',
+                },
+              ]);
+            }
+
+            return acc.concat([curr]);
+          },
+          []
+        ),
         selectedSourceTextSegments: {},
         selectedTargetTextSegments: {},
         inProgressLink: null,

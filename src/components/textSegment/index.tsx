@@ -247,14 +247,14 @@ const handleLinkSelection = (
 
   link.sources.forEach((sourcePosition: number): void => {
     dispatch({
-      type: 'toggleSelectedSourceTextSegment',
+      type: 'selectSourceTextSegment',
       payload: { position: sourcePosition },
     });
   });
 
   link.targets.forEach((targetPosition: number): void => {
     dispatch({
-      type: 'toggleSelectedTargetTextSegment',
+      type: 'selectTargetTextSegment',
       payload: { position: targetPosition },
     });
   });
@@ -286,19 +286,27 @@ const handleClick = (
   inProgressLink: Link | null,
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
-  console.log(inProgressLink);
-
   if (relatedLink) {
+    console.log('FIRST SELECTION');
     handleLinkSelection(relatedLink, dispatch);
   } else if (inProgressLink) {
+    console.log('NEXT SELECTION', {
+      sources: inProgressLink.sources
+        .concat(type === 'source' ? [position] : [])
+        .sort(),
+      targets: inProgressLink.targets
+        .concat(type === 'target' ? [position] : [])
+        .sort(),
+      type: 'manual',
+    });
     handleLinkSelection(
       {
-        sources: inProgressLink.sources.concat(
-          type === 'source' ? [position] : []
-        ),
-        targets: inProgressLink.targets.concat(
-          type === 'target' ? [position] : []
-        ),
+        sources: inProgressLink.sources
+          .concat(type === 'source' ? [position] : [])
+          .sort(),
+        targets: inProgressLink.targets
+          .concat(type === 'target' ? [position] : [])
+          .sort(),
         type: 'manual',
       },
       dispatch
