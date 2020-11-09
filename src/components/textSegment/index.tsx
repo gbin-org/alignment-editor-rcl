@@ -236,7 +236,31 @@ return links.find((link: Link): boolean =>{
 
 };
 
-const handleClick = (
+const handleLinkSelection = (
+  link: Link,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  dispatch({
+    type: 'setInProgressLink',
+    payload: link,
+  });
+
+  link.sources.forEach((sourcePosition: number): void => {
+    dispatch({
+      type: 'toggleSelectedSourceTextSegment',
+      payload: { position: sourcePosition },
+    });
+  });
+
+  link.targets.forEach((targetPosition: number): void => {
+    dispatch({
+      type: 'toggleSelectedTargetTextSegment',
+      payload: { position: targetPosition },
+    });
+  });
+};
+
+const handleSegmentSelection = (
   type: TextSegmentType,
   position: number,
   dispatch: React.Dispatch<AlignmentActionTypes>
@@ -252,6 +276,35 @@ const handleClick = (
       type: `toggleSelectedTargetTextSegment`,
       payload: { position },
     });
+  }
+};
+
+const handleClick = (
+  type: TextSegmentType,
+  position: number,
+  relatedLink: Link | undefined,
+  inProgressLink: Link | null,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  console.log(inProgressLink);
+
+  if (relatedLink) {
+    handleLinkSelection(relatedLink, dispatch);
+  } else if (inProgressLink) {
+    handleLinkSelection(
+      {
+        sources: inProgressLink.sources.concat(
+          type === 'source' ? [position] : []
+        ),
+        targets: inProgressLink.targets.concat(
+          type === 'target' ? [position] : []
+        ),
+        type: 'manual',
+      },
+      dispatch
+    );
+  } else {
+    handleSegmentSelection(type, position, dispatch);
   }
 };
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
@@ -310,10 +363,22 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         className={`text-segment ${disabledClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
         tabIndex={0}
         onClick={() => {
-          handleClick(segmentData.type, segmentData.position, dispatch);
+          handleClick(
+            segmentData.type,
+            segmentData.position,
+            relatedLink,
+            state.inProgressLink,
+            dispatch
+          );
         }}
         onKeyPress={() => {
-          handleClick(segmentData.type, segmentData.position, dispatch);
+          handleClick(
+            segmentData.type,
+            segmentData.position,
+            relatedLink,
+            state.inProgressLink,
+            dispatch
+          );
         }}
         onMouseOver={() => {
           if (relatedLink) {

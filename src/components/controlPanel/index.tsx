@@ -118,10 +118,22 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
           />
 
           <FontAwesomeIcon
-            className={`control-panel-button disabled`}
+            className={`control-panel-button ${
+              state.inProgressLink ? 'active' : 'disabled'
+            }`}
             icon={faUnlink}
             onClick={(): void => {
-              console.log('unlink');
+              console.log(state.inProgressLink);
+              if (state.inProgressLink) {
+                dispatch({
+                  type: 'removeLink',
+                  payload: {
+                    sources: state.inProgressLink.sources,
+                    targets: state.inProgressLink.targets,
+                  },
+                });
+                dispatch({ type: 'resetSelectedSegments', payload: {} });
+              }
             }}
           />
         </div>

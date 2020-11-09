@@ -72,6 +72,21 @@ interface AddLink extends Action {
   payload: { sources: number[]; targets: number[] };
 }
 
+interface RemoveLink extends Action {
+  type: 'removeLink';
+  payload: { sources: number[]; targets: number[] };
+}
+
+interface ResetSelectedSegments extends Action {
+  type: 'resetSelectedSegments';
+  payload: {};
+}
+
+interface SetInProgressLink extends Action {
+  type: 'setInProgressLink';
+  payload: Link;
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -85,7 +100,10 @@ export type AlignmentActionTypes =
   | ToggleSelectedSourceTextSegment
   | ToggleSelectedTargetTextSegment
   | RedrawUI
-  | AddLink;
+  | AddLink
+  | RemoveLink
+  | ResetSelectedSegments
+  | SetInProgressLink;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -98,6 +116,7 @@ export type AlignmentState = {
   targetTextDirection: 'ltr' | 'rtl';
   selectedSourceTextSegments: Record<number, boolean>;
   selectedTargetTextSegments: Record<number, boolean>;
+  inProgressLink: Link | null;
 };
 
 export const initialState: AlignmentState = {
@@ -111,6 +130,7 @@ export const initialState: AlignmentState = {
   targetTextDirection: 'ltr',
   selectedSourceTextSegments: {},
   selectedTargetTextSegments: {},
+  inProgressLink: null,
 };
 
 export const reducer = (
@@ -185,7 +205,36 @@ export const reducer = (
         }),
         selectedSourceTextSegments: {},
         selectedTargetTextSegments: {},
+        inProgressLink: null,
       };
+
+    case 'removeLink':
+      return {
+        ...state,
+        inProgressLink: null,
+        links: state.links.filter((link) => {
+          const foundSource = link.sources.find((sourcePos) => {
+            return action.payload.sources.includes(sourcePos);
+          });
+
+          const foundTarget = link.targets.find((targetPos) => {
+            return action.payload.targets.includes(targetPos);
+          });
+
+          return !foundSource && !foundTarget;
+        }),
+      };
+
+    case 'resetSelectedSegments':
+      return {
+        ...state,
+        selectedSourceTextSegments: {},
+        selectedTargetTextSegments: {},
+        inProgressLink: null,
+      };
+
+    case 'setInProgressLink':
+      return { ...state, inProgressLink: action.payload };
 
     default:
       return state;
