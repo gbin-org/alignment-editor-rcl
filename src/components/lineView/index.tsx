@@ -18,7 +18,7 @@ interface LineViewProps {
   displayStyle: 'full' | 'partial';
 }
 
-const fullDisplayStyle = { margin: '14rem' };
+const fullDisplayStyle = { margin: '21.4rem' };
 const partialDisplayStyle = { margin: '10rem' };
 
 export const LineView = (props: LineViewProps): ReactElement => {

@@ -1,5 +1,5 @@
-| cloc | github.com/AlDanial/cloc v 1.88 T=0.14 s (1277.0 files/s, 95487.7 lines/s) |
-| ---- | -------------------------------------------------------------------------- |
+| cloc | github.com/AlDanial/cloc v 1.88 T=0.22 s (802.3 files/s, 59989.5 lines/s) |
+| ---- | ------------------------------------------------------------------------- |
 
 
 | Language   |    files |    blank |  comment |     code |
