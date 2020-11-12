@@ -228,33 +228,49 @@ const paragraphDisplayStyle = { display: 'inline-block', marginTop: '1rem' };
 //return null;
 //};
 
-const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link|undefined => {
-return links.find((link: Link): boolean =>{ 
-
-        if (textSegment.type === 'source') { return link.sources.includes(textSegment.position)} 
-        if (textSegment.type === 'target') { return link.targets.includes(textSegment.position)} return false});
-
+const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link | undefined => {
+  return links.find((link: Link): boolean =>{
+    if (textSegment.type === 'source') {
+        return link.sources.includes(textSegment.position);
+    }
+    if (textSegment.type === 'target') {
+        return link.targets.includes(textSegment.position);
+    }
+    return false
+  });
 };
 
-const handleLinkSelection = (
+const updateInProgressLink = (
+  relatedLink: Link,
+  inProgressLink: Link | null,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  // in progress link, toggle
+  //if (inProgressLink) {
+  dispatch({
+    type: 'setInProgressLink',
+    payload: {
+      sources: relatedLink.sources,
+      targets: relatedLink.targets,
+      type: 'manual',
+    },
+  });
+};
+
+const selectAllSegmentsForLink = (
   link: Link,
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
-  dispatch({
-    type: 'setInProgressLink',
-    payload: link,
-  });
-
   link.sources.forEach((sourcePosition: number): void => {
     dispatch({
-      type: 'selectSourceTextSegment',
+      type: 'toggleSelectedSourceTextSegment',
       payload: { position: sourcePosition },
     });
   });
 
   link.targets.forEach((targetPosition: number): void => {
     dispatch({
-      type: 'selectTargetTextSegment',
+      type: 'toggleSelectedTargetTextSegment',
       payload: { position: targetPosition },
     });
   });
@@ -287,19 +303,10 @@ const handleClick = (
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
   if (relatedLink) {
-    console.log('FIRST SELECTION');
-    handleLinkSelection(relatedLink, dispatch);
+    updateInProgressLink(relatedLink, inProgressLink, dispatch);
+    selectAllSegmentsForLink(relatedLink, dispatch);
   } else if (inProgressLink) {
-    console.log('NEXT SELECTION', {
-      sources: inProgressLink.sources
-        .concat(type === 'source' ? [position] : [])
-        .sort(),
-      targets: inProgressLink.targets
-        .concat(type === 'target' ? [position] : [])
-        .sort(),
-      type: 'manual',
-    });
-    handleLinkSelection(
+    updateInProgressLink(
       {
         sources: inProgressLink.sources
           .concat(type === 'source' ? [position] : [])
@@ -309,22 +316,41 @@ const handleClick = (
           .sort(),
         type: 'manual',
       },
+      inProgressLink,
       dispatch
     );
+    handleSegmentSelection(type, position, dispatch);
   } else {
     handleSegmentSelection(type, position, dispatch);
   }
 };
 
+const arrayHasIntersection = (
+  firstArray: number[],
+  secondArray: number[]
+): boolean => {
+  const filtered = firstArray.filter((item) => secondArray.includes(item));
+  return Boolean(filtered.length);
+};
 const isLocked = (
   inProgressLink: Link | null,
   relatedLink: Link | undefined
 ): boolean => {
-  return (
-    Boolean(inProgressLink) &&
-    Boolean(relatedLink) &&
-    inProgressLink !== relatedLink
-  );
+  if (inProgressLink && relatedLink) {
+    return (
+      // If there is a link being built
+      Boolean(inProgressLink) &&
+      // And there is a link related to this segment
+      Boolean(relatedLink) &&
+      // And the related link's sources do not intersect with the inProgress sources
+      !(
+        arrayHasIntersection(inProgressLink.sources, relatedLink.sources) ||
+        // And the related link's targets do no intersect with the inProgress targets
+        arrayHasIntersection(inProgressLink.targets, relatedLink.targets)
+      )
+    );
+  }
+  return false;
 };
 
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
