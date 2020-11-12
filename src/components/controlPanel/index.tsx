@@ -16,6 +16,8 @@ import {
   AlignmentActionTypes,
 } from 'contexts/alignment';
 
+import { nextId } from 'core/nextId';
+
 import 'components/controlPanel/controlPanelStyle.scss';
 
 interface ControlPanelProps {}
@@ -140,6 +142,9 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 dispatch({
                   type: 'addLink',
                   payload: {
+                    id: state.inProgressLink
+                      ? state.inProgressLink.id
+                      : nextId(state.links.map((link) => link.id)),
                     sources: selectedSourceSegments,
                     targets: selectedTargetSegments,
                   },
@@ -154,7 +159,6 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
             }`}
             icon={faUnlink}
             onClick={(): void => {
-              console.log(state.inProgressLink);
               if (state.inProgressLink) {
                 dispatch({
                   type: 'removeLink',

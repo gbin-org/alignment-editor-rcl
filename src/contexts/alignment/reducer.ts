@@ -1,4 +1,5 @@
 import { Link } from 'core/structs';
+import { nextId } from 'core/nextId';
 
 interface Action {
   type: string;
@@ -79,7 +80,7 @@ interface RedrawUI extends Action {
 
 interface AddLink extends Action {
   type: 'addLink';
-  payload: { sources: number[]; targets: number[] };
+  payload: { id: number; sources: number[]; targets: number[] };
 }
 
 interface RemoveLink extends Action {
@@ -160,7 +161,12 @@ export const reducer = (
       newUnFocusedLinks.set(action.payload.link, false);
       return { ...state, focusedLinks: newUnFocusedLinks };
     case 'setLinks':
-      return { ...state, links: action.payload.links };
+      return {
+        ...state,
+        links: action.payload.links.map((link, index) => {
+          return { ...link, id: index };
+        }),
+      };
     case 'switchView':
       return { ...state, view: action.payload.view };
     case 'addSourceRef':
@@ -226,50 +232,38 @@ export const reducer = (
     case 'redrawUI':
       return { ...state, parentRef: null };
     case 'addLink':
-      return {
-        ...state,
-        links: state.links.reduce<Link[]>(
-          (acc: Link[], curr: Link, index: number, array: Link[]) => {
-            const relatedSources = action.payload.sources.find((source) => {
-              return curr.sources.includes(source);
-            });
-            const relatedTargets = action.payload.targets.find((target) => {
-              return curr.targets.includes(target);
-            });
+      return ((): AlignmentState => {
+        //inProgressLink: null,
+        const existingLink = state.links.find(
+          (link) => link.id === action.payload.id
+        );
+        let newLinks: Link[] = [];
 
-            if (relatedSources || relatedTargets) {
-              return acc.concat([
-                {
-                  sources: curr.sources.concat(action.payload.sources),
-                  targets: curr.targets.concat(action.payload.targets),
-                  type: 'manual',
-                },
-              ]);
+        if (existingLink) {
+          newLinks = state.links.map(
+            (link): Link => {
+              if (link.id === action.payload.id) {
+                return { ...action.payload, type: 'manual' };
+              }
+              return link;
             }
-
-            if (
-              index === array.length - 1 &&
-              !relatedSources &&
-              !relatedTargets
-            ) {
-              return acc.concat([
-                {
-                  sources: action.payload.sources,
-                  targets: action.payload.targets,
-                  type: 'manual',
-                },
-              ]);
-            }
-
-            return acc.concat([curr]);
-          },
-          []
-        ),
-        selectedSourceTextSegments: {},
-        selectedTargetTextSegments: {},
-        inProgressLink: null,
-      };
-
+          );
+        } else {
+          newLinks = state.links.concat({
+            id: action.payload.id,
+            sources: action.payload.sources,
+            targets: action.payload.targets,
+            type: 'manual',
+          });
+        }
+        return {
+          ...state,
+          links: newLinks,
+          selectedSourceTextSegments: {},
+          selectedTargetTextSegments: {},
+          inProgressLink: null,
+        };
+      })();
     case 'removeLink':
       return {
         ...state,

@@ -250,6 +250,7 @@ const updateInProgressLink = (
   dispatch({
     type: 'setInProgressLink',
     payload: {
+      id: relatedLink.id,
       sources: relatedLink.sources,
       targets: relatedLink.targets,
       type: 'manual',
@@ -308,6 +309,7 @@ const handleClick = (
   } else if (inProgressLink) {
     updateInProgressLink(
       {
+        id: inProgressLink.id,
         sources: inProgressLink.sources
           .concat(type === 'source' ? [position] : [])
           .sort(),
