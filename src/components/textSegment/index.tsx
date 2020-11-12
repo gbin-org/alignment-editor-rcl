@@ -320,8 +320,10 @@ const handleClick = (
       dispatch
     );
     handleSegmentSelection(type, position, dispatch);
+    dispatch({ type: 'redrawUI', payload: {} });
   } else {
     handleSegmentSelection(type, position, dispatch);
+    dispatch({ type: 'redrawUI', payload: {} });
   }
 };
 
