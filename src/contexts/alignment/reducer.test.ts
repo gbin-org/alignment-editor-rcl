@@ -63,8 +63,6 @@ describe('AlignmentContextReducer', (): void => {
 
       const result = reducer(initialTestState, addLinkAction);
 
-      console.log(result.links);
-
       expect(result.links).toEqual([
         { id: 0, sources: [1, 2], targets: [1], type: 'manual' },
       ]);

@@ -1,5 +1,6 @@
-import { Link } from 'core/structs';
+import { Link, TextSegmentType } from 'core/structs';
 import { nextId } from 'core/nextId';
+import { toggleItemExistence } from 'core/toggleItemExistence';
 
 interface Action {
   type: string;
@@ -98,6 +99,11 @@ interface SetInProgressLink extends Action {
   payload: Link;
 }
 
+interface ToggleInProgressLinkSegment extends Action {
+  type: 'toggleInProgressLinkSegment';
+  payload: { type: TextSegmentType; position: number };
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -116,7 +122,8 @@ export type AlignmentActionTypes =
   | AddLink
   | RemoveLink
   | ResetSelectedSegments
-  | SetInProgressLink;
+  | SetInProgressLink
+  | ToggleInProgressLinkSegment;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -233,7 +240,6 @@ export const reducer = (
       return { ...state, parentRef: null };
     case 'addLink':
       return ((): AlignmentState => {
-        //inProgressLink: null,
         const existingLink = state.links.find(
           (link) => link.id === action.payload.id
         );
@@ -291,6 +297,29 @@ export const reducer = (
 
     case 'setInProgressLink':
       return { ...state, inProgressLink: action.payload };
+
+    case 'toggleInProgressLinkSegment':
+      return {
+        ...state,
+        inProgressLink: {
+          id: state.inProgressLink?.id ?? 0, // bug waiting to happen
+          sources:
+            action.payload.type === 'source'
+              ? toggleItemExistence(
+                  state.inProgressLink?.sources,
+                  action.payload.position
+                )
+              : state.inProgressLink?.sources ?? [],
+          targets:
+            action.payload.type === 'target'
+              ? toggleItemExistence(
+                  state.inProgressLink?.targets,
+                  action.payload.position
+                )
+              : state.inProgressLink?.targets ?? [],
+          type: 'manual',
+        },
+      };
 
     default:
       return state;

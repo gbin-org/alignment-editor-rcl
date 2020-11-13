@@ -258,7 +258,7 @@ const updateInProgressLink = (
   });
 };
 
-const selectAllSegmentsForLink = (
+const toggleAllSegmentsForLink = (
   link: Link,
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
@@ -277,7 +277,7 @@ const selectAllSegmentsForLink = (
   });
 };
 
-const handleSegmentSelection = (
+const toggleSegmentSelection = (
   type: TextSegmentType,
   position: number,
   dispatch: React.Dispatch<AlignmentActionTypes>
@@ -296,6 +296,37 @@ const handleSegmentSelection = (
   }
 };
 
+const toggleInProgressSegment = (
+  type: TextSegmentType,
+  position: number,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  dispatch({
+    type: `toggleInProgressLinkSegment`,
+    payload: { position, type },
+  });
+};
+
+const noPreviousSelectionAndUserSelectsLink = (
+  relatedLink: Link | undefined,
+  inProgressLink: Link | null
+): boolean => {
+  return Boolean(relatedLink) && !Boolean(inProgressLink);
+};
+
+const previousSelectionAndUserDeselectsLink = (
+  relatedLink: Link | undefined,
+  inProgressLink: Link | null
+): boolean => {
+  return Boolean(relatedLink) && Boolean(inProgressLink);
+};
+
+const previousSelectionAndUserTogglesSegment = (
+  inProgressLink: Link | null
+): boolean => {
+  return Boolean(inProgressLink);
+};
+
 const handleClick = (
   type: TextSegmentType,
   position: number,
@@ -303,28 +334,40 @@ const handleClick = (
   inProgressLink: Link | null,
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
-  if (relatedLink) {
-    updateInProgressLink(relatedLink, inProgressLink, dispatch);
-    selectAllSegmentsForLink(relatedLink, dispatch);
-  } else if (inProgressLink) {
-    updateInProgressLink(
-      {
-        id: inProgressLink.id,
-        sources: inProgressLink.sources
-          .concat(type === 'source' ? [position] : [])
-          .sort(),
-        targets: inProgressLink.targets
-          .concat(type === 'target' ? [position] : [])
-          .sort(),
-        type: 'manual',
-      },
-      inProgressLink,
-      dispatch
-    );
-    handleSegmentSelection(type, position, dispatch);
+  if (noPreviousSelectionAndUserSelectsLink(relatedLink, inProgressLink)) {
+    if (relatedLink) {
+      // blurg. this is to make ts compiler happy.
+      updateInProgressLink(relatedLink, inProgressLink, dispatch);
+      toggleAllSegmentsForLink(relatedLink, dispatch);
+    }
+  } else if (
+    previousSelectionAndUserDeselectsLink(relatedLink, inProgressLink)
+  ) {
+    toggleSegmentSelection(type, position, dispatch);
+    toggleInProgressSegment(type, position, dispatch);
     dispatch({ type: 'redrawUI', payload: {} });
+  } else if (previousSelectionAndUserTogglesSegment(inProgressLink)) {
+    if (inProgressLink) {
+      updateInProgressLink(
+        {
+          id: inProgressLink.id,
+          sources: inProgressLink.sources
+            .concat(type === 'source' ? [position] : [])
+            .sort(),
+          targets: inProgressLink.targets
+            .concat(type === 'target' ? [position] : [])
+            .sort(),
+          type: 'manual',
+        },
+        inProgressLink,
+        dispatch
+      );
+      toggleSegmentSelection(type, position, dispatch);
+      dispatch({ type: 'redrawUI', payload: {} });
+    }
   } else {
-    handleSegmentSelection(type, position, dispatch);
+    // user is toggling a segment with no previous link selected
+    toggleSegmentSelection(type, position, dispatch);
     dispatch({ type: 'redrawUI', payload: {} });
   }
 };
