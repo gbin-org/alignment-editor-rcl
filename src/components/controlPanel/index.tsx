@@ -8,6 +8,7 @@ import {
   faArrowsAltH,
   faBullseye,
   faScroll,
+  faRedo,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -21,6 +22,25 @@ import { nextId } from 'core/nextId';
 import 'components/controlPanel/controlPanelStyle.scss';
 
 interface ControlPanelProps {}
+
+const anySegmentSelected = (
+  selectedSourceTextSegments: Record<number, boolean>,
+  selectedTargetTextSegments: Record<number, boolean>
+): boolean => {
+  const selectedSources = Object.keys(selectedSourceTextSegments).find(
+    (key) => {
+      return selectedSourceTextSegments[Number(key)];
+    }
+  );
+
+  const selectedTargets = Object.keys(selectedTargetTextSegments).find(
+    (key) => {
+      return selectedTargetTextSegments[Number(key)];
+    }
+  );
+
+  return Boolean(selectedSources) || Boolean(selectedTargets);
+};
 
 const linkableSegmentsSelected = (
   selectedSourceSegments: Record<number, boolean>,
@@ -167,6 +187,27 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                     targets: state.inProgressLink.targets,
                   },
                 });
+                dispatch({ type: 'resetSelectedSegments', payload: {} });
+              }
+            }}
+          />
+          <FontAwesomeIcon
+            className={`control-panel-button ${
+              anySegmentSelected(
+                state.selectedSourceTextSegments,
+                state.selectedTargetTextSegments
+              )
+                ? 'active'
+                : 'disabled'
+            }`}
+            icon={faRedo}
+            onClick={(): void => {
+              if (
+                anySegmentSelected(
+                  state.selectedSourceTextSegments,
+                  state.selectedTargetTextSegments
+                )
+              ) {
                 dispatch({ type: 'resetSelectedSegments', payload: {} });
               }
             }}
