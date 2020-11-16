@@ -68,4 +68,55 @@ describe('AlignmentContextReducer', (): void => {
       ]);
     });
   });
+
+  describe('removeLink', (): void => {
+    it('can remove a simple link', (): void => {
+      const initialTestState = {
+        ...initialState,
+        links: [
+          { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
+          { id: 1, sources: [5], targets: [8], type: 'manual' as LinkType },
+        ],
+      };
+
+      const removeLinkAction: AlignmentActionTypes = {
+        type: 'removeLink',
+        payload: { sources: [1], targets: [1] },
+      };
+
+      const result = reducer(initialTestState, removeLinkAction);
+
+      expect(result.links).toEqual([
+        { id: 1, sources: [5], targets: [8], type: 'manual' },
+      ]);
+    });
+
+    it('can remove a complex link', (): void => {
+      const initialTestState = {
+        ...initialState,
+        links: [
+          {
+            id: 0,
+            sources: [1, 2],
+            targets: [4, 5],
+            type: 'manual' as LinkType,
+          },
+          { id: 1, sources: [5], targets: [8], type: 'manual' as LinkType },
+          { id: 2, sources: [16], targets: [3, 4], type: 'manual' as LinkType },
+        ],
+      };
+
+      const removeLinkAction: AlignmentActionTypes = {
+        type: 'removeLink',
+        payload: { sources: [5], targets: [8] },
+      };
+
+      const result = reducer(initialTestState, removeLinkAction);
+
+      expect(result.links).toEqual([
+        { id: 0, sources: [1, 2], targets: [4, 5], type: 'manual' },
+        { id: 2, sources: [16], targets: [3, 4], type: 'manual' },
+      ]);
+    });
+  });
 });

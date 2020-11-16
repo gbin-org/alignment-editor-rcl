@@ -283,7 +283,9 @@ export const reducer = (
             return action.payload.targets.includes(targetPos);
           });
 
-          return !foundSource && !foundTarget;
+          return !(
+            typeof foundSource === 'number' || typeof foundTarget === 'number'
+          );
         }),
       };
 
