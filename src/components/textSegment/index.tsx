@@ -18,7 +18,11 @@ export interface TextSegmentProps {
 }
 
 const lineDisplayStyle = { display: 'inline-block' };
-const paragraphDisplayStyle = { display: 'inline-block', marginTop: '1rem' };
+const paragraphDisplayStyle = {
+  display: 'inline-block',
+  marginTop: '0.5rem',
+  marginBottom: '0.5rem',
+};
 
 //const segmentColors: Record<number, string> = {
 //0: 'default',
@@ -430,7 +434,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   return (
     <div
-      style={containerStyle}
+      style={{ ...containerStyle }}
       ref={(ref: HTMLDivElement) => {
         if (ref && displayStyle === 'line') {
           if (segmentData.type === 'source') {

@@ -10,7 +10,7 @@ import { Link, TextSegment } from 'core/structs';
 type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
-interface LinksContainerProps {
+interface ParagraphViewProps {
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
@@ -18,7 +18,7 @@ interface LinksContainerProps {
 }
 
 const singleLinkAlignment = (
-  props: LinksContainerProps,
+  props: ParagraphViewProps,
   focusedLinks: Map<Link, boolean>,
   selectedSourceTextSegments: Record<number, boolean>,
   selectedTargetTextSegments: Record<number, boolean>
@@ -77,7 +77,7 @@ const singleLinkAlignment = (
   return <p>{'Hover over source or target segments to view links.'}</p>;
 };
 
-export const ParagraphView = (props: LinksContainerProps): ReactElement => {
+export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
   const { sourceSegments, targetSegments } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
@@ -86,10 +86,7 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
     <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
       <div>
         <div>SOURCE</div>
-        <div
-          className="source-container"
-          style={{ overflowY: 'scroll', maxHeight: '15rem', margin: '0.5rem' }}
-        >
+        <div className="source-container" style={{ overflowY: 'scroll' }}>
           <TextPortionComponent
             textDirectionToggle={false}
             displayStyle="paragraph"
@@ -103,10 +100,7 @@ export const ParagraphView = (props: LinksContainerProps): ReactElement => {
         <br />
 
         <div>TARGET</div>
-        <div
-          className="target-container"
-          style={{ overflowY: 'scroll', maxHeight: '15rem', margin: '0.5rem' }}
-        >
+        <div className="target-container" style={{ overflowY: 'scroll' }}>
           <TextPortionComponent
             displayStyle="paragraph"
             textDirectionToggle={false}

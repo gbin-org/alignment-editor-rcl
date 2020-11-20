@@ -54,11 +54,8 @@
     { text: 'a', type: 'target', position: 26 },
     { text: 'mirror', type: 'target', position: 27 },
   ]}
-  links={[
-    { sources: [3], targets: [5], type: 'manual' },
-    { sources: [4], targets: [8], type: 'manual' },
-    { sources: [12], targets: [19, 20, 21], type: 'manual' },
-  ]}
+  sourceDirection={'ltr'}
+  targetDirection={'ltr'}
 />
 ```
 
@@ -238,12 +235,7 @@ A longer example
     { text: 'and', type: 'target', position: 81 },
     { text: 'language', type: 'target', position: 82 },
   ]}
-  links={[
-    { sources: [0], targets: [82], type: 'manual' },
-    { sources: [1], targets: [3], type: 'manual' },
-    { sources: [5], targets: [4], type: 'manual' },
-    { sources: [12], targets: [2], type: 'manual' },
-    { sources: [43], targets: [0], type: 'manual' },
-  ]}
+  sourceDirection={'rtl'}
+  targetDirection={'ltr'}
 />
 ```

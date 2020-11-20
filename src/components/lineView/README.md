@@ -4,16 +4,10 @@
 - Many target words can be linked to a single source word
 
 ```ts
-<LinksContainer
-  displayStyle="full"
+<LineView
   sourceSegments={[
     { text: 'ταχὺς', type: 'source', position: 0 },
-    {
-      text: 'εἰς',
-      type: 'source',
-      position: 1,
-      catIsContent: false,
-    },
+    { text: 'εἰς', type: 'source', position: 1, catIsContent: false },
     {
       text: 'τὸ',
       color: 0,
@@ -29,12 +23,8 @@
     { text: 'to', type: 'target', position: 1 },
     { text: 'listen', type: 'target', position: 2 },
   ]}
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
-  links={[
-    { sources: [0], targets: [0], type: 'manual' },
-    { sources: [3], targets: [1, 2], type: 'manual' },
-  ]}
+  sourceDirection={'ltr'}
+  targetDirection={'ltr'}
 />
 ```
 
@@ -44,8 +34,7 @@
 - Links that are a very far distance apart are included for demonstration purposes
 
 ```ts
-<LinksContainer
-  displayStyle="full"
+<LineView
   sourceSegments={[
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 0 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 1 },
@@ -62,74 +51,36 @@
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 12 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 13 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 14 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 15,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 15 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 16 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 17 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 18 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 19,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 19 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 20 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 21 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 22 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 23,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 23 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 24 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 25 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 26 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 27,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 27 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 28 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 29 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 30 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      color: 0,
-      group: 0,
-      type: 'source',
-      position: 31,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 31 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 32 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 33 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 34 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 35,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 35 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 36 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 37 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 38 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 39,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 39 },
     { text: 'יִּקָּרְא֣וּ', type: 'source', position: 40 },
     { text: 'הַמֶּ֣לֶךְ', type: 'source', position: 41 },
     { text: 'בַּחֹ֨דֶשׁ', type: 'source', position: 42 },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 43,
-    },
-    {
-      text: 'בִּשְׁלוֹשָׁ֣ה',
-      type: 'source',
-      position: 44,
-    },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 43 },
+    { text: 'בִּשְׁלוֹשָׁ֣ה', type: 'source', position: 44 },
   ]}
   targetSegments={[
     { text: 'The', type: 'target', position: 0 },
@@ -216,63 +167,7 @@
     { text: 'and', type: 'target', position: 81 },
     { text: 'language', type: 'target', position: 82 },
   ]}
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
-  links={[
-    { sources: [0], targets: [82], type: 'manual' },
-    { sources: [1], targets: [3], type: 'manual' },
-    { sources: [5], targets: [4], type: 'manual' },
-    { sources: [12], targets: [2], type: 'manual' },
-    { sources: [43], targets: [0], type: 'manual' },
-  ]}
-/>
-```
-
-#### Complex "many to many" example
-
-- Many to many links are supported
-- Links can be one or many on both source and target side
-- Many to many link groups are shown with matching color for visual cue
-- Link lines are drawn between earliest occurring source/target pair
-- (Someday: support the idea of a "primary" link for a many to many group)
-
-```ts
-<LinksContainer
-  displayStyle="full"
-  sourceSegments={[
-    { text: 'ταχὺς', type: 'source', position: 0 },
-    { text: 'εἰς', type: 'source', position: 1 },
-    { text: 'τὸ', type: 'source', position: 2 },
-    { text: 'ἀκοῦσαι', type: 'source', position: 3 },
-    { text: 'ταχὺς', type: 'source', position: 4 },
-    { text: 'εἰς', type: 'source', position: 5 },
-    { text: 'τὸ', type: 'source', position: 6 },
-    { text: 'ἀκοῦσαι', type: 'source', position: 7 },
-    { text: 'ἀκοῦσαι', type: 'source', position: 8 },
-    { text: 'ἀκοῦσαι', type: 'source', position: 9 },
-    { text: 'ἀκοῦσαι', type: 'source', position: 10 },
-  ]}
-  targetSegments={[
-    { text: 'quick', type: 'target', position: 0 },
-    { text: 'to', type: 'target', position: 1 },
-    { text: 'listen', type: 'target', position: 2 },
-    { text: 'slow', type: 'target', position: 3 },
-    { text: 'to', type: 'target', position: 4 },
-    { text: 'anger', type: 'target', position: 5 },
-    { text: 'and', type: 'target', position: 6 },
-    { text: 'in', type: 'target', position: 7 },
-    { text: 'all', type: 'target', position: 8 },
-    { text: 'things', type: 'target', position: 9 },
-    { text: 'love', type: 'target', position: 10 },
-  ]}
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
-  links={[
-    { sources: [0, 1], targets: [0, 1], type: 'manual' },
-    { sources: [3], targets: [2], type: 'manual' },
-    { sources: [4], targets: [4, 5], type: 'manual' },
-    { sources: [7, 9], targets: [7, 10], type: 'manual' },
-    { sources: [8, 10], targets: [6, 8, 9], type: 'manual' },
-  ]}
+  sourceDirection={'ltr'}
+  targetDirection={'ltr'}
 />
 ```

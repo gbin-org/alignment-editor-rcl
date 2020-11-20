@@ -9,7 +9,7 @@ import {
 } from 'contexts/alignment/reducer';
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
-import { TextSegment, TextSegmentType, Link } from 'core/structs';
+import { TextSegment, TextSegmentType } from 'core/structs';
 import TextSegmentComponent from 'components/textSegment';
 
 type Direction = 'ltr' | 'rtl';
@@ -91,12 +91,21 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
       : state.selectedTargetTextSegments;
 
   return (
-    <div style={{ display: 'flex', alignContent: 'center' }}>
+    <div
+      style={{
+        display: 'flex',
+        alignContent: 'center',
+        maxHeight: '15rem',
+        padding: '0.5rem',
+        marginBottom: '0.5rem',
+        marginRight: '0.5rem',
+      }}
+    >
       {/*textDirectionToggle(props, dispatch, state)*/}
 
       <div
         className={`${type}-container`}
-        style={{ ...configuredStyle, direction }}
+        style={{ ...configuredStyle, paddingRight: '5rem' }}
       >
         {textSegments.map(
           (textSegment, index): ReactElement => {

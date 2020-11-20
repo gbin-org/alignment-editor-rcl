@@ -1,7 +1,7 @@
 #### Linkable (i.e. "content" words)
 
 ```ts
-<TextSegment
+<TextSegmentComponent
   segmentData={{
     text: 'ἀκοῦσαι',
     color: 0,
@@ -17,7 +17,7 @@
 #### Non-Linkable / Disabled (i.e. "function" words)
 
 ```ts
-<TextSegment
+<TextSegmentComponent
   segmentData={{
     text: 'ἀκοῦσαι',
     color: 0,
@@ -34,7 +34,7 @@
 #### Linked
 
 ```ts
-<TextSegment
+<TextSegmentComponent
   segmentData={{
     text: 'ἀκοῦσαι',
     color: 0,
@@ -51,7 +51,7 @@
 #### Selected
 
 ```ts
-<TextSegment
+<TextSegmentComponent
   segmentData={{
     text: 'ἀκοῦσαι',
     color: 0,
@@ -68,14 +68,14 @@
 #### Linked and Grouped
 
 ```ts
-<TextSegment
+<TextSegmentComponent
   segmentData={{text: 'ταχὺς', color: 1, group: 1, type: 'source', position: 1 }}
   isLinked
   selectTextSegmentFunc={(type, position) => {}}
   deSelectTextSegmentFunc={(type, position) => {}}
 />
 
-<TextSegment
+<TextSegmentComponent
   segmentData={{text: 'ἀκοῦσαι', color: 1, group: 1, type: 'source', position: 2 }}
   isLinked
   selectTextSegmentFunc={(type, position) => {}}
