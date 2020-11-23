@@ -1,16 +1,15 @@
 import React from 'react';
 
-import shallowRender from 'testHelpers/shallowRender';
 import mountRender from 'testHelpers/mountRender';
+
+import { AlignmentContext, initialState } from 'contexts/alignment';
 import TextPortion from 'components/textPortion';
-import { Link } from 'core/structs';
 
 describe('TextPortion', (): void => {
   it('can render a simple example', () => {
-    const wrapper = shallowRender(
+    const wrapper = mountRender(
       <TextPortion
         type="source"
-        direction={'ltr'}
         textSegments={[
           { text: 'a', type: 'source', position: 1 },
           {
@@ -24,24 +23,18 @@ describe('TextPortion', (): void => {
             position: 3,
           },
         ]}
-        selectTextSegmentFunc={(type, position) => {}}
-        deSelectTextSegmentFunc={(type, position) => {}}
-        refGatherer={() => {}}
-        links={[]}
-        focusedLinks={new Map<Link, boolean>()}
-        segmentHovered={() => {}}
-        toggleDirection={() => {}}
+        textDirectionToggle={true}
+        displayStyle="line"
       />
     );
-    const sourceContainer = wrapper.find('div.source-container');
     const textSegments = wrapper.find('span.text-segment');
+    expect(textSegments.length).toEqual(3);
   });
 
   it('renders a set of source segments', () => {
     const wrapper = mountRender(
       <TextPortion
         type="source"
-        direction={'ltr'}
         textSegments={[
           { text: 'a', type: 'source', position: 1 },
           {
@@ -55,13 +48,8 @@ describe('TextPortion', (): void => {
             position: 3,
           },
         ]}
-        selectTextSegmentFunc={(type, position) => {}}
-        deSelectTextSegmentFunc={(type, position) => {}}
-        refGatherer={() => {}}
-        links={[]}
-        focusedLinks={new Map<Link, boolean>()}
-        segmentHovered={() => {}}
-        toggleDirection={() => {}}
+        displayStyle="line"
+        textDirectionToggle={true}
       />
     );
     const textSegments = wrapper.find('span.text-segment');
@@ -76,7 +64,6 @@ describe('TextPortion', (): void => {
     const wrapper = mountRender(
       <TextPortion
         type="source"
-        direction={'ltr'}
         textSegments={[
           { text: 'a', type: 'source', position: 1 },
           {
@@ -90,13 +77,8 @@ describe('TextPortion', (): void => {
             position: 3,
           },
         ]}
-        selectTextSegmentFunc={(type, position) => {}}
-        deSelectTextSegmentFunc={(type, position) => {}}
-        refGatherer={() => {}}
-        links={[]}
-        focusedLinks={new Map<Link, boolean>()}
-        segmentHovered={() => {}}
-        toggleDirection={() => {}}
+        displayStyle="line"
+        textDirectionToggle={true}
       />
     );
     const sourceContainer = wrapper.find('div.source-container');
@@ -106,30 +88,31 @@ describe('TextPortion', (): void => {
 
   it('renders appropriate text direction (rtl)', () => {
     const wrapper = mountRender(
-      <TextPortion
-        type="source"
-        direction={'rtl'}
-        textSegments={[
-          { text: 'a', type: 'source', position: 1 },
-          {
-            text: 'source',
-            type: 'source',
-            position: 2,
-          },
-          {
-            text: 'text',
-            type: 'source',
-            position: 3,
-          },
-        ]}
-        selectTextSegmentFunc={(type, position) => {}}
-        deSelectTextSegmentFunc={(type, position) => {}}
-        refGatherer={() => {}}
-        links={[]}
-        focusedLinks={new Map<Link, boolean>()}
-        segmentHovered={() => {}}
-        toggleDirection={() => {}}
-      />
+      <AlignmentContext.Provider
+        value={{
+          state: { ...initialState, sourceTextDirection: 'rtl' },
+          dispatch: jest.fn(),
+        }}
+      >
+        <TextPortion
+          type="source"
+          textSegments={[
+            { text: 'a', type: 'source', position: 1 },
+            {
+              text: 'source',
+              type: 'source',
+              position: 2,
+            },
+            {
+              text: 'text',
+              type: 'source',
+              position: 3,
+            },
+          ]}
+          displayStyle="line"
+          textDirectionToggle={true}
+        />
+      </AlignmentContext.Provider>
     );
     const sourceContainer = wrapper.find('div.source-container');
     const styles = sourceContainer.render()[0].attribs.style;

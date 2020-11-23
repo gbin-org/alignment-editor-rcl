@@ -105,7 +105,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
 
       <div
         className={`${type}-container`}
-        style={{ ...configuredStyle, paddingRight: '5rem' }}
+        style={{ ...configuredStyle, paddingRight: '5rem', direction }}
       >
         {textSegments.map(
           (textSegment, index): ReactElement => {
