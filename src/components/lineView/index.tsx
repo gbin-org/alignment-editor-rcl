@@ -28,7 +28,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
 
   const configuredStyle =
     props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
-  const textDirectionToggle = props.displayStyle === 'full' ? true : false;
 
   useEffect(() => {
     dispatch({ type: 'redrawUI', payload: {} });
@@ -53,7 +52,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
       <TextPortionComponent
         type="source"
         displayStyle="line"
-        textDirectionToggle={textDirectionToggle}
         textSegments={sourceSegments}
       />
 
@@ -76,7 +74,6 @@ export const LineView = (props: LineViewProps): ReactElement => {
       <TextPortionComponent
         displayStyle="line"
         type="target"
-        textDirectionToggle={textDirectionToggle}
         textSegments={targetSegments}
       />
 

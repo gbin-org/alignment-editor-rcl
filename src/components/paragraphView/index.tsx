@@ -88,7 +88,6 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <div>SOURCE</div>
         <div className="source-container" style={{ overflowY: 'scroll' }}>
           <TextPortionComponent
-            textDirectionToggle={false}
             displayStyle="paragraph"
             type="source"
             textSegments={sourceSegments}
@@ -103,7 +102,6 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <div className="target-container" style={{ overflowY: 'scroll' }}>
           <TextPortionComponent
             displayStyle="paragraph"
-            textDirectionToggle={false}
             type="target"
             textSegments={targetSegments}
           />
