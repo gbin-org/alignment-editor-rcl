@@ -59,6 +59,9 @@
     { sources: [4], targets: [8], type: 'manual' },
     { sources: [12], targets: [19, 20, 21], type: 'manual' },
   ]}
+  stateUpdatedHook={(a) => {
+    console.log('STATE UPDATED', a);
+  }}
 />
 ```
 

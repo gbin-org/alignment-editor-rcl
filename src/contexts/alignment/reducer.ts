@@ -1,6 +1,6 @@
-import { Link, TextSegmentType } from 'core/structs';
-import { nextId } from 'core/nextId';
+import { Link, TextSegmentType, StateUpdatedHookType } from 'core/structs';
 import { toggleItemExistence } from 'core/toggleItemExistence';
+import updatedStateWithHookCall from 'contexts/alignment/updatedStateWithHookCall';
 
 interface Action {
   type: string;
@@ -104,6 +104,11 @@ interface ToggleInProgressLinkSegment extends Action {
   payload: { type: TextSegmentType; position: number };
 }
 
+interface SetStateUpdatedHook extends Action {
+  type: 'setStateUpdatedHook';
+  payload: { stateUpdatedHook: StateUpdatedHookType };
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -123,7 +128,8 @@ export type AlignmentActionTypes =
   | RemoveLink
   | ResetSelectedSegments
   | SetInProgressLink
-  | ToggleInProgressLinkSegment;
+  | ToggleInProgressLinkSegment
+  | SetStateUpdatedHook;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
@@ -137,6 +143,7 @@ export type AlignmentState = {
   selectedSourceTextSegments: Record<number, boolean>;
   selectedTargetTextSegments: Record<number, boolean>;
   inProgressLink: Link | null;
+  stateUpdatedHook: StateUpdatedHookType | null;
 };
 
 export const initialState: AlignmentState = {
@@ -151,13 +158,14 @@ export const initialState: AlignmentState = {
   selectedSourceTextSegments: {},
   selectedTargetTextSegments: {},
   inProgressLink: null,
+  stateUpdatedHook: null,
 };
 
-export const reducer = (
+export const baseReducer = (
   state: AlignmentState,
   action: AlignmentActionTypes
 ): AlignmentState => {
-  console.log('REDUCER', action, state);
+  //console.info('REDUCER', action, state);
   switch (action.type) {
     case 'focusLink':
       const newFocusedLinks = new Map<Link, boolean>(state.focusedLinks);
@@ -323,7 +331,18 @@ export const reducer = (
         },
       };
 
+    case 'setStateUpdatedHook':
+      return { ...state, stateUpdatedHook: action.payload.stateUpdatedHook };
+
     default:
       return state;
   }
+};
+
+export const reducer = (
+  state: AlignmentState,
+  action: AlignmentActionTypes
+): AlignmentState => {
+  const newState = baseReducer(state, action);
+  return updatedStateWithHookCall(newState);
 };

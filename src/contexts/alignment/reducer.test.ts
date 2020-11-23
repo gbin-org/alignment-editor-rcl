@@ -67,6 +67,51 @@ describe('AlignmentContextReducer', (): void => {
         { id: 0, sources: [1, 2], targets: [1], type: 'manual' },
       ]);
     });
+
+    it('calls stateUpdatedHook when link is added', (): void => {
+      const mockStateUpdatedHook = jest.fn();
+
+      const initialTestState = {
+        ...initialState,
+        links: [
+          { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
+        ],
+        stateUpdatedHook: mockStateUpdatedHook,
+      };
+
+      const addLinkAction: AlignmentActionTypes = {
+        type: 'addLink',
+        payload: { id: 1, sources: [2], targets: [2] },
+      };
+
+      reducer(initialTestState, addLinkAction);
+
+      expect(mockStateUpdatedHook).toHaveBeenCalledWith([
+        { id: 0, sources: [1], targets: [1], type: 'manual' },
+        { id: 1, sources: [2], targets: [2], type: 'manual' },
+      ]);
+    });
+
+    it('calls stateUpdatedHook only once', (): void => {
+      const mockStateUpdatedHook = jest.fn();
+
+      const initialTestState = {
+        ...initialState,
+        links: [
+          { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
+        ],
+        stateUpdatedHook: mockStateUpdatedHook,
+      };
+
+      const addLinkAction: AlignmentActionTypes = {
+        type: 'addLink',
+        payload: { id: 1, sources: [2], targets: [2] },
+      };
+
+      reducer(initialTestState, addLinkAction);
+
+      expect(mockStateUpdatedHook).toHaveBeenCalledTimes(1);
+    });
   });
 
   describe('removeLink', (): void => {
