@@ -2,12 +2,14 @@ import React from 'react';
 
 import shallowRender from 'testHelpers/shallowRender';
 import mountRender from 'testHelpers/mountRender';
-import LinksContainer from 'components/linksContainer';
 
-describe('LinksContainer', (): void => {
+import ParagraphView from 'components/paragraphView';
+import { AlignmentContext, initialState } from 'contexts/alignment';
+
+describe('ParagraphView', (): void => {
   it('renders the alignment canvas', (): void => {
     const wrapper = shallowRender(
-      <LinksContainer
+      <ParagraphView
         sourceSegments={[
           { text: 'ταχὺς', type: 'source', position: 0 },
           {
@@ -30,12 +32,6 @@ describe('LinksContainer', (): void => {
           { text: 'to', type: 'target', position: 1 },
           { text: 'listen', type: 'target', position: 2 },
         ]}
-        selectTextSegmentFunc={(type, position) => {}}
-        deSelectTextSegmentFunc={(type, position) => {}}
-        links={[
-          { sources: [0], targets: [0], type: 'manual' },
-          { sources: [3], targets: [1, 2], type: 'manual' },
-        ]}
         sourceDirection={'ltr'}
         targetDirection={'rtl'}
       />
@@ -44,20 +40,36 @@ describe('LinksContainer', (): void => {
     const alignmentCanvas = wrapper.find('div#alignment-canvas');
     expect(alignmentCanvas).toBeTruthy();
   });
-  it('renders a single link', (): void => {
+  it('renders linked segments', (): void => {
     const wrapper = mountRender(
-      <LinksContainer
-        sourceSegments={[{ text: 'ταχὺς', type: 'source', position: 0 }]}
-        targetSegments={[{ text: 'quick', type: 'target', position: 0 }]}
-        selectTextSegmentFunc={(type, position) => {}}
-        deSelectTextSegmentFunc={(type, position) => {}}
-        links={[{ sources: [0], targets: [0], type: 'manual' }]}
-        sourceDirection={'ltr'}
-        targetDirection={'ltr'}
-      />
+      <AlignmentContext.Provider
+        value={{
+          state: {
+            ...initialState,
+            parentRef: document.createElement('div'),
+            sourceRefs: { 0: document.createElement('div') },
+            targetRefs: { 0: document.createElement('div') },
+            links: [{ id: 0, sources: [0], targets: [0], type: 'manual' }],
+          },
+          dispatch: jest.fn(),
+        }}
+      >
+        <ParagraphView
+          sourceSegments={[{ text: 'ταχὺς', type: 'source', position: 0 }]}
+          targetSegments={[{ text: 'quick', type: 'target', position: 0 }]}
+          sourceDirection={'ltr'}
+          targetDirection={'ltr'}
+        />
+      </AlignmentContext.Provider>
     );
 
-    const linksFound = wrapper.find('.link');
-    expect(linksFound.length).toEqual(1);
+    const segments = wrapper.find('.text-segment.linked');
+    expect(segments.length).toEqual(2);
+
+    const sourceSegment = segments.first();
+    expect(sourceSegment.text()).toEqual('ταχὺς');
+
+    const targetSegment = segments.last();
+    expect(targetSegment.text()).toEqual('quick');
   });
 });

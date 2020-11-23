@@ -56,6 +56,8 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
       type: 'setStateUpdatedHook',
       payload: { stateUpdatedHook: props.stateUpdatedHook },
     });
+    // This effect should run as component mounts/unmounts.
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, []);
 
   return (

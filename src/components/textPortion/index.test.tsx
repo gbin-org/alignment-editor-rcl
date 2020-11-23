@@ -23,7 +23,6 @@ describe('TextPortion', (): void => {
             position: 3,
           },
         ]}
-        textDirectionToggle={true}
         displayStyle="line"
       />
     );
@@ -49,7 +48,6 @@ describe('TextPortion', (): void => {
           },
         ]}
         displayStyle="line"
-        textDirectionToggle={true}
       />
     );
     const textSegments = wrapper.find('span.text-segment');
@@ -78,7 +76,6 @@ describe('TextPortion', (): void => {
           },
         ]}
         displayStyle="line"
-        textDirectionToggle={true}
       />
     );
     const sourceContainer = wrapper.find('div.source-container');
@@ -110,7 +107,6 @@ describe('TextPortion', (): void => {
             },
           ]}
           displayStyle="line"
-          textDirectionToggle={true}
         />
       </AlignmentContext.Provider>
     );

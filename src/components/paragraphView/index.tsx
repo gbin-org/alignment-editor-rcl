@@ -80,7 +80,7 @@ const singleLinkAlignment = (
 export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
   const { sourceSegments, targetSegments } = props;
 
-  const { state, dispatch } = useContext(AlignmentContext);
+  const { state } = useContext(AlignmentContext);
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>

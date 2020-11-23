@@ -31,6 +31,8 @@ export const LineView = (props: LineViewProps): ReactElement => {
 
   useEffect(() => {
     dispatch({ type: 'redrawUI', payload: {} });
+    // This effect should run as component mounts/unmounts.
+    /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, []);
 
   return (
