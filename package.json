@@ -29,7 +29,8 @@
     "eject": "react-scripts eject",
     "loc": "cloc . --exclude-dir node_modules --md > loc.md && prettier --write loc.md",
     "prettier": "prettier --write .",
-    "prettier-check": "prettier --check --loglevel log ."
+    "prettier-check": "prettier --check --loglevel log .",
+    "prepublish": "rm -rf ./dist & babel ./src --out-dir ./dist -s inline"
   },
   "pre-commit": [
     "loc",
@@ -57,6 +58,7 @@
     "@types/react-bootstrap": "^0.32.23",
     "@types/react-intl": "^3.0.0",
     "@types/react-redux": "^7.1.9",
+    "babel-cli": "^6.26.0",
     "cloc": "^2.7.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
