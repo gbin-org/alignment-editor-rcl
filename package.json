@@ -1,7 +1,7 @@
 {
   "name": "alignment-editor-rcl",
   "description": "React Component Library for aligning a source text to a target text.",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "dist/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -33,9 +33,6 @@
     "prettier-check": "prettier --check --loglevel log .",
     "prepublishOnly": "rm -rf ./dist & babel ./src --out-dir ./dist -s inline --extensions '.ts,.tsx,.js,.jsx'"
   },
-  "files": [
-    "dist/*"
-  ],
   "pre-commit": [
     "loc",
     "prettier-check"
