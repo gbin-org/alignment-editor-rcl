@@ -1,6 +1,6 @@
 import React from 'react';
 
-import mountRender from 'testHelpers/mountRender';
+import mountRender from '../../../test/testHelpers/mountRender';
 
 import { AlignmentContext, initialState } from 'contexts/alignment';
 import TextPortion from 'components/textPortion';

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import shallowRender from 'testHelpers/shallowRender';
-import mountRender from 'testHelpers/mountRender';
+import shallowRender from '../../../test/testHelpers/shallowRender';
+import mountRender from '../../../test/testHelpers/mountRender';
 
 import ParagraphView from 'components/paragraphView';
 import { AlignmentContext, initialState } from 'contexts/alignment';
