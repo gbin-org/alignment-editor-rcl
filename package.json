@@ -1,7 +1,7 @@
 {
   "name": "alignment-editor-rcl",
   "description": "React Component Library for aligning a source text to a target text.",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "dist/index.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -31,8 +31,11 @@
     "loc": "cloc . --exclude-dir node_modules --md > loc.md && prettier --write loc.md",
     "prettier": "prettier --write .",
     "prettier-check": "prettier --check --loglevel log .",
-    "prepublishOnly": "rm -rf ./dist & babel ./src --out-dir ./dist -s inline"
+    "prepublishOnly": "rm -rf ./dist & babel ./src --out-dir ./dist -s inline --extensions '.ts,.tsx,.js,.jsx'"
   },
+  "files": [
+    "dist/*"
+  ],
   "pre-commit": [
     "loc",
     "prettier-check"
@@ -53,13 +56,16 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.12.8",
+    "@babel/core": "^7.12.9",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/preset-typescript": "^7.12.7",
     "@types/enzyme": "^3.10.7",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/lodash": "^4.14.161",
     "@types/react-bootstrap": "^0.32.23",
     "@types/react-intl": "^3.0.0",
     "@types/react-redux": "^7.1.9",
-    "babel-cli": "^6.26.0",
     "cloc": "^2.7.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
