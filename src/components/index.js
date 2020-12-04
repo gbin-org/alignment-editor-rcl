@@ -1,1 +1,1 @@
-export { default as AlignmentEditor } from './alignmentEditor';
+export { default as AlignmentEditor } from './AlignmentEditor';

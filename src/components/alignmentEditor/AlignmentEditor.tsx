@@ -8,7 +8,7 @@ import ControlPanel from 'components/controlPanel';
 
 import { Link, TextSegment, StateUpdatedHookType } from 'core/structs';
 
-import 'components/alignmentEditor/alignmentEditorStyle.scss';
+import 'components/AlignmentEditor/alignmentEditorStyle.scss';
 
 interface AlignmentEditorProps {
   sourceSegments: TextSegment[];
