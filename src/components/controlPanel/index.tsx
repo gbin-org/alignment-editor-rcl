@@ -19,7 +19,7 @@ import {
 
 import { nextId } from 'core/nextId';
 
-import 'components/controlPanel/controlPanelStyle.scss';
+import './controlPanelStyle.scss';
 
 interface ControlPanelProps {}
 

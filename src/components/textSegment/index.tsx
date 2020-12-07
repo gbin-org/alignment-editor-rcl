@@ -6,7 +6,7 @@ import { AlignmentContext } from 'contexts/alignment';
 import { TextSegment, TextSegmentType } from 'core/structs';
 import { Link } from 'core/structs/link';
 
-import 'components/textSegment/textSegmentStyle.scss';
+import './textSegmentStyle.scss';
 
 export interface TextSegmentProps {
   segmentData: TextSegment;
