@@ -61,7 +61,7 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
   }, []);
 
   return (
-    <div className="alignment-editor-root">
+    <div className="alignment-editor-root" style={{ width: '100%' }}>
       {selectedView(props, state)}
       <ControlPanel />
     </div>

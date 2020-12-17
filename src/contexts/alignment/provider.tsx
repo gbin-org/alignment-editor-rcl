@@ -24,3 +24,5 @@ export const AlignmentProvider = ({ children }: Props) => {
     </AlignmentContext.Provider>
   );
 };
+
+export default AlignmentProvider;
