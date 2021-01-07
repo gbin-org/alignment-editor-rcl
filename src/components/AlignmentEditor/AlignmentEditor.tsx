@@ -52,7 +52,7 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
-    dispatch({ type: 'setLinks', payload: { links } });
+    dispatch({ type: 'setLinks', payload: { links: links ?? [] } });
     dispatch({ type: 'setSourceGlosses', payload: { sourceGlosses } });
     dispatch({
       type: 'setStateUpdatedHook',
