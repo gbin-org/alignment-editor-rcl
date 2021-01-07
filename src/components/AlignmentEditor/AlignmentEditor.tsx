@@ -6,13 +6,14 @@ import ParagraphView from 'components/paragraphView';
 import LineView from 'components/lineView';
 import ControlPanel from 'components/controlPanel';
 
-import { Link, TextSegment, StateUpdatedHookType } from 'core/structs';
+import { Link, TextSegment, Gloss, StateUpdatedHookType } from 'core/structs';
 
 import './alignmentEditorStyle.scss';
 
 interface AlignmentEditorProps {
   sourceSegments: TextSegment[];
   targetSegments: TextSegment[];
+  sourceGlosses: Gloss[];
   links: Link[];
   stateUpdatedHook: StateUpdatedHookType;
 }
@@ -46,12 +47,13 @@ const selectedView = (
 };
 
 export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
-  const { links } = props;
+  const { links, sourceGlosses } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
-    dispatch({ type: 'setLinks', payload: { links } });
+    dispatch({ type: 'setLinks', payload: { links: links ?? [] } });
+    dispatch({ type: 'setSourceGlosses', payload: { sourceGlosses } });
     dispatch({
       type: 'setStateUpdatedHook',
       payload: { stateUpdatedHook: props.stateUpdatedHook },

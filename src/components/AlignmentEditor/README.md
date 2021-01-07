@@ -2,6 +2,13 @@
 
 ```ts
 <AlignmentEditor
+  sourceGlosses={[
+    { position: 2, glossText: 'anyone' },
+    { position: 5, glossText: 'hearer' },
+    { position: 12, glossText: 'doer' },
+    { position: 17, glossText: 'man' },
+    { position: 23, glossText: 'natural' },
+  ]}
   sourceSegments={[
     { text: 'ὅτι', type: 'source', position: 0 },
     { text: 'εἴ', type: 'source', position: 1 },

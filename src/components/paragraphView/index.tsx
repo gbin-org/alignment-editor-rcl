@@ -22,7 +22,7 @@ const singleLinkAlignment = (
   focusedLinks: Map<Link, boolean>,
   selectedSourceTextSegments: Record<number, boolean>,
   selectedTargetTextSegments: Record<number, boolean>
-): ReactElement[] | ReactElement => {
+): (ReactElement | null)[] | ReactElement => {
   const selectedSources = props.sourceSegments.filter(
     (sourceSegment: TextSegment) => {
       return selectedSourceTextSegments[sourceSegment.position];
@@ -49,30 +49,29 @@ const singleLinkAlignment = (
 
   const linksArray = Array.from(focusedLinks ?? []);
   if (linksArray.length) {
-    return linksArray.map(
-      ([link, bool]): ReactElement => {
-        if (bool) {
-          return (
-            <LineView
-              displayStyle="partial"
-              sourceDirection={'ltr'}
-              sourceSegments={props.sourceSegments.filter(
-                (sourceSegment: TextSegment): boolean => {
-                  return link.sources.includes(sourceSegment.position);
-                }
-              )}
-              targetDirection={'rtl'}
-              targetSegments={props.targetSegments.filter(
-                (targetSegment: TextSegment): boolean => {
-                  return link.targets.includes(targetSegment.position);
-                }
-              )}
-            />
-          );
-        }
-        return <></>;
+    return linksArray.map(([link, bool]): ReactElement | null => {
+      if (bool) {
+        return (
+          <LineView
+            key={`${link.sources.toString()}-${link.targets.toString()}`}
+            displayStyle="partial"
+            sourceDirection={'ltr'}
+            sourceSegments={props.sourceSegments.filter(
+              (sourceSegment: TextSegment): boolean => {
+                return link.sources.includes(sourceSegment.position);
+              }
+            )}
+            targetDirection={'rtl'}
+            targetSegments={props.targetSegments.filter(
+              (targetSegment: TextSegment): boolean => {
+                return link.targets.includes(targetSegment.position);
+              }
+            )}
+          />
+        );
       }
-    );
+      return null;
+    });
   }
   return <p>{'Hover over source or target segments to view links.'}</p>;
 };

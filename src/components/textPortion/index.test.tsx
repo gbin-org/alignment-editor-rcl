@@ -26,7 +26,7 @@ describe('TextPortion', (): void => {
         displayStyle="line"
       />
     );
-    const textSegments = wrapper.find('span.text-segment');
+    const textSegments = wrapper.find('div.text-segment');
     expect(textSegments.length).toEqual(3);
   });
 
@@ -50,7 +50,7 @@ describe('TextPortion', (): void => {
         displayStyle="line"
       />
     );
-    const textSegments = wrapper.find('span.text-segment');
+    const textSegments = wrapper.find('div.text-segment');
     expect(textSegments.length).toEqual(3);
     const renderedText = textSegments
       .map((segment) => segment.text())
