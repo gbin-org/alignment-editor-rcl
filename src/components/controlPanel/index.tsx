@@ -9,6 +9,7 @@ import {
   faBullseye,
   faScroll,
   faRedo,
+  faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -218,6 +219,33 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
           className="other-controls"
           style={{ display: 'flex', flexDirection: 'row' }}
         >
+          {state.sourceGlosses?.length && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                alignContent: 'center',
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                dispatch({
+                  type: 'switchGlossesDisplay',
+                  payload: {
+                    displayGlosses: !state.displayGlosses,
+                  },
+                });
+              }}
+            >
+              <FontAwesomeIcon
+                className={`control-panel-button view ${
+                  state.displayGlosses ? 'selected' : 'active'
+                }`}
+                icon={faInfoCircle}
+              />
+            </div>
+          )}
+
           <div
             style={{
               display: 'flex',

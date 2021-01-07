@@ -1,4 +1,9 @@
-import { Link, TextSegmentType, StateUpdatedHookType } from 'core/structs';
+import {
+  Link,
+  Gloss,
+  TextSegmentType,
+  StateUpdatedHookType,
+} from 'core/structs';
 import { toggleItemExistence } from 'core/toggleItemExistence';
 import updatedStateWithHookCall from 'contexts/alignment/updatedStateWithHookCall';
 
@@ -109,6 +114,16 @@ interface SetStateUpdatedHook extends Action {
   payload: { stateUpdatedHook: StateUpdatedHookType };
 }
 
+interface SetSourceGlosses extends Action {
+  type: 'setSourceGlosses';
+  payload: { sourceGlosses: Gloss[] };
+}
+
+interface SwitchGlossesDisplay extends Action {
+  type: 'switchGlossesDisplay';
+  payload: { displayGlosses: boolean };
+}
+
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
@@ -129,12 +144,16 @@ export type AlignmentActionTypes =
   | ResetSelectedSegments
   | SetInProgressLink
   | ToggleInProgressLinkSegment
-  | SetStateUpdatedHook;
+  | SetStateUpdatedHook
+  | SetSourceGlosses
+  | SwitchGlossesDisplay;
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
   links: Link[];
+  sourceGlosses: Gloss[];
   view: ViewType;
+  displayGlosses: boolean;
   sourceRefs: Record<number, HTMLDivElement>;
   targetRefs: Record<number, HTMLDivElement>;
   parentRef: HTMLDivElement | null;
@@ -149,6 +168,8 @@ export type AlignmentState = {
 export const initialState: AlignmentState = {
   focusedLinks: new Map<Link, boolean>(),
   links: [],
+  sourceGlosses: [],
+  displayGlosses: true,
   view: 'paragraph',
   sourceRefs: {},
   targetRefs: {},
@@ -334,6 +355,11 @@ export const baseReducer = (
     case 'setStateUpdatedHook':
       return { ...state, stateUpdatedHook: action.payload.stateUpdatedHook };
 
+    case 'setSourceGlosses':
+      return { ...state, sourceGlosses: action.payload.sourceGlosses };
+
+    case 'switchGlossesDisplay':
+      return { ...state, displayGlosses: action.payload.displayGlosses };
     default:
       return state;
   }

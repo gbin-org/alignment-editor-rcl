@@ -3,8 +3,7 @@ import React, { ReactElement, useContext } from 'react';
 import { AlignmentActionTypes } from 'contexts/alignment/reducer';
 
 import { AlignmentContext } from 'contexts/alignment';
-import { TextSegment, TextSegmentType } from 'core/structs';
-import { Link } from 'core/structs/link';
+import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
 
 import './textSegmentStyle.scss';
 
@@ -404,6 +403,34 @@ const isLocked = (
   return false;
 };
 
+const glossDisplay = (
+  props: TextSegmentProps,
+  sourceGlosses: Gloss[]
+): ReactElement => {
+  const sourceGloss = sourceGlosses?.find((gloss) => {
+    return gloss.position === props.segmentData.position;
+  });
+
+  if (props.segmentData.type === 'source' && sourceGloss) {
+    return (
+      <span
+        className="source-gloss"
+        style={{
+          display: 'inline-block',
+          fontSize: '0.8rem',
+          fontStyle: 'italic',
+          marginLeft: '0.5rem',
+          marginRight: '0.5rem',
+        }}
+      >
+        {sourceGloss.glossText}
+      </span>
+    );
+  }
+
+  return <></>;
+};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     segmentData,
@@ -457,10 +484,10 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
       }}
       className={`${segmentData.type}${segmentData.position}`}
     >
-      {/*enrichedDataTop(props)*/}
-      <span
+      <div
         role="button"
         className={`text-segment ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
+        style={{ display: 'inline-block', textAlign: 'center' }}
         tabIndex={0}
         onClick={() => {
           if (!locked) {
@@ -496,7 +523,9 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         }}
       >
         {segmentData.text}
-      </span>
+        {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
+      </div>
+
       {/*enrichedDataBottom(props)*/}
     </div>
   );
