@@ -31,6 +31,32 @@
     { text: 'ἐν', type: 'source', position: 18 },
     { text: 'ἐσόπτρῳ', type: 'source', position: 19 },
   ]}
+  referenceSegments={[
+    { text: 'Porque', type: 'reference', position: 0 },
+    { text: 'si', type: 'reference', position: 1 },
+    { text: 'alguien', type: 'reference', position: 2 },
+    { text: 'es', type: 'reference', position: 3 },
+    { text: 'oidor', type: 'reference', position: 4 },
+    { text: 'de', type: 'reference', position: 5 },
+    { text: 'la', type: 'reference', position: 6 },
+    { text: 'palabra', type: 'reference', position: 7 },
+    { text: 'y', type: 'reference', position: 8 },
+    { text: 'no', type: 'reference', position: 9 },
+    { text: 'hacedor', type: 'reference', position: 10 },
+    { text: 'es', type: 'reference', position: 11 },
+    { text: 'como', type: 'reference', position: 12 },
+    { text: 'un', type: 'reference', position: 13 },
+    { text: 'hombre', type: 'reference', position: 14 },
+    { text: 'que', type: 'reference', position: 15 },
+    { text: 'mira', type: 'reference', position: 16 },
+    { text: 'fijamenta', type: 'reference', position: 17 },
+    { text: 'su', type: 'reference', position: 18 },
+    { text: 'rostro', type: 'reference', position: 19 },
+    { text: 'natural', type: 'reference', position: 20 },
+    { text: 'en', type: 'reference', position: 21 },
+    { text: 'un', type: 'reference', position: 22 },
+    { text: 'espejo', type: 'reference', position: 23 },
+  ]}
   targetSegments={[
     { text: 'For', type: 'target', position: 0 },
     { text: 'if', type: 'target', position: 1 },
@@ -61,10 +87,14 @@
     { text: 'a', type: 'target', position: 26 },
     { text: 'mirror', type: 'target', position: 27 },
   ]}
-  links={[
+  userLinks={[
     { sources: [3], targets: [5], type: 'manual' },
     { sources: [4], targets: [8], type: 'manual' },
     { sources: [12], targets: [19, 20, 21], type: 'manual' },
+  ]}
+  referenceLinks={[
+    { sources: [3], targets: [4], type: 'manual' },
+    { sources: [5], targets: [7], type: 'manual' },
   ]}
   stateUpdatedHook={(a) => {
     console.log('STATE UPDATED', a);

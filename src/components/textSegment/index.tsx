@@ -272,7 +272,7 @@ const toggleAllSegmentsForLink = (
     });
   });
 
-  link.targets.forEach((targetPosition: number): void => {
+  link.targets?.forEach((targetPosition: number): void => {
     dispatch({
       type: 'toggleSelectedTargetTextSegment',
       payload: { position: targetPosition },
@@ -444,7 +444,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  const relatedLink = findRelatedLink(segmentData, state.links);
+  const relatedLink = findRelatedLink(segmentData, state.userLinks);
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';

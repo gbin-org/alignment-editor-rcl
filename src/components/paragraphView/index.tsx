@@ -12,6 +12,7 @@ type Direction = 'ltr' | 'rtl';
 
 interface ParagraphViewProps {
   sourceSegments: TextSegment[];
+  referenceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
   targetDirection: Direction;
@@ -77,12 +78,18 @@ const singleLinkAlignment = (
 };
 
 export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
-  const { sourceSegments, targetSegments } = props;
+  const { sourceSegments, referenceSegments, targetSegments } = props;
 
   const { state } = useContext(AlignmentContext);
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '50% 50%',
+        gridTemplateRows: '50% 50%',
+      }}
+    >
       <div>
         <div>SOURCE</div>
         <div className="source-container" style={{ overflowY: 'scroll' }}>
@@ -107,20 +114,32 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         </div>
       </div>
 
-      <div
-        className="alignment-thing"
-        style={{
-          display: 'grid',
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}
-      >
-        {singleLinkAlignment(
-          props,
-          state.focusedLinks,
-          state.selectedSourceTextSegments,
-          state.selectedTargetTextSegments
-        )}
+      <div className="alignment-thing" style={{}}>
+        <div>
+          <div>BRIDGE</div>
+          {referenceSegments && (
+            <div className="bridge-container" style={{ overflowY: 'scroll' }}>
+              <TextPortionComponent
+                displayStyle="paragraph"
+                type="reference"
+                textSegments={referenceSegments}
+              />
+            </div>
+          )}
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <div>
+          {singleLinkAlignment(
+            props,
+            state.focusedLinks,
+            state.selectedSourceTextSegments,
+            state.selectedTargetTextSegments
+          )}
+        </div>
       </div>
     </div>
   );

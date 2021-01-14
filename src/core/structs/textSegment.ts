@@ -1,4 +1,4 @@
-export type TextSegmentType = 'source' | 'target';
+export type TextSegmentType = 'source' | 'reference' | 'target';
 
 export interface TextSegment {
   type: TextSegmentType;

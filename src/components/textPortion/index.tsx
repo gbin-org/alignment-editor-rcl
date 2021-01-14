@@ -1,6 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
 
-import { AlignmentContext } from 'contexts/alignment';
+import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType } from 'core/structs';
@@ -22,8 +22,23 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
 };
 
+const getSegmentSelections = (type: TextSegmentType, state: AlignmentState) => {
+  if (type === 'source') {
+    return state.selectedSourceTextSegments;
+  }
+
+  if (type === 'reference') {
+    return state.selectedReferenceTextSegments;
+  }
+
+  if (type === 'target') {
+    return state.selectedTargetTextSegments;
+  }
+};
+
 export const TextPortion = (props: TextPortionProps): ReactElement => {
   const { type, textSegments, displayStyle } = props;
+  console.log(type);
 
   const { state } = useContext(AlignmentContext);
 
@@ -35,10 +50,11 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
 
-  const segmentSelections =
-    props.type === 'source'
-      ? state.selectedSourceTextSegments
-      : state.selectedTargetTextSegments;
+  const segmentSelections = getSegmentSelections(type, state);
+  const relevantLinkSet =
+    type === 'reference' ? state.referenceLinks : state.userLinks;
+
+  console.log(type, relevantLinkSet, segmentSelections);
 
   return (
     <div
@@ -58,11 +74,11 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
         {textSegments.map(
           (textSegment, index): ReactElement => {
             const relatedLink = findLinkForTextSegment(
-              state.links,
+              relevantLinkSet,
               textSegment
             );
             const linkIndex = relatedLink
-              ? state.links.indexOf(relatedLink)
+              ? relevantLinkSet.indexOf(relatedLink)
               : index;
             return (
               <TextSegmentComponent
@@ -71,7 +87,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 isDisabled={textSegment.catIsContent === false ?? false}
                 isSelected={segmentSelections[textSegment.position] ?? false}
                 isLinked={Boolean(relatedLink)}
-                group={determineGroup(state.links, linkIndex)}
+                group={determineGroup(relevantLinkSet, linkIndex)}
                 displayStyle={displayStyle}
               />
             );

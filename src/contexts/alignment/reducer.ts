@@ -24,9 +24,14 @@ interface UnFocusLinkAction extends Action {
   payload: { link: Link };
 }
 
-interface SetLinksAction extends Action {
-  type: 'setLinks';
-  payload: { links: Link[] };
+interface SetUserLinksAction extends Action {
+  type: 'setUserLinks';
+  payload: { userLinks: Link[] };
+}
+
+interface SetReferenceLinksAction extends Action {
+  type: 'setReferenceLinks';
+  payload: { referenceLinks: Link[] };
 }
 
 interface SwitchViewAction extends Action {
@@ -127,7 +132,8 @@ interface SwitchGlossesDisplay extends Action {
 export type AlignmentActionTypes =
   | FocusLinkAction
   | UnFocusLinkAction
-  | SetLinksAction
+  | SetUserLinksAction
+  | SetReferenceLinksAction
   | SwitchViewAction
   | AddSourceRefAction
   | AddTargetRefAction
@@ -150,7 +156,8 @@ export type AlignmentActionTypes =
 
 export type AlignmentState = {
   focusedLinks: Map<Link, boolean>;
-  links: Link[];
+  userLinks: Link[];
+  referenceLinks: Link[];
   sourceGlosses: Gloss[];
   view: ViewType;
   displayGlosses: boolean;
@@ -160,6 +167,7 @@ export type AlignmentState = {
   sourceTextDirection: 'ltr' | 'rtl';
   targetTextDirection: 'ltr' | 'rtl';
   selectedSourceTextSegments: Record<number, boolean>;
+  selectedReferenceTextSegments: Record<number, boolean>;
   selectedTargetTextSegments: Record<number, boolean>;
   inProgressLink: Link | null;
   stateUpdatedHook: StateUpdatedHookType | null;
@@ -167,7 +175,8 @@ export type AlignmentState = {
 
 export const initialState: AlignmentState = {
   focusedLinks: new Map<Link, boolean>(),
-  links: [],
+  userLinks: [],
+  referenceLinks: [],
   sourceGlosses: [],
   displayGlosses: true,
   view: 'paragraph',
@@ -177,6 +186,7 @@ export const initialState: AlignmentState = {
   sourceTextDirection: 'ltr',
   targetTextDirection: 'ltr',
   selectedSourceTextSegments: {},
+  selectedReferenceTextSegments: {},
   selectedTargetTextSegments: {},
   inProgressLink: null,
   stateUpdatedHook: null,
@@ -196,12 +206,21 @@ export const baseReducer = (
       const newUnFocusedLinks = new Map<Link, boolean>(state.focusedLinks);
       newUnFocusedLinks.set(action.payload.link, false);
       return { ...state, focusedLinks: newUnFocusedLinks };
-    case 'setLinks':
+    case 'setUserLinks':
       return {
         ...state,
-        links: action.payload.links.map((link, index) => {
+        userLinks: action.payload.userLinks.map((link, index) => {
           return { ...link, id: index };
         }),
+      };
+    case 'setReferenceLinks':
+      return {
+        ...state,
+        referenceLinks: action.payload.referenceLinks.map(
+          (referenceLink, index) => {
+            return { ...referenceLink, id: index };
+          }
+        ),
       };
     case 'switchView':
       return { ...state, view: action.payload.view };
@@ -269,13 +288,13 @@ export const baseReducer = (
       return { ...state, parentRef: null };
     case 'addLink':
       return ((): AlignmentState => {
-        const existingLink = state.links.find(
+        const existingLink = state.userLinks.find(
           (link) => link.id === action.payload.id
         );
         let newLinks: Link[] = [];
 
         if (existingLink) {
-          newLinks = state.links.map(
+          newLinks = state.userLinks.map(
             (link): Link => {
               if (link.id === action.payload.id) {
                 return { ...action.payload, type: 'manual' };
@@ -284,7 +303,7 @@ export const baseReducer = (
             }
           );
         } else {
-          newLinks = state.links.concat({
+          newLinks = state.userLinks.concat({
             id: action.payload.id,
             sources: action.payload.sources,
             targets: action.payload.targets,
@@ -293,8 +312,9 @@ export const baseReducer = (
         }
         return {
           ...state,
-          links: newLinks,
+          userLinks: newLinks,
           selectedSourceTextSegments: {},
+          selectedReferenceTextSegments: {},
           selectedTargetTextSegments: {},
           inProgressLink: null,
         };
@@ -303,7 +323,7 @@ export const baseReducer = (
       return {
         ...state,
         inProgressLink: null,
-        links: state.links.filter((link) => {
+        userLinks: state.userLinks.filter((link) => {
           const foundSource = link.sources.find((sourcePos) => {
             return action.payload.sources.includes(sourcePos);
           });
@@ -322,6 +342,7 @@ export const baseReducer = (
       return {
         ...state,
         selectedSourceTextSegments: {},
+        selectedReferenceTextSegments: {},
         selectedTargetTextSegments: {},
         inProgressLink: null,
       };

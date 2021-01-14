@@ -5,11 +5,14 @@ export const findLinkForTextSegment = (
   textSegment: TextSegment
 ): Link | undefined => {
   const found = links.find((link: Link): boolean => {
-    if (textSegment.type === 'source') {
+    if (textSegment.type === 'source' && link.sources) {
       return link.sources.includes(textSegment.position);
     }
 
-    if (textSegment.type === 'target') {
+    if (
+      textSegment.type === 'target' ||
+      (textSegment.type === 'reference' && link.targets)
+    ) {
       return link.targets.includes(textSegment.position);
     }
 

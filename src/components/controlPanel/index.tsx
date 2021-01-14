@@ -165,7 +165,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                   payload: {
                     id: state.inProgressLink
                       ? state.inProgressLink.id
-                      : nextId(state.links.map((link) => link.id)),
+                      : nextId(state.userLinks.map((link) => link.id)),
                     sources: selectedSourceSegments,
                     targets: selectedTargetSegments,
                   },

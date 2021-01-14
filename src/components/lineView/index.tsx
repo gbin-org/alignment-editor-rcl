@@ -59,7 +59,7 @@ export const LineView = (props: LineViewProps): ReactElement => {
 
       <div id="links-container" style={{ position: 'relative' }}>
         {state.parentRef &&
-          state.links.map((link: Link) => {
+          state.userLinks.map((link: Link) => {
             return (
               <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
