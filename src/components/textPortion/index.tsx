@@ -38,7 +38,6 @@ const getSegmentSelections = (type: TextSegmentType, state: AlignmentState) => {
 
 export const TextPortion = (props: TextPortionProps): ReactElement => {
   const { type, textSegments, displayStyle } = props;
-  console.log(type);
 
   const { state } = useContext(AlignmentContext);
 
@@ -53,8 +52,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   const segmentSelections = getSegmentSelections(type, state);
   const relevantLinkSet =
     type === 'reference' ? state.referenceLinks : state.userLinks;
-
-  console.log(type, relevantLinkSet, segmentSelections);
 
   return (
     <div

@@ -135,7 +135,7 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <div>
           {singleLinkAlignment(
             props,
-            state.focusedLinks,
+            state.focusedUserLinks,
             state.selectedSourceTextSegments,
             state.selectedTargetTextSegments
           )}

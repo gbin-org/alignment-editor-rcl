@@ -1,9 +1,17 @@
 import React, { ReactElement, useContext } from 'react';
 
-import { AlignmentActionTypes } from 'contexts/alignment/reducer';
+import {
+  AlignmentActionTypes,
+  AlignmentState,
+} from 'contexts/alignment/reducer';
 
 import { AlignmentContext } from 'contexts/alignment';
 import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
+import {
+  findLinkForTextSegment,
+  findUserLinkForReferenceLink,
+  findReferenceLinkForUserLink,
+} from 'core/findLink';
 
 import './textSegmentStyle.scss';
 
@@ -21,6 +29,46 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
   marginTop: '0.5rem',
   marginBottom: '0.5rem',
+};
+
+const focusRelatedSegments = (
+  state: AlignmentState,
+  dispatch: React.Dispatch<AlignmentActionTypes>,
+  relatedLink: Link,
+  textSegment: TextSegment
+): void => {
+  if (textSegment.type === 'reference') {
+    dispatch({ type: 'focusReferenceLink', payload: { link: relatedLink } });
+
+    const relatedUserLink = findUserLinkForReferenceLink(
+      state.userLinks,
+      relatedLink
+    );
+
+    if (relatedUserLink) {
+      dispatch({ type: 'focusUserLink', payload: { link: relatedUserLink } });
+    }
+  }
+
+  if (textSegment.type === 'source' || textSegment.type === 'target') {
+    console.log('doing the right thing', textSegment);
+    dispatch({ type: 'focusUserLink', payload: { link: relatedLink } });
+
+    console.log(state.referenceLinks);
+    console.log(relatedLink);
+    const relatedReferenceLink = findReferenceLinkForUserLink(
+      state.referenceLinks,
+      relatedLink
+    );
+
+    if (relatedReferenceLink) {
+      console.log('related?', relatedReferenceLink);
+      dispatch({
+        type: 'focusReferenceLink',
+        payload: { link: relatedReferenceLink },
+      });
+    }
+  }
 };
 
 //const segmentColors: Record<number, string> = {
@@ -231,17 +279,17 @@ const paragraphDisplayStyle = {
 //return null;
 //};
 
-const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link | undefined => {
-  return links.find((link: Link): boolean =>{
-    if (textSegment.type === 'source') {
-        return link.sources.includes(textSegment.position);
-    }
-    if (textSegment.type === 'target') {
-        return link.targets.includes(textSegment.position);
-    }
-    return false
-  });
-};
+//const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link | undefined => {
+//return links.find((link: Link): boolean =>{
+//if (textSegment.type === 'source') {
+//return link.sources.includes(textSegment.position);
+//}
+//if (textSegment.type === 'target') {
+//return link.targets.includes(textSegment.position);
+//}
+//return false
+//});
+//};
 
 const updateInProgressLink = (
   relatedLink: Link,
@@ -444,7 +492,10 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  const relatedLink = findRelatedLink(segmentData, state.userLinks);
+  const relevantLinkSet =
+    segmentData.type === 'reference' ? state.referenceLinks : state.userLinks;
+
+  const relatedLink = findLinkForTextSegment(relevantLinkSet, segmentData);
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
@@ -454,7 +505,12 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
   const focusedClass =
-    relatedLink && state.focusedLinks.get(relatedLink) ? 'focused' : '';
+    relatedLink &&
+    (state.focusedUserLinks.get(relatedLink) ||
+      state.focusedReferenceLinks.get(relatedLink))
+      ? 'focused'
+      : '';
+
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
@@ -513,12 +569,15 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         }}
         onMouseOver={() => {
           if (relatedLink) {
-            dispatch({ type: 'focusLink', payload: { link: relatedLink } });
+            focusRelatedSegments(state, dispatch, relatedLink, segmentData);
           }
         }}
         onMouseLeave={() => {
           if (relatedLink) {
-            dispatch({ type: 'unFocusLink', payload: { link: relatedLink } });
+            dispatch({
+              type: 'unFocusUserLink',
+              payload: { link: relatedLink },
+            });
           }
         }}
       >

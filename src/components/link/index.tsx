@@ -24,7 +24,7 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
 
   //const color = '#c8c8c8';
   const disabled = '';
-  const focused = state.focusedLinks.get(link) ? 'focused' : '';
+  const focused = state.focusedUserLinks.get(link) ? 'focused' : '';
   const name = `source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 

@@ -94,7 +94,7 @@
   ]}
   referenceLinks={[
     { sources: [3], targets: [4], type: 'manual' },
-    { sources: [5], targets: [7], type: 'manual' },
+    { sources: [4], targets: [7], type: 'manual' },
   ]}
   stateUpdatedHook={(a) => {
     console.log('STATE UPDATED', a);

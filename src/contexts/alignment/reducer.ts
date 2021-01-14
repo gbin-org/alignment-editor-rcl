@@ -14,13 +14,23 @@ interface Action {
 
 export type ViewType = 'paragraph' | 'line';
 
-interface FocusLinkAction extends Action {
-  type: 'focusLink';
+interface FocusUserLinkAction extends Action {
+  type: 'focusUserLink';
   payload: { link: Link };
 }
 
-interface UnFocusLinkAction extends Action {
-  type: 'unFocusLink';
+interface UnFocusUserLinkAction extends Action {
+  type: 'unFocusUserLink';
+  payload: { link: Link };
+}
+
+interface FocusReferenceLinkAction extends Action {
+  type: 'focusReferenceLink';
+  payload: { link: Link };
+}
+
+interface UnFocusReferenceLinkAction extends Action {
+  type: 'unFocusReferenceLink';
   payload: { link: Link };
 }
 
@@ -130,8 +140,10 @@ interface SwitchGlossesDisplay extends Action {
 }
 
 export type AlignmentActionTypes =
-  | FocusLinkAction
-  | UnFocusLinkAction
+  | FocusUserLinkAction
+  | UnFocusUserLinkAction
+  | FocusReferenceLinkAction
+  | UnFocusReferenceLinkAction
   | SetUserLinksAction
   | SetReferenceLinksAction
   | SwitchViewAction
@@ -155,7 +167,8 @@ export type AlignmentActionTypes =
   | SwitchGlossesDisplay;
 
 export type AlignmentState = {
-  focusedLinks: Map<Link, boolean>;
+  focusedUserLinks: Map<Link, boolean>;
+  focusedReferenceLinks: Map<Link, boolean>;
   userLinks: Link[];
   referenceLinks: Link[];
   sourceGlosses: Gloss[];
@@ -174,7 +187,8 @@ export type AlignmentState = {
 };
 
 export const initialState: AlignmentState = {
-  focusedLinks: new Map<Link, boolean>(),
+  focusedUserLinks: new Map<Link, boolean>(),
+  focusedReferenceLinks: new Map<Link, boolean>(),
   userLinks: [],
   referenceLinks: [],
   sourceGlosses: [],
@@ -196,16 +210,33 @@ export const baseReducer = (
   state: AlignmentState,
   action: AlignmentActionTypes
 ): AlignmentState => {
-  //console.info('REDUCER', action, state);
+  console.info('REDUCER', action, state);
   switch (action.type) {
-    case 'focusLink':
-      const newFocusedLinks = new Map<Link, boolean>(state.focusedLinks);
-      newFocusedLinks.set(action.payload.link, true);
-      return { ...state, focusedLinks: newFocusedLinks };
-    case 'unFocusLink':
-      const newUnFocusedLinks = new Map<Link, boolean>(state.focusedLinks);
-      newUnFocusedLinks.set(action.payload.link, false);
-      return { ...state, focusedLinks: newUnFocusedLinks };
+    case 'focusUserLink':
+      const newFocusedUserLinks = new Map<Link, boolean>(
+        state.focusedUserLinks
+      );
+      newFocusedUserLinks.set(action.payload.link, true);
+      return { ...state, focusedUserLinks: newFocusedUserLinks };
+    case 'unFocusUserLink':
+      const newUnFocusedUserLinks = new Map<Link, boolean>(
+        state.focusedUserLinks
+      );
+      newUnFocusedUserLinks.set(action.payload.link, false);
+      return { ...state, focusedUserLinks: newUnFocusedUserLinks };
+    case 'focusReferenceLink':
+      const newFocusedReferenceLinks = new Map<Link, boolean>(
+        state.focusedReferenceLinks
+      );
+      newFocusedReferenceLinks.set(action.payload.link, true);
+      return { ...state, focusedReferenceLinks: newFocusedReferenceLinks };
+    case 'unFocusReferenceLink':
+      const newUnFocusedReferenceLinks = new Map<Link, boolean>(
+        state.focusedReferenceLinks
+      );
+      newUnFocusedReferenceLinks.set(action.payload.link, false);
+      return { ...state, focusedUserLinks: newUnFocusedReferenceLinks };
+
     case 'setUserLinks':
       return {
         ...state,
