@@ -14,9 +14,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "dist"
+    "declarationDir": "dist",
+    "noFallthroughCasesInSwitch": true
   },
   "include": ["src"]
 }

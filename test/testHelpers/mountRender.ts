@@ -1,6 +1,10 @@
 import { ReactElement } from 'react';
 import Enzyme, { mount, ReactWrapper } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+
+// This is temporary.
+// See: https://github.com/enzymejs/enzyme/issues/2429
+// 01/15/2021
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 
 Enzyme.configure({ adapter: new Adapter() });
 
