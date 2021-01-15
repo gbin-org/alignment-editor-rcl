@@ -51,11 +51,8 @@ const focusRelatedSegments = (
   }
 
   if (textSegment.type === 'source' || textSegment.type === 'target') {
-    console.log('doing the right thing', textSegment);
     dispatch({ type: 'focusUserLink', payload: { link: relatedLink } });
 
-    console.log(state.referenceLinks);
-    console.log(relatedLink);
     const relatedReferenceLink = findReferenceLinkForUserLink(
       state.referenceLinks,
       relatedLink
@@ -65,6 +62,42 @@ const focusRelatedSegments = (
       console.log('related?', relatedReferenceLink);
       dispatch({
         type: 'focusReferenceLink',
+        payload: { link: relatedReferenceLink },
+      });
+    }
+  }
+};
+
+const unFocusRelatedSegments = (
+  state: AlignmentState,
+  dispatch: React.Dispatch<AlignmentActionTypes>,
+  relatedLink: Link,
+  textSegment: TextSegment
+) => {
+  if (textSegment.type === 'reference') {
+    dispatch({ type: 'unFocusReferenceLink', payload: { link: relatedLink } });
+
+    const relatedUserLink = findUserLinkForReferenceLink(
+      state.userLinks,
+      relatedLink
+    );
+
+    if (relatedUserLink) {
+      dispatch({ type: 'unFocusUserLink', payload: { link: relatedUserLink } });
+    }
+  }
+
+  if (textSegment.type === 'source' || textSegment.type === 'target') {
+    dispatch({ type: 'unFocusUserLink', payload: { link: relatedLink } });
+
+    const relatedReferenceLink = findReferenceLinkForUserLink(
+      state.referenceLinks,
+      relatedLink
+    );
+
+    if (relatedReferenceLink) {
+      dispatch({
+        type: 'unFocusReferenceLink',
         payload: { link: relatedReferenceLink },
       });
     }
@@ -574,10 +607,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         }}
         onMouseLeave={() => {
           if (relatedLink) {
-            dispatch({
-              type: 'unFocusUserLink',
-              payload: { link: relatedLink },
-            });
+            unFocusRelatedSegments(state, dispatch, relatedLink, segmentData);
           }
         }}
       >

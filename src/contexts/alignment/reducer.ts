@@ -235,7 +235,7 @@ export const baseReducer = (
         state.focusedReferenceLinks
       );
       newUnFocusedReferenceLinks.set(action.payload.link, false);
-      return { ...state, focusedUserLinks: newUnFocusedReferenceLinks };
+      return { ...state, focusedReferenceLinks: newUnFocusedReferenceLinks };
 
     case 'setUserLinks':
       return {

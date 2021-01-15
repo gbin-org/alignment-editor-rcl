@@ -92,7 +92,10 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
     >
       <div>
         <div>SOURCE</div>
-        <div className="source-container" style={{ overflowY: 'scroll' }}>
+        <div
+          className="source-container"
+          style={{ height: '16rem', overflowY: 'scroll' }}
+        >
           <TextPortionComponent
             displayStyle="paragraph"
             type="source"
@@ -105,7 +108,10 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <br />
 
         <div>TARGET</div>
-        <div className="target-container" style={{ overflowY: 'scroll' }}>
+        <div
+          className="target-container"
+          style={{ height: '16rem', overflowY: 'scroll' }}
+        >
           <TextPortionComponent
             displayStyle="paragraph"
             type="target"
@@ -118,7 +124,10 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <div>
           <div>BRIDGE</div>
           {referenceSegments && (
-            <div className="bridge-container" style={{ overflowY: 'scroll' }}>
+            <div
+              className="bridge-container"
+              style={{ height: '16rem', overflowY: 'scroll' }}
+            >
               <TextPortionComponent
                 displayStyle="paragraph"
                 type="reference"
