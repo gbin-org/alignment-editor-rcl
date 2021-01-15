@@ -22,7 +22,10 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
 };
 
-const getSegmentSelections = (type: TextSegmentType, state: AlignmentState) => {
+const getSegmentSelections = (
+  type: TextSegmentType,
+  state: AlignmentState
+): Record<number, boolean> => {
   if (type === 'source') {
     return state.selectedSourceTextSegments;
   }
@@ -31,9 +34,7 @@ const getSegmentSelections = (type: TextSegmentType, state: AlignmentState) => {
     return state.selectedReferenceTextSegments;
   }
 
-  if (type === 'target') {
-    return state.selectedTargetTextSegments;
-  }
+  return state.selectedTargetTextSegments;
 };
 
 export const TextPortion = (props: TextPortionProps): ReactElement => {
@@ -50,6 +51,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
 
   const segmentSelections = getSegmentSelections(type, state);
+
   const relevantLinkSet =
     type === 'reference' ? state.referenceLinks : state.userLinks;
 

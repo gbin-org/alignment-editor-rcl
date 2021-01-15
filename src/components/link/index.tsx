@@ -75,10 +75,10 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
           y2={y2}
           onClick={forceUpdate}
           onMouseOver={() => {
-            dispatch({ type: 'focusLink', payload: { link } });
+            dispatch({ type: 'focusUserLink', payload: { link } });
           }}
           onMouseLeave={() => {
-            dispatch({ type: 'unFocusLink', payload: { link } });
+            dispatch({ type: 'unFocusUserLink', payload: { link } });
           }}
         />
       </svg>
