@@ -3,14 +3,15 @@ import {
   reducer,
   initialState,
   AlignmentActionTypes,
+  AlignmentState,
 } from 'contexts/alignment/reducer';
 
 describe('AlignmentContextReducer', (): void => {
   describe('addLink', (): void => {
     it('can add a new simple link', (): void => {
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
         ],
       };
@@ -28,9 +29,9 @@ describe('AlignmentContextReducer', (): void => {
     });
 
     it('can add a new complex link', (): void => {
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
         ],
       };
@@ -49,9 +50,9 @@ describe('AlignmentContextReducer', (): void => {
     });
 
     it('can update/replace an existing simple link', (): void => {
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
         ],
       };
@@ -71,9 +72,9 @@ describe('AlignmentContextReducer', (): void => {
     it('calls stateUpdatedHook when link is added', (): void => {
       const mockStateUpdatedHook = jest.fn();
 
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
         ],
         stateUpdatedHook: mockStateUpdatedHook,
@@ -95,9 +96,9 @@ describe('AlignmentContextReducer', (): void => {
     it('calls stateUpdatedHook only once', (): void => {
       const mockStateUpdatedHook = jest.fn();
 
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
         ],
         stateUpdatedHook: mockStateUpdatedHook,
@@ -116,9 +117,9 @@ describe('AlignmentContextReducer', (): void => {
 
   describe('removeLink', (): void => {
     it('can remove a simple link', (): void => {
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           { id: 0, sources: [1], targets: [1], type: 'manual' as LinkType },
           { id: 1, sources: [5], targets: [8], type: 'manual' as LinkType },
         ],
@@ -137,9 +138,9 @@ describe('AlignmentContextReducer', (): void => {
     });
 
     it('can remove a complex link', (): void => {
-      const initialTestState = {
+      const initialTestState: AlignmentState = {
         ...initialState,
-        links: [
+        userLinks: [
           {
             id: 0,
             sources: [1, 2],
