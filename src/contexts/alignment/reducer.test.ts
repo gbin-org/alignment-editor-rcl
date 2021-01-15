@@ -21,7 +21,7 @@ describe('AlignmentContextReducer', (): void => {
 
       const result = reducer(initialTestState, addLinkAction);
 
-      expect(result.links).toEqual([
+      expect(result.userLinks).toEqual([
         { id: 0, sources: [1], targets: [1], type: 'manual' },
         { id: 1, sources: [2], targets: [2], type: 'manual' },
       ]);
@@ -42,7 +42,7 @@ describe('AlignmentContextReducer', (): void => {
 
       const result = reducer(initialTestState, addLinkAction);
 
-      expect(result.links).toEqual([
+      expect(result.userLinks).toEqual([
         { id: 0, sources: [1], targets: [1], type: 'manual' },
         { id: 1, sources: [2, 5], targets: [3, 4, 5, 6], type: 'manual' },
       ]);
@@ -63,7 +63,7 @@ describe('AlignmentContextReducer', (): void => {
 
       const result = reducer(initialTestState, addLinkAction);
 
-      expect(result.links).toEqual([
+      expect(result.userLinks).toEqual([
         { id: 0, sources: [1, 2], targets: [1], type: 'manual' },
       ]);
     });
@@ -131,7 +131,7 @@ describe('AlignmentContextReducer', (): void => {
 
       const result = reducer(initialTestState, removeLinkAction);
 
-      expect(result.links).toEqual([
+      expect(result.userLinks).toEqual([
         { id: 1, sources: [5], targets: [8], type: 'manual' },
       ]);
     });
@@ -158,7 +158,7 @@ describe('AlignmentContextReducer', (): void => {
 
       const result = reducer(initialTestState, removeLinkAction);
 
-      expect(result.links).toEqual([
+      expect(result.userLinks).toEqual([
         { id: 0, sources: [1, 2], targets: [4, 5], type: 'manual' },
         { id: 2, sources: [16], targets: [3, 4], type: 'manual' },
       ]);
