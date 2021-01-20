@@ -87,8 +87,14 @@
     { text: 'a', type: 'target', position: 26 },
     { text: 'mirror', type: 'target', position: 27 },
   ]}
-  userLinks={[{ sources: [7], targets: [8], type: 'manual' }]}
-  referenceLinks={[{ sources: [4], targets: [7], type: 'manual' }]}
+  userLinks={[
+    { sources: [7], targets: [8], type: 'manual' },
+    { sources: [23], targets: [27], type: 'manual' },
+  ]}
+  referenceLinks={[
+    { sources: [4], targets: [7], type: 'manual' },
+    { sources: [19], targets: [23], type: 'manual' },
+  ]}
   stateUpdatedHook={(a) => {
     console.log('STATE UPDATED', a);
   }}
