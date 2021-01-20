@@ -12,6 +12,7 @@ type Direction = 'ltr' | 'rtl';
 
 interface LineViewProps {
   sourceSegments: TextSegment[];
+  referenceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
   targetDirection: Direction;
@@ -22,7 +23,7 @@ const fullDisplayStyle = { margin: '21.4rem' };
 const partialDisplayStyle = { margin: '10rem' };
 
 export const LineView = (props: LineViewProps): ReactElement => {
-  const { sourceSegments, targetSegments } = props;
+  const { sourceSegments, referenceSegments, targetSegments } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
@@ -57,12 +58,13 @@ export const LineView = (props: LineViewProps): ReactElement => {
         textSegments={sourceSegments}
       />
 
-      <div id="links-container" style={{ position: 'relative' }}>
+      <div id="reference-links-container" style={{ position: 'relative' }}>
         {state.parentRef &&
-          state.userLinks.map((link: Link) => {
+          state.referenceLinks?.map((link: Link) => {
             return (
               <LinkComponent
                 key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
+                type="reference"
                 link={link}
                 sourcePosition={link.sources[0]}
                 targetPosition={link.targets[0]}
@@ -71,15 +73,36 @@ export const LineView = (props: LineViewProps): ReactElement => {
           })}
       </div>
 
-      <div style={configuredStyle} />
+      <div id="user-links-container" style={{ position: 'relative' }}>
+        {state.parentRef &&
+          state.userLinks.map((link: Link) => {
+            return (
+              <LinkComponent
+                key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
+                type="user"
+                link={link}
+                sourcePosition={link.sources[0]}
+                targetPosition={link.targets[0]}
+              />
+            );
+          })}
+      </div>
+
+      <div style={{ margin: '8rem' }} />
 
       <TextPortionComponent
         displayStyle="line"
-        type="target"
-        textSegments={targetSegments}
+        type="reference"
+        textSegments={referenceSegments}
       />
 
-      <div style={{ margin: '0.5rem' }} />
+      <div style={{ margin: '8rem' }} />
+
+      <TextPortionComponent
+        type="target"
+        displayStyle="line"
+        textSegments={targetSegments}
+      />
     </div>
   );
 };

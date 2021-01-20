@@ -39,6 +39,7 @@ const selectedView = (
     return (
       <LineView
         sourceSegments={props.sourceSegments}
+        referenceSegments={props.referenceSegments}
         targetSegments={props.targetSegments}
         sourceDirection="ltr"
         targetDirection="ltr"

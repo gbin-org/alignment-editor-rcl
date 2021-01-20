@@ -37,7 +37,7 @@ const focusRelatedSegments = (
   relatedLink: Link,
   textSegment: TextSegment
 ): void => {
-  if (textSegment.type === 'reference') {
+  if (textSegment.type === 'source') {
     dispatch({ type: 'focusReferenceLink', payload: { link: relatedLink } });
 
     const relatedUserLink = findUserLinkForReferenceLink(
@@ -50,7 +50,7 @@ const focusRelatedSegments = (
     }
   }
 
-  if (textSegment.type === 'source' || textSegment.type === 'target') {
+  if (textSegment.type === 'target' || textSegment.type === 'reference') {
     dispatch({ type: 'focusUserLink', payload: { link: relatedLink } });
 
     const relatedReferenceLink = findReferenceLinkForUserLink(
@@ -74,7 +74,7 @@ const unFocusRelatedSegments = (
   relatedLink: Link,
   textSegment: TextSegment
 ) => {
-  if (textSegment.type === 'reference') {
+  if (textSegment.type === 'source') {
     dispatch({ type: 'unFocusReferenceLink', payload: { link: relatedLink } });
 
     const relatedUserLink = findUserLinkForReferenceLink(
@@ -87,7 +87,7 @@ const unFocusRelatedSegments = (
     }
   }
 
-  if (textSegment.type === 'source' || textSegment.type === 'target') {
+  if (textSegment.type === 'target' || textSegment.type === 'reference') {
     dispatch({ type: 'unFocusUserLink', payload: { link: relatedLink } });
 
     const relatedReferenceLink = findReferenceLinkForUserLink(
@@ -512,6 +512,39 @@ const glossDisplay = (
   return <></>;
 };
 
+const isFocused = (
+  relevantLink: Link | undefined,
+  textSegmentType: TextSegmentType,
+  state: AlignmentState
+): boolean => {
+  if (!relevantLink) {
+    return false;
+  }
+
+  if (textSegmentType === 'source') {
+    return Boolean(state.focusedReferenceLinks.get(relevantLink));
+  }
+
+  if (textSegmentType === 'reference') {
+    return (
+      Boolean(state.focusedReferenceLinks.get(relevantLink)) ||
+      Boolean(state.focusedUserLinks.get(relevantLink)) ||
+      Boolean(
+        state.focusedReferenceLinks.get(
+          findReferenceLinkForUserLink(state.referenceLinks, relevantLink) ??
+            ({} as Link)
+        )
+      )
+    );
+  }
+
+  if (textSegmentType === 'target') {
+    return Boolean(state.focusedUserLinks.get(relevantLink));
+  }
+
+  return false;
+};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     segmentData,
@@ -526,7 +559,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
   const relevantLinkSet =
-    segmentData.type === 'reference' ? state.referenceLinks : state.userLinks;
+    segmentData.type === 'source' ? state.referenceLinks : state.userLinks;
 
   const relatedLink = findLinkForTextSegment(relevantLinkSet, segmentData);
 
@@ -537,12 +570,10 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const lockedClass = locked ? 'locked' : 'unlocked';
 
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
-  const focusedClass =
-    relatedLink &&
-    (state.focusedUserLinks.get(relatedLink) ||
-      state.focusedReferenceLinks.get(relatedLink))
-      ? 'focused'
-      : '';
+
+  const focusedClass = isFocused(relatedLink, segmentData.type, state)
+    ? 'focused'
+    : '';
 
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
@@ -565,6 +596,15 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
             if (segmentData.type === 'target') {
               dispatch({
                 type: 'addTargetRef',
+                payload: { position: segmentData.position, ref: ref },
+              });
+            }
+          }
+
+          if (state.referenceRefs[segmentData.position] !== ref) {
+            if (segmentData.type === 'reference') {
+              dispatch({
+                type: 'addReferenceRef',
                 payload: { position: segmentData.position, ref: ref },
               });
             }
@@ -601,6 +641,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
           }
         }}
         onMouseOver={() => {
+          console.log(segmentData.type, relatedLink);
           if (relatedLink) {
             focusRelatedSegments(state, dispatch, relatedLink, segmentData);
           }

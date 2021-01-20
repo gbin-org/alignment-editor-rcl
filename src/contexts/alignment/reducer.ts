@@ -54,6 +54,11 @@ interface AddSourceRefAction extends Action {
   payload: { position: number; ref: HTMLDivElement };
 }
 
+interface AddReferenceRefAction extends Action {
+  type: 'addReferenceRef';
+  payload: { position: number; ref: HTMLDivElement };
+}
+
 interface AddTargetRefAction extends Action {
   type: 'addTargetRef';
   payload: { position: number; ref: HTMLDivElement };
@@ -148,6 +153,7 @@ export type AlignmentActionTypes =
   | SetReferenceLinksAction
   | SwitchViewAction
   | AddSourceRefAction
+  | AddReferenceRefAction
   | AddTargetRefAction
   | AddParentRefAction
   | ChangeSourceTextDirection
@@ -175,6 +181,7 @@ export type AlignmentState = {
   view: ViewType;
   displayGlosses: boolean;
   sourceRefs: Record<number, HTMLDivElement>;
+  referenceRefs: Record<number, HTMLDivElement>;
   targetRefs: Record<number, HTMLDivElement>;
   parentRef: HTMLDivElement | null;
   sourceTextDirection: 'ltr' | 'rtl';
@@ -195,6 +202,7 @@ export const initialState: AlignmentState = {
   displayGlosses: true,
   view: 'paragraph',
   sourceRefs: {},
+  referenceRefs: {},
   targetRefs: {},
   parentRef: null,
   sourceTextDirection: 'ltr',
@@ -211,7 +219,7 @@ export const baseReducer = (
   action: AlignmentActionTypes
 ): AlignmentState => {
   // For DEBUG (very handy)
-  // console.info('REDUCER', action, state);
+  console.info('REDUCER', action, state);
 
   switch (action.type) {
     case 'focusUserLink':
@@ -262,6 +270,14 @@ export const baseReducer = (
         ...state,
         sourceRefs: {
           ...state.sourceRefs,
+          [action.payload.position]: action.payload.ref,
+        },
+      };
+    case 'addReferenceRef':
+      return {
+        ...state,
+        referenceRefs: {
+          ...state.referenceRefs,
           [action.payload.position]: action.payload.ref,
         },
       };

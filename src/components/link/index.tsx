@@ -2,11 +2,12 @@ import React, { ReactElement, useState, useContext } from 'react';
 
 import './linkStyle.scss';
 
-import { AlignmentContext } from 'contexts/alignment';
+import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 import { Link } from 'core/structs';
 
 export interface LinkProps {
   link: Link;
+  type: 'user' | 'reference';
   sourcePosition: number;
   targetPosition: number;
 }
@@ -16,20 +17,40 @@ function useForceUpdate() {
   return () => setValue((value) => ++value); // update the state to force render
 }
 
+const isFocused = (
+  state: AlignmentState,
+  type: 'user' | 'reference',
+  link: Link
+): boolean => {
+  if (type === 'user') {
+    return Boolean(state.focusedUserLinks.get(link));
+  }
+
+  if (type === 'reference') {
+    return Boolean(state.focusedReferenceLinks.get(link));
+  }
+
+  return false;
+};
+
 export const LinkComponent = (props: LinkProps): ReactElement => {
-  const { sourcePosition, targetPosition, link } = props;
+  const { sourcePosition, targetPosition, link, type } = props;
   const { state, dispatch } = useContext(AlignmentContext);
   //const color = this.getColor(sourceRef);
   //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
   //const color = '#c8c8c8';
   const disabled = '';
-  const focused = state.focusedUserLinks.get(link) ? 'focused' : '';
-  const name = `source${sourcePosition}-target${targetPosition}`;
+  const focused = isFocused(state, type, link) ? 'focused' : '';
+  const name = `${type}-source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
-  const sourceRef = state.sourceRefs[sourcePosition];
-  const targetRef = state.targetRefs[targetPosition];
+  const sourceRefSet = type === 'user' ? state.referenceRefs : state.sourceRefs;
+  const targetRefSet = type === 'user' ? state.targetRefs : state.referenceRefs;
+
+  const sourceRef = sourceRefSet[sourcePosition];
+  const targetRef = targetRefSet[targetPosition];
+
   const parentRef = state.parentRef;
 
   if (parentRef && sourceRef && targetRef) {
@@ -75,10 +96,21 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
           y2={y2}
           onClick={forceUpdate}
           onMouseOver={() => {
-            dispatch({ type: 'focusUserLink', payload: { link } });
+            if (type === 'user') {
+              dispatch({ type: 'focusUserLink', payload: { link } });
+            }
+
+            if (type === 'reference') {
+              dispatch({ type: 'focusReferenceLink', payload: { link } });
+            }
           }}
           onMouseLeave={() => {
-            dispatch({ type: 'unFocusUserLink', payload: { link } });
+            if (type === 'user') {
+              dispatch({ type: 'unFocusUserLink', payload: { link } });
+            }
+            if (type === 'reference') {
+              dispatch({ type: 'unFocusReferenceLink', payload: { link } });
+            }
           }}
         />
       </svg>

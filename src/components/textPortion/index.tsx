@@ -53,7 +53,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   const segmentSelections = getSegmentSelections(type, state);
 
   const relevantLinkSet =
-    type === 'reference' ? state.referenceLinks : state.userLinks;
+    type === 'source' ? state.referenceLinks : state.userLinks;
 
   return (
     <div
@@ -70,15 +70,17 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
         className={`${type}-container`}
         style={{ ...configuredStyle, paddingRight: '5rem', direction }}
       >
-        {textSegments.map(
+        {textSegments?.map(
           (textSegment, index): ReactElement => {
             const relatedLink = findLinkForTextSegment(
               relevantLinkSet,
               textSegment
             );
+
             const linkIndex = relatedLink
               ? relevantLinkSet.indexOf(relatedLink)
               : index;
+
             return (
               <TextSegmentComponent
                 key={`${type}-${textSegment.position}`}

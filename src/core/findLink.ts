@@ -5,14 +5,14 @@ export const findLinkForTextSegment = (
   textSegment: TextSegment
 ): Link | undefined => {
   const found = links.find((link: Link): boolean => {
-    if (textSegment.type === 'source' && link.sources) {
+    if (
+      textSegment.type === 'source' ||
+      (textSegment.type === 'reference' && link.sources)
+    ) {
       return link.sources.includes(textSegment.position);
     }
 
-    if (
-      textSegment.type === 'target' ||
-      (textSegment.type === 'reference' && link.targets)
-    ) {
+    if (textSegment.type === 'target' && link.targets) {
       return link.targets.includes(textSegment.position);
     }
 
@@ -27,7 +27,7 @@ export const findUserLinkForReferenceLink = (
   referenceLink: Link
 ): Link | undefined => {
   return userLinks.find((userLink: Link) => {
-    return referenceLink.sources.find((referenceLinkSource: number) => {
+    return referenceLink.targets.find((referenceLinkSource: number) => {
       return userLink.sources.includes(referenceLinkSource);
     });
   });
@@ -39,7 +39,7 @@ export const findReferenceLinkForUserLink = (
 ): Link | undefined => {
   return referenceLinks.find((referenceLink: Link) => {
     return userLink.sources.find((userLinkSource: number) => {
-      return referenceLink.sources.includes(userLinkSource);
+      return referenceLink.targets.includes(userLinkSource);
     });
   });
 };
