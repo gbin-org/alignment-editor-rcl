@@ -45,18 +45,18 @@ const singleLinkAlignment = (
     }
   );
 
-  if (selectedSources.length || selectedTargets.length) {
-    return (
-      <LineView
-        displayStyle="partial"
-        sourceDirection={'ltr'}
-        sourceSegments={selectedSources}
-        //referenceSegments={referenceSegments}
-        targetDirection={'rtl'}
-        targetSegments={selectedTargets}
-      />
-    );
-  }
+  //if (selectedSources.length || selectedTargets.length) {
+  //return (
+  //<LineView
+  //displayStyle="partial"
+  //sourceDirection={'ltr'}
+  //sourceSegments={selectedSources}
+  //referenceSegments={referenceSegments}
+  //targetDirection={'rtl'}
+  //targetSegments={selectedTargets}
+  ///>
+  //);
+  //}
 
   const linksArray = Array.from(focusedUserLinks ?? []);
   if (linksArray.length) {
