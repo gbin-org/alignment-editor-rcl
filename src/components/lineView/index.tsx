@@ -19,8 +19,8 @@ interface LineViewProps {
   displayStyle: 'full' | 'partial';
 }
 
-const fullDisplayStyle = { margin: '21.4rem' };
-const partialDisplayStyle = { margin: '10rem' };
+const fullDisplayStyle = { margin: '8em' };
+const partialDisplayStyle = { margin: '3.5rem' };
 
 export const LineView = (props: LineViewProps): ReactElement => {
   const { sourceSegments, referenceSegments, targetSegments } = props;
@@ -88,7 +88,7 @@ export const LineView = (props: LineViewProps): ReactElement => {
           })}
       </div>
 
-      <div style={{ margin: '8rem' }} />
+      <div style={configuredStyle} />
 
       <TextPortionComponent
         displayStyle="line"
@@ -96,7 +96,7 @@ export const LineView = (props: LineViewProps): ReactElement => {
         textSegments={referenceSegments}
       />
 
-      <div style={{ margin: '8rem' }} />
+      <div style={configuredStyle} />
 
       <TextPortionComponent
         type="target"

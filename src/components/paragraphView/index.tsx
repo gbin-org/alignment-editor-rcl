@@ -1,11 +1,12 @@
 import React, { ReactElement, useContext } from 'react';
 
-import { AlignmentContext } from 'contexts/alignment';
+import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
 import TextPortionComponent from 'components/textPortion';
 import LineView from 'components/lineView';
 
 import { Link, TextSegment } from 'core/structs';
+import { findReferenceLinkForUserLink } from 'core/findLink';
 
 type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
@@ -20,8 +21,10 @@ interface ParagraphViewProps {
 
 const singleLinkAlignment = (
   props: ParagraphViewProps,
-  focusedLinks: Map<Link, boolean>,
+  state: AlignmentState,
+  focusedUserLinks: Map<Link, boolean>,
   selectedSourceTextSegments: Record<number, boolean>,
+  selectedReferenceTextSegments: Record<number, boolean>,
   selectedTargetTextSegments: Record<number, boolean>
 ): (ReactElement | null)[] | ReactElement => {
   const selectedSources = props.sourceSegments.filter(
@@ -29,6 +32,12 @@ const singleLinkAlignment = (
       return selectedSourceTextSegments[sourceSegment.position];
     }
   );
+
+  //const referenceSegments = props.referenceSegments.filter(
+  //(referenceSegment: TextSegment) => {
+  //return selectedReferenceTextSegments[referenceSegment.position];
+  //}
+  //);
 
   const selectedTargets = props.targetSegments.filter(
     (targetSegment: TextSegment) => {
@@ -42,15 +51,20 @@ const singleLinkAlignment = (
         displayStyle="partial"
         sourceDirection={'ltr'}
         sourceSegments={selectedSources}
+        //referenceSegments={referenceSegments}
         targetDirection={'rtl'}
         targetSegments={selectedTargets}
       />
     );
   }
 
-  const linksArray = Array.from(focusedLinks ?? []);
+  const linksArray = Array.from(focusedUserLinks ?? []);
   if (linksArray.length) {
     return linksArray.map(([link, bool]): ReactElement | null => {
+      const relatedReferenceLink = findReferenceLinkForUserLink(
+        state.referenceLinks,
+        link
+      );
       if (bool) {
         return (
           <LineView
@@ -59,7 +73,16 @@ const singleLinkAlignment = (
             sourceDirection={'ltr'}
             sourceSegments={props.sourceSegments.filter(
               (sourceSegment: TextSegment): boolean => {
-                return link.sources.includes(sourceSegment.position);
+                return (
+                  relatedReferenceLink?.sources.includes(
+                    sourceSegment.position
+                  ) ?? false
+                );
+              }
+            )}
+            referenceSegments={props.referenceSegments.filter(
+              (referenceSegment: TextSegment) => {
+                return link.sources.includes(referenceSegment.position);
               }
             )}
             targetDirection={'rtl'}
@@ -144,8 +167,10 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <div>
           {singleLinkAlignment(
             props,
+            state,
             state.focusedUserLinks,
             state.selectedSourceTextSegments,
+            state.selectedReferenceTextSegments,
             state.selectedTargetTextSegments
           )}
         </div>

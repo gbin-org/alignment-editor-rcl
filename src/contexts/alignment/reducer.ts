@@ -84,6 +84,11 @@ interface ToggleSelectedSourceTextSegment extends Action {
   payload: { position: number };
 }
 
+interface ToggleSelectedReferenceTextSegment extends Action {
+  type: 'toggleSelectedReferenceTextSegment';
+  payload: { position: number };
+}
+
 interface ToggleSelectedTargetTextSegment extends Action {
   type: 'toggleSelectedTargetTextSegment';
   payload: { position: number };
@@ -159,6 +164,7 @@ export type AlignmentActionTypes =
   | ChangeSourceTextDirection
   | ChangeTargetTextDirection
   | ToggleSelectedSourceTextSegment
+  | ToggleSelectedReferenceTextSegment
   | ToggleSelectedTargetTextSegment
   | selectSourceTextSegment
   | selectTargetTextSegment
@@ -305,6 +311,17 @@ export const baseReducer = (
           ],
         },
       };
+    case 'toggleSelectedReferenceTextSegment':
+      return {
+        ...state,
+        selectedReferenceTextSegments: {
+          ...state.selectedReferenceTextSegments,
+          [action.payload.position]: !state.selectedReferenceTextSegments[
+            action.payload.position
+          ],
+        },
+      };
+
     case 'toggleSelectedTargetTextSegment':
       return {
         ...state,
