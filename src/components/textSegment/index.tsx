@@ -59,7 +59,6 @@ const focusRelatedSegments = (
     );
 
     if (relatedReferenceLink) {
-      console.log('related?', relatedReferenceLink);
       dispatch({
         type: 'focusReferenceLink',
         payload: { link: relatedReferenceLink },
@@ -641,7 +640,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
           }
         }}
         onMouseOver={() => {
-          console.log(segmentData.type, relatedLink);
           if (relatedLink) {
             focusRelatedSegments(state, dispatch, relatedLink, segmentData);
           }
