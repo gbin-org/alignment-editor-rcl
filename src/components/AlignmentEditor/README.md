@@ -88,10 +88,12 @@
     { text: 'mirror', type: 'target', position: 27 },
   ]}
   userLinks={[
+    { sources: [2], targets: [2], type: 'manual' },
     { sources: [7], targets: [8], type: 'manual' },
     { sources: [23], targets: [27], type: 'manual' },
   ]}
   referenceLinks={[
+    { sources: [3], targets: [4], type: 'manual' },
     { sources: [4], targets: [7], type: 'manual' },
     { sources: [19], targets: [23], type: 'manual' },
   ]}

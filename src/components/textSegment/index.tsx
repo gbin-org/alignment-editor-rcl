@@ -19,7 +19,6 @@ export interface TextSegmentProps {
   segmentData: TextSegment;
   isDisabled: boolean;
   isSelected: boolean;
-  isLinked: boolean;
   group: number;
   displayStyle: 'line' | 'paragraph';
 }
@@ -31,6 +30,44 @@ const paragraphDisplayStyle = {
   marginBottom: '0.5rem',
 };
 
+const isLinked = (
+  type: TextSegmentType,
+  position: number,
+  state: AlignmentState
+): boolean => {
+  if (type === 'source') {
+    return Boolean(
+      state.referenceLinks.find((link) => {
+        return link.sources.includes(position);
+      })
+    );
+  }
+
+  if (type === 'reference') {
+    return (
+      Boolean(
+        state.referenceLinks.find((link) => {
+          return link.targets.includes(position);
+        })
+      ) ||
+      Boolean(
+        state.userLinks.find((link) => {
+          return link.sources.includes(position);
+        })
+      )
+    );
+  }
+
+  if (type === 'target') {
+    return Boolean(
+      state.userLinks.find((link) => {
+        return link.targets.includes(position);
+      })
+    );
+  }
+
+  return false;
+};
 const focusRelatedSegments = (
   state: AlignmentState,
   dispatch: React.Dispatch<AlignmentActionTypes>,
@@ -545,14 +582,7 @@ const isFocused = (
 };
 
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
-  const {
-    segmentData,
-    isSelected,
-    isLinked,
-    isDisabled,
-    group,
-    displayStyle,
-  } = props;
+  const { segmentData, isSelected, isDisabled, group, displayStyle } = props;
   //const color = segmentColors[segmentData.color || 0];
 
   const { state, dispatch } = useContext(AlignmentContext);
@@ -564,9 +594,33 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
-  const linkedClass = isLinked ? 'linked' : 'not-linked';
+  const linkedClass = isLinked(segmentData.type, segmentData.position, state)
+    ? 'linked'
+    : 'not-linked';
   const locked = isLocked(state.inProgressLink, relatedLink);
   const lockedClass = locked ? 'locked' : 'unlocked';
+
+  const linkedToSource =
+    isLinked &&
+    segmentData.type === 'reference' &&
+    Boolean(
+      state.referenceLinks.find((link) => {
+        return link.targets.includes(segmentData.position);
+      })
+    )
+      ? 'linked-to-source'
+      : '';
+
+  const linkedToTarget =
+    isLinked &&
+    segmentData.type === 'reference' &&
+    Boolean(
+      state.userLinks.find((link) => {
+        return link.sources.includes(segmentData.position);
+      })
+    )
+      ? 'linked-to-target'
+      : '';
 
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
 
@@ -614,7 +668,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     >
       <div
         role="button"
-        className={`text-segment ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
+        className={`text-segment ${segmentData.type} ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup} ${linkedToSource} ${linkedToTarget}`}
         style={{ display: 'inline-block', textAlign: 'center' }}
         tabIndex={0}
         onClick={() => {

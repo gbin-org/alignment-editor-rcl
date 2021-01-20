@@ -87,7 +87,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
                 segmentData={textSegment}
                 isDisabled={textSegment.catIsContent === false ?? false}
                 isSelected={segmentSelections[textSegment.position] ?? false}
-                isLinked={Boolean(relatedLink)}
                 group={determineGroup(relevantLinkSet, linkIndex)}
                 displayStyle={displayStyle}
               />
