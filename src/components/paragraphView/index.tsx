@@ -1,4 +1,5 @@
 import React, { ReactElement, useContext } from 'react';
+import GridLayout from 'react-grid-layout';
 
 import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
@@ -18,6 +19,13 @@ interface ParagraphViewProps {
   sourceDirection: Direction;
   targetDirection: Direction;
 }
+
+const layout = [
+  { i: 'source', x: 0, y: 0, w: 1, h: 1 },
+  { i: 'reference', x: 1, y: 0, w: 1, h: 1 },
+  { i: 'target', x: 2, y: 0, w: 1, h: 1 },
+  { i: 'preview', x: 3, y: 0, w: 1, h: 1 },
+];
 
 const singleLinkAlignment = (
   props: ParagraphViewProps,
@@ -106,76 +114,67 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
   const { state } = useContext(AlignmentContext);
 
   return (
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: '50% 50%',
-        gridTemplateRows: '50% 50%',
-      }}
+    <GridLayout
+      className="paragraph-grid"
+      layout={layout}
+      cols={4}
+      rows={1}
+      rowHeight={382}
+      width={900}
     >
-      <div>
-        <div>SOURCE</div>
+      <div
+        key="source"
+        className="source-container"
+        style={{ overflowY: 'scroll' }}
+      >
+        <TextPortionComponent
+          displayStyle="paragraph"
+          type="source"
+          textSegments={sourceSegments}
+        />
+      </div>
+
+      {referenceSegments && (
         <div
-          className="source-container"
-          style={{ height: '16rem', overflowY: 'scroll' }}
+          key="reference"
+          className="bridge-container"
+          style={{ overflowY: 'scroll' }}
         >
           <TextPortionComponent
             displayStyle="paragraph"
-            type="source"
-            textSegments={sourceSegments}
+            type="reference"
+            textSegments={referenceSegments}
           />
         </div>
+      )}
 
-        <br />
-        <hr />
-        <br />
-
-        <div>TARGET</div>
-        <div
-          className="target-container"
-          style={{ height: '16rem', overflowY: 'scroll' }}
-        >
-          <TextPortionComponent
-            displayStyle="paragraph"
-            type="target"
-            textSegments={targetSegments}
-          />
-        </div>
+      <div
+        key="target"
+        className="target-container"
+        style={{ overflowY: 'scroll' }}
+      >
+        <TextPortionComponent
+          displayStyle="paragraph"
+          type="target"
+          textSegments={targetSegments}
+        />
       </div>
 
-      <div className="alignment-thing" style={{}}>
-        <div>
-          <div>BRIDGE</div>
-          {referenceSegments && (
-            <div
-              className="bridge-container"
-              style={{ height: '16rem', overflowY: 'scroll' }}
-            >
-              <TextPortionComponent
-                displayStyle="paragraph"
-                type="reference"
-                textSegments={referenceSegments}
-              />
-            </div>
-          )}
-        </div>
-
-        <br />
-        <hr />
-        <br />
-
-        <div>
-          {singleLinkAlignment(
-            props,
-            state,
-            state.focusedUserLinks,
-            state.selectedSourceTextSegments,
-            state.selectedReferenceTextSegments,
-            state.selectedTargetTextSegments
-          )}
-        </div>
+      <div
+        key="preview"
+        className="link-preview-container"
+        style={{ overflowY: 'scroll' }}
+      >
+        {singleLinkAlignment(
+          props,
+          state,
+          state.focusedUserLinks,
+          state.selectedSourceTextSegments,
+          state.selectedReferenceTextSegments,
+          state.selectedTargetTextSegments
+        )}
       </div>
-    </div>
+    </GridLayout>
   );
 };
 
