@@ -35,9 +35,17 @@ const isLinked = (
   position: number,
   state: AlignmentState
 ): boolean => {
-  if (type === 'source') {
+  if (type === 'source' && state.referenceLinks.length) {
     return Boolean(
       state.referenceLinks.find((link) => {
+        return link.sources.includes(position);
+      })
+    );
+  }
+
+  if (type === 'source' && !state.referenceLinks.length) {
+    return Boolean(
+      state.userLinks.find((link) => {
         return link.sources.includes(position);
       })
     );

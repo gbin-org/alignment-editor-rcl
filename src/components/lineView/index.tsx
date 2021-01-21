@@ -90,13 +90,15 @@ export const LineView = (props: LineViewProps): ReactElement => {
 
       <div style={configuredStyle} />
 
-      <TextPortionComponent
-        displayStyle="line"
-        type="reference"
-        textSegments={referenceSegments}
-      />
+      {referenceSegments?.length && (
+        <TextPortionComponent
+          displayStyle="line"
+          type="reference"
+          textSegments={referenceSegments}
+        />
+      )}
 
-      <div style={configuredStyle} />
+      {referenceSegments?.length && <div style={configuredStyle} />}
 
       <TextPortionComponent
         type="target"

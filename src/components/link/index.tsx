@@ -33,6 +33,36 @@ const isFocused = (
   return false;
 };
 
+const determineSourceRefSet = (
+  type: 'user' | 'reference',
+  state: AlignmentState
+): Record<number, HTMLDivElement> | undefined => {
+  if (type === 'reference') {
+    return state.sourceRefs;
+  }
+
+  if (type === 'user' && state.referenceLinks.length) {
+    return state.referenceRefs;
+  }
+
+  if (type === 'user' && !state.referenceLinks.length) {
+    return state.sourceRefs;
+  }
+};
+
+const determineTargetRefSet = (
+  type: 'user' | 'reference',
+  state: AlignmentState
+): Record<number, HTMLDivElement> | undefined => {
+  if (type === 'reference') {
+    return state.referenceRefs;
+  }
+
+  if (type === 'user') {
+    return state.targetRefs;
+  }
+};
+
 export const LinkComponent = (props: LinkProps): ReactElement => {
   const { sourcePosition, targetPosition, link, type } = props;
   const { state, dispatch } = useContext(AlignmentContext);
@@ -45,11 +75,11 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
   const name = `${type}-source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
-  const sourceRefSet = type === 'user' ? state.referenceRefs : state.sourceRefs;
-  const targetRefSet = type === 'user' ? state.targetRefs : state.referenceRefs;
+  const sourceRefSet = determineSourceRefSet(type, state);
+  const targetRefSet = determineTargetRefSet(type, state);
 
-  const sourceRef = sourceRefSet[sourcePosition];
-  const targetRef = targetRefSet[targetPosition];
+  const sourceRef = sourceRefSet ? sourceRefSet[sourcePosition] : null;
+  const targetRef = targetRefSet ? targetRefSet[targetPosition] : null;
 
   const parentRef = state.parentRef;
 

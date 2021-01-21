@@ -80,7 +80,7 @@ const singleLinkAlignment = (
                 );
               }
             )}
-            referenceSegments={props.referenceSegments.filter(
+            referenceSegments={props.referenceSegments?.filter(
               (referenceSegment: TextSegment) => {
                 return link.sources.includes(referenceSegment.position);
               }
@@ -144,7 +144,7 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
       </div>
 
       <div className="alignment-thing" style={{}}>
-        <div>
+        <div style={{ height: '17.1rem' }}>
           <div>BRIDGE</div>
           {referenceSegments && (
             <div

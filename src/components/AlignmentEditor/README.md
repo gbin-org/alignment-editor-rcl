@@ -284,7 +284,7 @@
     { text: 'and', type: 'target', position: 81 },
     { text: 'language', type: 'target', position: 82 },
   ]}
-  links={[
+  userLinks={[
     { sources: [0], targets: [82], type: 'manual' },
     { sources: [1], targets: [3], type: 'manual' },
     { sources: [5], targets: [4], type: 'manual' },
