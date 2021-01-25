@@ -13,6 +13,9 @@ import {
   findReferenceLinkForUserLink,
 } from 'core/findLink';
 
+import arrayHasIntersection from 'core/arrayHasIntersection';
+import focusSegmentActions from 'core/actions/focusSegment';
+
 import './textSegmentStyle.scss';
 
 export interface TextSegmentProps {
@@ -76,297 +79,6 @@ const isLinked = (
 
   return false;
 };
-const focusRelatedSegments = (
-  state: AlignmentState,
-  dispatch: React.Dispatch<AlignmentActionTypes>,
-  relatedLink: Link,
-  textSegment: TextSegment
-): void => {
-  if (textSegment.type === 'source') {
-    dispatch({ type: 'focusReferenceLink', payload: { link: relatedLink } });
-
-    const relatedUserLink = findUserLinkForReferenceLink(
-      state.userLinks,
-      relatedLink
-    );
-
-    if (relatedUserLink) {
-      dispatch({ type: 'focusUserLink', payload: { link: relatedUserLink } });
-    }
-  }
-
-  if (textSegment.type === 'target' || textSegment.type === 'reference') {
-    dispatch({ type: 'focusUserLink', payload: { link: relatedLink } });
-
-    const relatedReferenceLink = findReferenceLinkForUserLink(
-      state.referenceLinks,
-      relatedLink
-    );
-
-    if (relatedReferenceLink) {
-      dispatch({
-        type: 'focusReferenceLink',
-        payload: { link: relatedReferenceLink },
-      });
-    }
-  }
-};
-
-const unFocusRelatedSegments = (
-  state: AlignmentState,
-  dispatch: React.Dispatch<AlignmentActionTypes>,
-  relatedLink: Link,
-  textSegment: TextSegment
-) => {
-  if (textSegment.type === 'source') {
-    dispatch({ type: 'unFocusReferenceLink', payload: { link: relatedLink } });
-
-    const relatedUserLink = findUserLinkForReferenceLink(
-      state.userLinks,
-      relatedLink
-    );
-
-    if (relatedUserLink) {
-      dispatch({ type: 'unFocusUserLink', payload: { link: relatedUserLink } });
-    }
-  }
-
-  if (textSegment.type === 'target' || textSegment.type === 'reference') {
-    dispatch({ type: 'unFocusUserLink', payload: { link: relatedLink } });
-
-    const relatedReferenceLink = findReferenceLinkForUserLink(
-      state.referenceLinks,
-      relatedLink
-    );
-
-    if (relatedReferenceLink) {
-      dispatch({
-        type: 'unFocusReferenceLink',
-        payload: { link: relatedReferenceLink },
-      });
-    }
-  }
-};
-
-//const segmentColors: Record<number, string> = {
-//0: 'default',
-//1: 'blue',
-//2: 'green',
-//3: 'orange',
-//};
-
-//const popoverPlacement = (props: TextSegmentProps): "top" | "bottom" => {
-//const { reverseDisplay } = props;
-//if (reverseDisplay) {
-//return "bottom";
-//}
-//return "top";
-//};
-
-//const searchConcordance = (
-//props: TextSegmentProps,
-//term: string | undefined
-//): void => {
-//const { searchConcordance, isLeftPanelOpen } = props;
-//const projectId = "1";
-//if (searchConcordance) {
-//searchConcordance(projectId, term, isLeftPanelOpen);
-//}
-//};
-
-//const selectionHandler = (props: TextSegmentProps): void => {
-//const {
-//selectTextSegmentFunc,
-//deSelectTextSegmentFunc,
-//isSelected,
-//segmentData,
-//} = props;
-//const { type, position } = segmentData;
-//if (isSelected) {
-//deSelectTextSegmentFunc(type, position);
-//} else {
-//selectTextSegmentFunc(type, position);
-//}
-//};
-
-//const enrichedData = (props: TextSegmentProps): ReactElement | null => {
-//const { refName, segment } = props;
-//if (refName.includes("source")) {
-//return (
-//<OverlayTrigger
-//key={refName + segment.strongsX}
-//trigger="click"
-//placement={popoverPlacement(props)}
-//prettier-ignore
-//overlay={(
-//<Popover id="test">
-//<Popover.Title as="h3">{segment.text}</Popover.Title>
-//<Popover.Content>
-//<p>
-//{((): React.ReactElement | undefined => {
-//if (segment?.lemma) {
-//return (
-//<button
-//type="button"
-//className="btn btn-link alignment-btn"
-//onClick={(): void => {
-//searchConcordance(props, segment.lemma)
-//}}
-//>
-//{segment.lemma}
-//</button>
-//)
-//}
-
-//return undefined;
-//})()}
-//</p>
-//<p>
-//{((): React.ReactElement | undefined => {
-//if (segment?.strongsX) {
-//return (
-//<button
-//type="button"
-//className="btn btn-link alignment-btn"
-//onClick={(): void => {
-//searchConcordance(props, segment.strongsX)
-//}}
-//>
-//{segment.strongsX}
-//</button>
-//)
-//}
-
-//return undefined;
-//})()}
-//</p>
-//<p>
-//{segment.english}
-//</p>
-//</Popover.Content>
-//</Popover>
-//)}
-//>
-//<div className="enriched-data">{segment.english}</div>
-//</OverlayTrigger>
-//);
-//}
-//return null;
-//};
-
-//const dropdownSearchMenu = (props: TextSegmentProps): ReactElement | null => {
-//const { refName, segment, linkedTargetWords } = props;
-
-//if (refName.includes("source")) {
-//const { lemma, strongsX, text, english } = segment;
-
-//if (linkedTargetWords) {
-//return (
-//<div>
-//<Dropdown drop="down" key={refName + strongsX}>
-//<Dropdown.Toggle
-//variant="link"
-//id={`interlinear-dropdown-btn-${refName}-${strongsX}`}
-//>
-//{english}
-//</Dropdown.Toggle>
-
-//<Dropdown.Menu>
-//<Dropdown.Item
-//onClick={(): void => {
-//searchConcordance(props, lemma);
-//}} >
-//<FormattedMessage id="dict.searchLemma">
-//{(message: string): ReactElement => (
-//<OverlayTrigger
-//placement="right"
-//overlay={
-//<Tooltip id="tooltip-disabled">{message}</Tooltip>
-//}
-//>
-//<span className="d-inline-block">{lemma}</span>
-//</OverlayTrigger>
-//)}
-//</FormattedMessage>
-//</Dropdown.Item>
-
-//{((): ReactElement => {
-//if (text) {
-//return (
-//<Dropdown.Item
-//onClick={(): void => {
-//searchConcordance(props, linkedTargetWords);
-//}}
-//>
-//<FormattedMessage id="dict.searchTranslation">
-//{(message: string): ReactElement => (
-//<OverlayTrigger
-//placement="right"
-//overlay={
-//<Tooltip id="tooltip-disabled">{message}</Tooltip>
-//}
-//>
-//<span className="d-inline-block">
-//{linkedTargetWords}
-//</span>
-//</OverlayTrigger>
-//)}
-//</FormattedMessage>
-//</Dropdown.Item>
-//);
-//}
-
-//return <></>;
-//})()}
-//</Dropdown.Menu>
-//</Dropdown>
-//</div>
-//);
-//}
-
-//return (
-//<div>
-//<button
-//key={`interlinear-dropdown-btn-${refName}-${strongsX}`}
-//type="button"
-//className="btn btn-link disabled"
-//>
-//{english}
-//</button>
-//</div>
-//);
-//}
-
-//return null;
-//};
-
-//const enrichedDataTop = (props: TextSegmentProps): ReactElement | null => {
-//const { reverseDisplay } = props;
-//if (reverseDisplay) {
-//return dropdownSearchMenu(props);
-//}
-//return null;
-//};
-
-//const enrichedDataBottom = (props: TextSegmentProps): ReactElement | null => {
-//const { reverseDisplay } = props;
-//if (!reverseDisplay) {
-//return enrichedData(props);
-//}
-//return null;
-//};
-
-//const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link | undefined => {
-//return links.find((link: Link): boolean =>{
-//if (textSegment.type === 'source') {
-//return link.sources.includes(textSegment.position);
-//}
-//if (textSegment.type === 'target') {
-//return link.targets.includes(textSegment.position);
-//}
-//return false
-//});
-//};
 
 const updateInProgressLink = (
   relatedLink: Link,
@@ -500,13 +212,6 @@ const handleClick = (
   }
 };
 
-const arrayHasIntersection = (
-  firstArray: number[],
-  secondArray: number[]
-): boolean => {
-  const filtered = firstArray.filter((item) => secondArray.includes(item));
-  return Boolean(filtered.length);
-};
 const isLocked = (
   inProgressLink: Link | null,
   relatedLink: Link | undefined
@@ -557,55 +262,162 @@ const glossDisplay = (
 };
 
 const isFocused = (
-  relevantLink: Link | undefined,
-  textSegmentType: TextSegmentType,
+  textSegment: TextSegment,
   state: AlignmentState
 ): boolean => {
-  if (!relevantLink) {
-    return false;
-  }
+  console.log('isFocused()');
+  if (textSegment.type === 'source' && state.referenceLinks) {
+    const focusedReferenceLink = Array.from(
+      state.focusedReferenceLinks.keys()
+    ).find((link: Link) => {
+      return link.sources.includes(textSegment.position);
+    });
 
-  if (textSegmentType === 'source') {
-    return Boolean(state.focusedReferenceLinks.get(relevantLink));
-  }
-
-  if (textSegmentType === 'reference') {
-    return (
-      Boolean(state.focusedReferenceLinks.get(relevantLink)) ||
-      Boolean(state.focusedUserLinks.get(relevantLink)) ||
-      Boolean(
-        state.focusedReferenceLinks.get(
-          findReferenceLinkForUserLink(state.referenceLinks, relevantLink) ??
-            ({} as Link)
-        )
-      )
+    return Boolean(
+      state.focusedReferenceLinks.get(focusedReferenceLink ?? ({} as Link))
     );
   }
 
-  if (textSegmentType === 'target') {
-    return Boolean(state.focusedUserLinks.get(relevantLink));
+  if (textSegment.type === 'source' && !state.referenceLinks) {
+    const focusedLink = Array.from(state.focusedUserLinks.keys()).find(
+      (link: Link) => {
+        return link.sources.includes(textSegment.position);
+      }
+    );
+    return Boolean(state.focusedUserLinks.get(focusedLink ?? ({} as Link)));
+  }
+
+  if (textSegment.type === 'reference') {
+    const focusedReferenceLink = Array.from(
+      state.focusedReferenceLinks.keys()
+    ).find((link: Link) => {
+      return link.targets.includes(textSegment.position);
+    });
+
+    const focusedUserLink = Array.from(state.focusedUserLinks.keys()).find(
+      (link: Link) => {
+        return link.sources.includes(textSegment.position);
+      }
+    );
+
+    return (
+      Boolean(
+        state.focusedReferenceLinks.get(focusedReferenceLink ?? ({} as Link))
+      ) || Boolean(state.focusedUserLinks.get(focusedUserLink ?? ({} as Link)))
+    );
+  }
+
+  if (textSegment.type === 'target') {
+    const focusedUserLink = Array.from(state.focusedUserLinks.keys()).find(
+      (link: Link) => {
+        return link.targets.includes(textSegment.position);
+      }
+    );
+
+    return Boolean(state.focusedUserLinks.get(focusedUserLink ?? ({} as Link)));
   }
 
   return false;
 };
+//const isFocused = (
+//relevantLink: Link | undefined,
+//textSegmentType: TextSegmentType,
+//state: AlignmentState
+//): boolean => {
+//if (!relevantLink) {
+//return false;
+//}
 
+//if (textSegmentType === 'source') {
+//return Boolean(state.focusedReferenceLinks.get(relevantLink));
+//}
+
+//if (textSegmentType === 'reference') {
+//return (
+//Boolean(state.focusedReferenceLinks.get(relevantLink)) ||
+//Boolean(state.focusedUserLinks.get(relevantLink)) ||
+//Boolean(
+//state.focusedReferenceLinks.get(
+//findReferenceLinkForUserLink(state.referenceLinks, relevantLink) ??
+//({} as Link)
+//)
+//)
+//);
+//}
+
+//if (textSegmentType === 'target') {
+//return Boolean(state.focusedUserLinks.get(relevantLink));
+//}
+
+//return false;
+//};
+
+//const findRelevantLinkSet = (
+//textSegment: TextSegment,
+//state: AlignmentState
+//): Link[] => {
+//if (textSegment.type === 'source' && state.referenceLinks.length) {
+//return state.referenceLinks;
+//}
+
+//if (textSegment.type === 'source' && !state.referenceLinks.length) {
+//return state.userLinks;
+//}
+
+//if (textSegment.type === 'reference') {
+//const referenceLink = findLinkForTextSegment(
+//state.referenceLinks,
+//textSegment
+//);
+//const userLinks = findLinkForTextSegment(state.userLinks, textSegment);
+//}
+
+//if (type === 'target') {
+//return state.userLinks;
+//}
+
+//return [];
+//};
+
+const determinePrimaryRelatedLink = (
+  textSegment: TextSegment,
+  state: AlignmentState
+): 'user' | 'reference' => {
+  if (textSegment.type === 'source' && state.referenceLinks.length) {
+    return 'reference';
+  }
+
+  if (textSegment.type === 'source' && !state.referenceLinks.length) {
+    return 'user';
+  }
+
+  if (textSegment.type === 'reference') {
+    return 'reference';
+  }
+
+  // 'target" case
+  return 'user';
+};
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const { segmentData, isSelected, isDisabled, group, displayStyle } = props;
   //const color = segmentColors[segmentData.color || 0];
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  const relevantLinkSet =
-    segmentData.type === 'source' ? state.referenceLinks : state.userLinks;
+  const relatedReferenceLink = findLinkForTextSegment(
+    state.referenceLinks,
+    segmentData
+  );
+  const relatedUserLink = findLinkForTextSegment(state.userLinks, segmentData);
 
-  const relatedLink = findLinkForTextSegment(relevantLinkSet, segmentData);
+  const primaryRelatedLink = determinePrimaryRelatedLink(segmentData, state);
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
   const linkedClass = isLinked(segmentData.type, segmentData.position, state)
     ? 'linked'
     : 'not-linked';
-  const locked = isLocked(state.inProgressLink, relatedLink);
+  const locked = isLocked(state.inProgressLink, relatedUserLink);
   const lockedClass = locked ? 'locked' : 'unlocked';
 
   const linkedToSource =
@@ -632,9 +444,11 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
 
-  const focusedClass = isFocused(relatedLink, segmentData.type, state)
-    ? 'focused'
-    : '';
+  const focused = isFocused(segmentData, state);
+
+  console.log('isFocused?', focused);
+
+  const focusedClass = focused ? 'focused' : '';
 
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
@@ -681,35 +495,31 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
         tabIndex={0}
         onClick={() => {
           if (!locked) {
-            handleClick(
-              segmentData.type,
-              segmentData.position,
-              relatedLink,
-              state.inProgressLink,
-              dispatch
-            );
+            //handleClick(
+            //segmentData.type,
+            //segmentData.position,
+            //relatedLink,
+            //state.inProgressLink,
+            //dispatch
+            //);
           }
         }}
         onKeyPress={() => {
           if (!locked) {
-            handleClick(
-              segmentData.type,
-              segmentData.position,
-              relatedLink,
-              state.inProgressLink,
-              dispatch
-            );
+            //handleClick(
+            //segmentData.type,
+            //segmentData.position,
+            //relatedLink,
+            //state.inProgressLink,
+            //dispatch
+            //);
           }
         }}
         onMouseOver={() => {
-          if (relatedLink) {
-            focusRelatedSegments(state, dispatch, relatedLink, segmentData);
-          }
+          focusSegmentActions(state, dispatch).focusSegments(segmentData);
         }}
         onMouseLeave={() => {
-          if (relatedLink) {
-            unFocusRelatedSegments(state, dispatch, relatedLink, segmentData);
-          }
+          focusSegmentActions(state, dispatch).unFocusSegments(segmentData);
         }}
       >
         {segmentData.text}

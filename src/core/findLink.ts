@@ -1,5 +1,49 @@
 import { TextSegment, Link } from 'core/structs';
 
+export const findUserLinkForTextSegment = (
+  userLinks: Link[],
+  textSegment: TextSegment
+): Link | undefined => {
+  if (textSegment.type === 'source') {
+    return userLinks.find((userLink: Link) => {
+      return userLink.sources.includes(textSegment.position);
+    });
+  }
+
+  if (textSegment.type === 'reference') {
+    return userLinks.find((userLink: Link) => {
+      return userLink.sources.includes(textSegment.position);
+    });
+  }
+
+  if (textSegment.type === 'target') {
+    return userLinks.find((userLink: Link) => {
+      return userLink.targets.includes(textSegment.position);
+    });
+  }
+};
+
+export const findReferenceLinkForTextSegment = (
+  referenceLinks: Link[],
+  textSegment: TextSegment
+): Link | undefined => {
+  if (textSegment.type === 'source') {
+    return referenceLinks.find((referenceLink: Link) => {
+      return referenceLink.sources.includes(textSegment.position);
+    });
+  }
+
+  if (textSegment.type === 'reference') {
+    return referenceLinks.find((referenceLink: Link) => {
+      return referenceLink.targets.includes(textSegment.position);
+    });
+  }
+
+  if (textSegment.type === 'target') {
+    return undefined;
+  }
+};
+
 export const findLinkForTextSegment = (
   links: Link[],
   textSegment: TextSegment
