@@ -225,7 +225,7 @@ export const baseReducer = (
   action: AlignmentActionTypes
 ): AlignmentState => {
   // For DEBUG (very handy)
-  console.info('REDUCER', action, state);
+  //console.info('REDUCER', action, state);
 
   switch (action.type) {
     case 'focusUserLink':

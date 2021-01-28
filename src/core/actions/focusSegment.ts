@@ -1,8 +1,6 @@
-import { AlignmentContext } from 'contexts/alignment';
-import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
+import { Link, TextSegment } from 'core/structs';
 
 import {
-  findLinkForTextSegment,
   findUserLinkForTextSegment,
   findReferenceLinkForTextSegment,
   findUserLinkForReferenceLink,
@@ -37,18 +35,18 @@ const focusSegmentActions = (
     dispatch({ type: 'unFocusUserLink', payload: { link: userLink } });
   };
 
-  const focusReferenceLinkAndRelatedUserLink = (referenceLink: Link): void => {
-    focusReferenceLink(referenceLink);
+  //const focusReferenceLinkAndRelatedUserLink = (referenceLink: Link): void => {
+  //focusReferenceLink(referenceLink);
 
-    const relatedUserLink = findUserLinkForReferenceLink(
-      state.userLinks,
-      referenceLink
-    );
+  //const relatedUserLink = findUserLinkForReferenceLink(
+  //state.userLinks,
+  //referenceLink
+  //);
 
-    if (relatedUserLink) {
-      focusUserLink(relatedUserLink);
-    }
-  };
+  //if (relatedUserLink) {
+  //focusUserLink(relatedUserLink);
+  //}
+  //};
 
   const focusUserLinkAndRelatedReferenceLink = (userLink: Link): void => {
     focusUserLink(userLink);
@@ -160,18 +158,6 @@ const focusSegmentActions = (
     if (relatedLinks.userLink) {
       unFocusUserLinkAndRelatedReferenceLink(relatedLinks.userLink);
     }
-    //if (relatedLinks.referenceLink && !relatedLinks.userLink) {
-    //unFocusReferenceLink(relatedLinks.referenceLink);
-    //}
-
-    //if (relatedLinks.referenceLink && relatedLinks.userLink) {
-    //unFocusReferenceLink(relatedLinks.referenceLink);
-    //unFocusUserLink(relatedLinks.userLink);
-    //}
-
-    //if (relatedLinks.userLink && !relatedLinks.referenceLink) {
-    //unFocusUserLinkAndRelatedReferenceLink(relatedLinks.userLink);
-    //}
   };
 
   return { focusSegments, unFocusSegments };

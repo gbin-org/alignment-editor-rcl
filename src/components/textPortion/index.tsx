@@ -1,12 +1,8 @@
 import React, { ReactElement, useContext } from 'react';
 
-import { AlignmentContext, AlignmentState } from 'contexts/alignment';
-import { findLinkForTextSegment } from 'core/findLink';
-import { determineGroup } from 'core/findGroup';
+import { AlignmentContext } from 'contexts/alignment';
 import { TextSegment, TextSegmentType } from 'core/structs';
 import TextSegmentWrapper from 'components/textSegment';
-
-type Direction = 'ltr' | 'rtl';
 
 interface TextPortionProps {
   type: TextSegmentType;
@@ -35,9 +31,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
 
-  const relevantLinkSet =
-    type === 'source' ? state.referenceLinks : state.userLinks;
-
   return (
     <div
       style={{
@@ -55,20 +48,10 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
       >
         {textSegments?.map(
           (textSegment, index): ReactElement => {
-            //const relatedLink = findLinkForTextSegment(
-            //relevantLinkSet,
-            //textSegment
-            //);
-
-            //const linkIndex = relatedLink
-            //? relevantLinkSet.indexOf(relatedLink)
-            //: index;
-
             return (
               <TextSegmentWrapper
                 key={`${type}-${textSegment.position}`}
                 textSegment={textSegment}
-                //group={determineGroup(relevantLinkSet, linkIndex)}
                 displayStyle={displayStyle}
               />
             );

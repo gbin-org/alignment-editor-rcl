@@ -8,7 +8,6 @@ import LineView from 'components/lineView';
 import { Link, TextSegment } from 'core/structs';
 import { findReferenceLinkForUserLink } from 'core/findLink';
 
-type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
 interface ParagraphViewProps {

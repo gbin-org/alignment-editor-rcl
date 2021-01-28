@@ -7,7 +7,6 @@ import LinkComponent from 'components/link';
 
 import { Link, TextSegment } from 'core/structs';
 
-type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
 interface LineViewProps {
