@@ -61,12 +61,16 @@
 
 ```ts
 <TextSegmentComponent
-  textSegment={{text: 'ταχὺς', color: 1, group: 1, type: 'source', position: 1 }}
+  textSegment={{text: 'ταχὺς', type: 'source', position: 1 }}
+  group="1"
+  displayStyle="line"
   isLinked
 />
 
 <TextSegmentComponent
-  textSegment={{text: 'ἀκοῦσαι', color: 1, group: 1, type: 'source', position: 2 }}
+  textSegment={{text: 'ἀκοῦσαι', type: 'source', position: 2 }}
+  group="1"
+  displayStyle="line"
   isLinked
 />
 ```
