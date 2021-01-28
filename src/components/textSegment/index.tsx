@@ -13,6 +13,8 @@ import {
   findReferenceLinkForUserLink,
 } from 'core/findLink';
 
+import selectSegmentActions from 'core/actions/selectSegment';
+
 import arrayHasIntersection from 'core/arrayHasIntersection';
 import focusSegmentActions from 'core/actions/focusSegment';
 
@@ -26,6 +28,7 @@ export interface TextSegmentProps {
   isLinked: boolean;
   isLinkedToSource: boolean;
   isLinkedToTarget: boolean;
+  forcedLock: boolean;
   group: number;
   displayStyle: 'line' | 'paragraph';
   refCollector: (ref: HTMLDivElement) => void;
@@ -56,24 +59,24 @@ const updateInProgressLink = (
   });
 };
 
-const toggleAllSegmentsForLink = (
-  link: Link,
-  dispatch: React.Dispatch<AlignmentActionTypes>
-): void => {
-  link.sources.forEach((sourcePosition: number): void => {
-    dispatch({
-      type: 'toggleSelectedSourceTextSegment',
-      payload: { position: sourcePosition },
-    });
-  });
+//const toggleAllSegmentsForLink = (
+//link: Link,
+//dispatch: React.Dispatch<AlignmentActionTypes>
+//): void => {
+//link.sources.forEach((sourcePosition: number): void => {
+//dispatch({
+//type: 'toggleSelectedSourceTextSegment',
+//payload: { position: sourcePosition },
+//});
+//});
 
-  link.targets?.forEach((targetPosition: number): void => {
-    dispatch({
-      type: 'toggleSelectedTargetTextSegment',
-      payload: { position: targetPosition },
-    });
-  });
-};
+//link.targets?.forEach((targetPosition: number): void => {
+//dispatch({
+//type: 'toggleSelectedTargetTextSegment',
+//payload: { position: targetPosition },
+//});
+//});
+//};
 
 const toggleSegmentSelection = (
   type: TextSegmentType,
@@ -126,54 +129,63 @@ const previousSelectionAndUserTogglesSegment = (
 };
 
 const handleClick = (
-  type: TextSegmentType,
-  position: number,
+  textSegment: TextSegment,
   relatedLink: Link | undefined,
-  inProgressLink: Link | null,
+  state: AlignmentState,
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
-  if (noPreviousSelectionAndUserSelectsLink(relatedLink, inProgressLink)) {
+  if (
+    noPreviousSelectionAndUserSelectsLink(relatedLink, state.inProgressLink)
+  ) {
     if (relatedLink) {
       // blurg. this is to make ts compiler happy.
-      updateInProgressLink(relatedLink, inProgressLink, dispatch);
-      toggleAllSegmentsForLink(relatedLink, dispatch);
+      updateInProgressLink(relatedLink, state.inProgressLink, dispatch);
+      selectSegmentActions(state, dispatch).toggleAllSegmentsForLink(
+        textSegment,
+        relatedLink
+      );
     }
   } else if (
-    previousSelectionAndUserDeselectsLink(relatedLink, inProgressLink)
+    previousSelectionAndUserDeselectsLink(relatedLink, state.inProgressLink)
   ) {
-    toggleSegmentSelection(type, position, dispatch);
-    toggleInProgressSegment(type, position, dispatch);
+    toggleSegmentSelection(textSegment.type, textSegment.position, dispatch);
+    toggleInProgressSegment(textSegment.type, textSegment.position, dispatch);
     dispatch({ type: 'redrawUI', payload: {} });
-  } else if (previousSelectionAndUserTogglesSegment(inProgressLink)) {
-    if (inProgressLink) {
+  } else if (previousSelectionAndUserTogglesSegment(state.inProgressLink)) {
+    if (state.inProgressLink) {
       updateInProgressLink(
         {
-          id: inProgressLink.id,
-          sources: inProgressLink.sources
-            .concat(type === 'source' ? [position] : [])
+          id: state.inProgressLink.id,
+          sources: state.inProgressLink.sources
+            .concat(textSegment.type === 'source' ? [textSegment.position] : [])
             .sort(),
-          targets: inProgressLink.targets
-            .concat(type === 'target' ? [position] : [])
+          targets: state.inProgressLink.targets
+            .concat(textSegment.type === 'target' ? [textSegment.position] : [])
             .sort(),
           type: 'manual',
         },
-        inProgressLink,
+        state.inProgressLink,
         dispatch
       );
-      toggleSegmentSelection(type, position, dispatch);
+      toggleSegmentSelection(textSegment.type, textSegment.position, dispatch);
       dispatch({ type: 'redrawUI', payload: {} });
     }
   } else {
     // user is toggling a segment with no previous link selected
-    toggleSegmentSelection(type, position, dispatch);
+    toggleSegmentSelection(textSegment.type, textSegment.position, dispatch);
     dispatch({ type: 'redrawUI', payload: {} });
   }
 };
 
 const isLocked = (
   inProgressLink: Link | null,
-  relatedLink: Link | undefined
+  relatedLink: Link | undefined,
+  forcedLock: boolean
 ): boolean => {
+  if (forcedLock) {
+    return true;
+  }
+
   if (inProgressLink && relatedLink) {
     return (
       // If there is a link being built
@@ -248,6 +260,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     isLinked,
     isLinkedToSource,
     isLinkedToTarget,
+    forcedLock,
     group,
     displayStyle,
     refCollector,
@@ -267,7 +280,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
   const linkedClass = isLinked ? 'linked' : 'not-linked';
-  const locked = isLocked(state.inProgressLink, relatedUserLink);
+  const locked = isLocked(state.inProgressLink, relatedUserLink, forcedLock);
   const lockedClass = locked ? 'locked' : 'unlocked';
 
   const linkedToSource = isLinked && isLinkedToSource ? 'linked-to-source' : '';
@@ -294,13 +307,12 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
           tabIndex={0}
           onClick={() => {
             if (!locked) {
-              //handleClick(
-              //segmentData.type,
-              //segmentData.position,
-              //relatedLink,
-              //state.inProgressLink,
-              //dispatch
-              //);
+              const relatedLink = findLinkForTextSegment(
+                state.userLinks,
+                textSegment
+              );
+              console.log('relatedLink', relatedLink);
+              handleClick(textSegment, relatedLink, state, dispatch);
             }
           }}
           onKeyPress={() => {

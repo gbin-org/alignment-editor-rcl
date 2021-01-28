@@ -26,36 +26,41 @@ const singleLinkAlignment = (
   selectedReferenceTextSegments: Record<number, boolean>,
   selectedTargetTextSegments: Record<number, boolean>
 ): (ReactElement | null)[] | ReactElement => {
-  const selectedSources = props.sourceSegments.filter(
-    (sourceSegment: TextSegment) => {
+  const selectedSources =
+    props.sourceSegments?.filter((sourceSegment: TextSegment) => {
       return selectedSourceTextSegments[sourceSegment.position];
-    }
-  );
+    }) ?? [];
 
-  //const referenceSegments = props.referenceSegments.filter(
-  //(referenceSegment: TextSegment) => {
-  //return selectedReferenceTextSegments[referenceSegment.position];
-  //}
-  //);
+  const selectedReferences =
+    props.referenceSegments?.filter((referenceSegment: TextSegment) => {
+      return selectedReferenceTextSegments[referenceSegment.position];
+    }) ?? [];
 
-  const selectedTargets = props.targetSegments.filter(
-    (targetSegment: TextSegment) => {
+  //console.log('possible ref segs', props.referenceSegments);
+  //console.log('selected ref segs', selectedReferenceTextSegments);
+  //console.log('filtered ref segs' ,selectedReferences);
+
+  const selectedTargets =
+    props.targetSegments?.filter((targetSegment: TextSegment) => {
       return selectedTargetTextSegments[targetSegment.position];
-    }
-  );
+    }) ?? [];
 
-  //if (selectedSources.length || selectedTargets.length) {
-  //return (
-  //<LineView
-  //displayStyle="partial"
-  //sourceDirection={'ltr'}
-  //sourceSegments={selectedSources}
-  //referenceSegments={referenceSegments}
-  //targetDirection={'rtl'}
-  //targetSegments={selectedTargets}
-  ///>
-  //);
-  //}
+  if (
+    selectedSources.length ||
+    selectedReferences.length ||
+    selectedTargets.length
+  ) {
+    return (
+      <LineView
+        displayStyle="partial"
+        sourceDirection={'ltr'}
+        sourceSegments={selectedSources}
+        referenceSegments={selectedReferences}
+        targetSegments={selectedTargets}
+        targetDirection={'rtl'}
+      />
+    );
+  }
 
   const linksArray = Array.from(focusedUserLinks ?? []);
   if (linksArray.length) {

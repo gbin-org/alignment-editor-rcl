@@ -263,6 +263,16 @@ const isLinkedToTarget = (
   return false;
 };
 
+const determineForcedLock = (
+  textSegment: TextSegment,
+  state: AlignmentState
+): boolean => {
+  if (isSource(textSegment) && isBridgeMode(state)) {
+    return true;
+  }
+  return false;
+};
+
 export const TextSegmentWrapper = (props: TextSegmentWrapperProps) => {
   const { textSegment, displayStyle } = props;
   const { state, dispatch } = useContext(AlignmentContext);
@@ -279,6 +289,7 @@ export const TextSegmentWrapper = (props: TextSegmentWrapperProps) => {
       isSelected={
         getSegmentSelections(textSegment, state)[textSegment.position] ?? false
       }
+      forcedLock={determineForcedLock(textSegment, state)}
       group={group(textSegment, state)}
       displayStyle={displayStyle}
       refCollector={generateRefCollector(
