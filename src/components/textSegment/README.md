@@ -2,15 +2,13 @@
 
 ```ts
 <TextSegmentComponent
-  segmentData={{
+  textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
     group: 0,
     type: 'source',
     position: 1,
   }}
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
 />
 ```
 
@@ -18,7 +16,7 @@
 
 ```ts
 <TextSegmentComponent
-  segmentData={{
+  textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
     group: 0,
@@ -26,8 +24,6 @@
     position: 1,
   }}
   isDisabled
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
 />
 ```
 
@@ -35,7 +31,7 @@
 
 ```ts
 <TextSegmentComponent
-  segmentData={{
+  textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
     group: 0,
@@ -43,8 +39,6 @@
     position: 1,
   }}
   isLinked
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
 />
 ```
 
@@ -52,7 +46,7 @@
 
 ```ts
 <TextSegmentComponent
-  segmentData={{
+  textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
     group: 0,
@@ -60,8 +54,6 @@
     postition: 1,
   }}
   isSelected
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
 />
 ```
 
@@ -69,17 +61,12 @@
 
 ```ts
 <TextSegmentComponent
-  segmentData={{text: 'ταχὺς', color: 1, group: 1, type: 'source', position: 1 }}
+  textSegment={{text: 'ταχὺς', color: 1, group: 1, type: 'source', position: 1 }}
   isLinked
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
 />
 
 <TextSegmentComponent
-  segmentData={{text: 'ἀκοῦσαι', color: 1, group: 1, type: 'source', position: 2 }}
+  textSegment={{text: 'ἀκοῦσαι', color: 1, group: 1, type: 'source', position: 2 }}
   isLinked
-  selectTextSegmentFunc={(type, position) => {}}
-  deSelectTextSegmentFunc={(type, position) => {}}
-
 />
 ```

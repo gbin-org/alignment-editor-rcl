@@ -1,293 +1,334 @@
-import React, { useContext } from 'react';
+import React, { ReactElement, useContext } from 'react';
 
-import TextSegmentComponent from 'components/textSegment/component';
 import {
-  AlignmentContext,
-  AlignmentState,
   AlignmentActionTypes,
-} from 'contexts/alignment';
-import { TextSegment, Link } from 'core/structs';
-import { determineGroup } from 'core/findGroup';
+  AlignmentState,
+} from 'contexts/alignment/reducer';
 
-interface TextSegmentWrapperProps {
+import { AlignmentContext } from 'contexts/alignment';
+import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
+import {
+  findLinkForTextSegment,
+  findUserLinkForReferenceLink,
+  findReferenceLinkForUserLink,
+} from 'core/findLink';
+
+import arrayHasIntersection from 'core/arrayHasIntersection';
+import focusSegmentActions from 'core/actions/focusSegment';
+
+import './textSegmentStyle.scss';
+
+export interface TextSegmentProps {
   textSegment: TextSegment;
+  isDisabled: boolean;
+  isFocused: boolean;
+  isSelected: boolean;
+  isLinked: boolean;
+  isLinkedToSource: boolean;
+  isLinkedToTarget: boolean;
+  group: number;
   displayStyle: 'line' | 'paragraph';
+  refCollector: (ref: HTMLDivElement) => void;
 }
 
-const isSource = (textSegment: TextSegment): boolean => {
-  return textSegment.type === 'source';
+const lineDisplayStyle = { display: 'inline-block' };
+const paragraphDisplayStyle = {
+  display: 'inline-block',
+  marginTop: '0.5rem',
+  marginBottom: '0.5rem',
 };
 
-const isReference = (textSegment: TextSegment): boolean => {
-  return textSegment.type === 'reference';
-};
-
-const isTarget = (textSegment: TextSegment): boolean => {
-  return textSegment.type === 'target';
-};
-
-const isBridgeMode = (state: AlignmentState): boolean => {
-  return Boolean(state.referenceLinks.length);
-};
-
-//const determineRelevantLinkSet = (
-//state: AlignmentState,
-//textSegment: TextSegment
-//): Link[] => {
-//if (isSource(textSegment) && isBridgeMode(state)) {
-//return state.referenceLinks;
-//}
-
-//if (isSource(textSegment) && !isBridgeMode(state)) {
-//return state.userLinks;
-//}
-
-//if (isReference(textSegment)) {
-//return state.referenceLinks;
-//}
-
-//if (isTarget(textSegment)) {
-//return state.userLinks;
-//}
-
-//return [];
-//};
-
-const isFocused = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): boolean => {
-  if (isSource(textSegment) && isBridgeMode(state)) {
-    const focusedReferenceLink = Array.from(
-      state.focusedReferenceLinks.keys()
-    ).find((link: Link) => {
-      return link.sources.includes(textSegment.position);
-    });
-
-    return Boolean(
-      state.focusedReferenceLinks.get(focusedReferenceLink ?? ({} as Link))
-    );
-  }
-
-  if (isSource(textSegment) && !isBridgeMode(state)) {
-    const focusedLink = Array.from(state.focusedUserLinks.keys()).find(
-      (link: Link) => {
-        return link.sources.includes(textSegment.position);
-      }
-    );
-    return Boolean(state.focusedUserLinks.get(focusedLink ?? ({} as Link)));
-  }
-
-  if (isReference(textSegment)) {
-    const focusedReferenceLink = Array.from(
-      state.focusedReferenceLinks.keys()
-    ).find((link: Link) => {
-      return link.targets.includes(textSegment.position);
-    });
-
-    const focusedUserLink = Array.from(state.focusedUserLinks.keys()).find(
-      (link: Link) => {
-        return link.sources.includes(textSegment.position);
-      }
-    );
-
-    return (
-      Boolean(
-        state.focusedReferenceLinks.get(focusedReferenceLink ?? ({} as Link))
-      ) || Boolean(state.focusedUserLinks.get(focusedUserLink ?? ({} as Link)))
-    );
-  }
-
-  if (isTarget(textSegment)) {
-    const focusedUserLink = Array.from(state.focusedUserLinks.keys()).find(
-      (link: Link) => {
-        return link.targets.includes(textSegment.position);
-      }
-    );
-
-    return Boolean(state.focusedUserLinks.get(focusedUserLink ?? ({} as Link)));
-  }
-
-  return false;
-};
-
-const getSegmentSelections = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): Record<number, boolean> => {
-  if (isSource(textSegment)) {
-    return state.selectedSourceTextSegments;
-  }
-
-  if (isReference(textSegment)) {
-    return state.selectedReferenceTextSegments;
-  }
-
-  if (isTarget(textSegment)) {
-    return state.selectedTargetTextSegments;
-  }
-
-  return {};
-};
-
-const determineRefCollectorActionType = (
-  textSegment: TextSegment
-): 'addSourceRef' | 'addReferenceRef' | 'addTargetRef' => {
-  if (isSource(textSegment)) {
-    return 'addSourceRef';
-  }
-
-  if (isReference(textSegment)) {
-    return 'addReferenceRef';
-  }
-
-  return 'addTargetRef';
-};
-
-const determineRefCollectorCollection = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): Record<number, HTMLDivElement> => {
-  if (isSource(textSegment)) {
-    return state.sourceRefs;
-  }
-
-  if (isReference(textSegment)) {
-    return state.referenceRefs;
-  }
-
-  // then isTarget
-  return state.targetRefs;
-};
-
-const generateRefCollector = (
-  textSegment: TextSegment,
-  displayStyle: 'line' | 'paragraph',
-  state: AlignmentState,
+const updateInProgressLink = (
+  relatedLink: Link,
+  inProgressLink: Link | null,
   dispatch: React.Dispatch<AlignmentActionTypes>
-): ((ref: HTMLDivElement) => void) => {
-  const actionType = determineRefCollectorActionType(textSegment);
-  const refCollection = determineRefCollectorCollection(textSegment, state);
-
-  return (ref: HTMLDivElement) => {
-    if (ref && displayStyle === 'line')
-      if (refCollection[textSegment.position] !== ref) {
-        dispatch({
-          type: actionType,
-          payload: { position: textSegment.position, ref: ref },
-        });
-      }
-  };
+): void => {
+  // in progress link, toggle
+  //if (inProgressLink) {
+  dispatch({
+    type: 'setInProgressLink',
+    payload: {
+      id: relatedLink.id,
+      sources: relatedLink.sources,
+      targets: relatedLink.targets,
+      type: 'manual',
+    },
+  });
 };
 
-const determineLinkCheckAttributes = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): { linkSet: Link[]; searchCollection: 'sources' | 'targets' } => {
-  if (isSource(textSegment) && isBridgeMode(state)) {
-    return { linkSet: state.referenceLinks, searchCollection: 'sources' };
-  }
+const toggleAllSegmentsForLink = (
+  link: Link,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  link.sources.forEach((sourcePosition: number): void => {
+    dispatch({
+      type: 'toggleSelectedSourceTextSegment',
+      payload: { position: sourcePosition },
+    });
+  });
 
-  if (isSource(textSegment) && !isBridgeMode(state)) {
-    return { linkSet: state.userLinks, searchCollection: 'sources' };
-  }
-
-  //if (isReference(textSegment)) {
-  //}
-
-  // else: target
-  return { linkSet: state.userLinks, searchCollection: 'targets' };
+  link.targets?.forEach((targetPosition: number): void => {
+    dispatch({
+      type: 'toggleSelectedTargetTextSegment',
+      payload: { position: targetPosition },
+    });
+  });
 };
 
-const isLinked = (textSegment: TextSegment, state: AlignmentState): boolean => {
-  if (isReference(textSegment)) {
+const toggleSegmentSelection = (
+  type: TextSegmentType,
+  position: number,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  if (type === 'source') {
+    dispatch({
+      type: `toggleSelectedSourceTextSegment`,
+      payload: { position },
+    });
+  }
+  if (type === 'target') {
+    dispatch({
+      type: `toggleSelectedTargetTextSegment`,
+      payload: { position },
+    });
+  }
+};
+
+const toggleInProgressSegment = (
+  type: TextSegmentType,
+  position: number,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  dispatch({
+    type: `toggleInProgressLinkSegment`,
+    payload: { position, type },
+  });
+};
+
+const noPreviousSelectionAndUserSelectsLink = (
+  relatedLink: Link | undefined,
+  inProgressLink: Link | null
+): boolean => {
+  return Boolean(relatedLink) && !Boolean(inProgressLink);
+};
+
+const previousSelectionAndUserDeselectsLink = (
+  relatedLink: Link | undefined,
+  inProgressLink: Link | null
+): boolean => {
+  return Boolean(relatedLink) && Boolean(inProgressLink);
+};
+
+const previousSelectionAndUserTogglesSegment = (
+  inProgressLink: Link | null
+): boolean => {
+  return Boolean(inProgressLink);
+};
+
+const handleClick = (
+  type: TextSegmentType,
+  position: number,
+  relatedLink: Link | undefined,
+  inProgressLink: Link | null,
+  dispatch: React.Dispatch<AlignmentActionTypes>
+): void => {
+  if (noPreviousSelectionAndUserSelectsLink(relatedLink, inProgressLink)) {
+    if (relatedLink) {
+      // blurg. this is to make ts compiler happy.
+      updateInProgressLink(relatedLink, inProgressLink, dispatch);
+      toggleAllSegmentsForLink(relatedLink, dispatch);
+    }
+  } else if (
+    previousSelectionAndUserDeselectsLink(relatedLink, inProgressLink)
+  ) {
+    toggleSegmentSelection(type, position, dispatch);
+    toggleInProgressSegment(type, position, dispatch);
+    dispatch({ type: 'redrawUI', payload: {} });
+  } else if (previousSelectionAndUserTogglesSegment(inProgressLink)) {
+    if (inProgressLink) {
+      updateInProgressLink(
+        {
+          id: inProgressLink.id,
+          sources: inProgressLink.sources
+            .concat(type === 'source' ? [position] : [])
+            .sort(),
+          targets: inProgressLink.targets
+            .concat(type === 'target' ? [position] : [])
+            .sort(),
+          type: 'manual',
+        },
+        inProgressLink,
+        dispatch
+      );
+      toggleSegmentSelection(type, position, dispatch);
+      dispatch({ type: 'redrawUI', payload: {} });
+    }
+  } else {
+    // user is toggling a segment with no previous link selected
+    toggleSegmentSelection(type, position, dispatch);
+    dispatch({ type: 'redrawUI', payload: {} });
+  }
+};
+
+const isLocked = (
+  inProgressLink: Link | null,
+  relatedLink: Link | undefined
+): boolean => {
+  if (inProgressLink && relatedLink) {
     return (
-      Boolean(
-        state.referenceLinks.find((link) => {
-          return link.targets.includes(textSegment.position);
-        })
-      ) ||
-      Boolean(
-        state.userLinks.find((link) => {
-          return link.sources.includes(textSegment.position);
-        })
+      // If there is a link being built
+      Boolean(inProgressLink) &&
+      // And there is a link related to this segment
+      Boolean(relatedLink) &&
+      // And the related link's sources do not intersect with the inProgress sources
+      !(
+        arrayHasIntersection(inProgressLink.sources, relatedLink.sources) ||
+        // And the related link's targets do no intersect with the inProgress targets
+        arrayHasIntersection(inProgressLink.targets, relatedLink.targets)
       )
     );
   }
+  return false;
+};
 
-  const { linkSet, searchCollection } = determineLinkCheckAttributes(
+const glossDisplay = (
+  props: TextSegmentProps,
+  sourceGlosses: Gloss[]
+): ReactElement => {
+  const sourceGloss = sourceGlosses?.find((gloss) => {
+    return gloss.position === props.textSegment.position;
+  });
+
+  if (props.textSegment.type === 'source' && sourceGloss) {
+    return (
+      <span
+        className="source-gloss"
+        style={{
+          display: 'inline-block',
+          fontSize: '0.8rem',
+          fontStyle: 'italic',
+          marginLeft: '0.5rem',
+          marginRight: '0.5rem',
+        }}
+      >
+        {sourceGloss.glossText}
+      </span>
+    );
+  }
+
+  return <></>;
+};
+
+const determinePrimaryRelatedLink = (
+  textSegment: TextSegment,
+  state: AlignmentState
+): 'user' | 'reference' => {
+  if (textSegment.type === 'source' && state.referenceLinks.length) {
+    return 'reference';
+  }
+
+  if (textSegment.type === 'source' && !state.referenceLinks.length) {
+    return 'user';
+  }
+
+  if (textSegment.type === 'reference') {
+    return 'reference';
+  }
+
+  // 'target" case
+  return 'user';
+};
+
+export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
+  const {
     textSegment,
-    state
-  );
-  return Boolean(
-    linkSet.find((link) => {
-      return link[searchCollection].includes(textSegment.position);
-    })
-  );
-};
+    isSelected,
+    isDisabled,
+    isFocused,
+    isLinked,
+    isLinkedToSource,
+    isLinkedToTarget,
+    group,
+    displayStyle,
+    refCollector,
+  } = props;
+  //const color = segmentColors[segmentData.color || 0];
 
-const group = (textSegment: TextSegment, state: AlignmentState): number => {
-  if (isBridgeMode(state)) {
-    return 0;
-  }
-  return determineGroup(state.userLinks, textSegment.position);
-};
-
-const isLinkedToSource = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): boolean => {
-  if (isReference(textSegment)) {
-    return Boolean(
-      state.referenceLinks.find((link) => {
-        return link.targets.includes(textSegment.position);
-      })
-    );
-  }
-  return false;
-};
-
-const isLinkedToTarget = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): boolean => {
-  if (isReference(textSegment)) {
-    return Boolean(
-      state.userLinks.find((link) => {
-        return link.sources.includes(textSegment.position);
-      })
-    );
-  }
-
-  return false;
-};
-
-const TextSegmentWrapper = (props: TextSegmentWrapperProps) => {
-  const { textSegment, displayStyle } = props;
   const { state, dispatch } = useContext(AlignmentContext);
 
+  //const relatedReferenceLink = findLinkForTextSegment(
+  //state.referenceLinks,
+  //segmentData
+  //);
+  const relatedUserLink = findLinkForTextSegment(state.userLinks, textSegment);
+
+  //const primaryRelatedLink = determinePrimaryRelatedLink(segmentData, state);
+
+  const selectedClass = isSelected ? 'selected' : '';
+  const disabledClass = isDisabled ? 'disabled' : '';
+  const linkedClass = isLinked ? 'linked' : 'not-linked';
+  const locked = isLocked(state.inProgressLink, relatedUserLink);
+  const lockedClass = locked ? 'locked' : 'unlocked';
+
+  const linkedToSource = isLinked && isLinkedToSource ? 'linked-to-source' : '';
+
+  const linkedToTarget = isLinked && isLinkedToTarget ? 'linked-to-target' : '';
+
+  const focusedClass = isFocused ? 'focused' : '';
+
+  const containerStyle =
+    displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
+  const renderedGroup = displayStyle === 'line' ? group : 0;
+
   return (
-    <TextSegmentComponent
-      key={`${textSegment.type}-${textSegment.position}`}
-      segmentData={textSegment}
-      isFocused={isFocused(textSegment, state)}
-      isDisabled={textSegment.catIsContent === false ?? false}
-      isLinked={isLinked(textSegment, state)}
-      isLinkedToSource={isLinkedToSource(textSegment, state)}
-      isLinkedToTarget={isLinkedToTarget(textSegment, state)}
-      isSelected={
-        getSegmentSelections(textSegment, state)[textSegment.position] ?? false
-      }
-      group={group(textSegment, state)}
-      displayStyle={displayStyle}
-      refCollector={generateRefCollector(
-        textSegment,
-        displayStyle,
-        state,
-        dispatch
-      )}
-    />
+    textSegment && (
+      <div
+        style={{ ...containerStyle }}
+        ref={refCollector}
+        className={`${textSegment.type}${textSegment.position}`}
+      >
+        <div
+          role="button"
+          className={`text-segment ${textSegment.type} ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup} ${linkedToSource} ${linkedToTarget}`}
+          style={{ display: 'inline-block', textAlign: 'center' }}
+          tabIndex={0}
+          onClick={() => {
+            if (!locked) {
+              //handleClick(
+              //segmentData.type,
+              //segmentData.position,
+              //relatedLink,
+              //state.inProgressLink,
+              //dispatch
+              //);
+            }
+          }}
+          onKeyPress={() => {
+            if (!locked) {
+              //handleClick(
+              //segmentData.type,
+              //segmentData.position,
+              //relatedLink,
+              //state.inProgressLink,
+              //dispatch
+              //);
+            }
+          }}
+          onMouseOver={() => {
+            focusSegmentActions(state, dispatch).focusSegments(textSegment);
+          }}
+          onMouseLeave={() => {
+            focusSegmentActions(state, dispatch).unFocusSegments(textSegment);
+          }}
+        >
+          {textSegment.text}
+          {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
+        </div>
+
+        {/*enrichedDataBottom(props)*/}
+      </div>
+    )
   );
 };
 
-export default TextSegmentWrapper;
+export default TextSegmentComponent;

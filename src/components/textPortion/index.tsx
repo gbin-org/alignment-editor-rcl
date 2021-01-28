@@ -2,7 +2,7 @@ import React, { ReactElement, useContext } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
 import { TextSegment, TextSegmentType } from 'core/structs';
-import TextSegmentWrapper from 'components/textSegment';
+import { TextSegmentWrapper } from 'components/textSegmentWrapper';
 
 interface TextPortionProps {
   type: TextSegmentType;
