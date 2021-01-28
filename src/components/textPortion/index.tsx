@@ -4,7 +4,7 @@ import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 import { findLinkForTextSegment } from 'core/findLink';
 import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType } from 'core/structs';
-import TextSegmentComponent from 'components/textSegment';
+import TextSegmentWrapper from 'components/textSegment';
 
 type Direction = 'ltr' | 'rtl';
 
@@ -22,21 +22,6 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
 };
 
-const getSegmentSelections = (
-  type: TextSegmentType,
-  state: AlignmentState
-): Record<number, boolean> => {
-  if (type === 'source') {
-    return state.selectedSourceTextSegments;
-  }
-
-  if (type === 'reference') {
-    return state.selectedReferenceTextSegments;
-  }
-
-  return state.selectedTargetTextSegments;
-};
-
 export const TextPortion = (props: TextPortionProps): ReactElement => {
   const { type, textSegments, displayStyle } = props;
 
@@ -49,8 +34,6 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
 
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
-
-  const segmentSelections = getSegmentSelections(type, state);
 
   const relevantLinkSet =
     type === 'source' ? state.referenceLinks : state.userLinks;
@@ -72,22 +55,20 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
       >
         {textSegments?.map(
           (textSegment, index): ReactElement => {
-            const relatedLink = findLinkForTextSegment(
-              relevantLinkSet,
-              textSegment
-            );
+            //const relatedLink = findLinkForTextSegment(
+            //relevantLinkSet,
+            //textSegment
+            //);
 
-            const linkIndex = relatedLink
-              ? relevantLinkSet.indexOf(relatedLink)
-              : index;
+            //const linkIndex = relatedLink
+            //? relevantLinkSet.indexOf(relatedLink)
+            //: index;
 
             return (
-              <TextSegmentComponent
+              <TextSegmentWrapper
                 key={`${type}-${textSegment.position}`}
-                segmentData={textSegment}
-                isDisabled={textSegment.catIsContent === false ?? false}
-                isSelected={segmentSelections[textSegment.position] ?? false}
-                group={determineGroup(relevantLinkSet, linkIndex)}
+                textSegment={textSegment}
+                //group={determineGroup(relevantLinkSet, linkIndex)}
                 displayStyle={displayStyle}
               />
             );
