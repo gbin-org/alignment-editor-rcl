@@ -26,11 +26,18 @@ interface ControlPanelProps {}
 
 const anySegmentSelected = (
   selectedSourceTextSegments: Record<number, boolean>,
+  selectedReferenceTextSegments: Record<number, boolean>,
   selectedTargetTextSegments: Record<number, boolean>
 ): boolean => {
   const selectedSources = Object.keys(selectedSourceTextSegments).find(
     (key) => {
       return selectedSourceTextSegments[Number(key)];
+    }
+  );
+
+  const selectedReferences = Object.keys(selectedReferenceTextSegments).find(
+    (key) => {
+      return selectedReferenceTextSegments[Number(key)];
     }
   );
 
@@ -40,22 +47,36 @@ const anySegmentSelected = (
     }
   );
 
-  return Boolean(selectedSources) || Boolean(selectedTargets);
+  return (
+    Boolean(selectedSources) ||
+    Boolean(selectedReferences) ||
+    Boolean(selectedTargets)
+  );
 };
 
 const linkableSegmentsSelected = (
   selectedSourceSegments: Record<number, boolean>,
+  selectedReferenceSegments: Record<number, boolean>,
   selectedTargetSegments: Record<number, boolean>
 ): boolean => {
   const selectedSources = Object.keys(selectedSourceSegments).find((key) => {
     return selectedSourceSegments[Number(key)];
   });
 
+  const selectedReferences = Object.keys(selectedReferenceSegments).find(
+    (key) => {
+      return selectedReferenceSegments[Number(key)];
+    }
+  );
+
   const selectedTargets = Object.keys(selectedTargetSegments).find((key) => {
     return selectedTargetSegments[Number(key)];
   });
 
-  return Boolean(selectedSources) && Boolean(selectedTargets);
+  return (
+    (Boolean(selectedSources) || Boolean(selectedReferences)) &&
+    Boolean(selectedTargets)
+  );
 };
 
 const toggleTextDirection = (
@@ -87,6 +108,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
 
   const disabledClass = linkableSegmentsSelected(
     state.selectedSourceTextSegments,
+    state.selectedReferenceTextSegments,
     state.selectedTargetTextSegments
   )
     ? 'active'
@@ -148,6 +170,14 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 })
                 .map((key) => Number(key));
 
+              const selectedReferenceSegments = Object.keys(
+                state.selectedReferenceTextSegments
+              )
+                .filter((key) => {
+                  return state.selectedReferenceTextSegments[Number(key)];
+                })
+                .map((key) => Number(key));
+
               const selectedTargetSegments = Object.keys(
                 state.selectedTargetTextSegments
               )
@@ -156,8 +186,13 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 })
                 .map((key) => Number(key));
 
+              const contextualSelectedSourceSegments =
+                state.referenceLinks && state.referenceLinks.length
+                  ? selectedReferenceSegments
+                  : selectedSourceSegments;
+
               if (
-                selectedSourceSegments.length &&
+                contextualSelectedSourceSegments.length &&
                 selectedTargetSegments.length
               ) {
                 dispatch({
@@ -166,7 +201,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                     id: state.inProgressLink
                       ? state.inProgressLink.id
                       : nextId(state.userLinks.map((link) => link.id)),
-                    sources: selectedSourceSegments,
+                    sources: contextualSelectedSourceSegments,
                     targets: selectedTargetSegments,
                   },
                 });
@@ -196,6 +231,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
             className={`control-panel-button ${
               anySegmentSelected(
                 state.selectedSourceTextSegments,
+                state.selectedReferenceTextSegments,
                 state.selectedTargetTextSegments
               )
                 ? 'active'
@@ -206,6 +242,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
               if (
                 anySegmentSelected(
                   state.selectedSourceTextSegments,
+                  state.selectedReferenceTextSegments,
                   state.selectedTargetTextSegments
                 )
               ) {

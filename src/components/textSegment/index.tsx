@@ -7,11 +7,7 @@ import {
 
 import { AlignmentContext } from 'contexts/alignment';
 import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
-import {
-  findLinkForTextSegment,
-  findUserLinkForReferenceLink,
-  findReferenceLinkForUserLink,
-} from 'core/findLink';
+import { findLinkForTextSegment } from 'core/findLink';
 
 import selectSegmentActions from 'core/actions/selectSegment';
 
@@ -57,44 +53,6 @@ const updateInProgressLink = (
       type: 'manual',
     },
   });
-};
-
-//const toggleAllSegmentsForLink = (
-//link: Link,
-//dispatch: React.Dispatch<AlignmentActionTypes>
-//): void => {
-//link.sources.forEach((sourcePosition: number): void => {
-//dispatch({
-//type: 'toggleSelectedSourceTextSegment',
-//payload: { position: sourcePosition },
-//});
-//});
-
-//link.targets?.forEach((targetPosition: number): void => {
-//dispatch({
-//type: 'toggleSelectedTargetTextSegment',
-//payload: { position: targetPosition },
-//});
-//});
-//};
-
-const toggleSegmentSelection = (
-  type: TextSegmentType,
-  position: number,
-  dispatch: React.Dispatch<AlignmentActionTypes>
-): void => {
-  if (type === 'source') {
-    dispatch({
-      type: `toggleSelectedSourceTextSegment`,
-      payload: { position },
-    });
-  }
-  if (type === 'target') {
-    dispatch({
-      type: `toggleSelectedTargetTextSegment`,
-      payload: { position },
-    });
-  }
 };
 
 const toggleInProgressSegment = (
@@ -148,7 +106,7 @@ const handleClick = (
   } else if (
     previousSelectionAndUserDeselectsLink(relatedLink, state.inProgressLink)
   ) {
-    toggleSegmentSelection(textSegment.type, textSegment.position, dispatch);
+    selectSegmentActions(state, dispatch).toggleSegment(textSegment);
     toggleInProgressSegment(textSegment.type, textSegment.position, dispatch);
     dispatch({ type: 'redrawUI', payload: {} });
   } else if (previousSelectionAndUserTogglesSegment(state.inProgressLink)) {
@@ -167,12 +125,12 @@ const handleClick = (
         state.inProgressLink,
         dispatch
       );
-      toggleSegmentSelection(textSegment.type, textSegment.position, dispatch);
+      selectSegmentActions(state, dispatch).toggleSegment(textSegment);
       dispatch({ type: 'redrawUI', payload: {} });
     }
   } else {
     // user is toggling a segment with no previous link selected
-    toggleSegmentSelection(textSegment.type, textSegment.position, dispatch);
+    selectSegmentActions(state, dispatch).toggleSegment(textSegment);
     dispatch({ type: 'redrawUI', payload: {} });
   }
 };
@@ -231,25 +189,25 @@ const glossDisplay = (
   return <></>;
 };
 
-const determinePrimaryRelatedLink = (
-  textSegment: TextSegment,
-  state: AlignmentState
-): 'user' | 'reference' => {
-  if (textSegment.type === 'source' && state.referenceLinks.length) {
-    return 'reference';
-  }
+//const determinePrimaryRelatedLink = (
+//textSegment: TextSegment,
+//state: AlignmentState
+//): 'user' | 'reference' => {
+//if (textSegment.type === 'source' && state.referenceLinks.length) {
+//return 'reference';
+//}
 
-  if (textSegment.type === 'source' && !state.referenceLinks.length) {
-    return 'user';
-  }
+//if (textSegment.type === 'source' && !state.referenceLinks.length) {
+//return 'user';
+//}
 
-  if (textSegment.type === 'reference') {
-    return 'reference';
-  }
+//if (textSegment.type === 'reference') {
+//return 'reference';
+//}
 
-  // 'target" case
-  return 'user';
-};
+//'target" case
+//return 'user';
+//};
 
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
@@ -311,7 +269,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
                 state.userLinks,
                 textSegment
               );
-              console.log('relatedLink', relatedLink);
               handleClick(textSegment, relatedLink, state, dispatch);
             }
           }}

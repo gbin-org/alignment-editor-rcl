@@ -13,6 +13,7 @@ interface TextPortionProps {
 const lineDisplayStyle = {
   display: 'inline-block',
   whiteSpace: 'nowrap',
+  height: '2rem',
 };
 const paragraphDisplayStyle = {
   display: 'inline-block',

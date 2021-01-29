@@ -1,5 +1,8 @@
 import { AlignmentState, AlignmentActionTypes } from 'contexts/alignment';
-import { findReferenceLinkForUserLink } from 'core/findLink';
+import {
+  findReferenceLinkForTextSegment,
+  findReferenceLinkForUserLink,
+} from 'core/findLink';
 import { Link, TextSegment, TextSegmentType } from 'core/structs';
 
 const selectSegmentActions = (
@@ -23,11 +26,45 @@ const selectSegmentActions = (
       return 'toggleSelectedReferenceTextSegment';
     }
 
-    // default to Source
+    // default to Source for the compiler
     return 'toggleSelectedSourceTextSegment';
   };
 
-  const toggleAllSegmentsForLink = (origin: TextSegment, userLink: Link) => {
+  const toggleSegment = (textSegment: TextSegment): void => {
+    if (textSegment.type === 'source') {
+      dispatch({
+        type: `toggleSelectedSourceTextSegment`,
+        payload: { position: textSegment.position },
+      });
+    }
+    if (textSegment.type === 'reference') {
+      dispatch({
+        type: `toggleSelectedReferenceTextSegment`,
+        payload: { position: textSegment.position },
+      });
+
+      const relatedReferenceLink = findReferenceLinkForTextSegment(
+        state.referenceLinks,
+        textSegment
+      );
+
+      if (relatedReferenceLink) {
+        toggleAllSegmentsForLink(textSegment, {} as Link, relatedReferenceLink);
+      }
+    }
+    if (textSegment.type === 'target') {
+      dispatch({
+        type: `toggleSelectedTargetTextSegment`,
+        payload: { position: textSegment.position },
+      });
+    }
+  };
+
+  const toggleAllSegmentsForLink = (
+    origin: TextSegment,
+    userLink: Link,
+    referenceLink?: Link
+  ) => {
     const sourceSelectionAction = determineSourceSelectionAction(origin.type);
 
     userLink.sources?.forEach((sourcePosition: number): void => {
@@ -42,10 +79,9 @@ const selectSegmentActions = (
       state.referenceLinks &&
       state.referenceLinks.length
     ) {
-      const relatedReferenceLink = findReferenceLinkForUserLink(
-        state.referenceLinks,
-        userLink
-      );
+      const relatedReferenceLink =
+        referenceLink ??
+        findReferenceLinkForUserLink(state.referenceLinks, userLink);
 
       relatedReferenceLink?.sources?.forEach((sourcePosition: number) => {
         dispatch({
@@ -65,6 +101,7 @@ const selectSegmentActions = (
 
   return {
     toggleAllSegmentsForLink,
+    toggleSegment,
   };
 };
 export default selectSegmentActions;
