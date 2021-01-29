@@ -30,9 +30,9 @@ describe('findLink', (): void => {
       const result = findReferenceLinkForUserLink(referenceLinks, userLink);
 
       expect(result).toEqual({
-        id: 1,
-        sources: [4],
-        targets: [7],
+        id: 0,
+        sources: [3],
+        targets: [4],
         type: 'manual',
       });
     });

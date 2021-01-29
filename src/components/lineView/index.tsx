@@ -11,7 +11,7 @@ type Direction = 'ltr' | 'rtl';
 
 interface LineViewProps {
   sourceSegments: TextSegment[];
-  referenceSegments: TextSegment[];
+  referenceSegments?: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
   targetDirection: Direction;
