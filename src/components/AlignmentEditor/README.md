@@ -1,4 +1,4 @@
-#### Alignment Editor: shorter example
+#### Alignment Editor: shorter example with bridge text
 
 ```ts
 <AlignmentEditor
@@ -103,7 +103,7 @@
 />
 ```
 
-#### Alignment Editor: longer example
+#### Alignment Editor: longer example, without bridge text
 
 ```ts
 <AlignmentEditor

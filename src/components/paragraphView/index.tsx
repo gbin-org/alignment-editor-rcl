@@ -18,6 +18,9 @@ interface ParagraphViewProps {
   targetDirection: Direction;
 }
 
+const isBridgeMode = (state: AlignmentState): boolean => {
+  return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
+};
 const singleLinkAlignment = (
   props: ParagraphViewProps,
   state: AlignmentState,
@@ -70,6 +73,7 @@ const singleLinkAlignment = (
         link
       );
       if (bool) {
+        const relevantLink = isBridgeMode(state) ? relatedReferenceLink : link;
         return (
           <LineView
             key={`${link.sources.toString()}-${link.targets.toString()}`}
@@ -78,9 +82,8 @@ const singleLinkAlignment = (
             sourceSegments={props.sourceSegments.filter(
               (sourceSegment: TextSegment): boolean => {
                 return (
-                  relatedReferenceLink?.sources.includes(
-                    sourceSegment.position
-                  ) ?? false
+                  relevantLink?.sources.includes(sourceSegment.position) ??
+                  false
                 );
               }
             )}
