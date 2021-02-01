@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useContext } from 'react';
 
-import { AlignmentContext } from 'contexts/alignment';
+import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
 import TextPortionComponent from 'components/textPortion';
 import LinkComponent from 'components/link';
@@ -18,16 +18,44 @@ interface LineViewProps {
   displayStyle: 'full' | 'partial';
 }
 
-const fullDisplayStyle = { margin: '8em' };
-const partialDisplayStyle = { margin: '3.5rem' };
+const fullDisplayStyleNoBridge = { margin: '14em' };
+const fullDisplayStyleWithBridge = { margin: '8em' };
+const partialDisplayStyleWithBridge = { margin: '3.5rem' };
+const partialDisplayStyleNoBridge = { margin: '10rem' };
+
+const isBridgeMode = (state: AlignmentState): boolean => {
+  return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
+};
+
+const determineDisplayStyle = (
+  displayStyle: 'partial' | 'full',
+  state: AlignmentState
+): { margin: string } => {
+  if (isBridgeMode(state) && displayStyle === 'full') {
+    return fullDisplayStyleWithBridge;
+  }
+
+  if (!isBridgeMode(state) && displayStyle === 'full') {
+    return fullDisplayStyleNoBridge;
+  }
+
+  if (isBridgeMode(state) && displayStyle === 'partial') {
+    return partialDisplayStyleWithBridge;
+  }
+
+  if (!isBridgeMode(state) && displayStyle === 'partial') {
+    return partialDisplayStyleNoBridge;
+  }
+
+  return { margin: '' };
+};
 
 export const LineView = (props: LineViewProps): ReactElement => {
   const { sourceSegments, referenceSegments, targetSegments } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  const configuredStyle =
-    props.displayStyle === 'full' ? fullDisplayStyle : partialDisplayStyle;
+  const configuredStyle = determineDisplayStyle(props.displayStyle, state);
 
   useEffect(() => {
     dispatch({ type: 'redrawUI', payload: {} });

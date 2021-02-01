@@ -21,6 +21,7 @@ interface ParagraphViewProps {
 const isBridgeMode = (state: AlignmentState): boolean => {
   return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
 };
+
 const singleLinkAlignment = (
   props: ParagraphViewProps,
   state: AlignmentState,
@@ -38,10 +39,6 @@ const singleLinkAlignment = (
     props.referenceSegments?.filter((referenceSegment: TextSegment) => {
       return selectedReferenceTextSegments[referenceSegment.position];
     }) ?? [];
-
-  //console.log('possible ref segs', props.referenceSegments);
-  //console.log('selected ref segs', selectedReferenceTextSegments);
-  //console.log('filtered ref segs' ,selectedReferences);
 
   const selectedTargets =
     props.targetSegments?.filter((targetSegment: TextSegment) => {
@@ -153,6 +150,11 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
       <div className="alignment-thing" style={{}}>
         <div style={{ height: '17.1rem' }}>
           <div>BRIDGE</div>
+
+          {(!referenceSegments || !referenceSegments.length) && (
+            <p>No bridge text available.</p>
+          )}
+
           {referenceSegments && (
             <div
               className="bridge-container"
