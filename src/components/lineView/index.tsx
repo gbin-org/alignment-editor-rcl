@@ -27,6 +27,17 @@ const isBridgeMode = (state: AlignmentState): boolean => {
   return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
 };
 
+const linkIsValidForDisplay = (link: Link, state: AlignmentState): boolean => {
+  if (link.id === state.inProgressLink?.id) {
+    console.log(state.inProgressLink);
+    return (
+      Boolean(state.inProgressLink.sources.length) &&
+      Boolean(state.inProgressLink.targets.length)
+    );
+  }
+  return true;
+};
+
 const determineDisplayStyle = (
   displayStyle: 'partial' | 'full',
   state: AlignmentState
@@ -103,19 +114,22 @@ export const LineView = (props: LineViewProps): ReactElement => {
       <div id="user-links-container" style={{ position: 'relative' }}>
         {state.parentRef &&
           state.userLinks.map((link: Link) => {
-            return (
-              <LinkComponent
-                key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
-                type="user"
-                link={link}
-                sourcePosition={link.sources[0]}
-                targetPosition={link.targets[0]}
-              />
-            );
+            if (linkIsValidForDisplay(link, state)) {
+              return (
+                <LinkComponent
+                  key={`${link.type}-${link.sources[0]}-${link.targets[0]}`}
+                  type="user"
+                  link={link}
+                  sourcePosition={link.sources[0]}
+                  targetPosition={link.targets[0]}
+                />
+              );
+            }
+            return null;
           })}
       </div>
 
-      <div style={configuredStyle} />
+      <div className="spacer" style={configuredStyle} />
 
       {(() => {
         if (referenceSegments && referenceSegments.length) {
@@ -127,11 +141,16 @@ export const LineView = (props: LineViewProps): ReactElement => {
             />
           );
         }
+        if (isBridgeMode(state)) {
+          return (
+            <div className="reference-spacer" style={{ height: '6.5rem' }} />
+          );
+        }
       })()}
 
       {(() => {
         if (referenceSegments && referenceSegments.length) {
-          return <div style={configuredStyle} />;
+          return <div className="spacer" style={configuredStyle} />;
         }
       })()}
 

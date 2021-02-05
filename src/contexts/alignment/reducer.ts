@@ -422,7 +422,8 @@ export const baseReducer = (
         inProgressLink: {
           id: state.inProgressLink?.id ?? 0, // bug waiting to happen
           sources:
-            action.payload.type === 'source'
+            action.payload.type === 'source' ||
+            action.payload.type === 'reference'
               ? toggleItemExistence(
                   state.inProgressLink?.sources,
                   action.payload.position

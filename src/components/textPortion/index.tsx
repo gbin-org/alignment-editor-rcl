@@ -34,6 +34,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
 
   return (
     <div
+      className="text-portion-container"
       style={{
         display: 'flex',
         alignContent: 'center',
