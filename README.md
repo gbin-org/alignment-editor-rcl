@@ -7,6 +7,7 @@ _Try it out [here](https://alignment-editor-rcl.netlify.app/)._
 
 - Ability to view both source and target text as RTL or LTR.
 - `updatedState` hook for consuming applications to capture changes.
+- Users can align to a source text or an aligned reference (aka "bridge") text.
 - Two alternative view styles.
 - Optional gloss tagging for source text.
 
@@ -66,11 +67,13 @@ Wrapped in its provider, render `AlignmentEditor` as you would any other react c
 #### `sourceSegments`
 
 Represents the source text -- an "original" text that a target will be aligned to.
+
 An array of objects that implement: `{ text: string, type: 'source'|'target', position: number}`;
 
 #### `targetSegments`
 
 Represents the target text -- an "translation" text that will be aligned to its source.
+
 An array of objects that implement: `{ text: string, type: 'source'|'target', position: number}`
 
 ### Optional Parameters
@@ -80,6 +83,19 @@ An array of objects that implement: `{ text: string, type: 'source'|'target', po
 A "link" is an alignment of target text tokens to source text tokens. Links can be Many:Many.
 
 This parameter represents preexisting links. These will be displayed and users can remove or modify them. Note than links can be labeled as 'machine' or 'manual'. In the future, a visual delineation between the two will be provided.
+
+An array of objects that implement: `{ sources: number[], target: number[], type: 'manual'|'machine' }`
+
+#### `referenceSegments`
+
+Represents the reference text -- a previously aligned translation of the source that users will align their target to.
+Reference text mode is enabled by providing reference text segments. In reference text mode users can only align to the reference text. Reference links must be supplied.
+
+An array of objects that implement: `{ text: string, type: 'source'|'target', position: number}`
+
+#### `referenceLinks`
+
+A set of links that describes the alignment of the reference text to the source.
 
 An array of objects that implement: `{ sources: number[], target: number[], type: 'manual'|'machine' }`
 
