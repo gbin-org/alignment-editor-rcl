@@ -28,11 +28,18 @@ const isBridgeMode = (state: AlignmentState): boolean => {
 };
 
 const linkIsValidForDisplay = (link: Link, state: AlignmentState): boolean => {
+  //if (link.id === state.inProgressLink?.id) {
+  const relevantSourceSegments = isBridgeMode(state)
+    ? state.selectedReferenceTextSegments
+    : state.selectedSourceTextSegments;
   if (link.id === state.inProgressLink?.id) {
-    console.log(state.inProgressLink);
     return (
-      Boolean(state.inProgressLink.sources.length) &&
-      Boolean(state.inProgressLink.targets.length)
+      link.sources.every((position: number) => {
+        return relevantSourceSegments[position];
+      }) &&
+      link.targets.every((position: number) => {
+        return state.selectedTargetTextSegments[position];
+      })
     );
   }
   return true;

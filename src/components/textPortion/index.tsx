@@ -49,7 +49,7 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
         style={{ ...configuredStyle, paddingRight: '5rem', direction }}
       >
         {textSegments?.map(
-          (textSegment, index): ReactElement => {
+          (textSegment: TextSegment): ReactElement => {
             return (
               <TextSegmentWrapper
                 key={`${type}-${textSegment.position}`}
