@@ -100,13 +100,19 @@ const isFocused = (
   }
 
   if (isTarget(textSegment)) {
-    const focusedUserLink = Array.from(state.focusedUserLinks.keys()).find(
-      (link: Link) => {
-        return link.targets.includes(textSegment.position);
+    const potentiallyFocusedUserLinks = Array.from(
+      state.focusedUserLinks.keys()
+    ).filter((link: Link) => {
+      return link.targets.includes(textSegment.position);
+    });
+
+    return potentiallyFocusedUserLinks.some(
+      (potentiallyFocusedUserLink: Link) => {
+        return Boolean(
+          state.focusedUserLinks.get(potentiallyFocusedUserLink ?? ({} as Link))
+        );
       }
     );
-
-    return Boolean(state.focusedUserLinks.get(focusedUserLink ?? ({} as Link)));
   }
 
   return false;
