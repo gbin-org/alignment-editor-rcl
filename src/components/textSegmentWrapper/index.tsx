@@ -88,7 +88,10 @@ const isFocused = (
 
     const focusedUserLink = Array.from(state.focusedUserLinks.keys()).find(
       (link: Link) => {
-        return link.sources.includes(textSegment.position);
+        return (
+          link.sources.includes(textSegment.position) &&
+          state.focusedUserLinks.get(link)
+        );
       }
     );
 

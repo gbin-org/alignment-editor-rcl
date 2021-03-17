@@ -357,6 +357,7 @@ export const baseReducer = (
         const existingLink = state.userLinks.find(
           (link) => link.id === action.payload.id
         );
+
         let newLinks: Link[] = [];
 
         if (existingLink) {
