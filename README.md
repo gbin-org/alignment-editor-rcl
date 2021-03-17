@@ -41,6 +41,7 @@ Wrapped in its provider, render `AlignmentEditor` as you would any other react c
       { text: 'ἀκροατὴς', type: 'source', position: 3 },
       { text: 'λόγου', type: 'source', position: 4 },
       { text: 'ἐστὶν', type: 'source', position: 5 },
+    ]}
     targetSegments={[
       { text: 'For', type: 'target', position: 0 },
       { text: 'if', type: 'target', position: 1 },
