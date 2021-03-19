@@ -35,7 +35,7 @@
     "cloc": "^2.7.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
-    "node-sass": "^4.x",
+    "node-sass": "^5.0.0",
     "pre-commit": "^1.2.2",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
