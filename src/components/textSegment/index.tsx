@@ -189,26 +189,6 @@ const glossDisplay = (
   return <></>;
 };
 
-//const determinePrimaryRelatedLink = (
-//textSegment: TextSegment,
-//state: AlignmentState
-//): 'user' | 'reference' => {
-//if (textSegment.type === 'source' && state.referenceLinks.length) {
-//return 'reference';
-//}
-
-//if (textSegment.type === 'source' && !state.referenceLinks.length) {
-//return 'user';
-//}
-
-//if (textSegment.type === 'reference') {
-//return 'reference';
-//}
-
-//'target" case
-//return 'user';
-//};
-
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     textSegment,
@@ -223,17 +203,10 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     displayStyle,
     refCollector,
   } = props;
-  //const color = segmentColors[segmentData.color || 0];
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  //const relatedReferenceLink = findLinkForTextSegment(
-  //state.referenceLinks,
-  //segmentData
-  //);
   const relatedUserLink = findLinkForTextSegment(state.userLinks, textSegment);
-
-  //const primaryRelatedLink = determinePrimaryRelatedLink(segmentData, state);
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
@@ -274,13 +247,11 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
           }}
           onKeyPress={() => {
             if (!locked) {
-              //handleClick(
-              //segmentData.type,
-              //segmentData.position,
-              //relatedLink,
-              //state.inProgressLink,
-              //dispatch
-              //);
+              const relatedLink = findLinkForTextSegment(
+                state.userLinks,
+                textSegment
+              );
+              handleClick(textSegment, relatedLink, state, dispatch);
             }
           }}
           onMouseOver={() => {

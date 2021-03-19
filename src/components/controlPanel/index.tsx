@@ -186,10 +186,9 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 })
                 .map((key) => Number(key));
 
-              const contextualSelectedSourceSegments =
-                state.referenceLinks && state.referenceLinks.length
-                  ? selectedReferenceSegments
-                  : selectedSourceSegments;
+              const contextualSelectedSourceSegments = state.referenceLinks
+                ? selectedReferenceSegments
+                : selectedSourceSegments;
 
               if (
                 contextualSelectedSourceSegments.length &&
