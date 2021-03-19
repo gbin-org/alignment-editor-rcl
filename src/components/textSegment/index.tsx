@@ -1,19 +1,33 @@
 import React, { ReactElement, useContext } from 'react';
 
-import { AlignmentActionTypes } from 'contexts/alignment/reducer';
+import {
+  AlignmentActionTypes,
+  AlignmentState,
+} from 'contexts/alignment/reducer';
 
 import { AlignmentContext } from 'contexts/alignment';
 import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
+import { findLinkForTextSegment } from 'core/findLink';
+
+import selectSegmentActions from 'core/actions/selectSegment';
+
+import arrayHasIntersection from 'core/arrayHasIntersection';
+import focusSegmentActions from 'core/actions/focusSegment';
 
 import './textSegmentStyle.scss';
 
 export interface TextSegmentProps {
-  segmentData: TextSegment;
+  textSegment: TextSegment;
   isDisabled: boolean;
+  isFocused: boolean;
   isSelected: boolean;
   isLinked: boolean;
+  isLinkedToSource: boolean;
+  isLinkedToTarget: boolean;
+  forcedLock: boolean;
   group: number;
   displayStyle: 'line' | 'paragraph';
+  refCollector: (ref: HTMLDivElement) => void;
 }
 
 const lineDisplayStyle = { display: 'inline-block' };
@@ -21,226 +35,6 @@ const paragraphDisplayStyle = {
   display: 'inline-block',
   marginTop: '0.5rem',
   marginBottom: '0.5rem',
-};
-
-//const segmentColors: Record<number, string> = {
-//0: 'default',
-//1: 'blue',
-//2: 'green',
-//3: 'orange',
-//};
-
-//const popoverPlacement = (props: TextSegmentProps): "top" | "bottom" => {
-//const { reverseDisplay } = props;
-//if (reverseDisplay) {
-//return "bottom";
-//}
-//return "top";
-//};
-
-//const searchConcordance = (
-//props: TextSegmentProps,
-//term: string | undefined
-//): void => {
-//const { searchConcordance, isLeftPanelOpen } = props;
-//const projectId = "1";
-//if (searchConcordance) {
-//searchConcordance(projectId, term, isLeftPanelOpen);
-//}
-//};
-
-//const selectionHandler = (props: TextSegmentProps): void => {
-//const {
-//selectTextSegmentFunc,
-//deSelectTextSegmentFunc,
-//isSelected,
-//segmentData,
-//} = props;
-//const { type, position } = segmentData;
-//if (isSelected) {
-//deSelectTextSegmentFunc(type, position);
-//} else {
-//selectTextSegmentFunc(type, position);
-//}
-//};
-
-//const enrichedData = (props: TextSegmentProps): ReactElement | null => {
-//const { refName, segment } = props;
-//if (refName.includes("source")) {
-//return (
-//<OverlayTrigger
-//key={refName + segment.strongsX}
-//trigger="click"
-//placement={popoverPlacement(props)}
-//prettier-ignore
-//overlay={(
-//<Popover id="test">
-//<Popover.Title as="h3">{segment.text}</Popover.Title>
-//<Popover.Content>
-//<p>
-//{((): React.ReactElement | undefined => {
-//if (segment?.lemma) {
-//return (
-//<button
-//type="button"
-//className="btn btn-link alignment-btn"
-//onClick={(): void => {
-//searchConcordance(props, segment.lemma)
-//}}
-//>
-//{segment.lemma}
-//</button>
-//)
-//}
-
-//return undefined;
-//})()}
-//</p>
-//<p>
-//{((): React.ReactElement | undefined => {
-//if (segment?.strongsX) {
-//return (
-//<button
-//type="button"
-//className="btn btn-link alignment-btn"
-//onClick={(): void => {
-//searchConcordance(props, segment.strongsX)
-//}}
-//>
-//{segment.strongsX}
-//</button>
-//)
-//}
-
-//return undefined;
-//})()}
-//</p>
-//<p>
-//{segment.english}
-//</p>
-//</Popover.Content>
-//</Popover>
-//)}
-//>
-//<div className="enriched-data">{segment.english}</div>
-//</OverlayTrigger>
-//);
-//}
-//return null;
-//};
-
-//const dropdownSearchMenu = (props: TextSegmentProps): ReactElement | null => {
-//const { refName, segment, linkedTargetWords } = props;
-
-//if (refName.includes("source")) {
-//const { lemma, strongsX, text, english } = segment;
-
-//if (linkedTargetWords) {
-//return (
-//<div>
-//<Dropdown drop="down" key={refName + strongsX}>
-//<Dropdown.Toggle
-//variant="link"
-//id={`interlinear-dropdown-btn-${refName}-${strongsX}`}
-//>
-//{english}
-//</Dropdown.Toggle>
-
-//<Dropdown.Menu>
-//<Dropdown.Item
-//onClick={(): void => {
-//searchConcordance(props, lemma);
-//}} >
-//<FormattedMessage id="dict.searchLemma">
-//{(message: string): ReactElement => (
-//<OverlayTrigger
-//placement="right"
-//overlay={
-//<Tooltip id="tooltip-disabled">{message}</Tooltip>
-//}
-//>
-//<span className="d-inline-block">{lemma}</span>
-//</OverlayTrigger>
-//)}
-//</FormattedMessage>
-//</Dropdown.Item>
-
-//{((): ReactElement => {
-//if (text) {
-//return (
-//<Dropdown.Item
-//onClick={(): void => {
-//searchConcordance(props, linkedTargetWords);
-//}}
-//>
-//<FormattedMessage id="dict.searchTranslation">
-//{(message: string): ReactElement => (
-//<OverlayTrigger
-//placement="right"
-//overlay={
-//<Tooltip id="tooltip-disabled">{message}</Tooltip>
-//}
-//>
-//<span className="d-inline-block">
-//{linkedTargetWords}
-//</span>
-//</OverlayTrigger>
-//)}
-//</FormattedMessage>
-//</Dropdown.Item>
-//);
-//}
-
-//return <></>;
-//})()}
-//</Dropdown.Menu>
-//</Dropdown>
-//</div>
-//);
-//}
-
-//return (
-//<div>
-//<button
-//key={`interlinear-dropdown-btn-${refName}-${strongsX}`}
-//type="button"
-//className="btn btn-link disabled"
-//>
-//{english}
-//</button>
-//</div>
-//);
-//}
-
-//return null;
-//};
-
-//const enrichedDataTop = (props: TextSegmentProps): ReactElement | null => {
-//const { reverseDisplay } = props;
-//if (reverseDisplay) {
-//return dropdownSearchMenu(props);
-//}
-//return null;
-//};
-
-//const enrichedDataBottom = (props: TextSegmentProps): ReactElement | null => {
-//const { reverseDisplay } = props;
-//if (!reverseDisplay) {
-//return enrichedData(props);
-//}
-//return null;
-//};
-
-const findRelatedLink = (textSegment: TextSegment, links: Link[]): Link | undefined => {
-  return links.find((link: Link): boolean =>{
-    if (textSegment.type === 'source') {
-        return link.sources.includes(textSegment.position);
-    }
-    if (textSegment.type === 'target') {
-        return link.targets.includes(textSegment.position);
-    }
-    return false
-  });
 };
 
 const updateInProgressLink = (
@@ -259,44 +53,6 @@ const updateInProgressLink = (
       type: 'manual',
     },
   });
-};
-
-const toggleAllSegmentsForLink = (
-  link: Link,
-  dispatch: React.Dispatch<AlignmentActionTypes>
-): void => {
-  link.sources.forEach((sourcePosition: number): void => {
-    dispatch({
-      type: 'toggleSelectedSourceTextSegment',
-      payload: { position: sourcePosition },
-    });
-  });
-
-  link.targets.forEach((targetPosition: number): void => {
-    dispatch({
-      type: 'toggleSelectedTargetTextSegment',
-      payload: { position: targetPosition },
-    });
-  });
-};
-
-const toggleSegmentSelection = (
-  type: TextSegmentType,
-  position: number,
-  dispatch: React.Dispatch<AlignmentActionTypes>
-): void => {
-  if (type === 'source') {
-    dispatch({
-      type: `toggleSelectedSourceTextSegment`,
-      payload: { position },
-    });
-  }
-  if (type === 'target') {
-    dispatch({
-      type: `toggleSelectedTargetTextSegment`,
-      payload: { position },
-    });
-  }
 };
 
 const toggleInProgressSegment = (
@@ -331,61 +87,63 @@ const previousSelectionAndUserTogglesSegment = (
 };
 
 const handleClick = (
-  type: TextSegmentType,
-  position: number,
+  textSegment: TextSegment,
   relatedLink: Link | undefined,
-  inProgressLink: Link | null,
+  state: AlignmentState,
   dispatch: React.Dispatch<AlignmentActionTypes>
 ): void => {
-  if (noPreviousSelectionAndUserSelectsLink(relatedLink, inProgressLink)) {
+  if (
+    noPreviousSelectionAndUserSelectsLink(relatedLink, state.inProgressLink)
+  ) {
     if (relatedLink) {
       // blurg. this is to make ts compiler happy.
-      updateInProgressLink(relatedLink, inProgressLink, dispatch);
-      toggleAllSegmentsForLink(relatedLink, dispatch);
+      updateInProgressLink(relatedLink, state.inProgressLink, dispatch);
+      selectSegmentActions(state, dispatch).toggleAllSegmentsForLink(
+        textSegment,
+        relatedLink
+      );
     }
   } else if (
-    previousSelectionAndUserDeselectsLink(relatedLink, inProgressLink)
+    previousSelectionAndUserDeselectsLink(relatedLink, state.inProgressLink)
   ) {
-    toggleSegmentSelection(type, position, dispatch);
-    toggleInProgressSegment(type, position, dispatch);
+    selectSegmentActions(state, dispatch).toggleSegment(textSegment);
+    toggleInProgressSegment(textSegment.type, textSegment.position, dispatch);
     dispatch({ type: 'redrawUI', payload: {} });
-  } else if (previousSelectionAndUserTogglesSegment(inProgressLink)) {
-    if (inProgressLink) {
+  } else if (previousSelectionAndUserTogglesSegment(state.inProgressLink)) {
+    if (state.inProgressLink) {
       updateInProgressLink(
         {
-          id: inProgressLink.id,
-          sources: inProgressLink.sources
-            .concat(type === 'source' ? [position] : [])
+          id: state.inProgressLink.id,
+          sources: state.inProgressLink.sources
+            .concat(textSegment.type === 'source' ? [textSegment.position] : [])
             .sort(),
-          targets: inProgressLink.targets
-            .concat(type === 'target' ? [position] : [])
+          targets: state.inProgressLink.targets
+            .concat(textSegment.type === 'target' ? [textSegment.position] : [])
             .sort(),
           type: 'manual',
         },
-        inProgressLink,
+        state.inProgressLink,
         dispatch
       );
-      toggleSegmentSelection(type, position, dispatch);
+      selectSegmentActions(state, dispatch).toggleSegment(textSegment);
       dispatch({ type: 'redrawUI', payload: {} });
     }
   } else {
     // user is toggling a segment with no previous link selected
-    toggleSegmentSelection(type, position, dispatch);
+    selectSegmentActions(state, dispatch).toggleSegment(textSegment);
     dispatch({ type: 'redrawUI', payload: {} });
   }
 };
 
-const arrayHasIntersection = (
-  firstArray: number[],
-  secondArray: number[]
-): boolean => {
-  const filtered = firstArray.filter((item) => secondArray.includes(item));
-  return Boolean(filtered.length);
-};
 const isLocked = (
   inProgressLink: Link | null,
-  relatedLink: Link | undefined
+  relatedLink: Link | undefined,
+  forcedLock: boolean
 ): boolean => {
+  if (forcedLock) {
+    return true;
+  }
+
   if (inProgressLink && relatedLink) {
     return (
       // If there is a link being built
@@ -408,10 +166,10 @@ const glossDisplay = (
   sourceGlosses: Gloss[]
 ): ReactElement => {
   const sourceGloss = sourceGlosses?.find((gloss) => {
-    return gloss.position === props.segmentData.position;
+    return gloss.position === props.textSegment.position;
   });
 
-  if (props.segmentData.type === 'source' && sourceGloss) {
+  if (props.textSegment.type === 'source' && sourceGloss) {
     return (
       <span
         className="source-gloss"
@@ -431,103 +189,114 @@ const glossDisplay = (
   return <></>;
 };
 
+//const determinePrimaryRelatedLink = (
+//textSegment: TextSegment,
+//state: AlignmentState
+//): 'user' | 'reference' => {
+//if (textSegment.type === 'source' && state.referenceLinks.length) {
+//return 'reference';
+//}
+
+//if (textSegment.type === 'source' && !state.referenceLinks.length) {
+//return 'user';
+//}
+
+//if (textSegment.type === 'reference') {
+//return 'reference';
+//}
+
+//'target" case
+//return 'user';
+//};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
-    segmentData,
+    textSegment,
     isSelected,
-    isLinked,
     isDisabled,
+    isFocused,
+    isLinked,
+    isLinkedToSource,
+    isLinkedToTarget,
+    forcedLock,
     group,
     displayStyle,
+    refCollector,
   } = props;
   //const color = segmentColors[segmentData.color || 0];
 
   const { state, dispatch } = useContext(AlignmentContext);
 
-  const relatedLink = findRelatedLink(segmentData, state.links);
+  //const relatedReferenceLink = findLinkForTextSegment(
+  //state.referenceLinks,
+  //segmentData
+  //);
+  const relatedUserLink = findLinkForTextSegment(state.userLinks, textSegment);
+
+  //const primaryRelatedLink = determinePrimaryRelatedLink(segmentData, state);
 
   const selectedClass = isSelected ? 'selected' : '';
   const disabledClass = isDisabled ? 'disabled' : '';
   const linkedClass = isLinked ? 'linked' : 'not-linked';
-  const locked = isLocked(state.inProgressLink, relatedLink);
+  const locked = isLocked(state.inProgressLink, relatedUserLink, forcedLock);
   const lockedClass = locked ? 'locked' : 'unlocked';
 
-  //const isLinkableClass = isLinkable ? "linkable" : "not-linkable";
-  const focusedClass =
-    relatedLink && state.focusedLinks.get(relatedLink) ? 'focused' : '';
+  const linkedToSource = isLinked && isLinkedToSource ? 'linked-to-source' : '';
+
+  const linkedToTarget = isLinked && isLinkedToTarget ? 'linked-to-target' : '';
+
+  const focusedClass = isFocused ? 'focused' : '';
+
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
 
   return (
-    <div
-      style={{ ...containerStyle }}
-      ref={(ref: HTMLDivElement) => {
-        if (ref && displayStyle === 'line') {
-          if (segmentData.type === 'source') {
-            if (state.sourceRefs[segmentData.position] !== ref) {
-              dispatch({
-                type: 'addSourceRef',
-                payload: { position: segmentData.position, ref: ref },
-              });
-            }
-          }
-          if (state.targetRefs[segmentData.position] !== ref) {
-            if (segmentData.type === 'target') {
-              dispatch({
-                type: 'addTargetRef',
-                payload: { position: segmentData.position, ref: ref },
-              });
-            }
-          }
-        }
-      }}
-      className={`${segmentData.type}${segmentData.position}`}
-    >
+    textSegment && (
       <div
-        role="button"
-        className={`text-segment ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup}`}
-        style={{ display: 'inline-block', textAlign: 'center' }}
-        tabIndex={0}
-        onClick={() => {
-          if (!locked) {
-            handleClick(
-              segmentData.type,
-              segmentData.position,
-              relatedLink,
-              state.inProgressLink,
-              dispatch
-            );
-          }
-        }}
-        onKeyPress={() => {
-          if (!locked) {
-            handleClick(
-              segmentData.type,
-              segmentData.position,
-              relatedLink,
-              state.inProgressLink,
-              dispatch
-            );
-          }
-        }}
-        onMouseOver={() => {
-          if (relatedLink) {
-            dispatch({ type: 'focusLink', payload: { link: relatedLink } });
-          }
-        }}
-        onMouseLeave={() => {
-          if (relatedLink) {
-            dispatch({ type: 'unFocusLink', payload: { link: relatedLink } });
-          }
-        }}
+        style={{ ...containerStyle }}
+        ref={refCollector}
+        className={`${textSegment.type}${textSegment.position}`}
       >
-        {segmentData.text}
-        {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
-      </div>
+        <div
+          role="button"
+          className={`text-segment ${textSegment.type} ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup} ${linkedToSource} ${linkedToTarget}`}
+          style={{ display: 'inline-block', textAlign: 'center' }}
+          tabIndex={0}
+          onClick={() => {
+            if (!locked) {
+              const relatedLink = findLinkForTextSegment(
+                state.userLinks,
+                textSegment
+              );
+              handleClick(textSegment, relatedLink, state, dispatch);
+            }
+          }}
+          onKeyPress={() => {
+            if (!locked) {
+              //handleClick(
+              //segmentData.type,
+              //segmentData.position,
+              //relatedLink,
+              //state.inProgressLink,
+              //dispatch
+              //);
+            }
+          }}
+          onMouseOver={() => {
+            focusSegmentActions(state, dispatch).focusSegments(textSegment);
+          }}
+          onMouseLeave={() => {
+            focusSegmentActions(state, dispatch).unFocusSegments(textSegment);
+          }}
+        >
+          {textSegment.text}
+          {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
+        </div>
 
-      {/*enrichedDataBottom(props)*/}
-    </div>
+        {/*enrichedDataBottom(props)*/}
+      </div>
+    )
   );
 };
 

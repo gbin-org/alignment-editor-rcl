@@ -1,12 +1,8 @@
 import React, { ReactElement, useContext } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
-import { findLinkForTextSegment } from 'core/findLink';
-import { determineGroup } from 'core/findGroup';
 import { TextSegment, TextSegmentType } from 'core/structs';
-import TextSegmentComponent from 'components/textSegment';
-
-type Direction = 'ltr' | 'rtl';
+import { TextSegmentWrapper } from 'components/textSegmentWrapper';
 
 interface TextPortionProps {
   type: TextSegmentType;
@@ -17,6 +13,7 @@ interface TextPortionProps {
 const lineDisplayStyle = {
   display: 'inline-block',
   whiteSpace: 'nowrap',
+  height: '2rem',
 };
 const paragraphDisplayStyle = {
   display: 'inline-block',
@@ -35,13 +32,9 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
   const configuredStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
 
-  const segmentSelections =
-    props.type === 'source'
-      ? state.selectedSourceTextSegments
-      : state.selectedTargetTextSegments;
-
   return (
     <div
+      className="text-portion-container"
       style={{
         display: 'flex',
         alignContent: 'center',
@@ -55,23 +48,12 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
         className={`${type}-container`}
         style={{ ...configuredStyle, paddingRight: '5rem', direction }}
       >
-        {textSegments.map(
-          (textSegment, index): ReactElement => {
-            const relatedLink = findLinkForTextSegment(
-              state.links,
-              textSegment
-            );
-            const linkIndex = relatedLink
-              ? state.links.indexOf(relatedLink)
-              : index;
+        {textSegments?.map(
+          (textSegment: TextSegment): ReactElement => {
             return (
-              <TextSegmentComponent
+              <TextSegmentWrapper
                 key={`${type}-${textSegment.position}`}
-                segmentData={textSegment}
-                isDisabled={textSegment.catIsContent === false ?? false}
-                isSelected={segmentSelections[textSegment.position] ?? false}
-                isLinked={Boolean(relatedLink)}
-                group={determineGroup(state.links, linkIndex)}
+                textSegment={textSegment}
                 displayStyle={displayStyle}
               />
             );

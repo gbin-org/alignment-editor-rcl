@@ -79,7 +79,8 @@ describe('TextPortion', (): void => {
       />
     );
     const sourceContainer = wrapper.find('div.source-container');
-    const styles = sourceContainer.render()[0].attribs.style;
+    // Forced to use any because of mismatch between cheerio api and types.
+    const styles = (sourceContainer.render()[0] as any).attribs.style;
     expect(styles.includes('direction: ltr;')).toEqual(true);
   });
 
@@ -111,7 +112,8 @@ describe('TextPortion', (): void => {
       </AlignmentContext.Provider>
     );
     const sourceContainer = wrapper.find('div.source-container');
-    const styles = sourceContainer.render()[0].attribs.style;
+    // Forced to use any because of mismatch between cheerio api and types.
+    const styles = (sourceContainer.render()[0] as any).attribs.style;
     expect(styles.includes('direction: rtl;')).toEqual(true);
   });
 });

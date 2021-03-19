@@ -12,9 +12,11 @@ import './alignmentEditorStyle.scss';
 
 interface AlignmentEditorProps {
   sourceSegments: TextSegment[];
+  referenceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceGlosses: Gloss[];
-  links: Link[];
+  userLinks: Link[];
+  referenceLinks: Link[];
   stateUpdatedHook: StateUpdatedHookType;
 }
 
@@ -26,6 +28,7 @@ const selectedView = (
     return (
       <ParagraphView
         sourceSegments={props.sourceSegments}
+        referenceSegments={props.referenceSegments}
         targetSegments={props.targetSegments}
         sourceDirection="ltr"
         targetDirection="ltr"
@@ -36,6 +39,7 @@ const selectedView = (
     return (
       <LineView
         sourceSegments={props.sourceSegments}
+        referenceSegments={props.referenceSegments}
         targetSegments={props.targetSegments}
         sourceDirection="ltr"
         targetDirection="ltr"
@@ -47,12 +51,16 @@ const selectedView = (
 };
 
 export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
-  const { links, sourceGlosses } = props;
+  const { userLinks, referenceLinks, sourceGlosses } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
-    dispatch({ type: 'setLinks', payload: { links: links ?? [] } });
+    dispatch({ type: 'setUserLinks', payload: { userLinks: userLinks ?? [] } });
+    dispatch({
+      type: 'setReferenceLinks',
+      payload: { referenceLinks: referenceLinks ?? [] },
+    });
     dispatch({ type: 'setSourceGlosses', payload: { sourceGlosses } });
     dispatch({
       type: 'setStateUpdatedHook',

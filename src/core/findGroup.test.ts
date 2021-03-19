@@ -6,7 +6,7 @@ describe('findGroup', (): void => {
   describe('determineGroup', (): void => {
     it('handles single many:many relationship', (): void => {
       const links: Link[] = [
-        { sources: [0, 1], targets: [0, 1], type: 'manual' },
+        { id: 0, sources: [0, 1], targets: [0, 1], type: 'manual' },
       ];
       const result = determineGroup(links, 0);
       expect(result).toEqual(1);
@@ -14,8 +14,8 @@ describe('findGroup', (): void => {
 
     it('handles two neighbor many:many relationship', (): void => {
       const links: Link[] = [
-        { sources: [0, 1], targets: [0, 1], type: 'manual' },
-        { sources: [2, 3], targets: [2, 3], type: 'manual' },
+        { id: 0, sources: [0, 1], targets: [0, 1], type: 'manual' },
+        { id: 1, sources: [2, 3], targets: [2, 3], type: 'manual' },
       ];
 
       const result0 = determineGroup(links, 0);
@@ -27,9 +27,9 @@ describe('findGroup', (): void => {
 
     it('handles two distant many:many relationship', (): void => {
       const links: Link[] = [
-        { sources: [0, 1], targets: [0, 1], type: 'manual' },
-        { sources: [2], targets: [2], type: 'manual' },
-        { sources: [3, 4], targets: [3, 4], type: 'manual' },
+        { id: 0, sources: [0, 1], targets: [0, 1], type: 'manual' },
+        { id: 1, sources: [2], targets: [2], type: 'manual' },
+        { id: 2, sources: [3, 4], targets: [3, 4], type: 'manual' },
       ];
 
       const result0 = determineGroup(links, 0);

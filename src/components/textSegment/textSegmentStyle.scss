@@ -35,6 +35,16 @@
   background-color: $linked;
 }
 
+.text-segment.reference.linked-to-source:not(.linked-to-target):not(.selected) {
+  background-image: -webkit-linear-gradient(top, $linked 50%, $default 50%);
+  border-bottom-color: $default;
+}
+
+.text-segment.reference.linked-to-target:not(.linked-to-source):not(.selected) {
+  background-image: -webkit-linear-gradient(bottom, $linked 50%, $default 50%);
+  border-top-color: $default;
+}
+
 .text-segment.group-1 {
   background-color: $alt-1;
 }

@@ -1,56 +1,76 @@
 import React, { ReactElement, useContext } from 'react';
 
-import { AlignmentContext } from 'contexts/alignment';
+import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
 import TextPortionComponent from 'components/textPortion';
 import LineView from 'components/lineView';
 
 import { Link, TextSegment } from 'core/structs';
+import { findReferenceLinkForUserLink } from 'core/findLink';
 
-type Portion = 'source' | 'target';
 type Direction = 'ltr' | 'rtl';
 
 interface ParagraphViewProps {
   sourceSegments: TextSegment[];
+  referenceSegments: TextSegment[];
   targetSegments: TextSegment[];
   sourceDirection: Direction;
   targetDirection: Direction;
 }
 
+const isBridgeMode = (state: AlignmentState): boolean => {
+  return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
+};
+
 const singleLinkAlignment = (
   props: ParagraphViewProps,
-  focusedLinks: Map<Link, boolean>,
+  state: AlignmentState,
+  focusedUserLinks: Map<Link, boolean>,
   selectedSourceTextSegments: Record<number, boolean>,
+  selectedReferenceTextSegments: Record<number, boolean>,
   selectedTargetTextSegments: Record<number, boolean>
 ): (ReactElement | null)[] | ReactElement => {
-  const selectedSources = props.sourceSegments.filter(
-    (sourceSegment: TextSegment) => {
+  const selectedSources =
+    props.sourceSegments?.filter((sourceSegment: TextSegment) => {
       return selectedSourceTextSegments[sourceSegment.position];
-    }
-  );
+    }) ?? [];
 
-  const selectedTargets = props.targetSegments.filter(
-    (targetSegment: TextSegment) => {
+  const selectedReferences =
+    props.referenceSegments?.filter((referenceSegment: TextSegment) => {
+      return selectedReferenceTextSegments[referenceSegment.position];
+    }) ?? [];
+
+  const selectedTargets =
+    props.targetSegments?.filter((targetSegment: TextSegment) => {
       return selectedTargetTextSegments[targetSegment.position];
-    }
-  );
+    }) ?? [];
 
-  if (selectedSources.length || selectedTargets.length) {
+  if (
+    selectedSources.length ||
+    selectedReferences.length ||
+    selectedTargets.length
+  ) {
     return (
       <LineView
         displayStyle="partial"
         sourceDirection={'ltr'}
         sourceSegments={selectedSources}
-        targetDirection={'rtl'}
+        referenceSegments={selectedReferences}
         targetSegments={selectedTargets}
+        targetDirection={'rtl'}
       />
     );
   }
 
-  const linksArray = Array.from(focusedLinks ?? []);
+  const linksArray = Array.from(focusedUserLinks ?? []);
   if (linksArray.length) {
     return linksArray.map(([link, bool]): ReactElement | null => {
+      const relatedReferenceLink = findReferenceLinkForUserLink(
+        state.referenceLinks,
+        link
+      );
       if (bool) {
+        const relevantLink = isBridgeMode(state) ? relatedReferenceLink : link;
         return (
           <LineView
             key={`${link.sources.toString()}-${link.targets.toString()}`}
@@ -58,7 +78,15 @@ const singleLinkAlignment = (
             sourceDirection={'ltr'}
             sourceSegments={props.sourceSegments.filter(
               (sourceSegment: TextSegment): boolean => {
-                return link.sources.includes(sourceSegment.position);
+                return (
+                  relevantLink?.sources.includes(sourceSegment.position) ??
+                  false
+                );
+              }
+            )}
+            referenceSegments={props.referenceSegments?.filter(
+              (referenceSegment: TextSegment) => {
+                return link.sources.includes(referenceSegment.position);
               }
             )}
             targetDirection={'rtl'}
@@ -77,15 +105,24 @@ const singleLinkAlignment = (
 };
 
 export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
-  const { sourceSegments, targetSegments } = props;
+  const { sourceSegments, referenceSegments, targetSegments } = props;
 
   const { state } = useContext(AlignmentContext);
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '50% 50%' }}>
+    <div
+      style={{
+        display: 'grid',
+        gridTemplateColumns: '50% 50%',
+        gridTemplateRows: '50% 50%',
+      }}
+    >
       <div>
         <div>SOURCE</div>
-        <div className="source-container" style={{ overflowY: 'scroll' }}>
+        <div
+          className="source-container"
+          style={{ height: '16rem', overflowY: 'scroll' }}
+        >
           <TextPortionComponent
             displayStyle="paragraph"
             type="source"
@@ -98,7 +135,10 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         <br />
 
         <div>TARGET</div>
-        <div className="target-container" style={{ overflowY: 'scroll' }}>
+        <div
+          className="target-container"
+          style={{ height: '16rem', overflowY: 'scroll' }}
+        >
           <TextPortionComponent
             displayStyle="paragraph"
             type="target"
@@ -107,20 +147,42 @@ export const ParagraphView = (props: ParagraphViewProps): ReactElement => {
         </div>
       </div>
 
-      <div
-        className="alignment-thing"
-        style={{
-          display: 'grid',
-          justifyContent: 'center',
-          alignContent: 'center',
-        }}
-      >
-        {singleLinkAlignment(
-          props,
-          state.focusedLinks,
-          state.selectedSourceTextSegments,
-          state.selectedTargetTextSegments
-        )}
+      <div className="alignment-thing" style={{}}>
+        <div style={{ height: '17.1rem' }}>
+          <div>BRIDGE</div>
+
+          {(!referenceSegments || !referenceSegments.length) && (
+            <p>No bridge text available.</p>
+          )}
+
+          {referenceSegments && (
+            <div
+              className="bridge-container"
+              style={{ height: '16rem', overflowY: 'scroll' }}
+            >
+              <TextPortionComponent
+                displayStyle="paragraph"
+                type="reference"
+                textSegments={referenceSegments}
+              />
+            </div>
+          )}
+        </div>
+
+        <br />
+        <hr />
+        <br />
+
+        <div>
+          {singleLinkAlignment(
+            props,
+            state,
+            state.focusedUserLinks,
+            state.selectedSourceTextSegments,
+            state.selectedReferenceTextSegments,
+            state.selectedTargetTextSegments
+          )}
+        </div>
       </div>
     </div>
   );

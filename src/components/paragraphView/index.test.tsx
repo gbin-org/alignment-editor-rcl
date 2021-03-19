@@ -27,6 +27,7 @@ describe('ParagraphView', (): void => {
           },
           { text: 'ἀκοῦσαι', type: 'source', position: 3 },
         ]}
+        referenceSegments={[]}
         targetSegments={[
           { text: 'quick', type: 'target', position: 0 },
           { text: 'to', type: 'target', position: 1 },
@@ -49,13 +50,14 @@ describe('ParagraphView', (): void => {
             parentRef: document.createElement('div'),
             sourceRefs: { 0: document.createElement('div') },
             targetRefs: { 0: document.createElement('div') },
-            links: [{ id: 0, sources: [0], targets: [0], type: 'manual' }],
+            userLinks: [{ id: 0, sources: [0], targets: [0], type: 'manual' }],
           },
           dispatch: jest.fn(),
         }}
       >
         <ParagraphView
           sourceSegments={[{ text: 'ταχὺς', type: 'source', position: 0 }]}
+          referenceSegments={[]}
           targetSegments={[{ text: 'quick', type: 'target', position: 0 }]}
           sourceDirection={'ltr'}
           targetDirection={'ltr'}

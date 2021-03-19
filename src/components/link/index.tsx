@@ -2,11 +2,12 @@ import React, { ReactElement, useState, useContext } from 'react';
 
 import './linkStyle.scss';
 
-import { AlignmentContext } from 'contexts/alignment';
+import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 import { Link } from 'core/structs';
 
 export interface LinkProps {
   link: Link;
+  type: 'user' | 'reference';
   sourcePosition: number;
   targetPosition: number;
 }
@@ -16,20 +17,67 @@ function useForceUpdate() {
   return () => setValue((value) => ++value); // update the state to force render
 }
 
-export const LinkComponent = (props: LinkProps): ReactElement => {
-  const { sourcePosition, targetPosition, link } = props;
-  const { state, dispatch } = useContext(AlignmentContext);
-  //const color = this.getColor(sourceRef);
-  //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
+const isFocused = (
+  state: AlignmentState,
+  type: 'user' | 'reference',
+  link: Link
+): boolean => {
+  if (type === 'user') {
+    return Boolean(state.focusedUserLinks.get(link));
+  }
 
-  //const color = '#c8c8c8';
+  if (type === 'reference') {
+    return Boolean(state.focusedReferenceLinks.get(link));
+  }
+
+  return false;
+};
+
+const determineSourceRefSet = (
+  type: 'user' | 'reference',
+  state: AlignmentState
+): Record<number, HTMLDivElement> | undefined => {
+  if (type === 'reference') {
+    return state.sourceRefs;
+  }
+
+  if (type === 'user' && state.referenceLinks.length) {
+    return state.referenceRefs;
+  }
+
+  if (type === 'user' && !state.referenceLinks.length) {
+    return state.sourceRefs;
+  }
+};
+
+const determineTargetRefSet = (
+  type: 'user' | 'reference',
+  state: AlignmentState
+): Record<number, HTMLDivElement> | undefined => {
+  if (type === 'reference') {
+    return state.referenceRefs;
+  }
+
+  if (type === 'user') {
+    return state.targetRefs;
+  }
+};
+
+export const LinkComponent = (props: LinkProps): ReactElement => {
+  const { sourcePosition, targetPosition, link, type } = props;
+  const { state, dispatch } = useContext(AlignmentContext);
+
   const disabled = '';
-  const focused = state.focusedLinks.get(link) ? 'focused' : '';
-  const name = `source${sourcePosition}-target${targetPosition}`;
+  const focused = isFocused(state, type, link) ? 'focused' : '';
+  const name = `${type}-source${sourcePosition}-target${targetPosition}`;
   const forceUpdate = useForceUpdate();
 
-  const sourceRef = state.sourceRefs[sourcePosition];
-  const targetRef = state.targetRefs[targetPosition];
+  const sourceRefSet = determineSourceRefSet(type, state);
+  const targetRefSet = determineTargetRefSet(type, state);
+
+  const sourceRef = sourceRefSet ? sourceRefSet[sourcePosition] : null;
+  const targetRef = targetRefSet ? targetRefSet[targetPosition] : null;
+
   const parentRef = state.parentRef;
 
   if (parentRef && sourceRef && targetRef) {
@@ -75,10 +123,21 @@ export const LinkComponent = (props: LinkProps): ReactElement => {
           y2={y2}
           onClick={forceUpdate}
           onMouseOver={() => {
-            dispatch({ type: 'focusLink', payload: { link } });
+            if (type === 'user') {
+              dispatch({ type: 'focusUserLink', payload: { link } });
+            }
+
+            if (type === 'reference') {
+              dispatch({ type: 'focusReferenceLink', payload: { link } });
+            }
           }}
           onMouseLeave={() => {
-            dispatch({ type: 'unFocusLink', payload: { link } });
+            if (type === 'user') {
+              dispatch({ type: 'unFocusUserLink', payload: { link } });
+            }
+            if (type === 'reference') {
+              dispatch({ type: 'unFocusReferenceLink', payload: { link } });
+            }
           }}
         />
       </svg>

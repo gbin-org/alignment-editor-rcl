@@ -14,19 +14,34 @@ interface Action {
 
 export type ViewType = 'paragraph' | 'line';
 
-interface FocusLinkAction extends Action {
-  type: 'focusLink';
+interface FocusUserLinkAction extends Action {
+  type: 'focusUserLink';
   payload: { link: Link };
 }
 
-interface UnFocusLinkAction extends Action {
-  type: 'unFocusLink';
+interface UnFocusUserLinkAction extends Action {
+  type: 'unFocusUserLink';
   payload: { link: Link };
 }
 
-interface SetLinksAction extends Action {
-  type: 'setLinks';
-  payload: { links: Link[] };
+interface FocusReferenceLinkAction extends Action {
+  type: 'focusReferenceLink';
+  payload: { link: Link };
+}
+
+interface UnFocusReferenceLinkAction extends Action {
+  type: 'unFocusReferenceLink';
+  payload: { link: Link };
+}
+
+interface SetUserLinksAction extends Action {
+  type: 'setUserLinks';
+  payload: { userLinks: Link[] };
+}
+
+interface SetReferenceLinksAction extends Action {
+  type: 'setReferenceLinks';
+  payload: { referenceLinks: Link[] };
 }
 
 interface SwitchViewAction extends Action {
@@ -36,6 +51,11 @@ interface SwitchViewAction extends Action {
 
 interface AddSourceRefAction extends Action {
   type: 'addSourceRef';
+  payload: { position: number; ref: HTMLDivElement };
+}
+
+interface AddReferenceRefAction extends Action {
+  type: 'addReferenceRef';
   payload: { position: number; ref: HTMLDivElement };
 }
 
@@ -61,6 +81,11 @@ interface ChangeTargetTextDirection extends Action {
 
 interface ToggleSelectedSourceTextSegment extends Action {
   type: 'toggleSelectedSourceTextSegment';
+  payload: { position: number };
+}
+
+interface ToggleSelectedReferenceTextSegment extends Action {
+  type: 'toggleSelectedReferenceTextSegment';
   payload: { position: number };
 }
 
@@ -125,16 +150,21 @@ interface SwitchGlossesDisplay extends Action {
 }
 
 export type AlignmentActionTypes =
-  | FocusLinkAction
-  | UnFocusLinkAction
-  | SetLinksAction
+  | FocusUserLinkAction
+  | UnFocusUserLinkAction
+  | FocusReferenceLinkAction
+  | UnFocusReferenceLinkAction
+  | SetUserLinksAction
+  | SetReferenceLinksAction
   | SwitchViewAction
   | AddSourceRefAction
+  | AddReferenceRefAction
   | AddTargetRefAction
   | AddParentRefAction
   | ChangeSourceTextDirection
   | ChangeTargetTextDirection
   | ToggleSelectedSourceTextSegment
+  | ToggleSelectedReferenceTextSegment
   | ToggleSelectedTargetTextSegment
   | selectSourceTextSegment
   | selectTargetTextSegment
@@ -149,34 +179,42 @@ export type AlignmentActionTypes =
   | SwitchGlossesDisplay;
 
 export type AlignmentState = {
-  focusedLinks: Map<Link, boolean>;
-  links: Link[];
+  focusedUserLinks: Map<Link, boolean>;
+  focusedReferenceLinks: Map<Link, boolean>;
+  userLinks: Link[];
+  referenceLinks: Link[];
   sourceGlosses: Gloss[];
   view: ViewType;
   displayGlosses: boolean;
   sourceRefs: Record<number, HTMLDivElement>;
+  referenceRefs: Record<number, HTMLDivElement>;
   targetRefs: Record<number, HTMLDivElement>;
   parentRef: HTMLDivElement | null;
   sourceTextDirection: 'ltr' | 'rtl';
   targetTextDirection: 'ltr' | 'rtl';
   selectedSourceTextSegments: Record<number, boolean>;
+  selectedReferenceTextSegments: Record<number, boolean>;
   selectedTargetTextSegments: Record<number, boolean>;
   inProgressLink: Link | null;
   stateUpdatedHook: StateUpdatedHookType | null;
 };
 
 export const initialState: AlignmentState = {
-  focusedLinks: new Map<Link, boolean>(),
-  links: [],
+  focusedUserLinks: new Map<Link, boolean>(),
+  focusedReferenceLinks: new Map<Link, boolean>(),
+  userLinks: [],
+  referenceLinks: [],
   sourceGlosses: [],
   displayGlosses: true,
   view: 'paragraph',
   sourceRefs: {},
+  referenceRefs: {},
   targetRefs: {},
   parentRef: null,
   sourceTextDirection: 'ltr',
   targetTextDirection: 'ltr',
   selectedSourceTextSegments: {},
+  selectedReferenceTextSegments: {},
   selectedTargetTextSegments: {},
   inProgressLink: null,
   stateUpdatedHook: null,
@@ -186,22 +224,50 @@ export const baseReducer = (
   state: AlignmentState,
   action: AlignmentActionTypes
 ): AlignmentState => {
+  // For DEBUG (very handy)
   //console.info('REDUCER', action, state);
+
   switch (action.type) {
-    case 'focusLink':
-      const newFocusedLinks = new Map<Link, boolean>(state.focusedLinks);
-      newFocusedLinks.set(action.payload.link, true);
-      return { ...state, focusedLinks: newFocusedLinks };
-    case 'unFocusLink':
-      const newUnFocusedLinks = new Map<Link, boolean>(state.focusedLinks);
-      newUnFocusedLinks.set(action.payload.link, false);
-      return { ...state, focusedLinks: newUnFocusedLinks };
-    case 'setLinks':
+    case 'focusUserLink':
+      const newFocusedUserLinks = new Map<Link, boolean>(
+        state.focusedUserLinks
+      );
+      newFocusedUserLinks.set(action.payload.link, true);
+      return { ...state, focusedUserLinks: newFocusedUserLinks };
+    case 'unFocusUserLink':
+      const newUnFocusedUserLinks = new Map<Link, boolean>(
+        state.focusedUserLinks
+      );
+      newUnFocusedUserLinks.set(action.payload.link, false);
+      return { ...state, focusedUserLinks: newUnFocusedUserLinks };
+    case 'focusReferenceLink':
+      const newFocusedReferenceLinks = new Map<Link, boolean>(
+        state.focusedReferenceLinks
+      );
+      newFocusedReferenceLinks.set(action.payload.link, true);
+      return { ...state, focusedReferenceLinks: newFocusedReferenceLinks };
+    case 'unFocusReferenceLink':
+      const newUnFocusedReferenceLinks = new Map<Link, boolean>(
+        state.focusedReferenceLinks
+      );
+      newUnFocusedReferenceLinks.set(action.payload.link, false);
+      return { ...state, focusedReferenceLinks: newUnFocusedReferenceLinks };
+
+    case 'setUserLinks':
       return {
         ...state,
-        links: action.payload.links.map((link, index) => {
+        userLinks: action.payload.userLinks.map((link, index) => {
           return { ...link, id: index };
         }),
+      };
+    case 'setReferenceLinks':
+      return {
+        ...state,
+        referenceLinks: action.payload.referenceLinks.map(
+          (referenceLink, index) => {
+            return { ...referenceLink, id: index };
+          }
+        ),
       };
     case 'switchView':
       return { ...state, view: action.payload.view };
@@ -210,6 +276,14 @@ export const baseReducer = (
         ...state,
         sourceRefs: {
           ...state.sourceRefs,
+          [action.payload.position]: action.payload.ref,
+        },
+      };
+    case 'addReferenceRef':
+      return {
+        ...state,
+        referenceRefs: {
+          ...state.referenceRefs,
           [action.payload.position]: action.payload.ref,
         },
       };
@@ -237,6 +311,17 @@ export const baseReducer = (
           ],
         },
       };
+    case 'toggleSelectedReferenceTextSegment':
+      return {
+        ...state,
+        selectedReferenceTextSegments: {
+          ...state.selectedReferenceTextSegments,
+          [action.payload.position]: !state.selectedReferenceTextSegments[
+            action.payload.position
+          ],
+        },
+      };
+
     case 'toggleSelectedTargetTextSegment':
       return {
         ...state,
@@ -269,13 +354,14 @@ export const baseReducer = (
       return { ...state, parentRef: null };
     case 'addLink':
       return ((): AlignmentState => {
-        const existingLink = state.links.find(
+        const existingLink = state.userLinks.find(
           (link) => link.id === action.payload.id
         );
+
         let newLinks: Link[] = [];
 
         if (existingLink) {
-          newLinks = state.links.map(
+          newLinks = state.userLinks.map(
             (link): Link => {
               if (link.id === action.payload.id) {
                 return { ...action.payload, type: 'manual' };
@@ -284,7 +370,7 @@ export const baseReducer = (
             }
           );
         } else {
-          newLinks = state.links.concat({
+          newLinks = state.userLinks.concat({
             id: action.payload.id,
             sources: action.payload.sources,
             targets: action.payload.targets,
@@ -293,8 +379,9 @@ export const baseReducer = (
         }
         return {
           ...state,
-          links: newLinks,
+          userLinks: newLinks,
           selectedSourceTextSegments: {},
+          selectedReferenceTextSegments: {},
           selectedTargetTextSegments: {},
           inProgressLink: null,
         };
@@ -303,7 +390,7 @@ export const baseReducer = (
       return {
         ...state,
         inProgressLink: null,
-        links: state.links.filter((link) => {
+        userLinks: state.userLinks.filter((link) => {
           const foundSource = link.sources.find((sourcePos) => {
             return action.payload.sources.includes(sourcePos);
           });
@@ -322,6 +409,7 @@ export const baseReducer = (
       return {
         ...state,
         selectedSourceTextSegments: {},
+        selectedReferenceTextSegments: {},
         selectedTargetTextSegments: {},
         inProgressLink: null,
       };
@@ -335,7 +423,8 @@ export const baseReducer = (
         inProgressLink: {
           id: state.inProgressLink?.id ?? 0, // bug waiting to happen
           sources:
-            action.payload.type === 'source'
+            action.payload.type === 'source' ||
+            action.payload.type === 'reference'
               ? toggleItemExistence(
                   state.inProgressLink?.sources,
                   action.payload.position

@@ -50,7 +50,7 @@ describe('LineView', (): void => {
             parentRef: document.createElement('div'),
             sourceRefs: { 0: document.createElement('div') },
             targetRefs: { 0: document.createElement('div') },
-            links: [{ id: 0, sources: [0], targets: [0], type: 'manual' }],
+            userLinks: [{ id: 0, sources: [0], targets: [0], type: 'manual' }],
           },
           dispatch: jest.fn(),
         }}
