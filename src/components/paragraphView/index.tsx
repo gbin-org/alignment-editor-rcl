@@ -18,10 +18,6 @@ interface ParagraphViewProps {
   targetDirection: Direction;
 }
 
-const isBridgeMode = (state: AlignmentState): boolean => {
-  return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
-};
-
 const singleLinkAlignment = (
   props: ParagraphViewProps,
   state: AlignmentState,
