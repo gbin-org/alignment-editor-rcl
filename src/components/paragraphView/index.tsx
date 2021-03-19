@@ -19,7 +19,7 @@ interface ParagraphViewProps {
 }
 
 const isBridgeMode = (state: AlignmentState): boolean => {
-  return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
+  return state.referenceLinks !== null;
 };
 
 const singleLinkAlignment = (
@@ -66,7 +66,7 @@ const singleLinkAlignment = (
   if (linksArray.length) {
     return linksArray.map(([link, bool]): ReactElement | null => {
       const relatedReferenceLink = findReferenceLinkForUserLink(
-        state.referenceLinks,
+        state.referenceLinks ?? [],
         link
       );
       if (bool) {

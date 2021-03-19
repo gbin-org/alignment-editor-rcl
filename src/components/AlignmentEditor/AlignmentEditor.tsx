@@ -57,10 +57,14 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
 
   useEffect(() => {
     dispatch({ type: 'setUserLinks', payload: { userLinks: userLinks ?? [] } });
-    dispatch({
-      type: 'setReferenceLinks',
-      payload: { referenceLinks: referenceLinks ?? [] },
-    });
+
+    if (referenceLinks) {
+      dispatch({
+        type: 'setReferenceLinks',
+        payload: { referenceLinks: referenceLinks ?? null },
+      });
+    }
+
     dispatch({ type: 'setSourceGlosses', payload: { sourceGlosses } });
     dispatch({
       type: 'setStateUpdatedHook',

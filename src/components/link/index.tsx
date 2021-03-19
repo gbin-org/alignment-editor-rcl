@@ -41,11 +41,11 @@ const determineSourceRefSet = (
     return state.sourceRefs;
   }
 
-  if (type === 'user' && state.referenceLinks.length) {
+  if (type === 'user' && state.referenceLinks) {
     return state.referenceRefs;
   }
 
-  if (type === 'user' && !state.referenceLinks.length) {
+  if (type === 'user' && !state.referenceLinks) {
     return state.sourceRefs;
   }
 };

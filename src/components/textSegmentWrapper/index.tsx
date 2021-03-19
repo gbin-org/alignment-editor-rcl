@@ -28,31 +28,8 @@ const isTarget = (textSegment: TextSegment): boolean => {
 };
 
 const isBridgeMode = (state: AlignmentState): boolean => {
-  return Boolean(state.referenceLinks.length);
+  return state.referenceLinks !== null;
 };
-
-//const determineRelevantLinkSet = (
-//state: AlignmentState,
-//textSegment: TextSegment
-//): Link[] => {
-//if (isSource(textSegment) && isBridgeMode(state)) {
-//return state.referenceLinks;
-//}
-
-//if (isSource(textSegment) && !isBridgeMode(state)) {
-//return state.userLinks;
-//}
-
-//if (isReference(textSegment)) {
-//return state.referenceLinks;
-//}
-
-//if (isTarget(textSegment)) {
-//return state.userLinks;
-//}
-
-//return [];
-//};
 
 const isFocused = (
   textSegment: TextSegment,
@@ -195,17 +172,16 @@ const determineLinkCheckAttributes = (
   state: AlignmentState
 ): { linkSet: Link[]; searchCollection: 'sources' | 'targets' } => {
   if (isSource(textSegment) && isBridgeMode(state)) {
-    return { linkSet: state.referenceLinks, searchCollection: 'sources' };
+    // `?? []` only for the sake of the TS compiler...
+    // Ths TS compiler should know that isBridge ensures
+    // `state.referenceLinks` is not null.
+    return { linkSet: state.referenceLinks ?? [], searchCollection: 'sources' };
   }
 
   if (isSource(textSegment) && !isBridgeMode(state)) {
     return { linkSet: state.userLinks, searchCollection: 'sources' };
   }
 
-  //if (isReference(textSegment)) {
-  //}
-
-  // else: target
   return { linkSet: state.userLinks, searchCollection: 'targets' };
 };
 
@@ -213,7 +189,7 @@ const isLinked = (textSegment: TextSegment, state: AlignmentState): boolean => {
   if (isReference(textSegment)) {
     return (
       Boolean(
-        state.referenceLinks.find((link) => {
+        state.referenceLinks?.find((link) => {
           return link.targets.includes(textSegment.position);
         })
       ) ||
@@ -249,7 +225,7 @@ const isLinkedToSource = (
 ): boolean => {
   if (isReference(textSegment)) {
     return Boolean(
-      state.referenceLinks.find((link) => {
+      state.referenceLinks?.find((link) => {
         return link.targets.includes(textSegment.position);
       })
     );

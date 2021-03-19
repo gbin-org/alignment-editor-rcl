@@ -1,4 +1,4 @@
-#### Alignment Editor: shorter example with bridge text
+[####](####) Alignment Editor: shorter example with bridge text
 
 ```ts
 <AlignmentEditor

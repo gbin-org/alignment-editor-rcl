@@ -90,13 +90,15 @@ An array of objects that implement: `{ sources: number[], target: number[], type
 #### `referenceSegments`
 
 Represents the reference text -- a previously aligned translation of the source that users will align their target to.
-Reference text mode is enabled by providing reference text segments. In reference text mode users can only align to the reference text. Reference links must be supplied.
+Reference text mode is enabled by providing `referenceSegments` and `referenceLinks`.
+In reference text mode users can only align to the reference text.
 
 An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`
 
 #### `referenceLinks`
 
 A set of links that describes the alignment of the reference text to the source.
+Reference text mode is enabled by providing `referenceSegments` and `referenceLinks`.
 
 An array of objects that implement: `{ sources: number[], target: number[], type: 'manual'|'machine' }`
 

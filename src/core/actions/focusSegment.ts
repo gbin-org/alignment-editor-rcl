@@ -35,24 +35,11 @@ const focusSegmentActions = (
     dispatch({ type: 'unFocusUserLink', payload: { link: userLink } });
   };
 
-  //const focusReferenceLinkAndRelatedUserLink = (referenceLink: Link): void => {
-  //focusReferenceLink(referenceLink);
-
-  //const relatedUserLink = findUserLinkForReferenceLink(
-  //state.userLinks,
-  //referenceLink
-  //);
-
-  //if (relatedUserLink) {
-  //focusUserLink(relatedUserLink);
-  //}
-  //};
-
   const focusUserLinkAndRelatedReferenceLink = (userLink: Link): void => {
     focusUserLink(userLink);
 
     const relatedReferenceLink = findReferenceLinkForUserLink(
-      state.referenceLinks,
+      state.referenceLinks ?? [],
       userLink
     );
 
@@ -80,7 +67,7 @@ const focusSegmentActions = (
     unFocusUserLink(userLink);
 
     const relatedReferenceLink = findReferenceLinkForUserLink(
-      state.referenceLinks,
+      state.referenceLinks ?? [],
       userLink
     );
 
@@ -95,7 +82,7 @@ const focusSegmentActions = (
     let userLink = undefined;
     let referenceLink = undefined;
 
-    if (textSegment.type === 'source' && state.referenceLinks.length) {
+    if (textSegment.type === 'source' && state.referenceLinks) {
       referenceLink = findReferenceLinkForTextSegment(
         state.referenceLinks,
         textSegment
@@ -104,10 +91,10 @@ const focusSegmentActions = (
         userLink = findUserLinkForReferenceLink(state.userLinks, referenceLink);
       }
     }
-    if (textSegment.type === 'source' && !state.referenceLinks.length) {
+    if (textSegment.type === 'source' && !state.referenceLinks) {
       userLink = findUserLinkForTextSegment(state.userLinks, textSegment);
     }
-    if (textSegment.type === 'reference') {
+    if (textSegment.type === 'reference' && state.referenceLinks) {
       userLink = findUserLinkForTextSegment(state.userLinks, textSegment);
       referenceLink = findReferenceLinkForTextSegment(
         state.referenceLinks,

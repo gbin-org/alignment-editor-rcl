@@ -44,7 +44,7 @@ const selectSegmentActions = (
       });
 
       const relatedReferenceLink = findReferenceLinkForTextSegment(
-        state.referenceLinks,
+        state.referenceLinks ?? [],
         textSegment
       );
 

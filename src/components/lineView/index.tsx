@@ -24,7 +24,7 @@ const partialDisplayStyleWithBridge = { margin: '3.5rem' };
 const partialDisplayStyleNoBridge = { margin: '10rem' };
 
 const isBridgeMode = (state: AlignmentState): boolean => {
-  return Boolean(state.referenceLinks) && Boolean(state.referenceLinks.length);
+  return state.referenceLinks !== null;
 };
 
 const linkIsValidForDisplay = (link: Link, state: AlignmentState): boolean => {

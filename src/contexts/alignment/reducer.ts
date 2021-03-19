@@ -182,7 +182,7 @@ export type AlignmentState = {
   focusedUserLinks: Map<Link, boolean>;
   focusedReferenceLinks: Map<Link, boolean>;
   userLinks: Link[];
-  referenceLinks: Link[];
+  referenceLinks: Link[] | null;
   sourceGlosses: Gloss[];
   view: ViewType;
   displayGlosses: boolean;
@@ -203,7 +203,7 @@ export const initialState: AlignmentState = {
   focusedUserLinks: new Map<Link, boolean>(),
   focusedReferenceLinks: new Map<Link, boolean>(),
   userLinks: [],
-  referenceLinks: [],
+  referenceLinks: null,
   sourceGlosses: [],
   displayGlosses: true,
   view: 'paragraph',
