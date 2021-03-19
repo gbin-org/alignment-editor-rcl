@@ -69,13 +69,13 @@ Wrapped in its provider, render `AlignmentEditor` as you would any other react c
 
 Represents the source text -- an "original" text that a target will be aligned to.
 
-An array of objects that implement: `{ text: string, type: 'source'|'target', position: number}`;
+An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`;
 
 #### `targetSegments`
 
 Represents the target text -- an "translation" text that will be aligned to its source.
 
-An array of objects that implement: `{ text: string, type: 'source'|'target', position: number}`
+An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`
 
 ### Optional Parameters
 
@@ -92,7 +92,7 @@ An array of objects that implement: `{ sources: number[], target: number[], type
 Represents the reference text -- a previously aligned translation of the source that users will align their target to.
 Reference text mode is enabled by providing reference text segments. In reference text mode users can only align to the reference text. Reference links must be supplied.
 
-An array of objects that implement: `{ text: string, type: 'source'|'target', position: number}`
+An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`
 
 #### `referenceLinks`
 

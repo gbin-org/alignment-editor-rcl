@@ -66,10 +66,7 @@ const determineTargetRefSet = (
 export const LinkComponent = (props: LinkProps): ReactElement => {
   const { sourcePosition, targetPosition, link, type } = props;
   const { state, dispatch } = useContext(AlignmentContext);
-  //const color = this.getColor(sourceRef);
-  //const disabled = this.otherLinkSelected(color) ? 'disabled' : '';
 
-  //const color = '#c8c8c8';
   const disabled = '';
   const focused = isFocused(state, type, link) ? 'focused' : '';
   const name = `${type}-source${sourcePosition}-target${targetPosition}`;
