@@ -258,6 +258,53 @@ const determineForcedLock = (
   return false;
 };
 
+const report = (textSegment: any, text: any) => {
+  if (textSegment.text === 'palabra') {
+    console.log(text);
+  }
+};
+
+const sourcePartOfSpeech = (
+  textSegment: TextSegment,
+  state: AlignmentState
+) => {
+  if (isReference(textSegment)) {
+    const link = state.referenceLinks?.find((link) => {
+      return link.targets.includes(textSegment.position);
+    });
+    report(textSegment, link);
+    report(textSegment, textSegment.position);
+    report(textSegment, state.sourceSegments);
+
+    const sourceSegments = state.sourceSegments.filter((sourceSegment) => {
+      return link?.sources.includes(sourceSegment.position);
+    });
+
+    report(textSegment, sourceSegments);
+    return sourceSegments[0]?.partOfSpeech;
+  }
+
+  if (isTarget(textSegment)) {
+    const userLink = state.userLinks?.find((link) => {
+      return link.targets.includes(textSegment.position);
+    });
+
+    const referenceLink = state.referenceLinks?.find((referenceLink) => {
+      return userLink?.sources.find((source) => {
+        return referenceLink.targets.includes(source);
+      });
+    });
+
+    const sourceSegments = state.sourceSegments.filter((sourceSegment) => {
+      return referenceLink?.sources.includes(sourceSegment.position);
+    });
+
+    report(textSegment, sourceSegments);
+
+    return sourceSegments[0]?.partOfSpeech;
+  }
+};
+
 export const TextSegmentWrapper = (props: TextSegmentWrapperProps) => {
   const { textSegment, displayStyle } = props;
   const { state, dispatch } = useContext(AlignmentContext);
@@ -283,6 +330,7 @@ export const TextSegmentWrapper = (props: TextSegmentWrapperProps) => {
         state,
         dispatch
       )}
+      sourcePartOfSpeech={sourcePartOfSpeech(textSegment, state)}
     />
   );
 };

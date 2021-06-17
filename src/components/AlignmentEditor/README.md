@@ -4,7 +4,8 @@
 <AlignmentEditor
   sourceGlosses={[
     { position: 2, glossText: 'anyone' },
-    { position: 5, glossText: 'hearer' },
+    { position: 3, glossText: 'hearer' },
+    { position: 4, glossText: 'word' },
     { position: 12, glossText: 'doer' },
     { position: 17, glossText: 'man' },
     { position: 23, glossText: 'natural' },
@@ -14,8 +15,8 @@
     { text: 'εἴ', type: 'source', position: 1 },
     { text: 'τις', type: 'source', position: 2 },
     { text: 'ἀκροατὴς', type: 'source', position: 3 },
-    { text: 'λόγου', type: 'source', position: 4 },
-    { text: 'ἐστὶν', type: 'source', position: 5 },
+    { text: 'λόγου', type: 'source', position: 4, partOfSpeech: 'noun' },
+    { text: 'ἐστὶν', type: 'source', position: 5, partOfSpeech: 'verb' },
     { text: 'καὶ', type: 'source', position: 6 },
     { text: 'οὐ', type: 'source', position: 7 },
     { text: 'ποιητής', type: 'source', position: 8 },
@@ -89,12 +90,14 @@
   ]}
   userLinks={[
     { sources: [2], targets: [2], type: 'manual' },
+    { sources: [3], targets: [3], type: 'manual' },
     { sources: [7], targets: [8], type: 'manual' },
     { sources: [23], targets: [27], type: 'manual' },
   ]}
   referenceLinks={[
     { sources: [3], targets: [4], type: 'manual' },
     { sources: [4], targets: [7], type: 'manual' },
+    { sources: [5], targets: [3], type: 'manual' },
     { sources: [19], targets: [23], type: 'manual' },
   ]}
   stateUpdatedHook={(a) => {

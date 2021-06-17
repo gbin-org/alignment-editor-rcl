@@ -56,6 +56,11 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
   useEffect(() => {
+    dispatch({
+      type: 'setSourceSegments',
+      payload: { sourceSegments: props.sourceSegments },
+    });
+
     dispatch({ type: 'setUserLinks', payload: { userLinks: userLinks ?? [] } });
 
     if (referenceLinks) {

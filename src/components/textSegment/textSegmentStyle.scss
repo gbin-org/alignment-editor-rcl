@@ -35,6 +35,18 @@
   background-color: $linked;
 }
 
+.text-segment > .text.noun {
+  color: blue;
+}
+
+.text-segment > .text.verb {
+  color: darkred;
+}
+
+.text-segment > .text.adjective {
+  color: green;
+}
+
 .text-segment.reference.linked-to-source:not(.linked-to-target):not(.selected) {
   background-image: -webkit-linear-gradient(top, $linked 50%, $default 50%);
   border-bottom-color: $default;

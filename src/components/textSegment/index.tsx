@@ -28,6 +28,7 @@ export interface TextSegmentProps {
   group: number;
   displayStyle: 'line' | 'paragraph';
   refCollector: (ref: HTMLDivElement) => void;
+  sourcePartOfSpeech: string | undefined;
 }
 
 const lineDisplayStyle = { display: 'inline-block' };
@@ -189,6 +190,20 @@ const glossDisplay = (
   return <></>;
 };
 
+const partOfSpeechDisplay = (textSegment: TextSegment) => {
+  if (textSegment.type === 'source' && textSegment.partOfSpeech) {
+    return (
+      <div
+        style={{
+          fontSize: '0.8rem',
+        }}
+      >
+        {textSegment.partOfSpeech}
+      </div>
+    );
+  }
+};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     textSegment,
@@ -202,6 +217,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     group,
     displayStyle,
     refCollector,
+    sourcePartOfSpeech,
   } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
@@ -213,7 +229,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const linkedClass = isLinked ? 'linked' : 'not-linked';
   const locked = isLocked(state.inProgressLink, relatedUserLink, forcedLock);
   const lockedClass = locked ? 'locked' : 'unlocked';
-
+  const partOfSpeechClass = textSegment.partOfSpeech || sourcePartOfSpeech;
   const linkedToSource = isLinked && isLinkedToSource ? 'linked-to-source' : '';
 
   const linkedToTarget = isLinked && isLinkedToTarget ? 'linked-to-target' : '';
@@ -224,6 +240,14 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
 
+  if (textSegment.type === 'reference') {
+    console.log(
+      'SEGMENT',
+      textSegment.position,
+      textSegment.text,
+      textSegment.partOfSpeech
+    );
+  }
   return (
     textSegment && (
       <div
@@ -261,10 +285,13 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
             focusSegmentActions(state, dispatch).unFocusSegments(textSegment);
           }}
         >
-          {textSegment.text}
+          <span className={`text ${partOfSpeechClass}`}>
+            {textSegment.text}
+          </span>
           {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
-        </div>
 
+          {partOfSpeechDisplay(textSegment)}
+        </div>
         {/*enrichedDataBottom(props)*/}
       </div>
     )
