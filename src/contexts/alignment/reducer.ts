@@ -1,6 +1,7 @@
 import {
   Link,
   Gloss,
+  TextSegment,
   TextSegmentType,
   StateUpdatedHookType,
 } from 'core/structs';
@@ -32,6 +33,11 @@ interface FocusReferenceLinkAction extends Action {
 interface UnFocusReferenceLinkAction extends Action {
   type: 'unFocusReferenceLink';
   payload: { link: Link };
+}
+
+interface SetSourceSegmentsAction extends Action {
+  type: 'setSourceSegments';
+  payload: { sourceSegments: TextSegment[] };
 }
 
 interface SetUserLinksAction extends Action {
@@ -154,6 +160,7 @@ export type AlignmentActionTypes =
   | UnFocusUserLinkAction
   | FocusReferenceLinkAction
   | UnFocusReferenceLinkAction
+  | SetSourceSegmentsAction
   | SetUserLinksAction
   | SetReferenceLinksAction
   | SwitchViewAction
@@ -179,6 +186,7 @@ export type AlignmentActionTypes =
   | SwitchGlossesDisplay;
 
 export type AlignmentState = {
+  sourceSegments: TextSegment[];
   focusedUserLinks: Map<Link, boolean>;
   focusedReferenceLinks: Map<Link, boolean>;
   userLinks: Link[];
@@ -200,6 +208,7 @@ export type AlignmentState = {
 };
 
 export const initialState: AlignmentState = {
+  sourceSegments: [],
   focusedUserLinks: new Map<Link, boolean>(),
   focusedReferenceLinks: new Map<Link, boolean>(),
   userLinks: [],
@@ -253,6 +262,11 @@ export const baseReducer = (
       newUnFocusedReferenceLinks.set(action.payload.link, false);
       return { ...state, focusedReferenceLinks: newUnFocusedReferenceLinks };
 
+    case 'setSourceSegments':
+      return {
+        ...state,
+        sourceSegments: action.payload.sourceSegments,
+      };
     case 'setUserLinks':
       return {
         ...state,

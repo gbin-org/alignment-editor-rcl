@@ -10,6 +10,7 @@ _Try it out [here](https://alignment-editor-rcl.netlify.app/)._
 - Users can align to a source text or an aligned reference (aka "bridge") text.
 - Two alternative view styles.
 - Optional gloss tagging for source text.
+- Experimental part of speech highlighting.
 
 ## Usage
 
@@ -35,20 +36,20 @@ Wrapped in its provider, render `AlignmentEditor` as you would any other react c
       { position: 5, glossText: 'hearer' },
     ]}
     sourceSegments={[
-      { text: 'ὅτι', type: 'source', position: 0 },
-      { text: 'εἴ', type: 'source', position: 1 },
-      { text: 'τις', type: 'source', position: 2 },
-      { text: 'ἀκροατὴς', type: 'source', position: 3 },
-      { text: 'λόγου', type: 'source', position: 4 },
-      { text: 'ἐστὶν', type: 'source', position: 5 },
+      { text: 'ὅτι' },
+      { text: 'εἴ' },
+      { text: 'τις' },
+      { text: 'ἀκροατὴς' },
+      { text: 'λόγου' },
+      { text: 'ἐστὶν' },
     ]}
     targetSegments={[
-      { text: 'For', type: 'target', position: 0 },
-      { text: 'if', type: 'target', position: 1 },
-      { text: 'anyone', type: 'target', position: 2 },
-      { text: 'is', type: 'target', position: 3 },
-      { text: 'a', type: 'target', position: 4 },
-      { text: 'hearer', type: 'target', position: 5 },
+      { text: 'For' },
+      { text: 'if' },
+      { text: 'anyone' },
+      { text: 'is' },
+      { text: 'a' },
+      { text: 'hearer' },
     ]}
     links={[
       { sources: [0], targets: [1, 2], type: 'manual' },
@@ -69,13 +70,27 @@ Wrapped in its provider, render `AlignmentEditor` as you would any other react c
 
 Represents the source text -- an "original" text that a target will be aligned to.
 
-An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`;
+An array of objects that implement:
+
+```typescript
+interface UserTextSegment {
+  text: string;
+  partOfSpeech?: string;
+}
+```
 
 #### `targetSegments`
 
 Represents the target text -- an "translation" text that will be aligned to its source.
 
-An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`
+An array of objects that implement:
+
+```typescript
+interface UserTextSegment {
+  text: string;
+  partOfSpeech?: string;
+}
+```
 
 ### Optional Parameters
 
@@ -93,7 +108,14 @@ Represents the reference text -- a previously aligned translation of the source 
 Reference text mode is enabled by providing `referenceSegments` and `referenceLinks`.
 In reference text mode users can only align to the reference text.
 
-An array of objects that implement: `{ text: string, type: 'source'|'target'|'reference', position: number}`
+An array of objects that implement:
+
+```typescript
+interface UserTextSegment {
+  text: string;
+  partOfSpeech?: string;
+}
+```
 
 #### `referenceLinks`
 

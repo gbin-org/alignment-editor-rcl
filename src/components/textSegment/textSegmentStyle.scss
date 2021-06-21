@@ -35,6 +35,42 @@
   background-color: $linked;
 }
 
+.text-segment:not(.selected) > .text.noun {
+  font-weight: bold;
+  color: blue;
+}
+
+.text-segment.selected > .text.noun {
+  font-weight: bold;
+  border-radius: 0.1rem;
+  background-color: blue;
+  color: white;
+}
+
+.text-segment:not(.selected) > .text.verb {
+  font-weight: bold;
+  color: darkred;
+}
+
+.text-segment.selected > .text.verb {
+  font-weight: bold;
+  border-radius: 0.1rem;
+  background-color: darkred;
+  color: white;
+}
+
+.text-segment:not(.selected) > .text.adjective {
+  font-weight: bold;
+  color: green;
+}
+
+.text-segment.selected > .text.adjective {
+  border-radius: 0.1rem;
+  font-weight: bold;
+  background-color: green;
+  color: white;
+}
+
 .text-segment.reference.linked-to-source:not(.linked-to-target):not(.selected) {
   background-image: -webkit-linear-gradient(top, $linked 50%, $default 50%);
   border-bottom-color: $default;
