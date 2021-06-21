@@ -1,3 +1,8 @@
+export interface UserTextSegment {
+  text: string;
+  partOfSpeech?: string;
+}
+
 export type TextSegmentType = 'source' | 'reference' | 'target';
 
 export interface TextSegment {

@@ -6,14 +6,21 @@ import ParagraphView from 'components/paragraphView';
 import LineView from 'components/lineView';
 import ControlPanel from 'components/controlPanel';
 
-import { Link, TextSegment, Gloss, StateUpdatedHookType } from 'core/structs';
+import {
+  Link,
+  UserTextSegment,
+  TextSegment,
+  Gloss,
+  StateUpdatedHookType,
+} from 'core/structs';
+import projectUserSegments from 'core/projectUserArguments';
 
 import './alignmentEditorStyle.scss';
 
 interface AlignmentEditorProps {
-  sourceSegments: TextSegment[];
-  referenceSegments: TextSegment[];
-  targetSegments: TextSegment[];
+  sourceSegments: UserTextSegment[];
+  referenceSegments: UserTextSegment[];
+  targetSegments: UserTextSegment[];
   sourceGlosses: Gloss[];
   userLinks: Link[];
   referenceLinks: Link[];
@@ -22,14 +29,17 @@ interface AlignmentEditorProps {
 
 const selectedView = (
   props: AlignmentEditorProps,
-  state: AlignmentState
+  state: AlignmentState,
+  projectedSourceSegments: TextSegment[],
+  projectedReferenceSegments: TextSegment[],
+  projectedTargetSegments: TextSegment[]
 ): ReactElement => {
   if (state.view === 'paragraph') {
     return (
       <ParagraphView
-        sourceSegments={props.sourceSegments}
-        referenceSegments={props.referenceSegments}
-        targetSegments={props.targetSegments}
+        sourceSegments={projectedSourceSegments}
+        referenceSegments={projectedReferenceSegments}
+        targetSegments={projectedTargetSegments}
         sourceDirection="ltr"
         targetDirection="ltr"
       />
@@ -38,9 +48,9 @@ const selectedView = (
   if (state.view === 'line') {
     return (
       <LineView
-        sourceSegments={props.sourceSegments}
-        referenceSegments={props.referenceSegments}
-        targetSegments={props.targetSegments}
+        sourceSegments={projectedSourceSegments}
+        referenceSegments={projectedReferenceSegments}
+        targetSegments={projectedTargetSegments}
         sourceDirection="ltr"
         targetDirection="ltr"
         displayStyle="full"
@@ -55,10 +65,23 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
 
   const { state, dispatch } = useContext(AlignmentContext);
 
+  const projectedSourceSegments = projectUserSegments(
+    props.sourceSegments,
+    'source'
+  );
+  const projectedReferenceSegments = projectUserSegments(
+    props.referenceSegments,
+    'reference'
+  );
+  const projectedTargetSegments = projectUserSegments(
+    props.targetSegments,
+    'target'
+  );
+
   useEffect(() => {
     dispatch({
       type: 'setSourceSegments',
-      payload: { sourceSegments: props.sourceSegments },
+      payload: { sourceSegments: projectedSourceSegments },
     });
 
     dispatch({ type: 'setUserLinks', payload: { userLinks: userLinks ?? [] } });
@@ -81,7 +104,13 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
 
   return (
     <div className="alignment-editor-root" style={{ width: '100%' }}>
-      {selectedView(props, state)}
+      {selectedView(
+        props,
+        state,
+        projectedSourceSegments,
+        projectedReferenceSegments,
+        projectedTargetSegments
+      )}
       <ControlPanel />
     </div>
   );
