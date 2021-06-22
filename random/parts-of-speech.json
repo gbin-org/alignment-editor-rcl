@@ -1,0 +1,2730 @@
+{
+  "Tit1:1": [
+    {
+      "cat": "noun",
+      "text": "Παῦλος"
+    },
+    {
+      "cat": "noun",
+      "text": "δοῦλος"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ,"
+    },
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀπόστολος"
+    },
+    {
+      "cat": "noun",
+      "text": "Ἰησοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "Χριστοῦ"
+    },
+    {
+      "cat": "prep",
+      "text": "κατὰ"
+    },
+    {
+      "cat": "noun",
+      "text": "πίστιν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἐκλεκτῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπίγνωσιν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀληθείας"
+    },
+    {
+      "cat": "det",
+      "text": "τῆς"
+    },
+    {
+      "cat": "prep",
+      "text": "κατ’"
+    },
+    {
+      "cat": "noun",
+      "text": "εὐσέβειαν"
+    }
+  ],
+  "Tit1:10": [
+    {
+      "cat": "conj",
+      "text": "γὰρ"
+    },
+    {
+      "cat": "verb",
+      "text": "Εἰσὶν"
+    },
+    {
+      "cat": "adv",
+      "text": "[καὶ]"
+    },
+    {
+      "cat": "adj",
+      "text": "πολλοὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀνυπότακτοι,"
+    },
+    {
+      "cat": "adj",
+      "text": "ματαιολόγοι"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "φρεναπάται,"
+    },
+    {
+      "cat": "adv",
+      "text": "μάλιστα"
+    },
+    {
+      "cat": "det",
+      "text": "οἱ"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐκ"
+    },
+    {
+      "cat": "det",
+      "text": "τῆς"
+    },
+    {
+      "cat": "noun",
+      "text": "περιτομῆς,"
+    }
+  ],
+  "Tit1:11": [
+    {
+      "cat": "pron",
+      "text": "οὓς"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐπιστομίζειν,"
+    },
+    {
+      "cat": "verb",
+      "text": "δεῖ"
+    },
+    {
+      "cat": "pron",
+      "text": "οἵτινες"
+    },
+    {
+      "cat": "adj",
+      "text": "ὅλους"
+    },
+    {
+      "cat": "noun",
+      "text": "οἴκους"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀνατρέπουσιν"
+    },
+    {
+      "cat": "verb",
+      "text": "διδάσκοντες"
+    },
+    {
+      "cat": "pron",
+      "text": "ἃ"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "verb",
+      "text": "δεῖ"
+    },
+    {
+      "cat": "adj",
+      "text": "αἰσχροῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "κέρδους"
+    },
+    {
+      "cat": "prep",
+      "text": "χάριν."
+    }
+  ],
+  "Tit1:12": [
+    {
+      "cat": "verb",
+      "text": "εἶπέν"
+    },
+    {
+      "cat": "pron",
+      "text": "τις"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐξ"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτῶν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἴδιος"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "προφήτης·"
+    },
+    {
+      "cat": "noun",
+      "text": "Κρῆτες"
+    },
+    {
+      "cat": "adv",
+      "text": "ἀεὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ψεῦσται,"
+    },
+    {
+      "cat": "adj",
+      "text": "κακὰ"
+    },
+    {
+      "cat": "noun",
+      "text": "θηρία,"
+    },
+    {
+      "cat": "noun",
+      "text": "γαστέρες"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀργαί."
+    }
+  ],
+  "Tit1:13": [
+    {
+      "cat": "det",
+      "text": "ἡ"
+    },
+    {
+      "cat": "noun",
+      "text": "μαρτυρία"
+    },
+    {
+      "cat": "pron",
+      "text": "αὕτη"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐστὶν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀληθής."
+    },
+    {
+      "cat": "prep",
+      "text": "δι’"
+    },
+    {
+      "cat": "pron",
+      "text": "ἣν"
+    },
+    {
+      "cat": "noun",
+      "text": "αἰτίαν"
+    },
+    {
+      "cat": "verb",
+      "text": "ἔλεγχε"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτοὺς"
+    },
+    {
+      "cat": "adv",
+      "text": "ἀποτόμως,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑγιαίνωσιν"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "noun",
+      "text": "πίστει,"
+    }
+  ],
+  "Tit1:14": [
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "verb",
+      "text": "προσέχοντες"
+    },
+    {
+      "cat": "adj",
+      "text": "Ἰουδαϊκοῖς"
+    },
+    {
+      "cat": "noun",
+      "text": "μύθοις"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐντολαῖς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνθρώπων"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀποστρεφομένων"
+    },
+    {
+      "cat": "det",
+      "text": "τὴν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀλήθειαν."
+    }
+  ],
+  "Tit1:15": [
+    {
+      "cat": "adj",
+      "text": "πάντα"
+    },
+    {
+      "cat": "adj",
+      "text": "καθαρὰ"
+    },
+    {
+      "cat": "det",
+      "text": "τοῖς"
+    },
+    {
+      "cat": "adj",
+      "text": "καθαροῖς·"
+    },
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "det",
+      "text": "τοῖς"
+    },
+    {
+      "cat": "verb",
+      "text": "μεμιαμμένοις"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀπίστοις"
+    },
+    {
+      "cat": "adj",
+      "text": "οὐδὲν"
+    },
+    {
+      "cat": "adj",
+      "text": "καθαρόν,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἀλλὰ"
+    },
+    {
+      "cat": "verb",
+      "text": "μεμίανται"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτῶν"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "det",
+      "text": "ὁ"
+    },
+    {
+      "cat": "noun",
+      "text": "νοῦς"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "det",
+      "text": "ἡ"
+    },
+    {
+      "cat": "noun",
+      "text": "συνείδησις."
+    }
+  ],
+  "Tit1:16": [
+    {
+      "cat": "noun",
+      "text": "θεὸν"
+    },
+    {
+      "cat": "verb",
+      "text": "εἰδέναι,"
+    },
+    {
+      "cat": "verb",
+      "text": "ὁμολογοῦσιν"
+    },
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "det",
+      "text": "τοῖς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργοις"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀρνοῦνται,"
+    },
+    {
+      "cat": "verb",
+      "text": "ὄντες"
+    },
+    {
+      "cat": "adj",
+      "text": "βδελυκτοὶ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀπειθεῖς"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "prep",
+      "text": "πρὸς"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργον"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀγαθὸν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀδόκιμοι."
+    }
+  ],
+  "Tit1:2": [
+    {
+      "cat": "prep",
+      "text": "ἐπ’"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐλπίδι"
+    },
+    {
+      "cat": "noun",
+      "text": "ζωῆς"
+    },
+    {
+      "cat": "adj",
+      "text": "αἰωνίου,"
+    },
+    {
+      "cat": "pron",
+      "text": "ἣν"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐπηγγείλατο"
+    },
+    {
+      "cat": "det",
+      "text": "ὁ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀψευδὴς"
+    },
+    {
+      "cat": "noun",
+      "text": "θεὸς"
+    },
+    {
+      "cat": "prep",
+      "text": "πρὸ"
+    },
+    {
+      "cat": "noun",
+      "text": "χρόνων"
+    },
+    {
+      "cat": "adj",
+      "text": "αἰωνίων,"
+    }
+  ],
+  "Tit1:3": [
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐφανέρωσεν"
+    },
+    {
+      "cat": "noun",
+      "text": "καιροῖς"
+    },
+    {
+      "cat": "adj",
+      "text": "ἰδίοις"
+    },
+    {
+      "cat": "det",
+      "text": "τὸν"
+    },
+    {
+      "cat": "noun",
+      "text": "λόγον"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτοῦ"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "κηρύγματι,"
+    },
+    {
+      "cat": "pron",
+      "text": "ὃ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐπιστεύθην"
+    },
+    {
+      "cat": "pron",
+      "text": "ἐγὼ"
+    },
+    {
+      "cat": "prep",
+      "text": "κατ’"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπιταγὴν"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "σωτῆρος"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ,"
+    }
+  ],
+  "Tit1:4": [
+    {
+      "cat": "noun",
+      "text": "Τίτῳ"
+    },
+    {
+      "cat": "adj",
+      "text": "γνησίῳ"
+    },
+    {
+      "cat": "noun",
+      "text": "τέκνῳ"
+    },
+    {
+      "cat": "prep",
+      "text": "κατὰ"
+    },
+    {
+      "cat": "adj",
+      "text": "κοινὴν"
+    },
+    {
+      "cat": "noun",
+      "text": "πίστιν,"
+    },
+    {
+      "cat": "noun",
+      "text": "χάρις"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "εἰρήνη"
+    },
+    {
+      "cat": "prep",
+      "text": "ἀπὸ"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "πατρὸς"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "Χριστοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "Ἰησοῦ"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "σωτῆρος"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν."
+    }
+  ],
+  "Tit1:5": [
+    {
+      "cat": "pron",
+      "text": "Τούτου"
+    },
+    {
+      "cat": "prep",
+      "text": "χάριν"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀπέλιπόν"
+    },
+    {
+      "cat": "pron",
+      "text": "σε"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "Κρήτῃ,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "det",
+      "text": "τὰ"
+    },
+    {
+      "cat": "verb",
+      "text": "λείποντα"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐπιδιορθώσῃ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "verb",
+      "text": "καταστήσῃς"
+    },
+    {
+      "cat": "prep",
+      "text": "κατὰ"
+    },
+    {
+      "cat": "noun",
+      "text": "πόλιν"
+    },
+    {
+      "cat": "adj",
+      "text": "πρεσβυτέρους,"
+    },
+    {
+      "cat": "conj",
+      "text": "ὡς"
+    },
+    {
+      "cat": "pron",
+      "text": "ἐγώ"
+    },
+    {
+      "cat": "pron",
+      "text": "σοι"
+    },
+    {
+      "cat": "verb",
+      "text": "διεταξάμην,"
+    }
+  ],
+  "Tit1:6": [
+    {
+      "cat": "conj",
+      "text": "εἴ"
+    },
+    {
+      "cat": "pron",
+      "text": "τίς"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐστιν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀνέγκλητος,"
+    },
+    {
+      "cat": "adj",
+      "text": "μιᾶς"
+    },
+    {
+      "cat": "noun",
+      "text": "γυναικὸς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνήρ,"
+    },
+    {
+      "cat": "verb",
+      "text": "ἔχων"
+    },
+    {
+      "cat": "noun",
+      "text": "τέκνα"
+    },
+    {
+      "cat": "adj",
+      "text": "πιστά,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "κατηγορίᾳ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀσωτίας"
+    },
+    {
+      "cat": "conj",
+      "text": "ἢ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀνυπότακτα."
+    }
+  ],
+  "Tit1:7": [
+    {
+      "cat": "conj",
+      "text": "γὰρ"
+    },
+    {
+      "cat": "verb",
+      "text": "δεῖ"
+    },
+    {
+      "cat": "det",
+      "text": "τὸν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπίσκοπον"
+    },
+    {
+      "cat": "verb",
+      "text": "εἶναι"
+    },
+    {
+      "cat": "conj",
+      "text": "ὡς"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "οἰκονόμον,"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀνέγκλητον"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "adj",
+      "text": "αὐθάδη,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "adj",
+      "text": "ὀργίλον,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "adj",
+      "text": "πάροινον,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "noun",
+      "text": "πλήκτην,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "adj",
+      "text": "αἰσχροκερδῆ,"
+    }
+  ],
+  "Tit1:8": [
+    {
+      "cat": "conj",
+      "text": "ἀλλὰ"
+    },
+    {
+      "cat": "adj",
+      "text": "φιλόξενον"
+    },
+    {
+      "cat": "adj",
+      "text": "φιλάγαθον"
+    },
+    {
+      "cat": "adj",
+      "text": "σώφρονα"
+    },
+    {
+      "cat": "adj",
+      "text": "δίκαιον"
+    },
+    {
+      "cat": "adj",
+      "text": "ὅσιον"
+    },
+    {
+      "cat": "adj",
+      "text": "ἐγκρατῆ,"
+    }
+  ],
+  "Tit1:9": [
+    {
+      "cat": "verb",
+      "text": "ἀντεχόμενον"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "prep",
+      "text": "κατὰ"
+    },
+    {
+      "cat": "det",
+      "text": "τὴν"
+    },
+    {
+      "cat": "noun",
+      "text": "διδαχὴν"
+    },
+    {
+      "cat": "adj",
+      "text": "πιστοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "λόγου,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "ᾖ"
+    },
+    {
+      "cat": "adj",
+      "text": "δυνατὸς"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "verb",
+      "text": "παρακαλεῖν"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "noun",
+      "text": "διδασκαλίᾳ"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑγιαινούσῃ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "det",
+      "text": "τοὺς"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀντιλέγοντας"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐλέγχειν."
+    }
+  ],
+  "Tit2:1": [
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "pron",
+      "text": "Σὺ"
+    },
+    {
+      "cat": "verb",
+      "text": "λάλει"
+    },
+    {
+      "cat": "pron",
+      "text": "ἃ"
+    },
+    {
+      "cat": "verb",
+      "text": "πρέπει"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑγιαινούσῃ"
+    },
+    {
+      "cat": "noun",
+      "text": "διδασκαλίᾳ."
+    }
+  ],
+  "Tit2:10": [
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "verb",
+      "text": "νοσφιζομένους,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἀλλὰ"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶσαν"
+    },
+    {
+      "cat": "noun",
+      "text": "πίστιν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀγαθήν,"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐνδεικνυμένους"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "det",
+      "text": "τὴν"
+    },
+    {
+      "cat": "noun",
+      "text": "διδασκαλίαν"
+    },
+    {
+      "cat": "det",
+      "text": "τὴν"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "σωτῆρος"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "verb",
+      "text": "κοσμῶσιν"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶσιν."
+    }
+  ],
+  "Tit2:11": [
+    {
+      "cat": "conj",
+      "text": "γὰρ"
+    },
+    {
+      "cat": "verb",
+      "text": "Ἐπεφάνη"
+    },
+    {
+      "cat": "det",
+      "text": "ἡ"
+    },
+    {
+      "cat": "noun",
+      "text": "χάρις"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "adj",
+      "text": "σωτήριος"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶσιν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνθρώποις"
+    }
+  ],
+  "Tit2:12": [
+    {
+      "cat": "verb",
+      "text": "παιδεύουσα"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμᾶς,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀρνησάμενοι"
+    },
+    {
+      "cat": "det",
+      "text": "τὴν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀσέβειαν"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "det",
+      "text": "τὰς"
+    },
+    {
+      "cat": "adj",
+      "text": "κοσμικὰς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπιθυμίας"
+    },
+    {
+      "cat": "adv",
+      "text": "σωφρόνως"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adv",
+      "text": "δικαίως"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adv",
+      "text": "εὐσεβῶς"
+    },
+    {
+      "cat": "verb",
+      "text": "ζήσωμεν"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "det",
+      "text": "τῷ"
+    },
+    {
+      "cat": "adv",
+      "text": "νῦν"
+    },
+    {
+      "cat": "noun",
+      "text": "αἰῶνι,"
+    }
+  ],
+  "Tit2:13": [
+    {
+      "cat": "verb",
+      "text": "προσδεχόμενοι"
+    },
+    {
+      "cat": "det",
+      "text": "τὴν"
+    },
+    {
+      "cat": "adj",
+      "text": "μακαρίαν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐλπίδα"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπιφάνειαν"
+    },
+    {
+      "cat": "det",
+      "text": "τῆς"
+    },
+    {
+      "cat": "noun",
+      "text": "δόξης"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "adj",
+      "text": "μεγάλου"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "σωτῆρος"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "Ἰησοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "Χριστοῦ,"
+    }
+  ],
+  "Tit2:14": [
+    {
+      "cat": "pron",
+      "text": "ὃς"
+    },
+    {
+      "cat": "verb",
+      "text": "ἔδωκεν"
+    },
+    {
+      "cat": "pron",
+      "text": "ἑαυτὸν"
+    },
+    {
+      "cat": "prep",
+      "text": "ὑπὲρ"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "λυτρώσηται"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμᾶς"
+    },
+    {
+      "cat": "prep",
+      "text": "ἀπὸ"
+    },
+    {
+      "cat": "adj",
+      "text": "πάσης"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνομίας"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "verb",
+      "text": "καθαρίσῃ"
+    },
+    {
+      "cat": "pron",
+      "text": "ἑαυτῷ"
+    },
+    {
+      "cat": "noun",
+      "text": "λαὸν"
+    },
+    {
+      "cat": "adj",
+      "text": "περιούσιον,"
+    },
+    {
+      "cat": "noun",
+      "text": "ζηλωτὴν"
+    },
+    {
+      "cat": "adj",
+      "text": "καλῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργων."
+    }
+  ],
+  "Tit2:15": [
+    {
+      "cat": "pron",
+      "text": "Ταῦτα"
+    },
+    {
+      "cat": "verb",
+      "text": "λάλει"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "verb",
+      "text": "παρακάλει"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἔλεγχε"
+    },
+    {
+      "cat": "prep",
+      "text": "μετὰ"
+    },
+    {
+      "cat": "adj",
+      "text": "πάσης"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπιταγῆς·"
+    },
+    {
+      "cat": "adj",
+      "text": "μηδείς"
+    },
+    {
+      "cat": "pron",
+      "text": "σου"
+    },
+    {
+      "cat": "verb",
+      "text": "περιφρονείτω."
+    }
+  ],
+  "Tit2:2": [
+    {
+      "cat": "noun",
+      "text": "Πρεσβύτας"
+    },
+    {
+      "cat": "verb",
+      "text": "εἶναι,"
+    },
+    {
+      "cat": "adj",
+      "text": "νηφαλίους"
+    },
+    {
+      "cat": "adj",
+      "text": "σεμνούς,"
+    },
+    {
+      "cat": "adj",
+      "text": "σώφρονας,"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑγιαίνοντας"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "noun",
+      "text": "πίστει,"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀγάπῃ,"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "noun",
+      "text": "ὑπομονῇ·"
+    }
+  ],
+  "Tit2:3": [
+    {
+      "cat": "noun",
+      "text": "πρεσβύτιδας"
+    },
+    {
+      "cat": "adv",
+      "text": "ὡσαύτως"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "καταστήματι"
+    },
+    {
+      "cat": "adj",
+      "text": "ἱεροπρεπεῖς,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "adj",
+      "text": "διαβόλους"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "noun",
+      "text": "οἴνῳ"
+    },
+    {
+      "cat": "adj",
+      "text": "πολλῷ"
+    },
+    {
+      "cat": "verb",
+      "text": "δεδουλωμένας,"
+    },
+    {
+      "cat": "adj",
+      "text": "καλοδιδασκάλους,"
+    }
+  ],
+  "Tit2:4": [
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "σωφρονίζωσιν"
+    },
+    {
+      "cat": "det",
+      "text": "τὰς"
+    },
+    {
+      "cat": "adj",
+      "text": "νέας"
+    },
+    {
+      "cat": "verb",
+      "text": "εἶναι,"
+    },
+    {
+      "cat": "adj",
+      "text": "φιλάνδρους"
+    },
+    {
+      "cat": "adj",
+      "text": "φιλοτέκνους"
+    }
+  ],
+  "Tit2:5": [
+    {
+      "cat": "adj",
+      "text": "σώφρονας"
+    },
+    {
+      "cat": "adj",
+      "text": "ἁγνὰς"
+    },
+    {
+      "cat": "adj",
+      "text": "οἰκουργοὺς"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀγαθάς,"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑποτασσομένας"
+    },
+    {
+      "cat": "det",
+      "text": "τοῖς"
+    },
+    {
+      "cat": "adj",
+      "text": "ἰδίοις"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνδράσιν,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "det",
+      "text": "ὁ"
+    },
+    {
+      "cat": "noun",
+      "text": "λόγος"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ"
+    },
+    {
+      "cat": "verb",
+      "text": "βλασφημῆται."
+    }
+  ],
+  "Tit2:6": [
+    {
+      "cat": "det",
+      "text": "Τοὺς"
+    },
+    {
+      "cat": "adj",
+      "text": "νεωτέρους"
+    },
+    {
+      "cat": "adv",
+      "text": "ὡσαύτως"
+    },
+    {
+      "cat": "verb",
+      "text": "παρακάλει"
+    },
+    {
+      "cat": "verb",
+      "text": "σωφρονεῖν"
+    }
+  ],
+  "Tit2:7": [
+    {
+      "cat": "prep",
+      "text": "περὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "πάντα,"
+    },
+    {
+      "cat": "pron",
+      "text": "σεαυτὸν"
+    },
+    {
+      "cat": "verb",
+      "text": "παρεχόμενος"
+    },
+    {
+      "cat": "noun",
+      "text": "τύπον"
+    },
+    {
+      "cat": "adj",
+      "text": "καλῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργων,"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "noun",
+      "text": "διδασκαλίᾳ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀφθορίαν,"
+    },
+    {
+      "cat": "noun",
+      "text": "σεμνότητα,"
+    }
+  ],
+  "Tit2:8": [
+    {
+      "cat": "noun",
+      "text": "λόγον"
+    },
+    {
+      "cat": "adj",
+      "text": "ὑγιῆ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀκατάγνωστον,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "det",
+      "text": "ὁ"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐξ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἐναντίας"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐντραπῇ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἔχων"
+    },
+    {
+      "cat": "verb",
+      "text": "λέγειν"
+    },
+    {
+      "cat": "prep",
+      "text": "περὶ"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν"
+    },
+    {
+      "cat": "adj",
+      "text": "μηδὲν"
+    },
+    {
+      "cat": "adj",
+      "text": "φαῦλον."
+    }
+  ],
+  "Tit2:9": [
+    {
+      "cat": "noun",
+      "text": "Δούλους"
+    },
+    {
+      "cat": "adj",
+      "text": "ἰδίοις"
+    },
+    {
+      "cat": "noun",
+      "text": "δεσπόταις"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑποτάσσεσθαι"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶσιν"
+    },
+    {
+      "cat": "adj",
+      "text": "εὐαρέστους"
+    },
+    {
+      "cat": "verb",
+      "text": "εἶναι,"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἀντιλέγοντας,"
+    }
+  ],
+  "Tit3:1": [
+    {
+      "cat": "verb",
+      "text": "Ὑπομίμνῃσκε"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτοὺς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀρχαῖς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐξουσίαις"
+    },
+    {
+      "cat": "verb",
+      "text": "ὑποτάσσεσθαι,"
+    },
+    {
+      "cat": "verb",
+      "text": "πειθαρχεῖν,"
+    },
+    {
+      "cat": "prep",
+      "text": "πρὸς"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργον"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀγαθὸν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἑτοίμους"
+    },
+    {
+      "cat": "verb",
+      "text": "εἶναι,"
+    }
+  ],
+  "Tit3:10": [
+    {
+      "cat": "adj",
+      "text": "αἱρετικὸν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἄνθρωπον"
+    },
+    {
+      "cat": "prep",
+      "text": "μετὰ"
+    },
+    {
+      "cat": "adj",
+      "text": "μίαν"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "δευτέραν"
+    },
+    {
+      "cat": "noun",
+      "text": "νουθεσίαν"
+    },
+    {
+      "cat": "verb",
+      "text": "παραιτοῦ,"
+    }
+  ],
+  "Tit3:11": [
+    {
+      "cat": "verb",
+      "text": "εἰδὼς"
+    },
+    {
+      "cat": "conj",
+      "text": "ὅτι"
+    },
+    {
+      "cat": "det",
+      "text": "ὁ"
+    },
+    {
+      "cat": "pron",
+      "text": "τοιοῦτος"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐξέστραπται"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἁμαρτάνει"
+    },
+    {
+      "cat": "verb",
+      "text": "ὢν"
+    },
+    {
+      "cat": "adj",
+      "text": "αὐτοκατάκριτος."
+    }
+  ],
+  "Tit3:12": [
+    {
+      "cat": "conj",
+      "text": "Ὅταν"
+    },
+    {
+      "cat": "verb",
+      "text": "πέμψω"
+    },
+    {
+      "cat": "prep",
+      "text": "πρὸς"
+    },
+    {
+      "cat": "pron",
+      "text": "σὲ"
+    },
+    {
+      "cat": "noun",
+      "text": "Ἀρτεμᾶν"
+    },
+    {
+      "cat": "conj",
+      "text": "ἢ"
+    },
+    {
+      "cat": "noun",
+      "text": "Τύχικον,"
+    },
+    {
+      "cat": "verb",
+      "text": "σπούδασον"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐλθεῖν"
+    },
+    {
+      "cat": "prep",
+      "text": "πρός"
+    },
+    {
+      "cat": "pron",
+      "text": "με"
+    },
+    {
+      "cat": "prep",
+      "text": "εἰς"
+    },
+    {
+      "cat": "noun",
+      "text": "Νικόπολιν,"
+    },
+    {
+      "cat": "conj",
+      "text": "γὰρ"
+    },
+    {
+      "cat": "adv",
+      "text": "ἐκεῖ"
+    },
+    {
+      "cat": "verb",
+      "text": "παραχειμάσαι."
+    },
+    {
+      "cat": "verb",
+      "text": "κέκρικα"
+    }
+  ],
+  "Tit3:13": [
+    {
+      "cat": "noun",
+      "text": "Ζηνᾶν"
+    },
+    {
+      "cat": "det",
+      "text": "τὸν"
+    },
+    {
+      "cat": "adj",
+      "text": "νομικὸν"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "Ἀπολλῶν"
+    },
+    {
+      "cat": "adv",
+      "text": "σπουδαίως"
+    },
+    {
+      "cat": "verb",
+      "text": "πρόπεμψον,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "adj",
+      "text": "μηδὲν"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτοῖς"
+    },
+    {
+      "cat": "verb",
+      "text": "λείπῃ."
+    }
+  ],
+  "Tit3:14": [
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "verb",
+      "text": "μανθανέτωσαν"
+    },
+    {
+      "cat": "adv",
+      "text": "καὶ"
+    },
+    {
+      "cat": "det",
+      "text": "οἱ"
+    },
+    {
+      "cat": "adj",
+      "text": "ἡμέτεροι"
+    },
+    {
+      "cat": "adj",
+      "text": "καλῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργων"
+    },
+    {
+      "cat": "verb",
+      "text": "προΐστασθαι"
+    },
+    {
+      "cat": "prep",
+      "text": "εἰς"
+    },
+    {
+      "cat": "det",
+      "text": "τὰς"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀναγκαίας"
+    },
+    {
+      "cat": "noun",
+      "text": "χρείας,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "adv",
+      "text": "μὴ"
+    },
+    {
+      "cat": "verb",
+      "text": "ὦσιν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἄκαρποι."
+    }
+  ],
+  "Tit3:15": [
+    {
+      "cat": "verb",
+      "text": "Ἀσπάζονταί"
+    },
+    {
+      "cat": "pron",
+      "text": "σε"
+    },
+    {
+      "cat": "det",
+      "text": "οἱ"
+    },
+    {
+      "cat": "prep",
+      "text": "μετ’"
+    },
+    {
+      "cat": "pron",
+      "text": "ἐμοῦ"
+    },
+    {
+      "cat": "adj",
+      "text": "πάντες."
+    },
+    {
+      "cat": "verb",
+      "text": "ἄσπασαι"
+    },
+    {
+      "cat": "det",
+      "text": "τοὺς"
+    },
+    {
+      "cat": "verb",
+      "text": "φιλοῦντας"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμᾶς"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "πίστει."
+    },
+    {
+      "cat": "det",
+      "text": "Ἡ"
+    },
+    {
+      "cat": "noun",
+      "text": "χάρις"
+    },
+    {
+      "cat": "prep",
+      "text": "μετὰ"
+    },
+    {
+      "cat": "adj",
+      "text": "πάντων"
+    },
+    {
+      "cat": "pron",
+      "text": "ὑμῶν."
+    }
+  ],
+  "Tit3:2": [
+    {
+      "cat": "adj",
+      "text": "μηδένα"
+    },
+    {
+      "cat": "verb",
+      "text": "βλασφημεῖν,"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀμάχους"
+    },
+    {
+      "cat": "verb",
+      "text": "εἶναι,"
+    },
+    {
+      "cat": "adj",
+      "text": "ἐπιεικεῖς,"
+    },
+    {
+      "cat": "adj",
+      "text": "πᾶσαν"
+    },
+    {
+      "cat": "noun",
+      "text": "πραΰτητα"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐνδεικνυμένους"
+    },
+    {
+      "cat": "prep",
+      "text": "πρὸς"
+    },
+    {
+      "cat": "adj",
+      "text": "πάντας"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνθρώπους."
+    }
+  ],
+  "Tit3:3": [
+    {
+      "cat": "conj",
+      "text": "γάρ"
+    },
+    {
+      "cat": "verb",
+      "text": "Ἦμεν"
+    },
+    {
+      "cat": "adv",
+      "text": "ποτε"
+    },
+    {
+      "cat": "adv",
+      "text": "καὶ"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμεῖς"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀνόητοι,"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀπειθεῖς,"
+    },
+    {
+      "cat": "verb",
+      "text": "πλανώμενοι,"
+    },
+    {
+      "cat": "verb",
+      "text": "δουλεύοντες"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐπιθυμίαις"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἡδοναῖς"
+    },
+    {
+      "cat": "adj",
+      "text": "ποικίλαις,"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "κακίᾳ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "φθόνῳ"
+    },
+    {
+      "cat": "verb",
+      "text": "διάγοντες,"
+    },
+    {
+      "cat": "adj",
+      "text": "στυγητοί,"
+    },
+    {
+      "cat": "verb",
+      "text": "μισοῦντες"
+    },
+    {
+      "cat": "pron",
+      "text": "ἀλλήλους."
+    }
+  ],
+  "Tit3:4": [
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "conj",
+      "text": "ὅτε"
+    },
+    {
+      "cat": "det",
+      "text": "ἡ"
+    },
+    {
+      "cat": "noun",
+      "text": "χρηστότης"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "det",
+      "text": "ἡ"
+    },
+    {
+      "cat": "noun",
+      "text": "φιλανθρωπία"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "σωτῆρος"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "θεοῦ,"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐπεφάνη"
+    }
+  ],
+  "Tit3:5": [
+    {
+      "cat": "adv",
+      "text": "οὐκ"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐξ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργων"
+    },
+    {
+      "cat": "det",
+      "text": "τῶν"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐν"
+    },
+    {
+      "cat": "noun",
+      "text": "δικαιοσύνῃ"
+    },
+    {
+      "cat": "pron",
+      "text": "ἃ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐποιήσαμεν"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμεῖς"
+    },
+    {
+      "cat": "conj",
+      "text": "ἀλλὰ"
+    },
+    {
+      "cat": "prep",
+      "text": "κατὰ"
+    },
+    {
+      "cat": "det",
+      "text": "τὸ"
+    },
+    {
+      "cat": "pron",
+      "text": "αὐτοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔλεος"
+    },
+    {
+      "cat": "verb",
+      "text": "ἔσωσεν"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμᾶς"
+    },
+    {
+      "cat": "prep",
+      "text": "διὰ"
+    },
+    {
+      "cat": "noun",
+      "text": "λουτροῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "παλιγγενεσίας"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνακαινώσεως"
+    },
+    {
+      "cat": "noun",
+      "text": "πνεύματος"
+    },
+    {
+      "cat": "adj",
+      "text": "ἁγίου,"
+    }
+  ],
+  "Tit3:6": [
+    {
+      "cat": "pron",
+      "text": "οὗ"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐξέχεεν"
+    },
+    {
+      "cat": "prep",
+      "text": "ἐφ’"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμᾶς"
+    },
+    {
+      "cat": "adv",
+      "text": "πλουσίως"
+    },
+    {
+      "cat": "prep",
+      "text": "διὰ"
+    },
+    {
+      "cat": "noun",
+      "text": "Ἰησοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "Χριστοῦ"
+    },
+    {
+      "cat": "det",
+      "text": "τοῦ"
+    },
+    {
+      "cat": "noun",
+      "text": "σωτῆρος"
+    },
+    {
+      "cat": "pron",
+      "text": "ἡμῶν,"
+    }
+  ],
+  "Tit3:7": [
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "δικαιωθέντες"
+    },
+    {
+      "cat": "det",
+      "text": "τῇ"
+    },
+    {
+      "cat": "pron",
+      "text": "ἐκείνου"
+    },
+    {
+      "cat": "noun",
+      "text": "χάριτι"
+    },
+    {
+      "cat": "noun",
+      "text": "κληρονόμοι"
+    },
+    {
+      "cat": "verb",
+      "text": "γενηθῶμεν"
+    },
+    {
+      "cat": "prep",
+      "text": "κατ’"
+    },
+    {
+      "cat": "noun",
+      "text": "ἐλπίδα"
+    },
+    {
+      "cat": "noun",
+      "text": "ζωῆς"
+    },
+    {
+      "cat": "adj",
+      "text": "αἰωνίου."
+    }
+  ],
+  "Tit3:8": [
+    {
+      "cat": "adj",
+      "text": "Πιστὸς"
+    },
+    {
+      "cat": "det",
+      "text": "ὁ"
+    },
+    {
+      "cat": "noun",
+      "text": "λόγος·"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "prep",
+      "text": "περὶ"
+    },
+    {
+      "cat": "pron",
+      "text": "τούτων"
+    },
+    {
+      "cat": "verb",
+      "text": "βούλομαί"
+    },
+    {
+      "cat": "pron",
+      "text": "σε"
+    },
+    {
+      "cat": "verb",
+      "text": "διαβεβαιοῦσθαι,"
+    },
+    {
+      "cat": "conj",
+      "text": "ἵνα"
+    },
+    {
+      "cat": "verb",
+      "text": "φροντίζωσιν"
+    },
+    {
+      "cat": "adj",
+      "text": "καλῶν"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔργων"
+    },
+    {
+      "cat": "verb",
+      "text": "προΐστασθαι"
+    },
+    {
+      "cat": "det",
+      "text": "οἱ"
+    },
+    {
+      "cat": "verb",
+      "text": "πεπιστευκότες"
+    },
+    {
+      "cat": "noun",
+      "text": "θεῷ·"
+    },
+    {
+      "cat": "pron",
+      "text": "ταῦτά"
+    },
+    {
+      "cat": "verb",
+      "text": "ἐστιν"
+    },
+    {
+      "cat": "adj",
+      "text": "καλὰ"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "ὠφέλιμα"
+    },
+    {
+      "cat": "det",
+      "text": "τοῖς"
+    },
+    {
+      "cat": "noun",
+      "text": "ἀνθρώποις."
+    }
+  ],
+  "Tit3:9": [
+    {
+      "cat": "conj",
+      "text": "δὲ"
+    },
+    {
+      "cat": "adj",
+      "text": "μωρὰς"
+    },
+    {
+      "cat": "noun",
+      "text": "ζητήσεις"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "γενεαλογίας"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "ἔρεις"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "noun",
+      "text": "μάχας"
+    },
+    {
+      "cat": "adj",
+      "text": "νομικὰς"
+    },
+    {
+      "cat": "verb",
+      "text": "περιΐστασο·"
+    },
+    {
+      "cat": "conj",
+      "text": "γὰρ"
+    },
+    {
+      "cat": "verb",
+      "text": "εἰσὶν"
+    },
+    {
+      "cat": "adj",
+      "text": "ἀνωφελεῖς"
+    },
+    {
+      "cat": "conj",
+      "text": "καὶ"
+    },
+    {
+      "cat": "adj",
+      "text": "μάταιοι."
+    }
+  ]
+}
