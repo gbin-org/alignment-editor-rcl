@@ -206,7 +206,8 @@ ugnt.forEach((ugntWord, index) => {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(',', '')
-    .replace('.', '');
+    .replace('.', '')
+    .replace('’', 'ʼ');
 
   const wordEquality = strippedUgntWord === strippedNa28Word;
 
