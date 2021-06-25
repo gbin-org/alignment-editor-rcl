@@ -48,17 +48,15 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
         className={`${type}-container`}
         style={{ ...configuredStyle, paddingRight: '5rem', direction }}
       >
-        {textSegments?.map(
-          (textSegment: TextSegment): ReactElement => {
-            return (
-              <TextSegmentWrapper
-                key={`${type}-${textSegment.position}`}
-                textSegment={textSegment}
-                displayStyle={displayStyle}
-              />
-            );
-          }
-        )}
+        {textSegments?.map((textSegment: TextSegment): ReactElement => {
+          return (
+            <TextSegmentWrapper
+              key={`${type}-${textSegment.position}`}
+              textSegment={textSegment}
+              displayStyle={displayStyle}
+            />
+          );
+        })}
       </div>
     </div>
   );

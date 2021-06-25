@@ -320,9 +320,8 @@ export const baseReducer = (
         ...state,
         selectedSourceTextSegments: {
           ...state.selectedSourceTextSegments,
-          [action.payload.position]: !state.selectedSourceTextSegments[
-            action.payload.position
-          ],
+          [action.payload.position]:
+            !state.selectedSourceTextSegments[action.payload.position],
         },
       };
     case 'toggleSelectedReferenceTextSegment':
@@ -330,9 +329,8 @@ export const baseReducer = (
         ...state,
         selectedReferenceTextSegments: {
           ...state.selectedReferenceTextSegments,
-          [action.payload.position]: !state.selectedReferenceTextSegments[
-            action.payload.position
-          ],
+          [action.payload.position]:
+            !state.selectedReferenceTextSegments[action.payload.position],
         },
       };
 
@@ -341,9 +339,8 @@ export const baseReducer = (
         ...state,
         selectedTargetTextSegments: {
           ...state.selectedTargetTextSegments,
-          [action.payload.position]: !state.selectedTargetTextSegments[
-            action.payload.position
-          ],
+          [action.payload.position]:
+            !state.selectedTargetTextSegments[action.payload.position],
         },
       };
 
@@ -375,14 +372,12 @@ export const baseReducer = (
         let newLinks: Link[] = [];
 
         if (existingLink) {
-          newLinks = state.userLinks.map(
-            (link): Link => {
-              if (link.id === action.payload.id) {
-                return { ...action.payload, type: 'manual' };
-              }
-              return link;
+          newLinks = state.userLinks.map((link): Link => {
+            if (link.id === action.payload.id) {
+              return { ...action.payload, type: 'manual' };
             }
-          );
+            return link;
+          });
         } else {
           newLinks = state.userLinks.concat({
             id: action.payload.id,
