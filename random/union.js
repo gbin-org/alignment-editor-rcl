@@ -191,8 +191,7 @@ const ugnt = [
 const trues = [];
 const falses = [];
 
-console.log('Position,UGNT,NA28,isEqual,PartOfSpeech');
-
+const words = [];
 ugnt.forEach((ugntWord, index) => {
   const na28Word = na28Words[index].text;
 
@@ -217,15 +216,12 @@ ugnt.forEach((ugntWord, index) => {
     falses.push(index);
   }
 
-  console.log(
-    index + ',',
-    strippedUgntWord + ',',
-    strippedNa28Word + ',',
-    wordEquality + ',',
-    na28Words[index].cat
-  );
+  words.push({
+    ugnt: ugntWord,
+    na28: na28Word,
+    normalized: strippedNa28Word,
+    partOfSpeech: na28Words[index].cat,
+  });
 });
 
-console.log('Total:,', ugnt.length);
-console.log('Matches:,', trues.length);
-console.log('Mismatches:,', falses.length);
+console.log(JSON.stringify(words, null, 2));
