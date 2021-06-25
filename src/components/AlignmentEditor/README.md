@@ -27,7 +27,7 @@
     { text: 'τὸ' },
     { text: 'πρόσωπον' },
     { text: 'τῆς' },
-    { text: 'γενέσεως' },
+    { text: 'γενέσεως', partOfSpeech: 'adjective' },
     { text: 'αὐτοῦ' },
     { text: 'ἐν' },
     { text: 'ἐσόπτρῳ' },
@@ -98,6 +98,7 @@
     { sources: [3], targets: [4], type: 'manual' },
     { sources: [4], targets: [7], type: 'manual' },
     { sources: [5], targets: [3], type: 'manual' },
+    { sources: [16], targets: [20], type: 'manual' },
     { sources: [19], targets: [23], type: 'manual' },
   ]}
   stateUpdatedHook={(a) => {
