@@ -204,6 +204,15 @@ const partOfSpeechDisplay = (textSegment: TextSegment) => {
   }
 };
 
+const mapPartOfSpeech = (partOfSpeech: string): string => {
+  const partOfSpeechMappings: Map<string, string> = new Map();
+  partOfSpeechMappings.set('adj', 'adjective');
+  partOfSpeechMappings.set('conj', 'conjunction');
+  partOfSpeechMappings.set('prep', 'preposition');
+
+  return partOfSpeechMappings.get(partOfSpeech) || partOfSpeech;
+};
+
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const {
     textSegment,
@@ -229,7 +238,9 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const linkedClass = isLinked ? 'linked' : 'not-linked';
   const locked = isLocked(state.inProgressLink, relatedUserLink, forcedLock);
   const lockedClass = locked ? 'locked' : 'unlocked';
-  const partOfSpeechClass = textSegment.partOfSpeech || sourcePartOfSpeech;
+  const partOfSpeechClass = mapPartOfSpeech(
+    textSegment.partOfSpeech || sourcePartOfSpeech || ''
+  );
   const linkedToSource = isLinked && isLinkedToSource ? 'linked-to-source' : '';
 
   const linkedToTarget = isLinked && isLinkedToTarget ? 'linked-to-target' : '';
@@ -240,14 +251,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
   const renderedGroup = displayStyle === 'line' ? group : 0;
 
-  if (textSegment.type === 'reference') {
-    console.log(
-      'SEGMENT',
-      textSegment.position,
-      textSegment.text,
-      textSegment.partOfSpeech
-    );
-  }
   return (
     textSegment && (
       <div
