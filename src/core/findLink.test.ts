@@ -36,5 +36,32 @@ describe('findLink', (): void => {
         type: 'manual',
       });
     });
+
+    it('0:0 case', (): void => {
+      const referenceLinks: Link[] = [
+        {
+          sources: [0],
+          targets: [0],
+          type: 'manual',
+          id: 0,
+        },
+      ];
+
+      const userLink: Link = {
+        sources: [0],
+        targets: [0],
+        type: 'manual',
+        id: 4,
+      };
+
+      const result = findReferenceLinkForUserLink(referenceLinks, userLink);
+
+      expect(result).toEqual({
+        id: 0,
+        sources: [0],
+        targets: [0],
+        type: 'manual',
+      });
+    });
   });
 });

@@ -1,16 +1,20 @@
-// COLOR Palette
+// COLORS
 $black: black;
 $light-grey: #f0f0f0;
 $grey: #c8c8c8;
 $blue: blue;
 $dark-blue: darkblue;
 $white: white;
+$violet: #8a2be2;
+$purple: purple;
+$dark-red: darkred;
+$green: green;
 
 $alt-1: PowderBlue;
 $alt-2: LightSeaGreen;
 $alt-3: orange;
 
-// CONCEPTUAL palette
+// CONCEPTUAL
 $default: $light-grey;
 $focus: $dark-blue;
 $selected: $black;
@@ -19,5 +23,10 @@ $linked: $grey;
 $active-button: $blue;
 $disabled-button: $grey;
 
-// ELEMENT palette;
+// ELEMENT
 $text-color: $black;
+
+// TEXT SEGMENT (Part of Speech)
+$noun: $blue;
+$verb: $violet;
+$adjective: $green;

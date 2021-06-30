@@ -1,4 +1,5 @@
 import { TextSegment, Link } from 'core/structs';
+import findWithZero from 'core/findWithZero';
 
 export const findUserLinkForTextSegment = (
   userLinks: Link[],
@@ -81,9 +82,11 @@ export const findReferenceLinkForUserLink = (
   referenceLinks: Link[],
   userLink: Link
 ): Link | undefined => {
-  return referenceLinks.find((referenceLink: Link) => {
-    return userLink.sources.find((userLinkSource: number) => {
+  const foundReferenceLink = referenceLinks.find((referenceLink: Link) => {
+    return findWithZero(userLink.sources, (userLinkSource: number) => {
       return referenceLink.targets.includes(userLinkSource);
     });
   });
+
+  return foundReferenceLink;
 };

@@ -9,6 +9,7 @@ import {
 } from 'contexts/alignment';
 import { TextSegment, Link } from 'core/structs';
 import { determineGroup } from 'core/findGroup';
+import findWithZero from 'core/findWithZero';
 
 interface TextSegmentWrapperProps {
   textSegment: TextSegment;
@@ -290,7 +291,7 @@ const sourcePartOfSpeech = (
     });
 
     const referenceLink = state.referenceLinks?.find((referenceLink) => {
-      return userLink?.sources.find((source) => {
+      return findWithZero(userLink?.sources, (source) => {
         return referenceLink.targets.includes(source);
       });
     });
