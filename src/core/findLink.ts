@@ -81,9 +81,14 @@ export const findReferenceLinkForUserLink = (
   referenceLinks: Link[],
   userLink: Link
 ): Link | undefined => {
-  return referenceLinks.find((referenceLink: Link) => {
-    return userLink.sources.find((userLinkSource: number) => {
+  const foundReferenceLink = referenceLinks.find((referenceLink: Link) => {
+    const foundUserLink = userLink.sources.find((userLinkSource: number) => {
       return referenceLink.targets.includes(userLinkSource);
     });
+
+    const isZero = foundUserLink === 0 ? true : false;
+    return foundUserLink || isZero;
   });
+
+  return foundReferenceLink;
 };

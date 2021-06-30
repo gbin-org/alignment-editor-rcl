@@ -95,6 +95,7 @@
     { sources: [23], targets: [27], type: 'manual' },
   ]}
   referenceLinks={[
+    { sources: [0], targets: [0], type: 'manual' },
     { sources: [3], targets: [4], type: 'manual' },
     { sources: [4], targets: [7], type: 'manual' },
     { sources: [5], targets: [3], type: 'manual' },
