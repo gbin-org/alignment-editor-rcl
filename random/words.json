@@ -3,1044 +3,1218 @@
     "ugnt": "Παῦλος",
     "na28": "Παῦλος",
     "normalized": "Παυλος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "δοῦλος",
     "na28": "δοῦλος",
     "normalized": "δουλος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "θεοῦ",
     "na28": "θεοῦ,",
     "normalized": "θεου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀπόστολος",
     "na28": "ἀπόστολος",
     "normalized": "αποστολος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "δὲ",
     "na28": "δὲ",
     "normalized": "δε",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "Ἰησοῦ",
     "na28": "Ἰησοῦ",
     "normalized": "Ιησου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "Χριστοῦ",
     "na28": "Χριστοῦ",
     "normalized": "Χριστου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "κατὰ",
     "na28": "κατὰ",
     "normalized": "κατα",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "πίστιν",
     "na28": "πίστιν",
     "normalized": "πιστιν",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἐκλεκτῶν",
     "na28": "ἐκλεκτῶν",
     "normalized": "εκλεκτων",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "θεοῦ",
     "na28": "θεοῦ",
     "normalized": "θεου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "ἐπίγνωσιν",
     "na28": "ἐπίγνωσιν",
     "normalized": "επιγνωσιν",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀληθείας",
     "na28": "ἀληθείας",
     "normalized": "αληθειας",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "τῆς",
     "na28": "τῆς",
     "normalized": "της",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "κατʼ",
     "na28": "κατ’",
     "normalized": "κατʼ",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "εὐσέβειαν",
     "na28": "εὐσέβειαν",
     "normalized": "ευσεβειαν",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἐπʼ",
     "na28": "ἐπ’",
     "normalized": "επʼ",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "ἐλπίδι",
     "na28": "ἐλπίδι",
     "normalized": "ελπιδι",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ζωῆς",
     "na28": "ζωῆς",
     "normalized": "ζωης",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "αἰωνίου",
     "na28": "αἰωνίου,",
     "normalized": "αιωνιου",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ἣν",
     "na28": "ἣν",
     "normalized": "ην",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "ἐπηγγείλατο",
     "na28": "ἐπηγγείλατο",
     "normalized": "επηγγειλατο",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "ὁ",
     "na28": "ὁ",
     "normalized": "ο",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "ἀψευδὴς",
     "na28": "ἀψευδὴς",
     "normalized": "αψευδης",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "θεὸς",
     "na28": "θεὸς",
     "normalized": "θεος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "πρὸ",
     "na28": "πρὸ",
     "normalized": "προ",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "χρόνων",
     "na28": "χρόνων",
     "normalized": "χρονων",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "αἰωνίων",
     "na28": "αἰωνίων,",
     "normalized": "αιωνιων",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ἐφανέρωσεν",
     "na28": "ἐφανέρωσεν",
     "normalized": "εφανερωσεν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "δὲ",
     "na28": "δὲ",
     "normalized": "δε",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "καιροῖς",
     "na28": "καιροῖς",
     "normalized": "καιροις",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἰδίοις",
     "na28": "ἰδίοις",
     "normalized": "ιδιοις",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "τὸν",
     "na28": "τὸν",
     "normalized": "τον",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "λόγον",
     "na28": "λόγον",
     "normalized": "λογον",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "αὐτοῦ",
     "na28": "αὐτοῦ",
     "normalized": "αυτου",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "ἐν",
     "na28": "ἐν",
     "normalized": "εν",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "κηρύγματι",
     "na28": "κηρύγματι,",
     "normalized": "κηρυγματι",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ὃ",
     "na28": "ὃ",
     "normalized": "ο",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "ἐπιστεύθην",
     "na28": "ἐπιστεύθην",
     "normalized": "επιστευθην",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "ἐγὼ",
     "na28": "ἐγὼ",
     "normalized": "εγω",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "κατʼ",
     "na28": "κατ’",
     "normalized": "κατʼ",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "ἐπιταγὴν",
     "na28": "ἐπιταγὴν",
     "normalized": "επιταγην",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "τοῦ",
     "na28": "τοῦ",
     "normalized": "του",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "σωτῆρος",
     "na28": "σωτῆρος",
     "normalized": "σωτηρος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἡμῶν",
     "na28": "ἡμῶν",
     "normalized": "ημων",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "θεοῦ",
     "na28": "θεοῦ,",
     "normalized": "θεου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "Τίτῳ",
     "na28": "Τίτῳ",
     "normalized": "Τιτω",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "γνησίῳ",
     "na28": "γνησίῳ",
     "normalized": "γνησιω",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "τέκνῳ",
     "na28": "τέκνῳ",
     "normalized": "τεκνω",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "κατὰ",
     "na28": "κατὰ",
     "normalized": "κατα",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "κοινὴν",
     "na28": "κοινὴν",
     "normalized": "κοινην",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "πίστιν",
     "na28": "πίστιν,",
     "normalized": "πιστιν",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "χάρις",
     "na28": "χάρις",
     "normalized": "χαρις",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "εἰρήνη",
     "na28": "εἰρήνη",
     "normalized": "ειρηνη",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀπὸ",
     "na28": "ἀπὸ",
     "normalized": "απο",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "θεοῦ",
     "na28": "θεοῦ",
     "normalized": "θεου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "πατρὸς",
     "na28": "πατρὸς",
     "normalized": "πατρος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "Χριστοῦ",
     "na28": "Χριστοῦ",
     "normalized": "Χριστου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "Ἰησοῦ",
     "na28": "Ἰησοῦ",
     "normalized": "Ιησου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "τοῦ",
     "na28": "τοῦ",
     "normalized": "του",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "σωτῆρος",
     "na28": "σωτῆρος",
     "normalized": "σωτηρος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἡμῶν",
     "na28": "ἡμῶν.",
     "normalized": "ημων",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "Τούτου",
     "na28": "Τούτου",
     "normalized": "Τουτου",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "χάριν",
     "na28": "χάριν",
     "normalized": "χαριν",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "ἀπέλιπόν",
     "na28": "ἀπέλιπόν",
     "normalized": "απελιπον",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "σε",
     "na28": "σε",
     "normalized": "σε",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "ἐν",
     "na28": "ἐν",
     "normalized": "εν",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "Κρήτῃ",
     "na28": "Κρήτῃ,",
     "normalized": "Κρητη",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἵνα",
     "na28": "ἵνα",
     "normalized": "ινα",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "τὰ",
     "na28": "τὰ",
     "normalized": "τα",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "λείποντα",
     "na28": "λείποντα",
     "normalized": "λειποντα",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Participle"
   },
   {
     "ugnt": "ἐπιδιορθώσῃ",
     "na28": "ἐπιδιορθώσῃ",
     "normalized": "επιδιορθωση",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Subjunctive"
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "καταστήσῃς",
     "na28": "καταστήσῃς",
     "normalized": "καταστησης",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Subjunctive"
   },
   {
     "ugnt": "κατὰ",
     "na28": "κατὰ",
     "normalized": "κατα",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "πόλιν",
     "na28": "πόλιν",
     "normalized": "πολιν",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "πρεσβυτέρους",
     "na28": "πρεσβυτέρους,",
     "normalized": "πρεσβυτερους",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ὡς",
     "na28": "ὡς",
     "normalized": "ως",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "ἐγώ",
     "na28": "ἐγώ",
     "normalized": "εγω",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "σοι",
     "na28": "σοι",
     "normalized": "σοι",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "διεταξάμην",
     "na28": "διεταξάμην,",
     "normalized": "διεταξαμην",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "εἴ",
     "na28": "εἴ",
     "normalized": "ει",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "τίς",
     "na28": "τίς",
     "normalized": "τις",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "ἐστιν",
     "na28": "ἐστιν",
     "normalized": "εστιν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "ἀνέγκλητος",
     "na28": "ἀνέγκλητος,",
     "normalized": "ανεγκλητος",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "μιᾶς",
     "na28": "μιᾶς",
     "normalized": "μιας",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "γυναικὸς",
     "na28": "γυναικὸς",
     "normalized": "γυναικος",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀνήρ",
     "na28": "ἀνήρ,",
     "normalized": "ανηρ",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "τέκνα",
     "na28": "τέκνα",
     "normalized": "τεκνα",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἔχων",
     "na28": "ἔχων",
     "normalized": "εχων",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Participle"
   },
   {
     "ugnt": "πιστά",
     "na28": "πιστά,",
     "normalized": "πιστα",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "ἐν",
     "na28": "ἐν",
     "normalized": "εν",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "κατηγορίᾳ",
     "na28": "κατηγορίᾳ",
     "normalized": "κατηγορια",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀσωτίας",
     "na28": "ἀσωτίας",
     "normalized": "ασωτιας",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἢ",
     "na28": "ἢ",
     "normalized": "η",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "ἀνυπότακτα",
     "na28": "ἀνυπότακτα.",
     "normalized": "ανυποτακτα",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "δεῖ",
     "na28": "δεῖ",
     "normalized": "δει",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "γὰρ",
     "na28": "γὰρ",
     "normalized": "γαρ",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "τὸν",
     "na28": "τὸν",
     "normalized": "τον",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "ἐπίσκοπον",
     "na28": "ἐπίσκοπον",
     "normalized": "επισκοπον",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀνέγκλητον",
     "na28": "ἀνέγκλητον",
     "normalized": "ανεγκλητον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "εἶναι",
     "na28": "εἶναι",
     "normalized": "ειναι",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Infinitive"
   },
   {
     "ugnt": "ὡς",
     "na28": "ὡς",
     "normalized": "ως",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "θεοῦ",
     "na28": "θεοῦ",
     "normalized": "θεου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "οἰκονόμον",
     "na28": "οἰκονόμον,",
     "normalized": "οικονομον",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "αὐθάδη",
     "na28": "αὐθάδη,",
     "normalized": "αυθαδη",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "ὀργίλον",
     "na28": "ὀργίλον,",
     "normalized": "οργιλον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "πάροινον",
     "na28": "πάροινον,",
     "normalized": "παροινον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "πλήκτην",
     "na28": "πλήκτην,",
     "normalized": "πληκτην",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "αἰσχροκερδῆ",
     "na28": "αἰσχροκερδῆ,",
     "normalized": "αισχροκερδη",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ἀλλὰ",
     "na28": "ἀλλὰ",
     "normalized": "αλλα",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "φιλόξενον",
     "na28": "φιλόξενον",
     "normalized": "φιλοξενον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "φιλάγαθον",
     "na28": "φιλάγαθον",
     "normalized": "φιλαγαθον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "σώφρονα",
     "na28": "σώφρονα",
     "normalized": "σωφρονα",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "δίκαιον",
     "na28": "δίκαιον",
     "normalized": "δικαιον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ὅσιον",
     "na28": "ὅσιον",
     "normalized": "οσιον",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ἐγκρατῆ",
     "na28": "ἐγκρατῆ,",
     "normalized": "εγκρατη",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ἀντεχόμενον",
     "na28": "ἀντεχόμενον",
     "normalized": "αντεχομενον",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Participle"
   },
   {
     "ugnt": "τοῦ",
     "na28": "τοῦ",
     "normalized": "του",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "κατὰ",
     "na28": "κατὰ",
     "normalized": "κατα",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "τὴν",
     "na28": "τὴν",
     "normalized": "την",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "διδαχὴν",
     "na28": "διδαχὴν",
     "normalized": "διδαχην",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "πιστοῦ",
     "na28": "πιστοῦ",
     "normalized": "πιστου",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "λόγου",
     "na28": "λόγου,",
     "normalized": "λογου",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἵνα",
     "na28": "ἵνα",
     "normalized": "ινα",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "δυνατὸς",
     "na28": "δυνατὸς",
     "normalized": "δυνατος",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ᾖ",
     "na28": "ᾖ",
     "normalized": "η",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Subjunctive"
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "παρακαλεῖν",
     "na28": "παρακαλεῖν",
     "normalized": "παρακαλειν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Infinitive"
   },
   {
     "ugnt": "ἐν",
     "na28": "ἐν",
     "normalized": "εν",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "τῇ",
     "na28": "τῇ",
     "normalized": "τη",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "διδασκαλίᾳ",
     "na28": "διδασκαλίᾳ",
     "normalized": "διδασκαλια",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "τῇ",
     "na28": "τῇ",
     "normalized": "τη",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "ὑγιαινούσῃ",
     "na28": "ὑγιαινούσῃ",
     "normalized": "υγιαινουση",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Participle"
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "τοὺς",
     "na28": "τοὺς",
     "normalized": "τους",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "ἀντιλέγοντας",
     "na28": "ἀντιλέγοντας",
     "normalized": "αντιλεγοντας",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Participle"
   },
   {
     "ugnt": "ἐλέγχειν",
     "na28": "ἐλέγχειν.",
     "normalized": "ελεγχειν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Infinitive"
   },
   {
     "ugnt": "Εἰσὶν",
     "na28": "Εἰσὶν",
     "normalized": "Εισιν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "γὰρ",
     "na28": "γὰρ",
     "normalized": "γαρ",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "πολλοὶ",
     "na28": "πολλοὶ",
     "normalized": "πολλοι",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "καὶ",
     "na28": "[καὶ]",
     "normalized": "[και]",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "ἀνυπότακτοι",
     "na28": "ἀνυπότακτοι,",
     "normalized": "ανυποτακτοι",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "ματαιολόγοι",
     "na28": "ματαιολόγοι",
     "normalized": "ματαιολογοι",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "καὶ",
     "na28": "καὶ",
     "normalized": "και",
-    "partOfSpeech": "conj"
+    "partOfSpeech": "conj",
+    "mood": null
   },
   {
     "ugnt": "φρεναπάται",
     "na28": "φρεναπάται,",
     "normalized": "φρεναπαται",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "μάλιστα",
     "na28": "μάλιστα",
     "normalized": "μαλιστα",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "οἱ",
     "na28": "οἱ",
     "normalized": "οι",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "ἐκ",
     "na28": "ἐκ",
     "normalized": "εκ",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   },
   {
     "ugnt": "τῆς",
     "na28": "τῆς",
     "normalized": "της",
-    "partOfSpeech": "det"
+    "partOfSpeech": "det",
+    "mood": null
   },
   {
     "ugnt": "περιτομῆς",
     "na28": "περιτομῆς,",
     "normalized": "περιτομης",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "οὓς",
     "na28": "οὓς",
     "normalized": "ους",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "δεῖ",
     "na28": "δεῖ",
     "normalized": "δει",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "ἐπιστομίζειν",
     "na28": "ἐπιστομίζειν,",
     "normalized": "επιστομιζειν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Infinitive"
   },
   {
     "ugnt": "οἵτινες",
     "na28": "οἵτινες",
     "normalized": "οιτινες",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "ὅλους",
     "na28": "ὅλους",
     "normalized": "ολους",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "οἴκους",
     "na28": "οἴκους",
     "normalized": "οικους",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "ἀνατρέπουσιν",
     "na28": "ἀνατρέπουσιν",
     "normalized": "ανατρεπουσιν",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "διδάσκοντες",
     "na28": "διδάσκοντες",
     "normalized": "διδασκοντες",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Participle"
   },
   {
     "ugnt": "ἃ",
     "na28": "ἃ",
     "normalized": "α",
-    "partOfSpeech": "pron"
+    "partOfSpeech": "pron",
+    "mood": null
   },
   {
     "ugnt": "μὴ",
     "na28": "μὴ",
     "normalized": "μη",
-    "partOfSpeech": "adv"
+    "partOfSpeech": "adv",
+    "mood": null
   },
   {
     "ugnt": "δεῖ",
     "na28": "δεῖ",
     "normalized": "δει",
-    "partOfSpeech": "verb"
+    "partOfSpeech": "verb",
+    "mood": "Indicative"
   },
   {
     "ugnt": "αἰσχροῦ",
     "na28": "αἰσχροῦ",
     "normalized": "αισχρου",
-    "partOfSpeech": "adj"
+    "partOfSpeech": "adj",
+    "mood": null
   },
   {
     "ugnt": "κέρδους",
     "na28": "κέρδους",
     "normalized": "κερδους",
-    "partOfSpeech": "noun"
+    "partOfSpeech": "noun",
+    "mood": null
   },
   {
     "ugnt": "χάριν",
     "na28": "χάριν.",
     "normalized": "χαριν",
-    "partOfSpeech": "prep"
+    "partOfSpeech": "prep",
+    "mood": null
   }
 ]

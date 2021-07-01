@@ -221,6 +221,7 @@ ugnt.forEach((ugntWord, index) => {
     na28: na28Word,
     normalized: strippedNa28Word,
     partOfSpeech: na28Words[index].cat,
+    mood: na28Words[index].mood,
   });
 });
 

@@ -2,2728 +2,3387 @@
   "Tit1:1": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "Παῦλος"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "δοῦλος"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ,"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀπόστολος"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ἰησοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Χριστοῦ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατὰ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πίστιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἐκλεκτῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπίγνωσιν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀληθείας"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῆς"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατ’"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "εὐσέβειαν"
     }
   ],
   "Tit1:10": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "Εἰσὶν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "γὰρ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πολλοὶ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "[καὶ]"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀνυπότακτοι,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ματαιολόγοι"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "φρεναπάται,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μάλιστα"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "οἱ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐκ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῆς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "περιτομῆς,"
     }
   ],
   "Tit1:11": [
     {
       "cat": "pron",
+      "mood": null,
       "text": "οὓς"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "δεῖ"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "ἐπιστομίζειν,"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "οἵτινες"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ὅλους"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "οἴκους"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἀνατρέπουσιν"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "διδάσκοντες"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἃ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "δεῖ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αἰσχροῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "κέρδους"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "χάριν."
     }
   ],
   "Tit1:12": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "εἶπέν"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "τις"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐξ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτῶν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἴδιος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "προφήτης·"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Κρῆτες"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "ἀεὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ψεῦσται,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "κακὰ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θηρία,"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "γαστέρες"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀργαί."
     }
   ],
   "Tit1:13": [
     {
       "cat": "det",
+      "mood": null,
       "text": "ἡ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "μαρτυρία"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὕτη"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐστὶν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀληθής."
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "δι’"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἣν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "αἰτίαν"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "ἔλεγχε"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτοὺς"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "ἀποτόμως,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "ὑγιαίνωσιν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πίστει,"
     }
   ],
   "Tit1:14": [
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "προσέχοντες"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "Ἰουδαϊκοῖς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "μύθοις"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐντολαῖς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνθρώπων"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἀποστρεφομένων"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὴν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀλήθειαν."
     }
   ],
   "Tit1:15": [
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάντα"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καθαρὰ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῖς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καθαροῖς·"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῖς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "μεμιαμμένοις"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀπίστοις"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "οὐδὲν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καθαρόν,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἀλλὰ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "μεμίανται"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτῶν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ὁ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "νοῦς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ἡ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "συνείδησις."
     }
   ],
   "Tit1:16": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεὸν"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ὁμολογοῦσιν"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἰδέναι,"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῖς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργοις"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἀρνοῦνται,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "βδελυκτοὶ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ὄντες"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀπειθεῖς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "πρὸς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀγαθὸν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀδόκιμοι."
     }
   ],
   "Tit1:2": [
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐπ’"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐλπίδι"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ζωῆς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αἰωνίου,"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἣν"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐπηγγείλατο"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ὁ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀψευδὴς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεὸς"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "πρὸ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χρόνων"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αἰωνίων,"
     }
   ],
   "Tit1:3": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐφανέρωσεν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "καιροῖς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἰδίοις"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὸν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "λόγον"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτοῦ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "κηρύγματι,"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ὃ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐπιστεύθην"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἐγὼ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατ’"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπιταγὴν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σωτῆρος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ,"
     }
   ],
   "Tit1:4": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "Τίτῳ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "γνησίῳ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "τέκνῳ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατὰ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "κοινὴν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πίστιν,"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χάρις"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "εἰρήνη"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἀπὸ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πατρὸς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Χριστοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ἰησοῦ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σωτῆρος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν."
     }
   ],
   "Tit1:5": [
     {
       "cat": "pron",
+      "mood": null,
       "text": "Τούτου"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "χάριν"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἀπέλιπόν"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σε"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Κρήτῃ,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὰ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "λείποντα"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "ἐπιδιορθώσῃ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "καταστήσῃς"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατὰ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πόλιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πρεσβυτέρους,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ὡς"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἐγώ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σοι"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "διεταξάμην,"
     }
   ],
   "Tit1:6": [
     {
       "cat": "conj",
+      "mood": null,
       "text": "εἴ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "τίς"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐστιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀνέγκλητος,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μιᾶς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "γυναικὸς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνήρ,"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "τέκνα"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἔχων"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πιστά,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "κατηγορίᾳ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀσωτίας"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἢ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀνυπότακτα."
     }
   ],
   "Tit1:7": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "δεῖ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "γὰρ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὸν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπίσκοπον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀνέγκλητον"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἶναι"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ὡς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "οἰκονόμον,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αὐθάδη,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ὀργίλον,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάροινον,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πλήκτην,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αἰσχροκερδῆ,"
     }
   ],
   "Tit1:8": [
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἀλλὰ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "φιλόξενον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "φιλάγαθον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "σώφρονα"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "δίκαιον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ὅσιον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἐγκρατῆ,"
     }
   ],
   "Tit1:9": [
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἀντεχόμενον"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατὰ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὴν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "διδαχὴν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πιστοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "λόγου,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "δυνατὸς"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "ᾖ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "παρακαλεῖν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "διδασκαλίᾳ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ὑγιαινούσῃ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοὺς"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἀντιλέγοντας"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "ἐλέγχειν."
     }
   ],
   "Tit2:1": [
     {
       "cat": "pron",
+      "mood": null,
       "text": "Σὺ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "λάλει"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἃ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "πρέπει"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ὑγιαινούσῃ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "διδασκαλίᾳ."
     }
   ],
   "Tit2:10": [
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "νοσφιζομένους,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἀλλὰ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶσαν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πίστιν"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἐνδεικνυμένους"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀγαθήν,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὴν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "διδασκαλίαν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὴν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σωτῆρος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "κοσμῶσιν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶσιν."
     }
   ],
   "Tit2:11": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "Ἐπεφάνη"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "γὰρ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ἡ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χάρις"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "σωτήριος"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶσιν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνθρώποις"
     }
   ],
   "Tit2:12": [
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "παιδεύουσα"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμᾶς,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἀρνησάμενοι"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὴν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀσέβειαν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὰς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "κοσμικὰς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπιθυμίας"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "σωφρόνως"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "δικαίως"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "εὐσεβῶς"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "ζήσωμεν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῷ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "νῦν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "αἰῶνι,"
     }
   ],
   "Tit2:13": [
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "προσδεχόμενοι"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὴν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μακαρίαν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐλπίδα"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπιφάνειαν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῆς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "δόξης"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μεγάλου"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σωτῆρος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ἰησοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Χριστοῦ,"
     }
   ],
   "Tit2:14": [
     {
       "cat": "pron",
+      "mood": null,
       "text": "ὃς"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἔδωκεν"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἑαυτὸν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ὑπὲρ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "λυτρώσηται"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμᾶς"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἀπὸ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάσης"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνομίας"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "καθαρίσῃ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἑαυτῷ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "λαὸν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "περιούσιον,"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ζηλωτὴν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καλῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργων."
     }
   ],
   "Tit2:15": [
     {
       "cat": "pron",
+      "mood": null,
       "text": "Ταῦτα"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "λάλει"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "παρακάλει"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "ἔλεγχε"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "μετὰ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάσης"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπιταγῆς·"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μηδείς"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σου"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "περιφρονείτω."
     }
   ],
   "Tit2:2": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "Πρεσβύτας"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "νηφαλίους"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἶναι,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "σεμνούς,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "σώφρονας,"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ὑγιαίνοντας"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πίστει,"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀγάπῃ,"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ὑπομονῇ·"
     }
   ],
   "Tit2:3": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "πρεσβύτιδας"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "ὡσαύτως"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "καταστήματι"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἱεροπρεπεῖς,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "διαβόλους"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "οἴνῳ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πολλῷ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "δεδουλωμένας,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καλοδιδασκάλους,"
     }
   ],
   "Tit2:4": [
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "σωφρονίζωσιν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὰς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "νέας"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "φιλάνδρους"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἶναι,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "φιλοτέκνους"
     }
   ],
   "Tit2:5": [
     {
       "cat": "adj",
+      "mood": null,
       "text": "σώφρονας"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἁγνὰς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "οἰκουργοὺς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀγαθάς,"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ὑποτασσομένας"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῖς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἰδίοις"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνδράσιν,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ὁ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "λόγος"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "βλασφημῆται."
     }
   ],
   "Tit2:6": [
     {
       "cat": "det",
+      "mood": null,
       "text": "Τοὺς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "νεωτέρους"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "ὡσαύτως"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "παρακάλει"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "σωφρονεῖν"
     }
   ],
   "Tit2:7": [
     {
       "cat": "prep",
+      "mood": null,
       "text": "περὶ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάντα,"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σεαυτὸν"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "παρεχόμενος"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "τύπον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καλῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργων,"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "διδασκαλίᾳ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀφθορίαν,"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σεμνότητα,"
     }
   ],
   "Tit2:8": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "λόγον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ὑγιῆ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀκατάγνωστον,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ὁ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐξ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἐναντίας"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "ἐντραπῇ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μηδὲν"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἔχων"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "λέγειν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "περὶ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "φαῦλον."
     }
   ],
   "Tit2:9": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "Δούλους"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἰδίοις"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "δεσπόταις"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "ὑποτάσσεσθαι"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶσιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "εὐαρέστους"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἶναι,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἀντιλέγοντας,"
     }
   ],
   "Tit3:1": [
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "Ὑπομίμνῃσκε"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτοὺς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀρχαῖς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐξουσίαις"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "ὑποτάσσεσθαι,"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "πειθαρχεῖν,"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "πρὸς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργον"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀγαθὸν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἑτοίμους"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἶναι,"
     }
   ],
   "Tit3:10": [
     {
       "cat": "adj",
+      "mood": null,
       "text": "αἱρετικὸν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἄνθρωπον"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "μετὰ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μίαν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "δευτέραν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "νουθεσίαν"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "παραιτοῦ,"
     }
   ],
   "Tit3:11": [
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "εἰδὼς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ὅτι"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐξέστραπται"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ὁ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "τοιοῦτος"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἁμαρτάνει"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ὢν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αὐτοκατάκριτος."
     }
   ],
   "Tit3:12": [
     {
       "cat": "conj",
+      "mood": null,
       "text": "Ὅταν"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "πέμψω"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ἀρτεμᾶν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "πρὸς"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σὲ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἢ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Τύχικον,"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "σπούδασον"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "ἐλθεῖν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "πρός"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "με"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "εἰς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Νικόπολιν,"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "ἐκεῖ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "γὰρ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "κέκρικα"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "παραχειμάσαι."
     }
   ],
   "Tit3:13": [
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ζηνᾶν"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὸν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "νομικὸν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ἀπολλῶν"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "σπουδαίως"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "πρόπεμψον,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μηδὲν"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτοῖς"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "λείπῃ."
     }
   ],
   "Tit3:14": [
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "μανθανέτωσαν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "οἱ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἡμέτεροι"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καλῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργων"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "προΐστασθαι"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "εἰς"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὰς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀναγκαίας"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χρείας,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "μὴ"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "ὦσιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἄκαρποι."
     }
   ],
   "Tit3:15": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "Ἀσπάζονταί"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σε"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "οἱ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "μετ’"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἐμοῦ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάντες."
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "ἄσπασαι"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοὺς"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "φιλοῦντας"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμᾶς"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πίστει."
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "Ἡ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χάρις"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "μετὰ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάντων"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ὑμῶν."
     }
   ],
   "Tit3:2": [
     {
       "cat": "adj",
+      "mood": null,
       "text": "μηδένα"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "βλασφημεῖν,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀμάχους"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "εἶναι,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἐπιεικεῖς,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πᾶσαν"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "ἐνδεικνυμένους"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πραΰτητα"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "πρὸς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "πάντας"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνθρώπους."
     }
   ],
   "Tit3:3": [
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "Ἦμεν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "γάρ"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "ποτε"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμεῖς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀνόητοι,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀπειθεῖς,"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "πλανώμενοι,"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "δουλεύοντες"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐπιθυμίαις"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἡδοναῖς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ποικίλαις,"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "κακίᾳ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "φθόνῳ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "διάγοντες,"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "στυγητοί,"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "μισοῦντες"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἀλλήλους."
     }
   ],
   "Tit3:4": [
     {
       "cat": "conj",
+      "mood": null,
       "text": "ὅτε"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ἡ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χρηστότης"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ἡ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "φιλανθρωπία"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐπεφάνη"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σωτῆρος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεοῦ,"
     }
   ],
   "Tit3:5": [
     {
       "cat": "adv",
+      "mood": null,
       "text": "οὐκ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐξ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργων"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῶν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "δικαιοσύνῃ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἃ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐποιήσαμεν"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμεῖς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἀλλὰ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατὰ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τὸ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "αὐτοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔλεος"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἔσωσεν"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμᾶς"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "διὰ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "λουτροῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "παλιγγενεσίας"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνακαινώσεως"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "πνεύματος"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἁγίου,"
     }
   ],
   "Tit3:6": [
     {
       "cat": "pron",
+      "mood": null,
       "text": "οὗ"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐξέχεεν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "ἐφ’"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμᾶς"
     },
     {
       "cat": "adv",
+      "mood": null,
       "text": "πλουσίως"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "διὰ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Ἰησοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "Χριστοῦ"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῦ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "σωτῆρος"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἡμῶν,"
     }
   ],
   "Tit3:7": [
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "δικαιωθέντες"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τῇ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ἐκείνου"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "χάριτι"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "κληρονόμοι"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "γενηθῶμεν"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "κατ’"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἐλπίδα"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ζωῆς"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "αἰωνίου."
     }
   ],
   "Tit3:8": [
     {
       "cat": "adj",
+      "mood": null,
       "text": "Πιστὸς"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "ὁ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "λόγος·"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "prep",
+      "mood": null,
       "text": "περὶ"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "τούτων"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "βούλομαί"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "σε"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "διαβεβαιοῦσθαι,"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "ἵνα"
     },
     {
       "cat": "verb",
+      "mood": "Subjunctive",
       "text": "φροντίζωσιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καλῶν"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔργων"
     },
     {
       "cat": "verb",
+      "mood": "Infinitive",
       "text": "προΐστασθαι"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "οἱ"
     },
     {
       "cat": "verb",
+      "mood": "Participle",
       "text": "πεπιστευκότες"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "θεῷ·"
     },
     {
       "cat": "pron",
+      "mood": null,
       "text": "ταῦτά"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "ἐστιν"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "καλὰ"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ὠφέλιμα"
     },
     {
       "cat": "det",
+      "mood": null,
       "text": "τοῖς"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἀνθρώποις."
     }
   ],
   "Tit3:9": [
     {
       "cat": "adj",
+      "mood": null,
       "text": "μωρὰς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "δὲ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ζητήσεις"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "γενεαλογίας"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "ἔρεις"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "noun",
+      "mood": null,
       "text": "μάχας"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "νομικὰς"
     },
     {
       "cat": "verb",
+      "mood": "Imperative",
       "text": "περιΐστασο·"
     },
     {
       "cat": "verb",
+      "mood": "Indicative",
       "text": "εἰσὶν"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "γὰρ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "ἀνωφελεῖς"
     },
     {
       "cat": "conj",
+      "mood": null,
       "text": "καὶ"
     },
     {
       "cat": "adj",
+      "mood": null,
       "text": "μάταιοι."
     }
   ]
