@@ -1,7 +1,7 @@
 {
   "name": "alignment-editor-rcl",
   "description": "React Component Library for aligning a source text to a target text.",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "dependencies": {
