@@ -13,7 +13,7 @@ import {
   Gloss,
   StateUpdatedHookType,
 } from 'core/structs';
-import projectUserSegments from 'core/projectUserArguments';
+import { projectUserSegments, projectLinks } from 'core/projectUserArguments';
 
 import './alignmentEditorStyle.scss';
 
@@ -84,12 +84,15 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
       payload: { sourceSegments: projectedSourceSegments },
     });
 
-    dispatch({ type: 'setUserLinks', payload: { userLinks: userLinks ?? [] } });
+    dispatch({
+      type: 'setUserLinks',
+      payload: { userLinks: projectLinks(userLinks) },
+    });
 
     if (referenceLinks) {
       dispatch({
         type: 'setReferenceLinks',
-        payload: { referenceLinks: referenceLinks ?? null },
+        payload: { referenceLinks: projectLinks(referenceLinks) },
       });
     }
 

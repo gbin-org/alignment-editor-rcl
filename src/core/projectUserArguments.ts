@@ -1,14 +1,29 @@
-import { UserTextSegment, TextSegment, TextSegmentType } from 'core/structs';
+import {
+  UserTextSegment,
+  TextSegment,
+  TextSegmentType,
+  Link,
+} from 'core/structs';
 
 export const projectUserSegments = (
   userSegments: UserTextSegment[],
   type: TextSegmentType
 ): TextSegment[] => {
   return userSegments?.map(
-    (userSourceSegment: UserTextSegment, index: number): TextSegment => {
-      return { ...userSourceSegment, type, position: index };
+    (userSegment: UserTextSegment, index: number): TextSegment => {
+      if (userSegment) {
+        return { ...userSegment, type, position: index };
+      }
+
+      return { text: '', type, position: index };
     }
   );
+};
+
+export const projectLinks = (links: Link[]): Link[] => {
+  return links.filter((link: Link) => {
+    return Boolean(link);
+  });
 };
 
 export default projectUserSegments;
