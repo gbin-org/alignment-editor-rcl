@@ -97,13 +97,21 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
     }
 
     dispatch({ type: 'setSourceGlosses', payload: { sourceGlosses } });
+
     dispatch({
       type: 'setStateUpdatedHook',
       payload: { stateUpdatedHook: props.stateUpdatedHook },
     });
-    // This effect should run as component mounts/unmounts.
+    // The props listed here should cover changes in the input.
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
-  }, []);
+  }, [
+    props.sourceSegments,
+    props.referenceSegments,
+    props.targetSegments,
+    props.sourceGlosses,
+    props.referenceLinks,
+    props.userLinks,
+  ]);
 
   return (
     <div className="alignment-editor-root" style={{ width: '100%' }}>
