@@ -21,9 +21,10 @@ export const projectUserSegments = (
 };
 
 export const projectLinks = (links: Link[]): Link[] => {
-  return links.filter((link: Link) => {
+  const filteredLinks = links?.filter((link: Link) => {
     return Boolean(link);
   });
+  return filteredLinks ?? [];
 };
 
 export default projectUserSegments;
