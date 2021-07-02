@@ -204,13 +204,28 @@ const partOfSpeechDisplay = (textSegment: TextSegment) => {
   }
 };
 
-const mapPartOfSpeech = (partOfSpeech: string): string => {
+const mapPartOfSpeech = (
+  partOfSpeech: string,
+  displayColor: boolean
+): string => {
   const partOfSpeechMappings: Map<string, string> = new Map();
   partOfSpeechMappings.set('adj', 'adjective');
   partOfSpeechMappings.set('conj', 'conjunction');
   partOfSpeechMappings.set('prep', 'preposition');
 
-  return partOfSpeechMappings.get(partOfSpeech) || partOfSpeech;
+  const mappedPartOfSpeech =
+    partOfSpeechMappings.get(partOfSpeech) || partOfSpeech;
+
+  if (
+    !displayColor &&
+    (mappedPartOfSpeech === 'adjective' ||
+      mappedPartOfSpeech === 'noun' ||
+      mappedPartOfSpeech === 'verb')
+  ) {
+    return 'anchor';
+  }
+
+  return mappedPartOfSpeech;
 };
 
 export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
@@ -239,7 +254,8 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
   const locked = isLocked(state.inProgressLink, relatedUserLink, forcedLock);
   const lockedClass = locked ? 'locked' : 'unlocked';
   const partOfSpeechClass = mapPartOfSpeech(
-    textSegment.partOfSpeech || sourcePartOfSpeech || ''
+    textSegment.partOfSpeech || sourcePartOfSpeech || '',
+    state.displayGlosses
   );
   const linkedToSource = isLinked && isLinkedToSource ? 'linked-to-source' : '';
 

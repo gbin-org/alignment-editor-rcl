@@ -71,6 +71,20 @@
   color: $white;
 }
 
+.text-segment:not(.selected) > .text.anchor {
+  font-weight: bold;
+  text-decoration: underline;
+  color: $black;
+}
+
+.text-segment.selected > .text.anchor {
+  border-radius: 0.1rem;
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: $black;
+  color: $white;
+}
+
 .text-segment.reference.linked-to-source:not(.linked-to-target):not(.selected) {
   background-image: -webkit-linear-gradient(top, $linked 50%, $default 50%);
   border-bottom-color: $default;
