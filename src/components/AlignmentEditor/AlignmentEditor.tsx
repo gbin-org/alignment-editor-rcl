@@ -4,6 +4,7 @@ import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
 import ParagraphView from 'components/paragraphView';
 import LineView from 'components/lineView';
+import GameView from 'components/gameView';
 import ControlPanel from 'components/controlPanel';
 
 import {
@@ -54,6 +55,18 @@ const selectedView = (
         sourceDirection="ltr"
         targetDirection="ltr"
         displayStyle="full"
+      />
+    );
+  }
+
+  if (state.view === 'game') {
+    return (
+      <GameView
+        sourceSegments={projectedSourceSegments}
+        referenceSegments={projectedReferenceSegments}
+        targetSegments={projectedTargetSegments}
+        sourceDirection="ltr"
+        targetDirection="ltr"
       />
     );
   }

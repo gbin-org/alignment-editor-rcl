@@ -10,6 +10,7 @@ import {
   faScroll,
   faRedo,
   faInfoCircle,
+  faGamepad,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -150,6 +151,17 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
             style={{}}
             onClick={() => {
               dispatch({ type: 'switchView', payload: { view: 'line' } });
+            }}
+          />
+
+          <FontAwesomeIcon
+            icon={faGamepad}
+            className={`control-panel-button view ${
+              state.view === 'game' ? 'selected' : 'active'
+            }`}
+            style={{}}
+            onClick={() => {
+              dispatch({ type: 'switchView', payload: { view: 'game' } });
             }}
           />
         </div>
