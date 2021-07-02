@@ -293,7 +293,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
           </span>
           {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
 
-          {partOfSpeechDisplay(textSegment)}
+          {state.displayGlosses && partOfSpeechDisplay(textSegment)}
         </div>
         {/*enrichedDataBottom(props)*/}
       </div>
