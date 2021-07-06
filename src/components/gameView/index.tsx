@@ -6,7 +6,12 @@ import TextPortionComponent from 'components/textPortion';
 import LineView from 'components/lineView';
 
 import { Link, TextSegment } from 'core/structs';
-import { findReferenceLinkForUserLink } from 'core/findLink';
+import {
+  findReferenceLinkForUserLink,
+  findReferenceLinkForTextSegment,
+  findUserLinkForReferenceLink,
+} from 'core/findLink';
+import findWithZero from 'core/findWithZero';
 
 type Direction = 'ltr' | 'rtl';
 
@@ -106,8 +111,35 @@ const singleLinkAlignment = (
 
 export const GameView = (props: ParagraphViewProps): ReactElement => {
   const { sourceSegments, referenceSegments, targetSegments } = props;
-
   const { state } = useContext(AlignmentContext);
+
+  const anchorWords = sourceSegments.filter(
+    (sourceSegment: TextSegment): boolean => {
+      const pos = sourceSegment.partOfSpeech;
+      return pos === 'noun' || pos === 'verb' || pos === 'adjective';
+    }
+  );
+
+  const anchorWordCount = anchorWords.length;
+
+  const linkedAnchorWords = anchorWords.filter((anchorWord: TextSegment) => {
+    const referenceLink = findReferenceLinkForTextSegment(
+      state.referenceLinks || [],
+      anchorWord
+    );
+    let userLink = undefined;
+    if (referenceLink) {
+      userLink = findUserLinkForReferenceLink(state.userLinks, referenceLink);
+    }
+    return Boolean(userLink);
+    //return state.referenceLinks?.find((referenceLink: Link) => {
+    //return findWithZero(referenceLink.sources, (source: number) => {
+    //return source === anchorWord.position;
+    //});
+    //});
+  });
+
+  const linkedAnchorWordsCount = linkedAnchorWords.length;
 
   return (
     <div
@@ -156,7 +188,10 @@ export const GameView = (props: ParagraphViewProps): ReactElement => {
 
       <div className="alignment-thing" style={{}}>
         <div style={{ height: '17.1rem' }}>
-          <div>Mikey</div>
+          <div>INFO</div>
+          <div>
+            {linkedAnchorWordsCount} / {anchorWordCount} anchor words linked.
+          </div>
         </div>
 
         <br />
