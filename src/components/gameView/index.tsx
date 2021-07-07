@@ -1,4 +1,6 @@
 import React, { ReactElement, useContext } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
@@ -11,7 +13,6 @@ import {
   findReferenceLinkForTextSegment,
   findUserLinkForReferenceLink,
 } from 'core/findLink';
-import findWithZero from 'core/findWithZero';
 
 type Direction = 'ltr' | 'rtl';
 
@@ -25,6 +26,82 @@ interface ParagraphViewProps {
 
 const isBridgeMode = (state: AlignmentState): boolean => {
   return state.referenceLinks !== null;
+};
+
+const findPreviousAnchor = (
+  anchors: TextSegment[],
+  currentPosition: number
+): number => {
+  const positions = anchors.map((anchor: TextSegment) => {
+    return anchor.position;
+  });
+
+  const greater = positions.filter((position: number) => {
+    return position < currentPosition;
+  });
+
+  if (!greater.length) {
+    return positions[positions.length - 1];
+  }
+  return Math.max(...greater);
+};
+
+const findNextAnchor = (
+  anchors: TextSegment[],
+  currentPosition: number
+): number => {
+  const positions = anchors.map((anchor: TextSegment) => {
+    return anchor.position;
+  });
+
+  const lesser = positions.filter((position: number) => {
+    return position > currentPosition;
+  });
+
+  if (!lesser.length) {
+    return positions[0];
+  }
+
+  return Math.min(...lesser);
+};
+
+const determineAnchor = (
+  direction: 'previous' | 'next',
+  anchors: TextSegment[],
+  currentAnchorPosition: number | undefined
+): number => {
+  if (currentAnchorPosition === undefined) {
+    if (direction === 'previous') {
+      return anchors[anchors.length - 1].position;
+    }
+
+    return anchors[0].position;
+  }
+
+  if (direction === 'previous') {
+    return findPreviousAnchor(anchors, currentAnchorPosition);
+  }
+
+  return findNextAnchor(anchors, currentAnchorPosition);
+};
+
+const findCurrentAnchorWord = (
+  anchorWords: TextSegment[],
+  selectedSourceTextSegments: Record<number, boolean>
+): number | undefined => {
+  const potentialAnchorWordEntry = Object.entries(
+    selectedSourceTextSegments
+  ).find((selectedSourceTextSegmentEntry) => {
+    return anchorWords.find((anchorWord: TextSegment) => {
+      return anchorWord.position === Number(selectedSourceTextSegmentEntry[0]);
+    });
+  });
+
+  if (potentialAnchorWordEntry) {
+    return Number(potentialAnchorWordEntry[0]);
+  }
+
+  return undefined;
 };
 
 const singleLinkAlignment = (
@@ -111,7 +188,7 @@ const singleLinkAlignment = (
 
 export const GameView = (props: ParagraphViewProps): ReactElement => {
   const { sourceSegments, referenceSegments, targetSegments } = props;
-  const { state } = useContext(AlignmentContext);
+  const { state, dispatch } = useContext(AlignmentContext);
 
   const anchorWords = sourceSegments.filter(
     (sourceSegment: TextSegment): boolean => {
@@ -132,14 +209,16 @@ export const GameView = (props: ParagraphViewProps): ReactElement => {
       userLink = findUserLinkForReferenceLink(state.userLinks, referenceLink);
     }
     return Boolean(userLink);
-    //return state.referenceLinks?.find((referenceLink: Link) => {
-    //return findWithZero(referenceLink.sources, (source: number) => {
-    //return source === anchorWord.position;
-    //});
-    //});
   });
 
   const linkedAnchorWordsCount = linkedAnchorWords.length;
+
+  const currentAnchorWord = findCurrentAnchorWord(
+    anchorWords,
+    state.selectedSourceTextSegments
+  );
+
+  console.log(currentAnchorWord);
 
   return (
     <div
@@ -150,24 +229,18 @@ export const GameView = (props: ParagraphViewProps): ReactElement => {
       }}
     >
       <div>
-        <div>BRIDGE</div>
+        <div>Source</div>
 
-        {(!referenceSegments || !referenceSegments.length) && (
-          <p>No bridge text available.</p>
-        )}
-
-        {referenceSegments && (
-          <div
-            className="bridge-container"
-            style={{ height: '16rem', overflowY: 'scroll' }}
-          >
-            <TextPortionComponent
-              displayStyle="paragraph"
-              type="reference"
-              textSegments={referenceSegments}
-            />
-          </div>
-        )}
+        <div
+          className="source-container"
+          style={{ height: '16rem', overflowY: 'scroll' }}
+        >
+          <TextPortionComponent
+            displayStyle="paragraph"
+            type="source"
+            textSegments={sourceSegments}
+          />
+        </div>
 
         <br />
         <hr />
@@ -189,6 +262,53 @@ export const GameView = (props: ParagraphViewProps): ReactElement => {
       <div className="alignment-thing" style={{}}>
         <div style={{ height: '17.1rem' }}>
           <div>INFO</div>
+          <div
+            className="previous-anchor"
+            onClick={() => {
+              dispatch({ type: 'resetSelectedSegments', payload: {} });
+
+              dispatch({
+                type: 'selectSourceTextSegment',
+                payload: {
+                  position: determineAnchor(
+                    'previous',
+                    anchorWords,
+                    currentAnchorWord
+                  ),
+                },
+              });
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faArrowLeft}
+              style={{ fontSize: '1rem', marginTop: '-0.5rem' }}
+            />
+          </div>
+
+          <div
+            className="next-anchor"
+            onClick={() => {
+              dispatch({ type: 'resetSelectedSegments', payload: {} });
+
+              dispatch({
+                type: 'selectSourceTextSegment',
+                payload: {
+                  position: determineAnchor(
+                    'next',
+                    anchorWords,
+                    currentAnchorWord
+                  ),
+                },
+              });
+            }}
+          >
+            <FontAwesomeIcon
+              className="next-anchor"
+              icon={faArrowRight}
+              style={{ fontSize: '1rem', marginTop: '-0.5rem' }}
+            />
+          </div>
+
           <div>
             {linkedAnchorWordsCount} / {anchorWordCount} anchor words linked.
           </div>
