@@ -35,6 +35,11 @@ interface UnFocusReferenceLinkAction extends Action {
   payload: { link: Link };
 }
 
+interface InitializeAllFocus extends Action {
+  type: 'initializeAllFocus';
+  payload: {};
+}
+
 interface SetSourceSegmentsAction extends Action {
   type: 'setSourceSegments';
   payload: { sourceSegments: TextSegment[] };
@@ -160,6 +165,7 @@ export type AlignmentActionTypes =
   | UnFocusUserLinkAction
   | FocusReferenceLinkAction
   | UnFocusReferenceLinkAction
+  | InitializeAllFocus
   | SetSourceSegmentsAction
   | SetUserLinksAction
   | SetReferenceLinksAction
@@ -262,6 +268,12 @@ export const baseReducer = (
       newUnFocusedReferenceLinks.set(action.payload.link, false);
       return { ...state, focusedReferenceLinks: newUnFocusedReferenceLinks };
 
+    case 'initializeAllFocus':
+      return {
+        ...state,
+        focusedReferenceLinks: initialState.focusedReferenceLinks,
+        focusedUserLinks: initialState.focusedUserLinks,
+      };
     case 'setSourceSegments':
       return {
         ...state,

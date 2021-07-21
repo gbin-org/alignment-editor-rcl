@@ -102,6 +102,9 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
       type: 'setStateUpdatedHook',
       payload: { stateUpdatedHook: props.stateUpdatedHook },
     });
+    return function cleanup() {
+      dispatch({ type: 'initializeAllFocus', payload: {} });
+    };
     // The props listed here should cover changes in the input.
     /* eslint-disable-next-line react-hooks/exhaustive-deps */
   }, [
