@@ -108,9 +108,10 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
     props.sourceSegments,
     props.referenceSegments,
     props.targetSegments,
-    props.sourceGlosses,
     props.referenceLinks,
     props.userLinks,
+    props.sourceGlosses,
+    props.stateUpdatedHook,
   ]);
 
   return (
