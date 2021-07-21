@@ -271,6 +271,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                     displayGlosses: !state.displayGlosses,
                   },
                 });
+                dispatch({ type: 'redrawUI', payload: {} });
               }}
             >
               <FontAwesomeIcon
