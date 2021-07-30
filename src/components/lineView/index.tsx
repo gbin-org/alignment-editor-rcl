@@ -68,6 +68,50 @@ const determineDisplayStyle = (
   return { margin: '' };
 };
 
+const upperTextPortion = (props: LineViewProps, state: AlignmentState) => {
+  if (state.lineViewFocal === 'source' && props.referenceSegments) {
+    return (
+      <TextPortionComponent
+        type="reference"
+        displayStyle="line"
+        textSegments={props.referenceSegments}
+      />
+    );
+  }
+
+  if (state.lineViewFocal === 'bridge') {
+    return (
+      <TextPortionComponent
+        type="source"
+        displayStyle="line"
+        textSegments={props.sourceSegments}
+      />
+    );
+  }
+};
+
+const middleTextPortion = (props: LineViewProps, state: AlignmentState) => {
+  if (state.lineViewFocal === 'source') {
+    return (
+      <TextPortionComponent
+        type="source"
+        displayStyle="line"
+        textSegments={props.sourceSegments}
+      />
+    );
+  }
+
+  if (state.lineViewFocal === 'bridge' && props.referenceSegments) {
+    return (
+      <TextPortionComponent
+        type="reference"
+        displayStyle="line"
+        textSegments={props.referenceSegments}
+      />
+    );
+  }
+};
+
 export const LineView = (props: LineViewProps): ReactElement => {
   const { sourceSegments, referenceSegments, targetSegments } = props;
 
@@ -97,11 +141,7 @@ export const LineView = (props: LineViewProps): ReactElement => {
     >
       <div style={{ margin: '0.6rem' }} />
 
-      <TextPortionComponent
-        type="source"
-        displayStyle="line"
-        textSegments={sourceSegments}
-      />
+      {upperTextPortion(props, state)}
 
       <div id="reference-links-container" style={{ position: 'relative' }}>
         {state.parentRef &&
@@ -140,13 +180,7 @@ export const LineView = (props: LineViewProps): ReactElement => {
 
       {(() => {
         if (referenceSegments && referenceSegments.length) {
-          return (
-            <TextPortionComponent
-              displayStyle="line"
-              type="reference"
-              textSegments={referenceSegments}
-            />
-          );
+          return middleTextPortion(props, state);
         }
         if (isBridgeMode(state)) {
           return (

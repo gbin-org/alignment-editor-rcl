@@ -10,6 +10,7 @@ import {
   faScroll,
   faRedo,
   faInfoCircle,
+  faRandom,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -279,6 +280,35 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                   state.displayGlosses ? 'selected' : 'active'
                 }`}
                 icon={faInfoCircle}
+              />
+            </div>
+          )}
+
+          {state.view === 'line' && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                alignContent: 'center',
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                dispatch({
+                  type: 'switchLineViewFocal',
+                  payload: {
+                    focal:
+                      state.lineViewFocal === 'bridge' ? 'source' : 'bridge',
+                  },
+                });
+                dispatch({ type: 'redrawUI', payload: {} });
+              }}
+            >
+              <FontAwesomeIcon
+                className={`control-panel-button view ${
+                  state.lineViewFocal === 'bridge' ? 'selected' : 'active'
+                }`}
+                icon={faRandom}
               />
             </div>
           )}

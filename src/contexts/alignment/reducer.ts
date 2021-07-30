@@ -14,6 +14,7 @@ interface Action {
 }
 
 export type ViewType = 'paragraph' | 'line';
+export type LineViewFocalType = 'bridge' | 'source';
 
 interface FocusUserLinkAction extends Action {
   type: 'focusUserLink';
@@ -58,6 +59,11 @@ interface SetReferenceLinksAction extends Action {
 interface SwitchViewAction extends Action {
   type: 'switchView';
   payload: { view: ViewType };
+}
+
+interface SwitchLineViewFocalAction extends Action {
+  type: 'switchLineViewFocal';
+  payload: { focal: LineViewFocalType };
 }
 
 interface AddSourceRefAction extends Action {
@@ -170,6 +176,7 @@ export type AlignmentActionTypes =
   | SetUserLinksAction
   | SetReferenceLinksAction
   | SwitchViewAction
+  | SwitchLineViewFocalAction
   | AddSourceRefAction
   | AddReferenceRefAction
   | AddTargetRefAction
@@ -199,6 +206,7 @@ export type AlignmentState = {
   referenceLinks: Link[] | null;
   sourceGlosses: Gloss[];
   view: ViewType;
+  lineViewFocal: LineViewFocalType;
   displayGlosses: boolean;
   sourceRefs: Record<number, HTMLDivElement>;
   referenceRefs: Record<number, HTMLDivElement>;
@@ -222,6 +230,7 @@ export const initialState: AlignmentState = {
   sourceGlosses: [],
   displayGlosses: true,
   view: 'paragraph',
+  lineViewFocal: 'bridge',
   sourceRefs: {},
   referenceRefs: {},
   targetRefs: {},
@@ -297,6 +306,8 @@ export const baseReducer = (
       };
     case 'switchView':
       return { ...state, view: action.payload.view };
+    case 'switchLineViewFocal':
+      return { ...state, lineViewFocal: action.payload.focal };
     case 'addSourceRef':
       return {
         ...state,
