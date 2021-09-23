@@ -25,6 +25,7 @@ interface AlignmentEditorProps {
   userLinks: Link[];
   referenceLinks: Link[];
   stateUpdatedHook: StateUpdatedHookType;
+  defaultView?: 'paragraph' | 'line';
 }
 
 const selectedView = (
@@ -61,7 +62,7 @@ const selectedView = (
 };
 
 export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
-  const { userLinks, referenceLinks, sourceGlosses } = props;
+  const { userLinks, referenceLinks, sourceGlosses, defaultView } = props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
@@ -102,6 +103,10 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
       type: 'setStateUpdatedHook',
       payload: { stateUpdatedHook: props.stateUpdatedHook },
     });
+
+    if (defaultView) {
+      dispatch({ type: 'switchView', payload: { view: defaultView } });
+    }
     return function cleanup() {
       dispatch({ type: 'initializeAllFocus', payload: {} });
     };
