@@ -116,7 +116,6 @@ A longer example
     {
       text: 'בִּשְׁלוֹשָׁ֣ה',
       color: 0,
-      group: 0,
       type: 'source',
       position: 31,
     },

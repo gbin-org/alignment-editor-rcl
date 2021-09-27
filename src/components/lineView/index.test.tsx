@@ -21,7 +21,6 @@ describe('LineView', (): void => {
           },
           {
             text: 'τὸ',
-            group: 0,
             type: 'source',
             position: 2,
             catIsContent: false,

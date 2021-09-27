@@ -11,7 +11,6 @@
     {
       text: 'τὸ',
       color: 0,
-      group: 0,
       type: 'source',
       position: 2,
       catIsContent: false,

@@ -8,7 +8,6 @@ import {
   AlignmentActionTypes,
 } from 'contexts/alignment';
 import { TextSegment, Link } from 'core/structs';
-import { determineGroup } from 'core/findGroup';
 import findWithZero from 'core/findWithZero';
 
 interface TextSegmentWrapperProps {
@@ -213,13 +212,6 @@ const isLinked = (textSegment: TextSegment, state: AlignmentState): boolean => {
   );
 };
 
-const group = (textSegment: TextSegment, state: AlignmentState): number => {
-  if (isBridgeMode(state)) {
-    return 0;
-  }
-  return determineGroup(state.userLinks, textSegment.position);
-};
-
 const isLinkedToSource = (
   textSegment: TextSegment,
   state: AlignmentState
@@ -323,7 +315,6 @@ export const TextSegmentWrapper = (props: TextSegmentWrapperProps) => {
         getSegmentSelections(textSegment, state)[textSegment.position] ?? false
       }
       forcedLock={determineForcedLock(textSegment, state)}
-      group={group(textSegment, state)}
       displayStyle={displayStyle}
       refCollector={generateRefCollector(
         textSegment,

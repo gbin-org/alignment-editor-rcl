@@ -25,7 +25,6 @@ export interface TextSegmentProps {
   isLinkedToSource: boolean;
   isLinkedToTarget: boolean;
   forcedLock: boolean;
-  group: number;
   displayStyle: 'line' | 'paragraph';
   refCollector: (ref: HTMLDivElement) => void;
   sourcePartOfSpeech: string | undefined;
@@ -238,7 +237,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
     isLinkedToSource,
     isLinkedToTarget,
     forcedLock,
-    group,
     displayStyle,
     refCollector,
     sourcePartOfSpeech,
@@ -265,7 +263,6 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
 
   const containerStyle =
     displayStyle === 'line' ? lineDisplayStyle : paragraphDisplayStyle;
-  const renderedGroup = displayStyle === 'line' ? group : 0;
 
   return (
     textSegment && (
@@ -276,7 +273,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
       >
         <div
           role="button"
-          className={`text-segment ${textSegment.type} ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} group-${renderedGroup} ${linkedToSource} ${linkedToTarget}`}
+          className={`text-segment ${textSegment.type} ${disabledClass} ${lockedClass} ${linkedClass} ${selectedClass} ${focusedClass} ${linkedToSource} ${linkedToTarget}`}
           style={{ display: 'inline-block', textAlign: 'center' }}
           tabIndex={0}
           onClick={() => {

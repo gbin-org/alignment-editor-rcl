@@ -5,7 +5,6 @@
   textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
-    group: 0,
     type: 'source',
     position: 1,
   }}
@@ -19,7 +18,6 @@
   textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
-    group: 0,
     type: 'source',
     position: 1,
   }}
@@ -34,7 +32,6 @@
   textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
-    group: 0,
     type: 'source',
     position: 1,
   }}
@@ -49,7 +46,6 @@
   textSegment={{
     text: 'ἀκοῦσαι',
     color: 0,
-    group: 0,
     type: 'source',
     postition: 1,
   }}
@@ -62,14 +58,12 @@
 ```ts
 <TextSegmentComponent
   textSegment={{text: 'ταχὺς', type: 'source', position: 1 }}
-  group="1"
   displayStyle="line"
   isLinked
 />
 
 <TextSegmentComponent
   textSegment={{text: 'ἀκοῦσαι', type: 'source', position: 2 }}
-  group="1"
   displayStyle="line"
   isLinked
 />
