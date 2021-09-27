@@ -163,22 +163,18 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 });
               }}
             />
-
-            {state.answerCorrect !== null && (
-              <div>Correct? {JSON.stringify(state.answerCorrect)}</div>
-            )}
           </div>
         )}
 
-        <div
-          className="view-controls"
-          style={{
-            justifySelf: 'flex-start',
-            alignSelf: 'flex-start',
-            display: 'flex',
-          }}
-        >
-          {!state.quizMode && (
+        {!state.quizMode && (
+          <div
+            className="view-controls"
+            style={{
+              justifySelf: 'flex-start',
+              alignSelf: 'flex-start',
+              display: 'flex',
+            }}
+          >
             <FontAwesomeIcon
               icon={faParagraph}
               className={`control-panel-button view ${
@@ -192,8 +188,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 });
               }}
             />
-          )}
-          {!state.quizMode && (
+
             <FontAwesomeIcon
               icon={faGripLines}
               className={`control-panel-button view ${
@@ -204,8 +199,8 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
                 dispatch({ type: 'switchView', payload: { view: 'line' } });
               }}
             />
-          )}
-        </div>
+          </div>
+        )}
 
         <div
           className="link-controls"

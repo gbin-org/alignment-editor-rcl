@@ -130,7 +130,58 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
   ]);
 
   return (
-    <div className="alignment-editor-root" style={{ width: '100%' }}>
+    <div
+      className="alignment-editor-root"
+      style={{
+        width: '100%',
+        position: 'relative',
+      }}
+    >
+      {state.answerCorrect === true && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '80%',
+            height: '80%',
+            opacity: '0.95',
+            background: 'green',
+            position: 'absolute',
+            zIndex: 10000,
+            color: 'white',
+            marginTop: '1%',
+            marginLeft: '10%',
+            borderRadius: '0.5rem',
+            fontSize: '5rem',
+          }}
+        >
+          Correct
+        </div>
+      )}
+
+      {state.answerCorrect === false && (
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '80%',
+            height: '80%',
+            opacity: '0.95',
+            background: 'red',
+            position: 'absolute',
+            zIndex: 10000,
+            color: 'white',
+            marginTop: '1%',
+            marginLeft: '10%',
+            borderRadius: '0.5rem',
+            fontSize: '5rem',
+          }}
+        >
+          Incorrect
+        </div>
+      )}
       {selectedView(
         props,
         state,
