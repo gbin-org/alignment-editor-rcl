@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLink,
   faUnlink,
+  faToilet,
+  faCheckCircle,
   faGripLines,
   faParagraph,
   faArrowsAltH,
@@ -114,6 +116,8 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
     ? 'active'
     : 'disabled';
 
+  const checkingDisabled = state.answerCorrect === null ? 'disabled' : 'active';
+
   return (
     <div>
       <br />
@@ -127,31 +131,80 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
           justifyContent: 'space-between',
         }}
       >
+        {state.quizMode && (
+          <div
+            className="quiz-controls"
+            style={{
+              justifySelf: 'flex-start',
+              alignSelf: 'flex-start',
+              display: 'flex',
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faCheckCircle}
+              className={`control-panel-button view active`}
+              style={{}}
+              onClick={() => {
+                dispatch({
+                  type: 'checkAnswer',
+                  payload: {},
+                });
+              }}
+            />
+
+            <FontAwesomeIcon
+              icon={faToilet}
+              className={`control-panel-button view ${checkingDisabled}`}
+              style={{}}
+              onClick={() => {
+                dispatch({
+                  type: 'resetCheckAnswer',
+                  payload: {},
+                });
+              }}
+            />
+
+            {state.answerCorrect !== null && (
+              <div>Correct? {JSON.stringify(state.answerCorrect)}</div>
+            )}
+          </div>
+        )}
+
         <div
           className="view-controls"
-          style={{ justifySelf: 'flex-start', alignSelf: 'flex-start' }}
+          style={{
+            justifySelf: 'flex-start',
+            alignSelf: 'flex-start',
+            display: 'flex',
+          }}
         >
-          <FontAwesomeIcon
-            icon={faParagraph}
-            className={`control-panel-button view ${
-              state.view === 'paragraph' ? 'selected' : 'active'
-            }`}
-            style={{}}
-            onClick={() => {
-              dispatch({ type: 'switchView', payload: { view: 'paragraph' } });
-            }}
-          />
-
-          <FontAwesomeIcon
-            icon={faGripLines}
-            className={`control-panel-button view ${
-              state.view === 'line' ? 'selected' : 'active'
-            }`}
-            style={{}}
-            onClick={() => {
-              dispatch({ type: 'switchView', payload: { view: 'line' } });
-            }}
-          />
+          {!state.quizMode && (
+            <FontAwesomeIcon
+              icon={faParagraph}
+              className={`control-panel-button view ${
+                state.view === 'paragraph' ? 'selected' : 'active'
+              }`}
+              style={{}}
+              onClick={() => {
+                dispatch({
+                  type: 'switchView',
+                  payload: { view: 'paragraph' },
+                });
+              }}
+            />
+          )}
+          {!state.quizMode && (
+            <FontAwesomeIcon
+              icon={faGripLines}
+              className={`control-panel-button view ${
+                state.view === 'line' ? 'selected' : 'active'
+              }`}
+              style={{}}
+              onClick={() => {
+                dispatch({ type: 'switchView', payload: { view: 'line' } });
+              }}
+            />
+          )}
         </div>
 
         <div

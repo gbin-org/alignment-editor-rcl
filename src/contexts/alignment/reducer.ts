@@ -7,6 +7,7 @@ import {
 } from 'core/structs';
 import { toggleItemExistence } from 'core/toggleItemExistence';
 import updatedStateWithHookCall from 'contexts/alignment/updatedStateWithHookCall';
+import checkAnswer from 'core/checkAnswer';
 
 interface Action {
   type: string;
@@ -58,6 +59,26 @@ interface SetReferenceLinksAction extends Action {
 interface SwitchViewAction extends Action {
   type: 'switchView';
   payload: { view: ViewType };
+}
+
+interface SetAnswerAction extends Action {
+  type: 'setAnswer';
+  payload: { answer: Link[] };
+}
+
+interface ToggleQuizModeAction extends Action {
+  type: 'toggleQuizMode';
+  payload: { quizMode: boolean };
+}
+
+interface CheckAnswerAction extends Action {
+  type: 'checkAnswer';
+  payload: {};
+}
+
+interface ResetCheckAnswerAction extends Action {
+  type: 'resetCheckAnswer';
+  payload: {};
 }
 
 interface AddSourceRefAction extends Action {
@@ -170,6 +191,10 @@ export type AlignmentActionTypes =
   | SetUserLinksAction
   | SetReferenceLinksAction
   | SwitchViewAction
+  | SetAnswerAction
+  | ToggleQuizModeAction
+  | CheckAnswerAction
+  | ResetCheckAnswerAction
   | AddSourceRefAction
   | AddReferenceRefAction
   | AddTargetRefAction
@@ -211,6 +236,9 @@ export type AlignmentState = {
   selectedTargetTextSegments: Record<number, boolean>;
   inProgressLink: Link | null;
   stateUpdatedHook: StateUpdatedHookType | null;
+  quizMode: boolean;
+  answer?: Link[];
+  answerCorrect: null | boolean;
 };
 
 export const initialState: AlignmentState = {
@@ -233,6 +261,9 @@ export const initialState: AlignmentState = {
   selectedTargetTextSegments: {},
   inProgressLink: null,
   stateUpdatedHook: null,
+  quizMode: false,
+  answerCorrect: null,
+  answer: undefined,
 };
 
 export const baseReducer = (
@@ -297,6 +328,24 @@ export const baseReducer = (
       };
     case 'switchView':
       return { ...state, view: action.payload.view };
+    case 'setAnswer':
+      return { ...state, answer: action.payload.answer };
+    case 'toggleQuizMode':
+      return { ...state, quizMode: action.payload.quizMode, view: 'line' };
+    case 'checkAnswer':
+      if (state.answer) {
+        return {
+          ...state,
+          answerCorrect: checkAnswer(state.answer, state.userLinks),
+        };
+      }
+      return { ...state };
+    case 'resetCheckAnswer':
+      return {
+        ...state,
+        answerCorrect: null,
+      };
+
     case 'addSourceRef':
       return {
         ...state,
@@ -433,6 +482,7 @@ export const baseReducer = (
         selectedReferenceTextSegments: {},
         selectedTargetTextSegments: {},
         inProgressLink: null,
+        answerCorrect: null,
       };
 
     case 'setInProgressLink':

@@ -26,6 +26,7 @@ interface AlignmentEditorProps {
   referenceLinks: Link[];
   stateUpdatedHook: StateUpdatedHookType;
   defaultView?: 'paragraph' | 'line';
+  answer?: Link[];
 }
 
 const selectedView = (
@@ -62,7 +63,8 @@ const selectedView = (
 };
 
 export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
-  const { userLinks, referenceLinks, sourceGlosses, defaultView } = props;
+  const { userLinks, referenceLinks, sourceGlosses, defaultView, answer } =
+    props;
 
   const { state, dispatch } = useContext(AlignmentContext);
 
@@ -106,6 +108,11 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
 
     if (defaultView) {
       dispatch({ type: 'switchView', payload: { view: defaultView } });
+    }
+
+    if (answer) {
+      dispatch({ type: 'setAnswer', payload: { answer } });
+      dispatch({ type: 'toggleQuizMode', payload: { quizMode: true } });
     }
     return function cleanup() {
       dispatch({ type: 'initializeAllFocus', payload: {} });

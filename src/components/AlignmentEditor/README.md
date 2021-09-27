@@ -108,6 +108,27 @@
 />
 ```
 
+[####](####) Alignment Editor: quiz mode
+
+```ts
+<AlignmentEditor
+  sourceGlosses={[
+    { position: 1, glossText: 'hope' },
+    { position: 2, glossText: 'fidelity' },
+  ]}
+  sourceSegments={[{ text: 'αγάπη' }, { text: 'ελπίδα' }, { text: 'πίστη' }]}
+  targetSegments={[{ text: 'faith' }, { text: 'hope' }, { text: 'love' }]}
+  answer={[
+    { sources: [0], targets: [2], type: 'manual' },
+    { sources: [1], targets: [1], type: 'manual' },
+    { sources: [2], targets: [0], type: 'manual' },
+  ]}
+  stateUpdatedHook={(a) => {
+    console.log('STATE UPDATED', a);
+  }}
+/>
+```
+
 #### Alignment Editor: longer example, without bridge text
 
 ```ts

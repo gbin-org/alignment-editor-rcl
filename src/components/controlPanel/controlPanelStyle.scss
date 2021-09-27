@@ -12,7 +12,7 @@
 
 .control-panel-button.disabled {
   cursor: not-allowed;
-  color: $disabled-button;
+  color: $disabled-button !important;
 }
 
 .control-panel-button.view {
