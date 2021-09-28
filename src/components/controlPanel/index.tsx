@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faLink,
   faUnlink,
-  faToilet,
-  faCheckCircle,
+  faTrashAlt,
+  faGlasses,
   faGripLines,
   faParagraph,
   faArrowsAltH,
@@ -141,7 +141,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
             }}
           >
             <FontAwesomeIcon
-              icon={faCheckCircle}
+              icon={faGlasses}
               className={`control-panel-button view active`}
               style={{}}
               onClick={() => {
@@ -153,7 +153,7 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
             />
 
             <FontAwesomeIcon
-              icon={faToilet}
+              icon={faTrashAlt}
               className={`control-panel-button view ${checkingDisabled}`}
               style={{}}
               onClick={() => {

@@ -1,4 +1,6 @@
 import React, { ReactElement, useContext, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
@@ -156,7 +158,7 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
             fontSize: '5rem',
           }}
         >
-          Correct
+          <FontAwesomeIcon icon={faCheck} style={{ fontSize: '8rem' }} />
         </div>
       )}
 
@@ -179,7 +181,7 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
             fontSize: '5rem',
           }}
         >
-          Incorrect
+          <FontAwesomeIcon icon={faTimes} style={{ fontSize: '8rem' }} />
         </div>
       )}
       {selectedView(
