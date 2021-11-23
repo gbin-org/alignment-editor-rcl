@@ -14,7 +14,7 @@ interface Action {
   payload: Record<any, any>;
 }
 
-export type ViewType = 'paragraph' | 'line';
+export type ViewType = 'paragraph' | 'line' | 'tree';
 
 interface FocusUserLinkAction extends Action {
   type: 'focusUserLink';

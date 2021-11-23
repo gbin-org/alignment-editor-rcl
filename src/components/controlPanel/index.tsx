@@ -10,6 +10,7 @@ import {
   faArrowsAltH,
   faBullseye,
   faScroll,
+  faSitemap,
   faRedo,
   faInfoCircle,
 } from '@fortawesome/free-solid-svg-icons';
@@ -197,6 +198,17 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
               style={{}}
               onClick={() => {
                 dispatch({ type: 'switchView', payload: { view: 'line' } });
+              }}
+            />
+
+            <FontAwesomeIcon
+              icon={faSitemap}
+              className={`control-panel-button view ${
+                state.view === 'tree' ? 'selected' : 'active'
+              }`}
+              style={{}}
+              onClick={() => {
+                dispatch({ type: 'switchView', payload: { view: 'tree' } });
               }}
             />
           </div>

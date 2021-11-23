@@ -6,6 +6,7 @@ import { AlignmentContext, AlignmentState } from 'contexts/alignment';
 
 import ParagraphView from 'components/paragraphView';
 import LineView from 'components/lineView';
+import TreeView from 'components/treeView';
 import ControlPanel from 'components/controlPanel';
 
 import {
@@ -27,7 +28,7 @@ interface AlignmentEditorProps {
   userLinks: Link[];
   referenceLinks: Link[];
   stateUpdatedHook: StateUpdatedHookType;
-  defaultView?: 'paragraph' | 'line';
+  defaultView?: 'paragraph' | 'line' | 'tree';
   answer?: Link[];
 }
 
@@ -52,6 +53,19 @@ const selectedView = (
   if (state.view === 'line') {
     return (
       <LineView
+        sourceSegments={projectedSourceSegments}
+        referenceSegments={projectedReferenceSegments}
+        targetSegments={projectedTargetSegments}
+        sourceDirection="ltr"
+        targetDirection="ltr"
+        displayStyle="full"
+      />
+    );
+  }
+
+  if (state.view === 'tree') {
+    return (
+      <TreeView
         sourceSegments={projectedSourceSegments}
         referenceSegments={projectedReferenceSegments}
         targetSegments={projectedTargetSegments}
