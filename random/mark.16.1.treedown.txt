@@ -1,0 +1,40 @@
++ s The Sabbath
+  v.part having passed,
+s Mary Magdelene and Mary the mother of James and Salome
+v bought
+o spices
++ in order to
+   + v.part go and
+   v anoint
+   o him
+
++ v.part διαγενομένου
+  s τοῦ σαββάτου
+s Μαρία ἡ Μαγδαληνὴ καὶ Μαρία ἡ τοῦ Ἰακώβου καὶ Σαλώμη
+v ἠγόρασαν
+o ἀρώματα
++ ἵνα
+   + v.part ἐλθοῦσαι
+   v ἀλείψωσιν
+   o αὐτόν.
+
+
+English: 23
+Greek: 18
+
+Structure:
+
+cl
+    v
+    s
+s
+v
+o
+cl
+    cl
+        v.part
+    v
+    o
+    
+
+ Pasado el día de reposo, María Magdalena, María, la madre de Jacobo , y Salomé, compraron especias aromáticas para ir a ungirle.

@@ -1,3 +1,129 @@
+[####](####) Alignment Editor: Tree view (Mark 16)
+
+```ts
+<AlignmentEditor
+  defaultView="tree"
+  sourceGlosses={[
+    { position: 2, glossText: 'anyone' },
+    { position: 3, glossText: 'hearer' },
+    { position: 4, glossText: 'word' },
+    { position: 12, glossText: 'doer' },
+    { position: 17, glossText: 'man' },
+    { position: 23, glossText: 'natural' },
+  ]}
+  sourceSegments={[
+    { text: 'διαγενομένου' },
+    { text: 'τοῦ' },
+    { text: 'σαββάτου' },
+    { text: 'Μαρία' },
+    { text: 'ἡ' },
+    { text: 'Μαγδαληνὴ' },
+    { text: 'καὶ' },
+    { text: 'Μαρία' },
+    { text: 'ἡ' },
+    { text: 'τοῦ' },
+    { text: 'Ἰακώβου' },
+    { text: 'καὶ' },
+    { text: 'Σαλώμη' },
+    { text: 'ἠγόρασαν' },
+    { text: 'ἀρώματα' },
+    { text: 'ἵνα' },
+    { text: 'ἐλθοῦσαι' },
+    { text: 'ἀλείψωσιν' },
+    { text: 'αὐτόν' },
+  ]}
+  referenceSegments={[
+    { text: 'The' },
+    { text: 'Sabbath' },
+    { text: 'having' },
+    { text: 'passed' },
+    { text: 'Mary' },
+    { text: 'Magdelene' },
+    { text: 'and' },
+    { text: 'Mary' },
+    { text: 'the' },
+    { text: 'mother' },
+    { text: 'of' },
+    { text: 'James' },
+    { text: 'and' },
+    { text: 'Salome' },
+    { text: 'bought' },
+    { text: 'spices' },
+    { text: 'in' },
+    { text: 'order' },
+    { text: 'to' },
+    { text: 'go' },
+    { text: 'and' },
+    { text: 'annoint' },
+    { text: 'him' },
+  ]}
+  targetSegments={[
+    { text: 'Pasado' },
+    { text: 'el' },
+    { text: 'dia' },
+    { text: 'de' },
+    { text: 'reposo' },
+    { text: 'María' },
+    { text: 'Magdalena' },
+    { text: 'María' },
+    { text: 'la' },
+    { text: 'madre' },
+    { text: 'de' },
+    { text: 'Jacobo' },
+    { text: 'y' },
+    { text: 'Salomé' },
+    { text: 'compraron' },
+    { text: 'especias' },
+    { text: 'aromáticas' },
+    { text: 'por' },
+    { text: 'ir' },
+    { text: 'a' },
+    { text: 'ungirle' },
+  ]}
+  userLinks={[
+    { sources: [2, 3], targets: [0], type: 'manual' },
+    { sources: [0, 1], targets: [1, 2, 3, 4], type: 'manual' },
+    { sources: [4], targets: [5], type: 'manual' },
+    { sources: [5], targets: [6], type: 'manual' },
+    { sources: [7], targets: [7], type: 'manual' },
+    { sources: [8], targets: [8], type: 'manual' },
+    { sources: [9], targets: [9], type: 'manual' },
+    { sources: [10], targets: [10], type: 'manual' },
+    { sources: [11], targets: [11], type: 'manual' },
+    { sources: [12], targets: [12], type: 'manual' },
+    { sources: [13], targets: [13], type: 'manual' },
+    { sources: [14], targets: [14], type: 'manual' },
+    { sources: [15], targets: [15, 16], type: 'manual' },
+    { sources: [16, 17], targets: [17], type: 'manual' },
+    { sources: [18, 19], targets: [18, 19], type: 'manual' },
+    { sources: [21, 22], targets: [20], type: 'manual' },
+  ]}
+  referenceLinks={[
+    { sources: [0], targets: [2, 3], type: 'manual' },
+    { sources: [1], targets: [0], type: 'manual' },
+    { sources: [2], targets: [1], type: 'manual' },
+    { sources: [3], targets: [4], type: 'manual' },
+    { sources: [5], targets: [5], type: 'manual' },
+    { sources: [6], targets: [6], type: 'manual' },
+    { sources: [7], targets: [7], type: 'manual' },
+    { sources: [8], targets: [8], type: 'manual' },
+    { sources: [9], targets: [9, 10], type: 'manual' },
+    { sources: [10], targets: [11], type: 'manual' },
+    { sources: [11], targets: [12], type: 'manual' },
+    { sources: [12], targets: [13], type: 'manual' },
+    { sources: [13], targets: [14], type: 'manual' },
+    { sources: [14], targets: [15], type: 'manual' },
+    { sources: [15], targets: [16, 17, 18], type: 'manual' },
+    { sources: [16], targets: [18, 19], type: 'manual' },
+    { sources: [17], targets: [21], type: 'manual' },
+    { sources: [18], targets: [22], type: 'manual' },
+  ]}
+  stateUpdatedHook={(a) => {
+    console.log('STATE UPDATED', a);
+  }}
+/>
+```
+
 [####](####) Alignment Editor: Tree view
 
 ```ts
