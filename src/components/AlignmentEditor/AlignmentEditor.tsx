@@ -15,6 +15,7 @@ import {
   TextSegment,
   Gloss,
   StateUpdatedHookType,
+  SyntaxNode,
 } from 'core/structs';
 import { projectUserSegments, projectLinks } from 'core/projectUserArguments';
 
@@ -24,6 +25,7 @@ interface AlignmentEditorProps {
   sourceSegments: UserTextSegment[];
   referenceSegments: UserTextSegment[];
   targetSegments: UserTextSegment[];
+  sourceSyntax: SyntaxNode;
   sourceGlosses: Gloss[];
   userLinks: Link[];
   referenceLinks: Link[];
@@ -63,11 +65,12 @@ const selectedView = (
     );
   }
 
-  if (state.view === 'tree') {
+  if (state.view === 'tree' && props.sourceSyntax) {
     return (
       <TreeView
         sourceSegments={projectedSourceSegments}
         referenceSegments={projectedReferenceSegments}
+        sourceSyntax={props.sourceSyntax}
         targetSegments={projectedTargetSegments}
         sourceDirection="ltr"
         targetDirection="ltr"
@@ -79,8 +82,16 @@ const selectedView = (
 };
 
 export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
-  const { userLinks, referenceLinks, sourceGlosses, defaultView, answer } =
-    props;
+  const {
+    userLinks,
+    referenceLinks,
+    sourceGlosses,
+    sourceSyntax,
+    defaultView,
+    answer,
+  } = props;
+
+  console.log('sourceSyntax', sourceSyntax);
 
   const { state, dispatch } = useContext(AlignmentContext);
 
