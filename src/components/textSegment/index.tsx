@@ -6,7 +6,13 @@ import {
 } from 'contexts/alignment/reducer';
 
 import { AlignmentContext } from 'contexts/alignment';
-import { Link, Gloss, TextSegment, TextSegmentType } from 'core/structs';
+import {
+  Link,
+  Gloss,
+  Strong,
+  TextSegment,
+  TextSegmentType,
+} from 'core/structs';
 import { findLinkForTextSegment } from 'core/findLink';
 
 import selectSegmentActions from 'core/actions/selectSegment';
@@ -189,6 +195,35 @@ const glossDisplay = (
   return <></>;
 };
 
+const strongDisplay = (
+  props: TextSegmentProps,
+  sourceStrongs: Strong[]
+): ReactElement => {
+  const sourceStrong = sourceStrongs?.find((strong) => {
+    return strong.position === props.textSegment.position;
+  });
+
+  if (props.textSegment.type === 'source' && sourceStrong) {
+    const langLetter = sourceStrong.lang.toUpperCase();
+    return (
+      <div
+        className="source-strong"
+        style={{
+          display: 'block',
+          fontSize: '0.8rem',
+          fontStyle: 'italic',
+          marginLeft: '0.5rem',
+          marginRight: '0.5rem',
+        }}
+      >
+        {`${langLetter}${sourceStrong.strong}`}
+      </div>
+    );
+  }
+
+  return <></>;
+};
+
 const partOfSpeechDisplay = (textSegment: TextSegment) => {
   if (textSegment.type === 'source' && textSegment.partOfSpeech) {
     return (
@@ -305,6 +340,7 @@ export const TextSegmentComponent = (props: TextSegmentProps): ReactElement => {
             {textSegment.text}
           </span>
           {state.displayGlosses && glossDisplay(props, state.sourceGlosses)}
+          {state.displayStrongs && strongDisplay(props, state.sourceStrongs)}
 
           {state.displayGlosses && partOfSpeechDisplay(textSegment)}
         </div>

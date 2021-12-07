@@ -1,6 +1,7 @@
 import {
   Link,
   Gloss,
+  Strong,
   TextSegment,
   TextSegmentType,
   StateUpdatedHookType,
@@ -176,9 +177,19 @@ interface SetSourceGlosses extends Action {
   payload: { sourceGlosses: Gloss[] };
 }
 
+interface SetSourceStrongs extends Action {
+  type: 'setSourceStrongs';
+  payload: { sourceStrongs: Strong[] };
+}
+
 interface SwitchGlossesDisplay extends Action {
   type: 'switchGlossesDisplay';
   payload: { displayGlosses: boolean };
+}
+
+interface SwitchStrongsDisplay extends Action {
+  type: 'switchStrongsDisplay';
+  payload: { displayStrongs: boolean };
 }
 
 export type AlignmentActionTypes =
@@ -214,6 +225,8 @@ export type AlignmentActionTypes =
   | ToggleInProgressLinkSegment
   | SetStateUpdatedHook
   | SetSourceGlosses
+  | SetSourceStrongs
+  | SwitchStrongsDisplay
   | SwitchGlossesDisplay;
 
 export type AlignmentState = {
@@ -223,8 +236,10 @@ export type AlignmentState = {
   userLinks: Link[];
   referenceLinks: Link[] | null;
   sourceGlosses: Gloss[];
+  sourceStrongs: Strong[];
   view: ViewType;
   displayGlosses: boolean;
+  displayStrongs: boolean;
   sourceRefs: Record<number, HTMLDivElement>;
   referenceRefs: Record<number, HTMLDivElement>;
   targetRefs: Record<number, HTMLDivElement>;
@@ -248,7 +263,9 @@ export const initialState: AlignmentState = {
   userLinks: [],
   referenceLinks: null,
   sourceGlosses: [],
-  displayGlosses: true,
+  sourceStrongs: [],
+  displayGlosses: false,
+  displayStrongs: false,
   view: 'paragraph',
   sourceRefs: {},
   referenceRefs: {},
@@ -518,8 +535,14 @@ export const baseReducer = (
     case 'setSourceGlosses':
       return { ...state, sourceGlosses: action.payload.sourceGlosses };
 
+    case 'setSourceStrongs':
+      return { ...state, sourceStrongs: action.payload.sourceStrongs };
+
     case 'switchGlossesDisplay':
       return { ...state, displayGlosses: action.payload.displayGlosses };
+
+    case 'switchStrongsDisplay':
+      return { ...state, displayStrongs: action.payload.displayStrongs };
     default:
       return state;
   }

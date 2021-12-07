@@ -13,6 +13,7 @@ import {
   faSitemap,
   faRedo,
   faInfoCircle,
+  faFistRaised,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -109,6 +110,7 @@ const toggleTextDirection = (
 export const ControlPanel = (props: ControlPanelProps): ReactElement => {
   const { state, dispatch } = useContext(AlignmentContext);
 
+  console.log('controlPanel strong?', state.sourceStrongs);
   const disabledClass = linkableSegmentsSelected(
     state.selectedSourceTextSegments,
     state.selectedReferenceTextSegments,
@@ -315,6 +317,34 @@ export const ControlPanel = (props: ControlPanelProps): ReactElement => {
           className="other-controls"
           style={{ display: 'flex', flexDirection: 'row' }}
         >
+          {state.sourceStrongs?.length && (
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                alignContent: 'center',
+                cursor: 'pointer',
+              }}
+              onClick={() => {
+                dispatch({
+                  type: 'switchStrongsDisplay',
+                  payload: {
+                    displayStrongs: !state.displayStrongs,
+                  },
+                });
+                dispatch({ type: 'redrawUI', payload: {} });
+              }}
+            >
+              <FontAwesomeIcon
+                className={`control-panel-button view ${
+                  state.displayStrongs ? 'selected' : 'active'
+                }`}
+                icon={faFistRaised}
+              />
+            </div>
+          )}
+
           {state.sourceGlosses?.length && (
             <div
               style={{

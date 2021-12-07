@@ -29,6 +29,15 @@ export const TreeView = (props: TreeViewProps): ReactElement => {
         className="source-container"
         style={{ overflowY: 'scroll', flexBasis: '33%', flexGrow: '0%' }}
       >
+        <div
+          style={{
+            textAlign: 'center',
+            textDecoration: 'underline',
+            fontSize: 'larger',
+          }}
+        >
+          Source
+        </div>
         <TextPortionComponent
           displayStyle="tree"
           type="source"
@@ -41,6 +50,15 @@ export const TreeView = (props: TreeViewProps): ReactElement => {
         className="bridge-container"
         style={{ overflowY: 'scroll', flexBasis: '33%', flexGrow: '0%' }}
       >
+        <div
+          style={{
+            textAlign: 'center',
+            textDecoration: 'underline',
+            fontSize: 'larger',
+          }}
+        >
+          Bridge
+        </div>
         <TextPortionComponent
           displayStyle="paragraph"
           type="reference"
@@ -52,6 +70,15 @@ export const TreeView = (props: TreeViewProps): ReactElement => {
         className="target-container"
         style={{ overflowY: 'scroll', flexBasis: '33%', flexGrow: '0%' }}
       >
+        <div
+          style={{
+            textAlign: 'center',
+            textDecoration: 'underline',
+            fontSize: 'larger',
+          }}
+        >
+          Target
+        </div>
         <TextPortionComponent
           displayStyle="paragraph"
           type="target"

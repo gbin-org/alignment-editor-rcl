@@ -14,6 +14,7 @@ import {
   UserTextSegment,
   TextSegment,
   Gloss,
+  Strong,
   StateUpdatedHookType,
   SyntaxNode,
 } from 'core/structs';
@@ -27,6 +28,7 @@ interface AlignmentEditorProps {
   targetSegments: UserTextSegment[];
   sourceSyntax: SyntaxNode;
   sourceGlosses: Gloss[];
+  sourceStrongs: Strong[];
   userLinks: Link[];
   referenceLinks: Link[];
   stateUpdatedHook: StateUpdatedHookType;
@@ -86,6 +88,7 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
     userLinks,
     referenceLinks,
     sourceGlosses,
+    sourceStrongs,
     sourceSyntax,
     defaultView,
     answer,
@@ -127,6 +130,9 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
     }
 
     dispatch({ type: 'setSourceGlosses', payload: { sourceGlosses } });
+    dispatch({ type: 'setSourceStrongs', payload: { sourceStrongs } });
+
+    console.log('set source STRONG', sourceStrongs);
 
     dispatch({
       type: 'setStateUpdatedHook',
