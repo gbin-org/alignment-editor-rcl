@@ -47,6 +47,16 @@ interface SetSourceSegmentsAction extends Action {
   payload: { sourceSegments: TextSegment[] };
 }
 
+interface SetReferenceSegmentsAction extends Action {
+  type: 'setReferenceSegments';
+  payload: { referenceSegments: TextSegment[] };
+}
+
+interface SetTargetSegmentsAction extends Action {
+  type: 'setTargetSegments';
+  payload: { targetSegments: TextSegment[] };
+}
+
 interface SetUserLinksAction extends Action {
   type: 'setUserLinks';
   payload: { userLinks: Link[] };
@@ -199,6 +209,8 @@ export type AlignmentActionTypes =
   | UnFocusReferenceLinkAction
   | InitializeAllFocus
   | SetSourceSegmentsAction
+  | SetReferenceSegmentsAction
+  | SetTargetSegmentsAction
   | SetUserLinksAction
   | SetReferenceLinksAction
   | SwitchViewAction
@@ -231,6 +243,8 @@ export type AlignmentActionTypes =
 
 export type AlignmentState = {
   sourceSegments: TextSegment[];
+  referenceSegments: TextSegment[];
+  targetSegments: TextSegment[];
   focusedUserLinks: Map<Link, boolean>;
   focusedReferenceLinks: Map<Link, boolean>;
   userLinks: Link[];
@@ -258,6 +272,8 @@ export type AlignmentState = {
 
 export const initialState: AlignmentState = {
   sourceSegments: [],
+  referenceSegments: [],
+  targetSegments: [],
   focusedUserLinks: new Map<Link, boolean>(),
   focusedReferenceLinks: new Map<Link, boolean>(),
   userLinks: [],
@@ -326,6 +342,16 @@ export const baseReducer = (
       return {
         ...state,
         sourceSegments: action.payload.sourceSegments,
+      };
+    case 'setReferenceSegments':
+      return {
+        ...state,
+        referenceSegments: action.payload.referenceSegments,
+      };
+    case 'setTargetSegments':
+      return {
+        ...state,
+        targetSegments: action.payload.targetSegments,
       };
     case 'setUserLinks':
       return {

@@ -1,7 +1,7 @@
 import React, { ReactElement, useContext } from 'react';
 
 import { AlignmentContext } from 'contexts/alignment';
-import { TextSegment, TextSegmentType, SyntaxNode } from 'core/structs';
+import { TextSegment, TextSegmentType, SyntaxNode, Link } from 'core/structs';
 import { TextSegmentWrapper } from 'components/textSegmentWrapper';
 
 import './textPortionStyle.scss';
@@ -145,15 +145,94 @@ const paragraphDisplayStyle = {
 const recurseSyntax = (
   syntaxNode: SyntaxNode,
   depth: number,
-  textSegments: TextSegment[]
+  textSegments: TextSegment[],
+  type: 'source' | 'reference' | 'target',
+  referenceLinks: Link[],
+  referenceText: TextSegment[],
+  userLinks: Link[],
+  targetText: TextSegment[]
 ): ReactElement => {
   const isLeaf = !syntaxNode.children || !syntaxNode.children.length;
-  let textSegmentSelection: TextSegment[] = [];
+  let textSegmentSelection: any[] = [];
   if (isLeaf) {
     textSegmentSelection = textSegments.slice(
       syntaxNode.start,
       syntaxNode.end + 1
     );
+    if (type === 'reference') {
+      const referencePositions = textSegmentSelection
+        .map((sourceSegment: TextSegment) => {
+          const matchingReferenceLinks = referenceLinks.filter((link: Link) => {
+            return link.sources.includes(sourceSegment.position);
+          });
+          return matchingReferenceLinks.map((referenceLink: Link) => {
+            return referenceLink.targets;
+          });
+        })
+        .flat()
+        .flat()
+        .flat()
+        .flat()
+        .flat()
+        .filter((segment) => Boolean(segment));
+      const referenceSegments = referencePositions
+        .map((referencePosition) => {
+          return referenceText.find((referenceSegment: TextSegment) => {
+            return referenceSegment.position === referencePosition;
+          });
+        })
+        .filter((thing) => !!thing);
+      textSegmentSelection = referenceSegments;
+    }
+
+    if (type === 'target') {
+      const targetPositions = textSegmentSelection
+        .map((sourceSegment: TextSegment) => {
+          const matchingReferenceLinks = referenceLinks.filter((link: Link) => {
+            return link.sources.includes(sourceSegment.position);
+          });
+          console.log('matching REF LINKS', matchingReferenceLinks);
+
+          const matchingUserLinks = matchingReferenceLinks.map(
+            (referenceLink: Link) => {
+              return userLinks.find((userLink: Link) => {
+                return Boolean(
+                  userLink.sources.find((userLinkSourcePosition: number) => {
+                    return referenceLink.targets.includes(
+                      userLinkSourcePosition
+                    );
+                  })
+                );
+              });
+            }
+          );
+          //.filter((link) => Boolean(link));
+
+          console.log('matching USER LINKS', matchingUserLinks);
+          //    ??
+
+          //const matchingUserLinks = userLinks.filter((link: Link) => {
+          //return link.sources.includes(sourceSegment.position);
+          //});
+          return matchingUserLinks.map((userLink: Link | undefined) => {
+            return userLink?.targets;
+          });
+        })
+        .flat()
+        .flat()
+        .flat()
+        .flat()
+        .flat()
+        .filter((segment) => Boolean(segment));
+      const targetSegments = targetPositions
+        .map((targetPosition) => {
+          return targetText.find((targetSegment: TextSegment) => {
+            return targetSegment.position === targetPosition;
+          });
+        })
+        .filter((thing) => !!thing);
+      textSegmentSelection = targetSegments;
+    }
   }
 
   return (
@@ -173,7 +252,16 @@ const recurseSyntax = (
       {syntaxNode.children &&
         syntaxNode.children.length &&
         syntaxNode.children.map((child) => {
-          return recurseSyntax(child, depth + 1, textSegments);
+          return recurseSyntax(
+            child,
+            depth + 1,
+            textSegments,
+            type,
+            referenceLinks,
+            referenceText,
+            userLinks,
+            targetText
+          );
         })}
     </div>
   );
@@ -205,7 +293,17 @@ export const TextPortion = (props: TextPortionProps): ReactElement => {
           marginRight: '0.5rem',
         }}
       >
-        {sourceSyntax && recurseSyntax(sourceSyntax, 0, textSegments)}
+        {sourceSyntax &&
+          recurseSyntax(
+            sourceSyntax,
+            0,
+            textSegments,
+            type,
+            state.referenceLinks ?? [],
+            state.referenceSegments,
+            state.userLinks,
+            state.targetSegments
+          )}
       </div>
     );
   }

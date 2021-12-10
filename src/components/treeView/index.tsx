@@ -60,8 +60,9 @@ export const TreeView = (props: TreeViewProps): ReactElement => {
           Bridge
         </div>
         <TextPortionComponent
-          displayStyle="paragraph"
+          displayStyle="tree"
           type="reference"
+          sourceSyntax={sourceSyntax}
           textSegments={referenceSegments ?? []}
         />
       </div>
@@ -80,8 +81,9 @@ export const TreeView = (props: TreeViewProps): ReactElement => {
           Target
         </div>
         <TextPortionComponent
-          displayStyle="paragraph"
+          displayStyle="tree"
           type="target"
+          sourceSyntax={sourceSyntax}
           textSegments={targetSegments}
         />
       </div>

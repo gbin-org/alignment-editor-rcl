@@ -122,6 +122,20 @@ export const AlignmentEditor = (props: AlignmentEditorProps): ReactElement => {
       payload: { userLinks: projectLinks(userLinks) },
     });
 
+    if (projectedReferenceSegments) {
+      dispatch({
+        type: 'setReferenceSegments',
+        payload: { referenceSegments: projectedReferenceSegments },
+      });
+    }
+
+    if (projectedTargetSegments) {
+      dispatch({
+        type: 'setTargetSegments',
+        payload: { targetSegments: projectedTargetSegments },
+      });
+    }
+
     if (referenceLinks) {
       dispatch({
         type: 'setReferenceLinks',
