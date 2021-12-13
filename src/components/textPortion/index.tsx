@@ -160,6 +160,7 @@ const recurseSyntax = (
       syntaxNode.end + 1
     );
     if (type === 'reference') {
+      console.log('TEXT SEG SELECTION', textSegmentSelection);
       const referencePositions = textSegmentSelection
         .map((sourceSegment: TextSegment) => {
           const matchingReferenceLinks = referenceLinks.filter((link: Link) => {
@@ -174,14 +175,31 @@ const recurseSyntax = (
         .flat()
         .flat()
         .flat()
-        .filter((segment) => Boolean(segment));
+        .filter((segment) => {
+          if (segment === 0) {
+            return true;
+          }
+          return Boolean(segment);
+        });
+
+      console.log('REFERENCE POSITIONS', referencePositions);
+
       const referenceSegments = referencePositions
         .map((referencePosition) => {
-          return referenceText.find((referenceSegment: TextSegment) => {
+          return referenceText.filter((referenceSegment: TextSegment) => {
             return referenceSegment.position === referencePosition;
           });
         })
+        .flat()
+        .flat()
+        .flat()
+        .flat()
+        .flat()
+        .filter((v, i, a) => {
+          return a.indexOf(v) === i;
+        })
         .filter((thing) => !!thing);
+      console.log('REFERENCE SEGMENTS', referenceSegments);
       textSegmentSelection = referenceSegments;
     }
 
@@ -223,7 +241,12 @@ const recurseSyntax = (
         .flat()
         .flat()
         .flat()
-        .filter((segment) => Boolean(segment));
+        .filter((segment) => {
+          if (segment === 0) {
+            return true;
+          }
+          return Boolean(segment);
+        });
       const targetSegments = targetPositions
         .map((targetPosition) => {
           return targetText.find((targetSegment: TextSegment) => {
