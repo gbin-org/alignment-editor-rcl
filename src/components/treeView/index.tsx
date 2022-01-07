@@ -57,7 +57,7 @@ export const TreeView = (props: TreeViewProps): ReactElement => {
             fontSize: 'larger',
           }}
         >
-          Bridge
+          LWC
         </div>
         <TextPortionComponent
           displayStyle="tree"
